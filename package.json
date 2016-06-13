@@ -7,7 +7,7 @@
     "start": "",
     "test": "nodemon server/server.js",
     "webpack-watch": "webpack --progress --colors --watch",
-    "webpack-hot": "webpack-dev-server --hot --inline",
+    "webpack-hot": "webpack-dev-server --hot --inline --content-base client/",
     "gulp": "node ./node_modules/gulp/bin/gulp.js"
   },
   "repository": {
