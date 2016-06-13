@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "",
-    "test": "nodemon server/server.js",
-    "webpack-watch": "webpack --progress --colors --watch",
-    "webpack-hot": "webpack-dev-server --hot --inline --content-base client/",
+    "test": "node ./node_modules/nodemon/bin/nodemon.js build/server.js",
+    "webpack-watch": "node ./node_modules/webpack/bin/webpack.js --progress --colors --watch",
+    "webpack-hot": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --content-base client/",
     "gulp": "node ./node_modules/gulp/bin/gulp.js"
   },
   "repository": {
