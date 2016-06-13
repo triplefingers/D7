@@ -9,5 +9,5 @@ before_script:
 script: gulp eslint
 
 #notify CI results
-notification:
+notifications:
   email: false
