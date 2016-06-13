@@ -4,7 +4,7 @@
   "description": "Do something every single day",
   "main": "index.js",
   "scripts": {
-    "start": "",
+    "start": "node build/server.js",
     "test": "node ./node_modules/nodemon/bin/nodemon.js build/server.js",
     "webpack-watch": "node ./node_modules/webpack/bin/webpack.js --progress --colors --watch",
     "webpack-hot": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --content-base client/",
@@ -20,6 +20,7 @@
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "morgan": "^1.7.0",
+    "nodemon": "^1.9.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
