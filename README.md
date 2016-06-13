@@ -4,11 +4,11 @@
 Do something every single day
 
 ## npm requirement
-# > npm install
+- > npm install
 
 ## npm script
-# "start": run transpiled build/server.js, with node
-# "test": run transpiled build/server.js, with nodemon
-# "webpack-watch": run webpack and watch on client/, with node
-# "webpack-hot": run webpack-dev-server + react-hot-loader and watch on client/, with node
-# "gulp": run webpack on client/ && babel-transpiler on server/ && nodemon on build/
+- "start": run transpiled build/server.js, with node
+- "test": run transpiled build/server.js, with nodemon
+- "webpack-watch": run webpack and watch on client/, with node
+- "webpack-hot": run webpack-dev-server + react-hot-loader and watch on client/, with node
+- "gulp": run webpack on client/ && babel-transpiler on server/ && nodemon on build/
