@@ -1,0 +1,13 @@
+#basic settings
+language: node_js
+node_js:
+  - "4.4"
+
+#test script options
+before_script:
+  # - npm install -g gulp
+script: gulp eslint
+
+#notify CI results
+notification:
+  email: false
