@@ -3,12 +3,27 @@
 ## D7
 Do something every single day
 
-## npm requirement
+## Preparation
+All you have to do is npm install
 - > npm install
 
-## npm script
-- "start": run transpiled build/server.js, with node
-- "test": run transpiled build/server.js, with nodemon
-- "webpack-watch": run webpack and watch on client/, with node
-- "webpack-hot": run webpack-dev-server + react-hot-loader and watch on client/, with node
-- "gulp": run webpack on client/ && babel-transpiler on server/ && nodemon on build/
+
+## How to start
+# When you start for the first time
+- At the very first, You have to transpile ES6 written Javascript files. Run gulp and you will get bundled file of client-side-files in client/, and babel-transpiled file of server-side-files in build/. Then, nodemon automatically starts build/server.js.
+  - > npm run gulp
+
+# If you have run 'gulp' before
+- If you have changes in client-side-files, do as below and it will bundle all Javascript files in client/. Then attach watcher on clinet/ and this will automatically re-bundle the files when there is any change in client-side-files.
+  - > npm run webpack-watch
+
+- If you have changes in server-side-files, run gulp again and this will work as same as above.
+  - > npm run gulp
+
+# If you want to use react-hot-loader
+- You can use react-hot-loader on client-side-files in client/.
+  - > npm run webpack-hot
+
+# If you just want to run server and you already transpiled client && server-side files
+- start with transpiled 'build/server.js' using node
+  - > npm start
