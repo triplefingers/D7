@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import {Link} from "react-router";
+import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
+
 
 class ProjectList extends Component {
   constructor(props) {
@@ -7,18 +8,21 @@ class ProjectList extends Component {
   };
 
   render() {
-    console.log(this.props.fore);
+    let array = [1,2,3];
+    let projects = array.map((project) => (
+      <Link to={"/record/project/" + project}><li>{"프로젝트" + " " + project}</li></Link>
+    ));
     return (
       <div>
-
-        <h1>This is ProjetList</h1>
-        {this.props.title}
-        <button onClick={this.props.changetitle}>버튼버튼</button><br/>
-
-        <Link to="/record/complete" onClick={this.props.force}>프로젝트1</Link>
+        <ul>
+          {projects}
+        </ul>
+        {this.props.children}
       </div>
-    )
-  }
+
+
+    );
+  };
 }
 
 export default ProjectList;

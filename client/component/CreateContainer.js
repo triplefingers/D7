@@ -1,7 +1,7 @@
 import React, {Component, cloneElement} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 
-class RecordContainer extends Component {
+class CreateContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {title: 1234};
@@ -38,4 +38,4 @@ class RecordContainer extends Component {
   };
 }
 
-export default RecordContainer
+export default CreateContainer

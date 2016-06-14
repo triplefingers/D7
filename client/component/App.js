@@ -9,16 +9,16 @@ class App extends Component {
       <div>
         <ul>
           <li>
-            <Link to="/record/projects">기록하기</Link>
+            <button><Link to="/record/projects">기록하기</Link></button>
           </li>
           <li>
-            <Link to="/create/basicinfo">새 프로젝트</Link>
+            <button><Link to="/create/basicinfo">새 프로젝트</Link></button>
           </li>
           <li>
-            <Link to="/history/projects">히스토리</Link>
+            <button><Link to="/history/projects">히스토리</Link></button>
           </li>
           <li>
-            <Link to="/recommendation/projects">추천</Link>
+            <button><Link to="/recommendation/projects">추천</Link></button>
           </li>
         </ul>
       </div>
