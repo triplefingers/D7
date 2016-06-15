@@ -2,3 +2,4 @@ node_modules
 build
 client/bundle.js
 **/*.sqlite
+npm-debug.log
