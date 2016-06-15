@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/triplefingers/D7.png?label=ready&title=Ready)](https://waffle.io/triplefingers/D7)
 [![Build Status](https://travis-ci.org/triplefingers/D7.svg?branch=master)](https://travis-ci.org/triplefingers/D7)
 
 ## D7
