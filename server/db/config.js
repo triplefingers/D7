@@ -56,7 +56,8 @@ db.knex.schema.hasTable('Posts').then(function(exists){
   if(!exists){
     db.knex.schema.createTable('Posts', function(post){
       post.increments('id').primary();
-      project.integer('userProjectId').references('id').inTable('UserProjects');
+      post.integer('userProjectId').references('id').inTable('UserProjects');
+      post.integer('day');
       post.string('text', 2000);
       post.timestamps();
     })
