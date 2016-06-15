@@ -6,7 +6,8 @@ const db = bookshelf(knex({
   client: 'sqlite3',
   connection: {
     filename: path.join(__dirname, 'd7.sqlite')
-  }
+  },
+  useNullAsDefault: true
 }));
 
 db.knex.schema.hasTable('Users').then(function(exists){
@@ -44,10 +45,20 @@ db.knex.schema.hasTable('UserProjects').then(function(exists){
       project.integer('projectId').references('id').inTable('Projects');
       project.dateTime('startAt');
       project.dateTime('endAt');
-      project.integer('wish');
       project.timestamps();
     }).then(function(table){
       console.log('Created Table', table);
+    })
+  }
+});
+
+db.knex.schema.hasTable('Posts').then(function(exists){
+  if(!exists){
+    db.knex.schema.createTable('Posts', function(post){
+      post.increments('id').primary();
+      project.integer('userProjectId').references('id').inTable('UserProjects');
+      post.string('text', 2000);
+      post.timestamps();
     })
   }
 });
