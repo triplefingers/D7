@@ -1,7 +1,7 @@
 import express from 'express';
 
 //dummy data 가져오기
-import dummy from 'db/temp';
+import dummy from './db/temp';
 
 const router = express.Router();
 
