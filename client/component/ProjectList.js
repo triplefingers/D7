@@ -8,11 +8,7 @@ class ProjectList extends Component {
   };
 
   componentDidMount() {
-    // console.log("data passed? ", this.props.temp);
-    console.log("in ProjectList ----");
     this.props.fetchOngoingProjects();
-    // console.log("data passed? ", this.props.data);
-
   }
 
   render() {

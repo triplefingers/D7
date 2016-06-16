@@ -19,9 +19,7 @@ class RecordContainer extends Component {
       }
     })
     .then((res) => {
-      // console.log(res);
       this.setState({data: res.data});
-      // console.log("state changed? ", this.state.data);
     })
   };
 
@@ -40,21 +38,14 @@ class RecordContainer extends Component {
     })
   }
 
-  save(completeUrl) {
-    alert("Save done");
-    this.goto(completeUrl);
-  };
-
   goto(url) {
     url = url !== undefined ? String(url) : "/";
     this.props.history.push(url);
-    // this.context.router.enqueue(url);
 
   };
 
   render() {
     let injection = {};
-    injection.save = this.save.bind(this); // to del
     injection.goto = this.goto.bind(this);
     injection.data = this.state.data;
     injection.fetchOngoingProjects = this.fetchOngoingProjects.bind(this);

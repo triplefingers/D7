@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Router, Route, Link, browserHistory, hashHistory, IndexRoute, RouterContext} from "react-router";
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -19,11 +20,15 @@ class ProjectDetail extends Component {
         <h1>Title: {title}</h1>
         <h1>Onday: {onDay}</h1>
 
-        <button>Cancel</button>
+        <button onClick={this.context.router.goBack.bind(this)}>Cancel</button>
         <button onClick={this.props.saveDayDetail.bind(this, id, title, onDay)}>Save</button>
       </div>
     )
   }
 }
+
+ProjectDetail.contextTypes = {
+  router: React.PropTypes.func.isRequired
+};
 
 export default ProjectDetail
