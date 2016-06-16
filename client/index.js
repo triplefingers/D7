@@ -4,12 +4,13 @@ import ReactDOM from "react-dom";
 
 import Test from "./component/Test";
 import App from "./component/App";
-import RecordContainer from "./component/RecordContainer";
+import RecordContainer from "./container/RecordContainer";
 import ProjectList from "./component/ProjectList";
 import ProjectDetail from "./component/ProjectDetail";
+import ProjectDetailContainer from './container/ProjectDetailContainer';
 import RecordComplete from "./component/RecordComplete";
 
-import CreateContainer from "./component/CreateContainer";
+import CreateContainer from "./container/CreateContainer";
 import CreateDate from "./component/CreateDate";
 import CreateComplete from "./component/CreateComplete";
 import CreateBasicInfo from "./component/CreateBasicInfo";
@@ -19,7 +20,7 @@ ReactDOM.render((
     <Route path="/" component={App}/>
     <Route component={RecordContainer}>
       <Route path="/record/projects" component={ProjectList}/>
-      <Route path="/record/project/:id" component={ProjectDetail}/>
+      <Route path="/record/project/:id" component={ProjectDetailContainer}/>
       <Route path="/record/complete" component={RecordComplete}/>
     </Route>
 
