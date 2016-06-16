@@ -13,11 +13,12 @@ class ProjectList extends Component {
 
   render() {
     console.log("data passed? (in render)", this.props.data);
-    let data = this.props.data;
+    let data = this.props.state.data;
     let array = data;
     if (array) {
       var projects = array.map((project) => (
-        <Link to={"/record/project/" + project.id} query={{title: project.title, onDay: project.onDay}}><li>{"프로젝트" + " " + project.title}</li></Link>
+        <li onClick={() => {this.props._save({title: project.title, onDay: project.onDay}); this.props.goto("/record/project/" + project.id)}}>{"프로젝트" + " " + project.title}</li>
+        // <Link to={"/record/project/" + project.id} query={{title: project.title, onDay: project.onDay}}><li>{"프로젝트" + " " + project.title}</li></Link>
       ));
     }
 

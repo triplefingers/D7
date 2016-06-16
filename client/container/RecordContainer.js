@@ -23,6 +23,13 @@ class RecordContainer extends Component {
     })
   };
 
+  _save(dataObject) {
+    // dataObject should be below
+    // {<keyname>: <value>}
+    console.log("data in _save is ", dataObject);
+    this.setState(dataObject);
+  }
+
   saveDayDetail(id, onDay, text) {
     axios.post("/api/record", {
       id: id,
@@ -36,30 +43,31 @@ class RecordContainer extends Component {
     .catch((err) => {
       console.error("Error occured while saving DayDetail");
     })
-  }
+  };
 
   goto(url) {
     url = url !== undefined ? String(url) : "/";
-    this.props.history.push(url);
-
+    this.context.router.push(url);
   };
 
   render() {
     let injection = {};
     injection.goto = this.goto.bind(this);
-    injection.data = this.state.data;
+    injection.state = this.state;
+    injection._save = this._save.bind(this);
     injection.fetchOngoingProjects = this.fetchOngoingProjects.bind(this);
     injection.saveDayDetail = this.saveDayDetail.bind(this);
 
 
 
-
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 
-    return (
-      child
-    );
+    return child;
   };
-}
+};
+
+RecordContainer.contextTypes = {
+  router: () => React.PropTypes.func.isRequired
+};
 
 export default RecordContainer

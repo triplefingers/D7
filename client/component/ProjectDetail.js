@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Router, Route, Link, browserHistory, hashHistory, IndexRoute, RouterContext} from "react-router";
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -14,6 +13,7 @@ class ProjectDetail extends Component {
     let id = this.props.queryData.id;
     let title = this.props.queryData.title;
     let onDay = this.props.queryData.onDay;
+
     return (
       <div>
         <h1>Project Detail</h1><hr/>
@@ -26,6 +26,7 @@ class ProjectDetail extends Component {
     )
   }
 }
+
 
 ProjectDetail.contextTypes = {
   router: React.PropTypes.func.isRequired
