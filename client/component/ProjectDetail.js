@@ -1,19 +1,26 @@
 import React, {Component} from "react";
-import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 
 class ProjectDetail extends Component {
   constructor(props) {
     super(props);
   };
+
+  componentDidMount() {
+    console.log("ProjectDetail Mounted :)");
+  }
+
   render() {
+    let id = this.props.queryData.id;
+    let title = this.props.queryData.title;
+    let onDay = this.props.queryData.onDay;
     return (
       <div>
-        this.props.title is {this.props.title}<br/>
-        this.props.params.id is {this.props.params.id}
-        <h1>Project Detail</h1>
-        <button onClick={this.props.changetitle}>자라나라버튼버튼</button><br/>
+        <h1>Project Detail</h1><hr/>
+        <h1>Title: {title}</h1>
+        <h1>Onday: {onDay}</h1>
+
         <button>Cancel</button>
-        <button onClick={this.props.save.bind(this, "/record/complete")}>Save</button>
+        <button onClick={this.props.saveDayDetail.bind(this, id, title, onDay)}>Save</button>
       </div>
     )
   }

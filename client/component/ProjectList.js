@@ -7,17 +7,29 @@ class ProjectList extends Component {
     super(props);
   };
 
+  componentDidMount() {
+    // console.log("data passed? ", this.props.temp);
+    console.log("in ProjectList ----");
+    this.props.fetchOngoingProjects();
+    // console.log("data passed? ", this.props.data);
+
+  }
+
   render() {
-    let array = [1,2,3];
-    let projects = array.map((project) => (
-      <Link to={"/record/project/" + project}><li>{"프로젝트" + " " + project}</li></Link>
-    ));
+    console.log("data passed? (in render)", this.props.data);
+    let data = this.props.data;
+    let array = data;
+    if (array) {
+      var projects = array.map((project) => (
+        <Link to={"/record/project/" + project.id} query={{title: project.title, onDay: project.onDay}}><li>{"프로젝트" + " " + project.title}</li></Link>
+      ));
+    }
+
     return (
       <div>
         <ul>
           {projects}
         </ul>
-        {this.props.children}
       </div>
 
 
