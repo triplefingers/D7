@@ -9,6 +9,10 @@ class CreateDate extends Component {
 
   render() {
 
+    let title = this.props.data.title;
+    let desc = this.props.data.description;
+    let startDate = this.props.data.startAt;
+
     let today = new Date();
     let minDate = this.props.convertNumDateToFullString(today.getFullYear(), today.getMonth() + 1, today.getDate());
 
@@ -18,10 +22,12 @@ class CreateDate extends Component {
         <h2>Title: {this.props.data.title}</h2>
         <hr/>
         <div>
-          <input type="date" min={minDate} defaultValue={minDate}/>
+          <input type="date" min={minDate} onChange={this.props.handleChange.bind(null, "startAt")} />
           <br/>
           <button onClick={this.context.router.goBack}>Cancel</button>
-          <button>Save</button>
+          <button onClick={() => {
+            this.props.saveNewProject(title, desc, startDate)
+          }}>Save</button>
         </div>
       </div>
     )

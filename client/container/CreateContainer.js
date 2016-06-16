@@ -1,6 +1,7 @@
 import React, {Component, cloneElement} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 import helpers from "../helpers/helpers.js";
+import axios from "axios";
 
 class CreateContainer extends Component {
   constructor(props) {
@@ -21,8 +22,24 @@ class CreateContainer extends Component {
     this.setState(data);
   };
 
+  saveNewProject(title, desc, startDate) {
+    axios.post("/api/record", {
+      title: title,
+      description: desc,
+      startAt: startDate
+    })
+    .then((res) => {
+      console.log("saveNewProject success: ", res);
+      this.goto("/create/complete")
+    })
+    .catch((err) => {
+      console.error("Error occured while saving new Project");
+    })
+  }
+
   render() {
     var injection = {};
+    injection.saveNewProject = this.saveNewProject.bind(this);
     injection.data = this.state;
     injection.handleChange = this.handleChange.bind(this);
     injection.goto = this.goto.bind(this);
