@@ -12,8 +12,8 @@ class RecordComplete extends Component {
         <button onClick={this.props.goto.bind(null, "/history/projects")}>to History</button>
         <button onClick={this.props.goto.bind(null, "/")}>to Main</button>
       </div>
-    )
+    );
   }
 }
 
-export default RecordComplete
+export default RecordComplete;

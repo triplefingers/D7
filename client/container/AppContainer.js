@@ -57,12 +57,12 @@ class AppContainer extends Component {
   fetchOngoingProjects() {
     axios.get("/api/projects", {
       params: {
-          type: "ongoing"
+        type: "ongoing"
       }
     })
     .then((res) => {
       this.setState({list: res.data});
-    })
+    });
   };
 
   _save(dataObject) {

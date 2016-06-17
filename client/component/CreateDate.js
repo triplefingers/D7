@@ -26,16 +26,16 @@ class CreateDate extends Component {
           <br/>
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
-            this.props.saveNewProject(title, desc, startDate)
+            this.props.saveNewProject(title, desc, startDate);
           }}>Save</button>
         </div>
       </div>
-    )
+    );
   };
 }
 
 CreateDate.contextTypes = {
   router: () => React.PropTypes.func.isRequired
-}
+};
 
 export default CreateDate;

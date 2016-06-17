@@ -26,7 +26,7 @@ class ProjectDetail extends Component {
         <button onClick={this.context.router.goBack.bind(this)}>Cancel</button>
         <button onClick={this.props.saveDayDetail.bind(this, id, onDay, text)}>Save</button>
       </div>
-    )
+    );
   }
 }
 
@@ -35,4 +35,4 @@ ProjectDetail.contextTypes = {
   router: React.PropTypes.func.isRequired
 };
 
-export default ProjectDetail
+export default ProjectDetail;

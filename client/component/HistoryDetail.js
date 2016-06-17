@@ -30,7 +30,7 @@ class HistoryDetail extends Component {
         <button onClick={this.context.router.goBack.bind(this)}>Cancel</button>
         {/*<button onClick={this.props.saveDayDetail.bind(this, id, onDay, text)}>Save</button>*/}
       </div>
-    )
+    );
   }
 }
 
@@ -39,4 +39,4 @@ HistoryDetail.contextTypes = {
   router: React.PropTypes.func.isRequired
 };
 
-export default HistoryDetail
+export default HistoryDetail;

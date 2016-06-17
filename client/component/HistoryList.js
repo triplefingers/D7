@@ -31,15 +31,15 @@ class HistoryList extends Component {
     }
 
     onGoing = onGoing.map((project) => (
-        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"}); this.props.goto("/history/project/" + project.id)}}>{"프로젝트" + " " + project.title}</li>
+        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"}); this.props.goto("/history/project/" + project.id);}}>{"프로젝트" + " " + project.title}</li>
       ));
 
     waiting = waiting.map((project) => (
-        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "waiting"}); this.props.goto("/history/project/" + project.id)}}>{"프로젝트" + " " + project.title}</li>
+        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "waiting"}); this.props.goto("/history/project/" + project.id);}}>{"프로젝트" + " " + project.title}</li>
       ));
 
     complete = complete.map((project) => (
-        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "complete"}); this.props.goto("/history/project/" + project.id)}}>{"프로젝트" + " " + project.title}</li>
+        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "complete"}); this.props.goto("/history/project/" + project.id);}}>{"프로젝트" + " " + project.title}</li>
       ));
     return (
       <div>
@@ -56,4 +56,4 @@ class HistoryList extends Component {
 
 }
 
-export default HistoryList
+export default HistoryList;

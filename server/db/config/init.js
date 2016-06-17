@@ -6,8 +6,8 @@ const initDB = ()=>{
   .save()
   .then((model)=>console.log("Created User model", model));
 
-let users = User.fetchAll();
-console.log("Created User model data", users);
+  let users = User.fetchAll();
+  console.log("Created User model data", users);
 
   //Project model data 생성
   [{
