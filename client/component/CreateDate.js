@@ -15,6 +15,7 @@ class CreateDate extends Component {
 
     let minDate = new Date().toJSON().slice(0,10);
 
+
     return (
       <div>
         <h1>Pick a Date</h1>
@@ -25,16 +26,16 @@ class CreateDate extends Component {
           <br/>
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
-            this.props.saveNewProject(title, desc, startDate)
+            this.props.saveNewProject(title, desc, startDate);
           }}>Save</button>
         </div>
       </div>
-    )
+    );
   };
 }
 
 CreateDate.contextTypes = {
   router: () => React.PropTypes.func.isRequired
-}
+};
 
 export default CreateDate;

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ProjectDetail from '../component/ProjectDetail'
+import ProjectDetail from "../component/ProjectDetail";
 
 class ProjectDetailContainer extends Component {
   constructor(props) {
@@ -15,9 +15,11 @@ class ProjectDetailContainer extends Component {
       title: this.props.data.title,
       onDay: this.props.data.onDay,
       id: this.props.params.id
-    }
-    return (<ProjectDetail queryData={queryData} saveDayDetail={this.props.saveDayDetail} handleChange={this.props.handleChange} data={this.props.data}/>)
+    };
+    return (
+      <ProjectDetail queryData={queryData} saveDayDetail={this.props.saveDayDetail} handleChange={this.props.handleChange} data={this.props.data}/>
+    );
   }
 }
 
-export default ProjectDetailContainer
+export default ProjectDetailContainer;
