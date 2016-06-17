@@ -2,12 +2,12 @@ import React, {Component, cloneElement} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 import ReactDOM from "react-dom";
 
-import Test from "./component/Test";
 import AppContainer from "./container/AppContainer";
 import App from "./component/App";
+
 import ProjectList from "./component/ProjectList";
-import ProjectDetail from "./component/ProjectDetail";
 import ProjectDetailContainer from "./container/ProjectDetailContainer";
+import ProjectDetail from "./component/ProjectDetail";
 import RecordComplete from "./component/RecordComplete";
 
 import CreateDate from "./component/CreateDate";
