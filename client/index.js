@@ -17,6 +17,8 @@ import CreateBasicInfo from "./component/CreateBasicInfo";
 import HistoryList from "./component/HistoryList";
 import HistoryDetail from "./component/HistoryDetail";
 
+import Recommendation from "./component/Recommendation";
+
 
 ReactDOM.render(
   (
@@ -39,8 +41,7 @@ ReactDOM.render(
         <Route path="/history/project/:id" component={HistoryDetail}/>
 
     {/* Recommendation */}
-        {/*<Route path="recommendation" component={}/>*/}
-        {/*<Route path="recommendation/projects" component={}/>*/}
+        <Route path="/recommendation/projects" component={Recommendation}/>
 
     </Route>
   </Router>
