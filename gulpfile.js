@@ -30,6 +30,11 @@ gulp.task("webpack", () => {
 gulp.task("eslint", () => {
   gulp.src([paths.server[0], paths.client[0], "!node_modules/**"])
   .pipe(eslint({
+    rules: {
+     quotes: [1, "double"],
+     semi: [1, "always"],
+     indent: ["error", 2]
+    },
     parser: "babel-eslint"
   }))
   .pipe(eslint.format())
@@ -39,6 +44,7 @@ gulp.task("eslint", () => {
 gulp.task('watch', () => {
   gulp.watch(paths.server, ["babel"]);
   gulp.watch(paths.client, ["webpack"]);
+  gulp.watch(paths.server, ["eslint"]);
 });
 
 gulp.task("start", () => {
@@ -48,4 +54,4 @@ gulp.task("start", () => {
   })
 });
 
-gulp.task("default", ["babel", "webpack", "watch", "start"]);
+gulp.task("default", ["eslint", "babel", "webpack", "watch", "start"]);
