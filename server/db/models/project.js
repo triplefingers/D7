@@ -7,6 +7,6 @@ const Project = db.Model.extend({
   defaults: {
     wish: 0,
   },
-})
+});
 
 export default Project;

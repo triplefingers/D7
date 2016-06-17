@@ -10,7 +10,7 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/../client"));
-app.use('/', router);
+app.use("/", router);
 
 // console.log("Applied router middleware");
 
@@ -25,5 +25,5 @@ app.use('/', router);
 // initDB();
 
 const server = app.listen(port, () => {
-  console.log('Express listening on port', port);
+  console.log("Express listening on port", port);
 });

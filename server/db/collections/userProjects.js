@@ -1,5 +1,5 @@
 import db from "../config/setConfig";
-import { UserProject } from '../models';
+import { UserProject } from "../models";
 
 const UserProjects = new db.Collection();
 

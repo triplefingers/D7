@@ -10,7 +10,7 @@ const createTables = ()=>{
         user.timestamps();
       }).then(function(table){
         console.log("Created Table", table);
-      })
+      });
     }
   });
 
@@ -24,7 +24,7 @@ const createTables = ()=>{
         project.timestamps();
       }).then(function(table){
         console.log("Created Table", table);
-      })
+      });
     }
   });
 
@@ -39,7 +39,7 @@ const createTables = ()=>{
         project.timestamps();
       }).then(function(table){
         console.log("Created Table", table);
-      })
+      });
     }
   });
 
@@ -51,7 +51,7 @@ const createTables = ()=>{
         post.integer("day");
         post.text("text");
         post.timestamps();
-      })
+      });
     }
   });
 };
