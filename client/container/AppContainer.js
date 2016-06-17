@@ -46,6 +46,7 @@ class AppContainer extends Component {
     .then((res) => {
       console.log("saveNewProject success: ", res);
       //store {id, title, description, onDay} to this.state
+      this._save({id: res.data.id, onDay: res.data.onDay});
       this.goto("/create/complete");
     })
     .catch((err) => {

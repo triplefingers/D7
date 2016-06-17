@@ -5,14 +5,17 @@ import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "reac
 class CreateComplete extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   };
 
   render() {
+    let toHistoryButton;
+    if (this.props.data.onDay) {
+      toHistoryButton  = <button onClick={this.props.goto.bind(this, "/record/project/" + this.props.data.id)}>Leave History</button>;
+    }
     return (
       <div>
         <h1>Complete</h1>
-        <button onClick={this.props.goto.bind(this, "/record/project/99")}>Leave History (not working)</button>
+        {toHistoryButton}
         <button onClick={this.props.goto.bind(this, "/")}>to Main</button>
       </div>
     );
