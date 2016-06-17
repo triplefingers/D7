@@ -1,5 +1,5 @@
-import db from '../config';
-import Post from '../models/post';
+import db from "../config/setConfig";
+import { Post } from "../models";
 
 const Posts = new db.Collection();
 

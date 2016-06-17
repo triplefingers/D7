@@ -44,6 +44,7 @@ gulp.task("eslint", () => {
 gulp.task('watch', () => {
   gulp.watch(paths.server, ["babel"]);
   gulp.watch(paths.client, ["webpack"]);
+  gulp.watch(paths.server, ["eslint"]);
 });
 
 gulp.task("start", () => {
@@ -53,4 +54,4 @@ gulp.task("start", () => {
   })
 });
 
-gulp.task("default", ["babel", "webpack", "watch", "start"]);
+gulp.task("default", ["eslint", "babel", "webpack", "watch", "start"]);

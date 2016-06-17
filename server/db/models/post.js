@@ -1,10 +1,12 @@
-import db from '../config';
-import UserProject from 'userProject';
+import db from "../config/setConfig";
+console.log("db in post.js", db);
+
+import UserProject from "./userProject";
 
 const Post = db.Model.extend({
-  tableName: 'Posts',
+  tableName: "Posts",
   hasTimestamps: true,
-  userProject : ()=>this.belongsTo(UserProject, 'userProjectId'),
-})
+  userProject : ()=>this.belongsTo(UserProject, "userProjectId"),
+});
 
-export default User;
+export default Post;
