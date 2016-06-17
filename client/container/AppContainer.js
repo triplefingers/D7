@@ -104,7 +104,21 @@ class AppContainer extends Component {
     });
   };
 
-
+  // For recommendation
+  fetchRecommendation() {
+    axios.get("/api/projects", {
+      params: {
+        type: "recommended"
+      }
+    })
+    .then((res) => {
+      this.setState({list: res.data});
+      console.log(this.state.list);
+    })
+    .catch((err) => {
+      console.error("Error occured while fetching recommended projects");
+    });
+  };
 
   render() {
     let injection = {};
@@ -125,6 +139,9 @@ class AppContainer extends Component {
 
     // For History
     injection.fetchAllProjects = this.fetchAllProjects.bind(this);
+
+    // For recommendation
+    injection.fetchRecommendation = this.fetchRecommendation.bind(this);
 
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 
