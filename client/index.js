@@ -2,7 +2,6 @@ import React, {Component, cloneElement} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 import ReactDOM from "react-dom";
 
-import Test from "./component/Test";
 import AppContainer from "./container/AppContainer";
 import App from "./component/App";
 import ProjectList from "./component/ProjectList";
