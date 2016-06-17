@@ -12,10 +12,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/../client"));
 app.use('/', router);
 
+import { resetDB, createTables, initDB } from "../db/config";
+resetDB();
+createTables();
+initDB();
+
 const server = app.listen(port, () => {
   console.log('Express listening on port', port);
 });
-
-import db from './db/config.js';
-
-console.log(db);
