@@ -1,4 +1,4 @@
-import db from 'config';
+import db from "./setConfig";
 
 const createTables = ()=>{
   db.knex.schema.hasTable("Users").then(function(exists){

@@ -7,8 +7,8 @@ const db = bookshelf(knex({
   connection: {
     filename: path.join(__dirname, "d7.sqlite"),
     database: "d7",
-    timezone: "KST",
-    charset: "utf8"
+    // timezone: "KST",
+    // charset: "utf8"
   },
   useNullAsDefault: true
 }));
