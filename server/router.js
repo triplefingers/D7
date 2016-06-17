@@ -54,7 +54,7 @@ router.post("/api/newproject", (req, res, next) => {
   let body = req.body;
   console.log('BODY', body);
   console.log('URL', url);
-  res.send(200, "data response for creating new project");
+  res.send(200, {id: 100, title: body.title, description: body.description, onDay: 1, msg: "data response for creating new project"});
 });
 
 router.get("*", (req, res, next) => {

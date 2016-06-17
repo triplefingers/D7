@@ -13,6 +13,7 @@ class ProjectDetail extends Component {
     let id = this.props.queryData.id;
     let title = this.props.queryData.title;
     let onDay = this.props.queryData.onDay;
+
     let text = this.props.data.text;
 
     return (
