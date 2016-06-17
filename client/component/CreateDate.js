@@ -13,8 +13,7 @@ class CreateDate extends Component {
     let desc = this.props.data.description;
     let startDate = this.props.data.startAt;
 
-    let today = new Date();
-    let minDate = this.props.convertNumDateToFullString(today.getFullYear(), today.getMonth() + 1, today.getDate());
+    let minDate = new Date().toJSON().slice(0,10);
 
     return (
       <div>

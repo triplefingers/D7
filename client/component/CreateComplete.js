@@ -12,7 +12,7 @@ class CreateComplete extends Component {
     return (
       <div>
         <h1>Complete</h1>
-        <button onClick={this.props.goto.bind(this, "/myProject")}>Leave History (not working)</button>
+        <button onClick={this.props.goto.bind(this, "/record/project/99")}>Leave History (not working)</button>
         <button onClick={this.props.goto.bind(this, "/")}>to Main</button>
       </div>
     )

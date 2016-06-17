@@ -5,7 +5,7 @@ import axios from "axios";
 class RecordContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {data: null}
+    this.state = {list: null}
   };
 
   componentDidMount() {
@@ -19,7 +19,7 @@ class RecordContainer extends Component {
       }
     })
     .then((res) => {
-      this.setState({data: res.data});
+      this.setState({list: res.data});
     })
   };
 
@@ -30,10 +30,10 @@ class RecordContainer extends Component {
     this.setState(dataObject);
   }
 
-  saveDayDetail(id, onDay, text) {
+  saveDayDetail(id, day, text) {
     axios.post("/api/record", {
       id: id,
-      onDay: onDay,
+      day: day,
       text: text
     })
     .then((res) => {
@@ -45,6 +45,13 @@ class RecordContainer extends Component {
     })
   };
 
+  handleChange(what, event) {
+    console.log("what is ", what);
+    let data = {}
+    data[what] = event.target.value
+    this.setState(data);
+  };
+
   goto(url) {
     url = url !== undefined ? String(url) : "/";
     this.context.router.push(url);
@@ -53,10 +60,11 @@ class RecordContainer extends Component {
   render() {
     let injection = {};
     injection.goto = this.goto.bind(this);
-    injection.state = this.state;
+    injection.data = this.state;
     injection._save = this._save.bind(this);
     injection.fetchOngoingProjects = this.fetchOngoingProjects.bind(this);
     injection.saveDayDetail = this.saveDayDetail.bind(this);
+    injection.handleChange = this.handleChange.bind(this);
 
 
 

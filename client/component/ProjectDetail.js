@@ -13,15 +13,17 @@ class ProjectDetail extends Component {
     let id = this.props.queryData.id;
     let title = this.props.queryData.title;
     let onDay = this.props.queryData.onDay;
+    let text = this.props.data.text;
 
     return (
       <div>
         <h1>Project Detail</h1><hr/>
         <h1>Title: {title}</h1>
         <h1>Onday: {onDay}</h1>
-
+        <textarea value = {this.props.data.text} onChange={this.props.handleChange.bind(undefined,"text")} rows="6"/>
+        <br/>
         <button onClick={this.context.router.goBack.bind(this)}>Cancel</button>
-        <button onClick={this.props.saveDayDetail.bind(this, id, title, onDay)}>Save</button>
+        <button onClick={this.props.saveDayDetail.bind(this, id, onDay, text)}>Save</button>
       </div>
     )
   }

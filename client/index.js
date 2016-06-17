@@ -28,6 +28,7 @@ ReactDOM.render((
       <Route path="/create/basicinfo" component={CreateBasicInfo}/>
       <Route path="/create/date" component={CreateDate}/>
       <Route path="/create/complete" component={CreateComplete}/>
+      <Route path="/record/project/:id" component={ProjectDetailContainer}/>
     </Route>
     {/*<Route path="/record/projects" component={RecordContainer}/>*/}
 

@@ -12,11 +12,11 @@ class ProjectDetailContainer extends Component {
 
   render() {
     let queryData = {
-      title: this.props.state.title,
-      onDay: this.props.state.onDay,
+      title: this.props.data.title,
+      onDay: this.props.data.onDay,
       id: this.props.params.id
     }
-    return (<ProjectDetail queryData={queryData} saveDayDetail={this.props.saveDayDetail}/>)
+    return (<ProjectDetail queryData={queryData} saveDayDetail={this.props.saveDayDetail} handleChange={this.props.handleChange} data={this.props.data}/>)
   }
 }
 

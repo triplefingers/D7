@@ -25,7 +25,7 @@ class CreateBasicInfo extends Component {
           <br/>
           <label>Description</label>
           <br/>
-          <textarea required value = {this.props.data.description} onChange={this.props.handleChange.bind(undefined,"description")} rows="6"/>
+          <textarea value = {this.props.data.description} onChange={this.props.handleChange.bind(undefined,"description")} rows="6"/>
           <br/>
           <button onClick={() => this.props.goto("/")}>Cancel</button>
           <button>

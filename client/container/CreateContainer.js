@@ -1,6 +1,5 @@
 import React, {Component, cloneElement} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
-import helpers from "../helpers/helpers.js";
 import axios from "axios";
 
 class CreateContainer extends Component {
@@ -30,6 +29,7 @@ class CreateContainer extends Component {
     })
     .then((res) => {
       console.log("saveNewProject success: ", res);
+      //store {id, title, description, onDay} to this.state
       this.goto("/create/complete")
     })
     .catch((err) => {
@@ -43,7 +43,6 @@ class CreateContainer extends Component {
     injection.data = this.state;
     injection.handleChange = this.handleChange.bind(this);
     injection.goto = this.goto.bind(this);
-    injection.convertNumDateToFullString = helpers.convertNumDateToFullString;
 
     var child = this.props.children && React.cloneElement(this.props.children, injection);
 
