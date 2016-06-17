@@ -21,7 +21,7 @@ class CreateBasicInfo extends Component {
         <div>
           <label>Title</label>
           <br/>
-          <input required type="text" placeholder="title" value = {this.props.data.title} onChange={this.props.handleChange.bind(null, "title")}/>
+          <input required type="text" value={this.props.data.title} placeholder="title" onChange={this.props.handleChange.bind(null, "title")}/>
           <br/>
           <label>Description</label>
           <br/>

@@ -28,12 +28,12 @@ gulp.task("webpack", () => {
 });
 
 gulp.task("eslint", () => {
-  gulp.src([paths.server[0], paths.client[0], "!node_modules/**"])
+  gulp.src([paths.server[0], paths.client[0], paths.client[2], "!node_modules/**"])
   .pipe(eslint({
     rules: {
-     quotes: [1, "double"],
-     semi: [1, "always"],
-     indent: ["error", 2]
+      quotes: [1, "double"],
+      semi: [1, "always"],
+      indent: ["error", 2]
     },
     parser: "babel-eslint"
   }))
