@@ -5,7 +5,7 @@ import axios from "axios";
 class RecordContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {data: null}
+    this.state = {list: null}
   };
 
   componentDidMount() {
@@ -19,16 +19,21 @@ class RecordContainer extends Component {
       }
     })
     .then((res) => {
-      // console.log(res);
-      this.setState({data: res.data});
-      // console.log("state changed? ", this.state.data);
+      this.setState({list: res.data});
     })
   };
 
-  saveDayDetail(id, onDay, text) {
+  _save(dataObject) {
+    // dataObject should be below
+    // {<keyname>: <value>}
+    console.log("data in _save is ", dataObject);
+    this.setState(dataObject);
+  }
+
+  saveDayDetail(id, day, text) {
     axios.post("/api/record", {
       id: id,
-      onDay: onDay,
+      day: day,
       text: text
     })
     .then((res) => {
@@ -38,37 +43,39 @@ class RecordContainer extends Component {
     .catch((err) => {
       console.error("Error occured while saving DayDetail");
     })
-  }
+  };
 
-  save(completeUrl) {
-    alert("Save done");
-    this.goto(completeUrl);
+  handleChange(what, event) {
+    console.log("what is ", what);
+    let data = {}
+    data[what] = event.target.value
+    this.setState(data);
   };
 
   goto(url) {
     url = url !== undefined ? String(url) : "/";
-    this.props.history.push(url);
-    // this.context.router.enqueue(url);
-
+    this.context.router.push(url);
   };
 
   render() {
     let injection = {};
-    injection.save = this.save.bind(this); // to del
     injection.goto = this.goto.bind(this);
-    injection.data = this.state.data;
+    injection.data = this.state;
+    injection._save = this._save.bind(this);
     injection.fetchOngoingProjects = this.fetchOngoingProjects.bind(this);
     injection.saveDayDetail = this.saveDayDetail.bind(this);
-
+    injection.handleChange = this.handleChange.bind(this);
 
 
 
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 
-    return (
-      child
-    );
+    return child;
   };
-}
+};
+
+RecordContainer.contextTypes = {
+  router: () => React.PropTypes.func.isRequired
+};
 
 export default RecordContainer

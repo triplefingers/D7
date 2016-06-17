@@ -5,18 +5,18 @@ import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "reac
 class CreateComplete extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   };
 
   render() {
-
     return (
       <div>
-        <label>Title</label><input type="text" value="title"/>
+        <h1>Complete</h1>
+        <button onClick={this.props.goto.bind(this, "/record/project/99")}>Leave History (not working)</button>
+        <button onClick={this.props.goto.bind(this, "/")}>to Main</button>
       </div>
-
-
-    );
-  };
+    )
+  }
 }
 
 export default CreateComplete;
