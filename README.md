@@ -24,7 +24,18 @@ All you have to do is npm install
 ## If you want to use react-hot-loader
 - You can use react-hot-loader on client-side-files in client/.
   - > npm run webpack-hot
+- Aware: This cannot interact with server.
 
 ## If you just want to run server and you already transpiled client && server-side files
 - start with transpiled 'build/server.js' using node
   - > npm start
+
+## Aware
+- 'npm run gulp' is same as 'gulp' because they use the same gulpfile.js in root.
+
+## Eslint with gulp
+- Can be executed with 'npm run gulp eslint' or 'gulp eslint' (latter needs 'gulp' in global)
+- 'npm run gulp' also checks synthax error with eslint in cases below :
+  - not indented with 2 spaces
+  - not ended with semi-colons
+  - not wrapped with double-quotes
