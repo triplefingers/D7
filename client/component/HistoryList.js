@@ -13,6 +13,19 @@ class HistoryList extends Component {
   }
 
   render() {
+    let validateCallback = (project) => {
+      if (!project.doneToday) {
+        this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"});
+        this.props.goto("/history/project/" + project.id);
+      } else {
+        alert("This project is already done today");
+      }
+    };
+
+    let validator = (doneToday) => {
+      this.props.validateAll(validateCallback, doneToday);
+    };
+
     let complete = [];
     let onGoing = [];
     let waiting = [];
@@ -31,7 +44,7 @@ class HistoryList extends Component {
     }
 
     onGoing = onGoing.map((project) => (
-        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"}); this.props.goto("/history/project/" + project.id);}}>
+        <li onClick={() => {validator(project)}}>
         {
           project.title
           + " on day" + " " + project.onDay
