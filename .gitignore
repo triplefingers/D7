@@ -3,3 +3,4 @@ build
 client/bundle.js
 **/*.sqlite
 npm-debug.log
+*.log
