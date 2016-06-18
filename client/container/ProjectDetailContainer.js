@@ -17,7 +17,7 @@ class ProjectDetailContainer extends Component {
       id: this.props.params.id
     };
     return (
-      <ProjectDetail queryData={queryData} saveDayDetail={this.props.saveDayDetail} handleChange={this.props.handleChange} data={this.props.data}/>
+      <ProjectDetail queryData={queryData} saveDayDetail={this.props.saveDayDetail} handleChange={this.props.handleChange} validateAll={this.props.validateAll} data={this.props.data}/>
     );
   }
 }

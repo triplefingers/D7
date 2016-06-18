@@ -8,9 +8,9 @@ class RecordComplete extends Component {
   render() {
     return (
       <div>
-        <h1>Complete</h1>
-        <button onClick={this.props.goto.bind(null, "/history/projects")}>to History</button>
-        <button onClick={this.props.goto.bind(null, "/")}>to Main</button>
+        <h1>Save Complete!</h1>
+        <button onClick={this.props.goto.bind(null, "/history/projects")}>View History</button>
+        <button onClick={this.props.goto.bind(null, "/")}>Home</button>
       </div>
     );
   }
