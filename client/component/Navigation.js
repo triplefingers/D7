@@ -17,7 +17,11 @@ class Navigation extends Component {
 
   render() {
     let leftButton = <button onClick={() => this.goto("/")}>Home</button>
+    let rightButtonCondition = this.props.rightButtonCondition || function() {return true};
+
     let rightButton = this.props.rightButtonName ? <button onClick={() => this.goto(this.props.rightButtonLink)}>{this.props.rightButtonName}</button> : undefined;
+    rightButton = rightButtonCondition() ? rightButton : undefined;
+
     let title = this.props.title ? <span>{this.props.title}</span> : undefined;
     return (
       <div>
