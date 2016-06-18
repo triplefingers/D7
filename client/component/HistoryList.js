@@ -33,7 +33,7 @@ class HistoryList extends Component {
     onGoing = onGoing.map((project) => (
         <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"}); this.props.goto("/history/project/" + project.id);}}>
         {
-          "프로젝트" + " " + project.title
+          project.title
           + " on day" + " " + project.onDay
         }
         </li>
