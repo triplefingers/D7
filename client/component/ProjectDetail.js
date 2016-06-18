@@ -21,10 +21,11 @@ class ProjectDetail extends Component {
         <h1>Project Detail</h1><hr/>
         <h1>Title: {title}</h1>
         <h1>Onday: {onDay}</h1>
-        <textarea value = {this.props.data.text} onChange={this.props.handleChange.bind(undefined,"text")} rows="6"/>
+        <textarea value = {this.props.data.text} onChange={this.props.handleChange.bind(null,"text")} rows="6"/>
         <br/>
         <button onClick={this.context.router.goBack.bind(this)}>Cancel</button>
-        <button onClick={this.props.saveDayDetail.bind(this, id, onDay, text)}>Save</button>
+        // have to edit userId
+        <button onClick={this.props.saveDayDetail.bind(this, "1234", id, onDay, text)}>Save</button>
       </div>
     );
   }
@@ -32,7 +33,7 @@ class ProjectDetail extends Component {
 
 
 ProjectDetail.contextTypes = {
-  router: React.PropTypes.func.isRequired
+  router: () => React.PropTypes.func.isRequired
 };
 
 export default ProjectDetail;

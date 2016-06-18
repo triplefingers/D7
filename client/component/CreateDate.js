@@ -26,7 +26,8 @@ class CreateDate extends Component {
           <br/>
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
-            this.props.saveNewProject(title, desc, startDate);
+            // have to edit userId
+            this.props.saveNewProject("1234", title, desc, startDate);
           }}>Save</button>
         </div>
       </div>

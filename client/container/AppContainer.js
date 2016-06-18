@@ -37,8 +37,9 @@ class AppContainer extends Component {
     this.setState(data);
   };
 
-  saveNewProject(title, desc, startDate) {
+  saveNewProject(userId, title, desc, startDate) {
     axios.post("/api/newproject", {
+      userId : userId,
       title: title,
       description: desc,
       startAt: startDate
@@ -55,9 +56,10 @@ class AppContainer extends Component {
   };
 
   // For Record
-  fetchOngoingProjects() {
+  fetchOngoingProjects(userId) {
     axios.get("/api/projects", {
       params: {
+        userId : userId,
         type: "ongoing"
       }
     })
@@ -73,8 +75,9 @@ class AppContainer extends Component {
     this.setState(dataObject);
   };
 
-  saveDayDetail(id, day, text) {
+  saveDayDetail(userId, id, day, text) {
     axios.post("/api/record", {
+      userId : userId,
       id: id,
       day: day,
       text: text
@@ -89,9 +92,10 @@ class AppContainer extends Component {
   };
 
   // For History
-  fetchAllProjects() {
+  fetchAllProjects(userId) {
     axios.get("/api/projects", {
       params: {
+        userId : userId,
         type: "all"
       }
     })
@@ -105,9 +109,10 @@ class AppContainer extends Component {
   };
 
   // For recommendation
-  fetchRecommendation() {
+  fetchRecommendation(userId) {
     axios.get("/api/projects", {
       params: {
+        userId : userId,
         type: "recommended"
       }
     })

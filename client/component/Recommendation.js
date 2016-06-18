@@ -6,7 +6,8 @@ class Recommendation extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchRecommendation();
+    // have to edit userId
+    this.props.fetchRecommendation("1234");
     console.log("Recommendation mounted");
   }
 
