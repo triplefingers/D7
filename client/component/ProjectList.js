@@ -16,9 +16,22 @@ class ProjectList extends Component {
     let list = this.props.data.list;
     let array = list;
 
+    let validateCallback = (project) => {
+      if (!project.doneToday) {
+        this.props._save({title: project.title, onDay: project.onDay});
+        this.props.goto("/record/project/" + project.id);
+      } else {
+        alert("This project is already done today");
+      }
+    };
+
+    let validator = (doneToday) => {
+      this.props.validateAll(validateCallback, doneToday);
+    };
+
     if (array) {
       var projects = array.map((project) => (
-        <li onClick={() => {this.props._save({title: project.title, onDay: project.onDay}); this.props.goto("/record/project/" + project.id);}}>{project.title + " on day " + project.onDay}</li>
+        <li onClick={validator.bind(null, project)}>{project.title + " on day " + project.onDay}</li>
       ));
     }
 
