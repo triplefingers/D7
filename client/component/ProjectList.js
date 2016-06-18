@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Navigation from "./Navigation";
 
 class ProjectList extends Component {
   constructor(props) {
@@ -23,12 +24,11 @@ class ProjectList extends Component {
 
     return (
       <div>
+        <Navigation title="Leave History"/>
         <ul>
           {projects}
         </ul>
       </div>
-
-
     );
   };
 }
