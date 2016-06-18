@@ -36,7 +36,7 @@ class HistoryDetail extends Component {
 
 
 HistoryDetail.contextTypes = {
-  router: React.PropTypes.func.isRequired
+  router: () => React.PropTypes.func.isRequired
 };
 
 export default HistoryDetail;
