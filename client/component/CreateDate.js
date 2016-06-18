@@ -7,6 +7,10 @@ class CreateDate extends Component {
     super(props);
   };
 
+  componentDidMount() {
+    this.props._save({startAt: new Date().toJSON().slice(0, 10)});
+  }
+
   render() {
 
     let title = this.props.data.title;
@@ -22,7 +26,7 @@ class CreateDate extends Component {
         <h2>Title: {this.props.data.title}</h2>
         <hr/>
         <div>
-          <input type="date" min={minDate} onChange={this.props.handleChange.bind(null, "startAt")} />
+          <input type="date" min={minDate} defaultValue={minDate} onChange={this.props.handleChange.bind(null, "startAt")} />
           <br/>
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
