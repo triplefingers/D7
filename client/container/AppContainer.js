@@ -30,6 +30,10 @@ class AppContainer extends Component {
     this.context.router.push(url);
   };
 
+  // validates args with callback
+  // callback should return true/false, and it will pass args as its argument
+  // if even one of callback(arg[i]) returns false, validateAll will return false
+  // if all of callback(args[i]) are true, validateAll will return true;
   validateAll(callback, ...args) {
     let isValid = true;
     args.forEach((item) => {
