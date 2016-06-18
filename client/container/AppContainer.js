@@ -30,6 +30,14 @@ class AppContainer extends Component {
     this.context.router.push(url);
   };
 
+  validateAll(callback, ...args) {
+    let isValid = true;
+    args.forEach((item) => {
+      if (!callback(item)) isValid = false;
+    })
+    return isValid;
+  };
+
   handleChange(what, event) {
     console.log("what is ", what);
     let data = {};
@@ -141,6 +149,7 @@ class AppContainer extends Component {
     injection._save = this._save.bind(this);
     injection.fetchOngoingProjects = this.fetchOngoingProjects.bind(this);
     injection.saveDayDetail = this.saveDayDetail.bind(this);
+    injection.validateAll = this.validateAll.bind(this);
 
     // For History
     injection.fetchAllProjects = this.fetchAllProjects.bind(this);
