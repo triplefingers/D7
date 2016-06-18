@@ -22,12 +22,12 @@ class HistoryDetail extends Component {
 
     return (
       <div>
-        <Navigation title="Detail" rightButtonName="write" rightButtonLint={"/record/project" + id} rightButtonCondition={() => this.props.data.status === "ongoing"}/>
+        <Navigation title="Detail" rightButtonName="write" rightButtonLink={"/record/project" + id} rightButtonCondition={() => this.props.data.status === "ongoing"}/>
         <h1>Project Detail</h1><hr/>
         <h1>Title: {title}</h1>
         <h1>Description: {description}</h1>
 
-        <button onClick={this.context.router.goBack.bind(this)}>Cancel</button>
+        <button onClick={this.context.router.goBack.bind(this)}>Back</button>
         {/*<button onClick={this.props.saveDayDetail.bind(this, id, onDay, text)}>Save</button>*/}
       </div>
     );

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Navigation from './Navigation';
 
 class Recommendation extends Component {
   constructor(props) {
@@ -27,9 +28,8 @@ class Recommendation extends Component {
 
     return (
       <div>
-        <h1>Recommended</h1>
+        <Navigation title="Recommendation"/>
         {list}
-
         <div style={popUpStyle}>
           <button onClick={() => this.props.goto("/create/date")}>start this project</button>
           <button onClick={() => this.setState({clicked: "none"})}>cancel</button>
