@@ -14,13 +14,15 @@ class CreateBasicInfo extends Component {
 
   render() {
     let vaidationCallback = (item) => {
-      if (item && item.length > 0) return true;
+      if (item && item.length > 0) {
+        return true;
+      }
       return false;
     };
 
     let validator = () => {
       if (this.props.validateAll(vaidationCallback, this.props.data.title, this.props.data.description)) {
-        this.props.goto("/create/date")
+        this.props.goto("/create/date");
       } else {
         alert("Check again : there is invalid inputs");
       }

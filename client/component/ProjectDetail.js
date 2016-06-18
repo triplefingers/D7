@@ -13,19 +13,34 @@ class ProjectDetail extends Component {
     let id = this.props.queryData.id;
     let title = this.props.queryData.title;
     let onDay = this.props.queryData.onDay;
-
     let text = this.props.data.text;
+
+    let vaidationCallback = (item) => {
+      if (item && (item !== "")) {
+        return true;
+      }
+      return false;
+    };
+
+    let validator = () => {
+      if (this.props.validateAll(vaidationCallback, id, text, onDay)) {
+        console.log("validator activated");
+        this.props.saveDayDetail("1234", id, onDay, text)
+      } else {
+        alert("Check again : there is invalid inputs");
+      }
+    };
 
     return (
       <div>
-        <h1>Project Detail</h1><hr/>
-        <h1>Title: {title}</h1>
-        <h1>Onday: {onDay}</h1>
+        <h3>{title}</h3>
+        <h1>On Day {onDay}</h1>
+        <button>Camera</button>
         <textarea value = {this.props.data.text} onChange={this.props.handleChange.bind(null,"text")} rows="6"/>
         <br/>
         <button onClick={this.context.router.goBack.bind(this)}>Cancel</button>
         // have to edit userId
-        <button onClick={this.props.saveDayDetail.bind(this, "1234", id, onDay, text)}>Save</button>
+        <button onClick={validator}>Save</button>
       </div>
     );
   }
