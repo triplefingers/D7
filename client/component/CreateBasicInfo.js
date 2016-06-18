@@ -13,22 +13,33 @@ class CreateBasicInfo extends Component {
   }
 
   render() {
+    let vaidationCallback = (item) => {
+      if (item && item.length > 0) return true;
+      return false;
+    };
+
+    let validator = () => {
+      if (this.props.validateAll(vaidationCallback, this.props.data.title, this.props.data.description)) {
+        this.props.goto("/create/date")
+      } else {
+        alert("Check again : there is invalid inputs");
+      }
+    }
+
     return (
       <div>
         <Navigation title="New Project"/>
         <div>
           <label>Title</label>
           <br/>
-          <input required type="text" value={this.props.data.title} placeholder="title" onChange={this.props.handleChange.bind(null, "title")}/>
+          <input type="text" value={this.props.data.title} placeholder="title" onChange={this.props.handleChange.bind(null, "title")}/>
           <br/>
           <label>Description</label>
           <br/>
           <textarea value = {this.props.data.description} onChange={this.props.handleChange.bind(undefined,"description")} rows="6"/>
           <br/>
           <button onClick={() => this.props.goto("/")}>Cancel</button>
-          <button>
-            <Link to="/create/date" query={{title: this.props.data.title, description: this.props.data.description}}>Next</Link>
-          </button>
+          <button onClick={validator}>Next</button>
         </div>
       </div>
     );
