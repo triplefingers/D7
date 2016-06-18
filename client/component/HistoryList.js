@@ -6,7 +6,7 @@ class HistoryList extends Component {
   }
 
   componentDidMount() {
-    // have to edit userId
+    this.props.reset();
     this.props.fetchAllProjects("1234");
     console.log("HistoryList mounted");
   }

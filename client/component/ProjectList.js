@@ -6,6 +6,7 @@ class ProjectList extends Component {
   };
 
   componentDidMount() {
+    this.props.reset();
     this.props.fetchOngoingProjects();
   }
 

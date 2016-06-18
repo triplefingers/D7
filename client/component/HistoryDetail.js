@@ -13,7 +13,6 @@ class HistoryDetail extends Component {
     let id = this.props.data.id;
     let title = this.props.data.title;
     let description = this.props.data.description;
-    let onDay = this.props.data.onDay;
 
     let writeButton;
     if (this.props.data.status === "ongoing") {
@@ -25,7 +24,7 @@ class HistoryDetail extends Component {
         {writeButton}
         <h1>Project Detail</h1><hr/>
         <h1>Title: {title}</h1>
-        <h1>Onday: {onDay}</h1>
+        <h1>Description: {description}</h1>
 
         <button onClick={this.context.router.goBack.bind(this)}>Cancel</button>
         {/*<button onClick={this.props.saveDayDetail.bind(this, id, onDay, text)}>Save</button>*/}
