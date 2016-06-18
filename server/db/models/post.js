@@ -1,10 +1,9 @@
 import db from "../config/setConfig";
-console.log("db in post.js", db);
 
 import UserProject from "./userProject";
 
 const Post = db.Model.extend({
-  tableName: "Posts",
+  tableName: "post",
   hasTimestamps: true,
   userProject : ()=>this.belongsTo(UserProject, "userProjectId"),
 });

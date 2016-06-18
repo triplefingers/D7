@@ -1,15 +1,9 @@
 import express from "express";
 
-//dummy data 가져오기
+/* dummy data 가져오기 */
 import dummy from "./db/temp";
-import config from "./db/config";
-console.log(config);
 
 const router = express.Router();
-
-// router.get("/home", (req, res, next) => {
-//   res.end();
-// });
 
 router.get("/api/user", (req, res, next) => {
   let url = req.path;

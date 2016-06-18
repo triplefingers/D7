@@ -1,10 +1,9 @@
 import db from "../config/setConfig";
-console.log("db in user.js", db);
 
 import UserProject from "./userProject";
 
 const User = db.Model.extend({
-  tableName: "Users",
+  tableName: "user",
   hasTimestamps: true,
   projects: ()=>this.hasMany(UserProject, "userId"),
 });

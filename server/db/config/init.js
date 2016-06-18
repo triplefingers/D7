@@ -1,15 +1,11 @@
-import { User, Project, UserProject, Post } from "../models";
+import model from "../models";
 
 const initDB = ()=>{
-  //User model data 생성
-  new User({username: "Lenny Kim", email: "idforcoding@gmail.com"})
-  .save()
-  .then((model)=>console.log("Created User model", model));
+  /* User model data 생성 */
+  let user = new model.User({username: "Lenny Kim", email: "idforcoding@gmail.com"});
+  user.save().then((model)=>console.log("Created User model", model));
 
-  let users = User.fetchAll();
-  console.log("Created User model data", users);
-
-  //Project model data 생성
+  /* Project model data 생성 */
   [{
     title: "드로잉 1작품 그리기",
     description: "매일 드로잉 1작품 그리기",
@@ -35,14 +31,12 @@ const initDB = ()=>{
     description: "매일 주변 사람을 관찰하고 칭찬할 점 1가지 찾아서 말해주기",
     wish: 1
   }].forEach((item)=>{
-    new Project(item)
+    new model.Project(item)
     .save()
     .then((model)=>console.log("Created Project model", model));
   });
 
-  let projects = Project.fetchAll();
-  console.log("Created Project model data", projects);
-
+  /* userProject model data 생성 */
   [{
     userId: 1,
     projectId: 1,
@@ -64,13 +58,10 @@ const initDB = ()=>{
     startAt: "2016-06-21",
     endAt: "2016-06-27",
   }].forEach((item)=>{
-    new UserProject(item).save().then((model)=>console.log("Created userProject model", model));
+    new model.UserProject(item).save().then((model)=>console.log("Created userProject model", model));
   });
 
-  let userProjects = UserProject.fetchAll();
-  console.log("created UserProject model data", userProjects);
-
-  //Post model data 생성
+  /* Post model data 생성 */
   [{
     userProjectId: 1,
     day: 1,
@@ -108,11 +99,8 @@ const initDB = ()=>{
     day: 3,
     text: "그러므로 있으며, 인생을 가치를 때에, 새 스며들어 사라지지 있다. 주는 고행을 설레는 물방아 오아이스도 그리하였는가?"
   }].forEach((item)=>{
-    new Post(item).save().then((model)=>console.log("Created userProject model", model));
+    new model.Post(item).save().then((model)=>console.log("Created Post model", model));
   });
-
-  let posts = Post.fetchAll();
-  console.log("created User model data", posts);
 };
 
 export default initDB;
