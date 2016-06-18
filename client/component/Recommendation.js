@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Navigation from './Navigation';
+import Navigation from "./Navigation";
 
 class Recommendation extends Component {
   constructor(props) {
