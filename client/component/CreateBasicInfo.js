@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
-
+import Navigation from "./Navigation";
 
 class CreateBasicInfo extends Component {
   constructor(props) {
@@ -15,9 +15,7 @@ class CreateBasicInfo extends Component {
   render() {
     return (
       <div>
-        <Link to="/"><button>Home</button></Link>
-        <h1>New Project</h1>
-        <hr/>
+        <Navigation title="New Project"/>
         <div>
           <label>Title</label>
           <br/>
