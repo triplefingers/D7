@@ -2,11 +2,12 @@ import model from "../models";
 import collection from "../collections";
 
 const fetchAllProjects = (url, q, res)=>{
-  // var { userId } = q;
+  var { userId } = q;
   console.dir(collection.UserProjects);
   const result = [];
-  let up = model.UserProject.where("userId", 1).fetchAll({withRelated: [
-    "project"
+  let up = model.UserProject.where("userId", userId).fetchAll({withRelated: [
+    "project",
+    "post"
   ]}).then((projects)=>{
     const result = {
       waiting: [],
@@ -17,11 +18,10 @@ const fetchAllProjects = (url, q, res)=>{
     projects.forEach((up)=>{
       console.log(">>>>>>>>>>>>>>>>>>>>>", up.id);
       let project = up.related("project").toJSON();
+      let post = up.related("post").toJSON();
+      console.log('POST', post);
       up = up.toJSON();
-      let startAt = up.startAt;
-      console.log('STARTAT', startAt);
-      console.log('UP.STARTAT', up.startAt);
-      startAt =  new Date(startAt);
+      let startAt = new Date(up.startAt);
       let data = {
         id: up.id,
         title: project.title,
@@ -38,6 +38,12 @@ const fetchAllProjects = (url, q, res)=>{
         result.waiting.push(data);
       } else if ( diff > 0 && diff <= 7 ){
         data.onDay = diff;
+        data.todayDone = false;
+        post.forEach((item)=>{
+          if(item.day === diff){
+            data.todayDone = true;
+          }
+        });
         result.ongoing.push(data);
       } else {
         result.complete.push(data);
@@ -49,16 +55,3 @@ const fetchAllProjects = (url, q, res)=>{
 };
 
 export default fetchAllProjects;
-
-
-// new Book({'ISBN-13': '9780440180296'}).fetch({
-//   withRelated: [
-//     'genre', 'editions',
-//     { chapters: function(query) { query.orderBy('chapter_number'); }}
-//   ]
-// }).then(function(book) {
-//   console.log(book.related('genre').toJSON());
-//   console.log(book.related('editions').toJSON());
-//   console.log(book.toJSON());
-// });
-//
