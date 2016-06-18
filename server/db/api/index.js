@@ -8,10 +8,10 @@ const handler = (apiMethod)=>{
 
     if (Object.keys(body).length===0){
       console.log("Request GET for ", url, query);
-      apiMethod(url, query);
+      apiMethod(url, query, res);
     } else {
       console.log("Request POST to ", url, query, "to write", body);
-      apiMethod(url, query, body);
+      apiMethod(url, query, body, res);
     }
   };
 };
