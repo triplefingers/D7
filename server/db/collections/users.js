@@ -1,8 +1,8 @@
 import db from "../config/setConfig";
-import { User } from "../models";
+import model from "../models";
 
 const Users = new db.Collection();
 
-Users.model = User;
+Users.model = model.User;
 
 export default Users;

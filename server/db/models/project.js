@@ -1,8 +1,7 @@
 import db from "../config/setConfig";
-console.log("db in project.js", db);
 
 const Project = db.Model.extend({
-  tableName: "Projects",
+  tableName: "project",
   hasTimestamps: true,
   defaults: {
     wish: 0,
