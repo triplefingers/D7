@@ -26,7 +26,7 @@ class CreateBasicInfo extends Component {
       } else {
         alert("Check again : there is invalid inputs");
       }
-    }
+    };
 
     return (
       <div>

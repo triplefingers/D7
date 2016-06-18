@@ -38,7 +38,7 @@ class AppContainer extends Component {
     let isValid = true;
     args.forEach((item) => {
       if (!callback(item)) isValid = false;
-    })
+    });
     return isValid;
   };
 
