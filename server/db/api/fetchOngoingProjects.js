@@ -1,28 +1,21 @@
 import model from "../models";
 import collection from "../collections";
 
-const fetchOngoingProjects = (url, q, res)=>{
-  var { userId } = q;
+const fetchOngoingProjects = (url, q, res) => {
+  const { userId } = q;
   console.dir(collection.UserProjects);
-  const result = [];
-  let up = model.UserProject.where("userId", userId).fetchAll({withRelated: [
+  model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
     "post"
-  ]}).then((projects)=>{
-    const result = {
-      waiting: [],
-      ongoing: [],
-      complete: []
-    };
+  ]}).then((projects) => {
+    // result is 'Ongoing projects'
+    const result = [];
     const today = new Date();
-    projects.forEach((up)=>{
+    projects.forEach((up) => {
       console.log(">>>>>>>>>>>>>>>>>>>>>", up.id);
-      // let project = up.related("project").toJSON();
-      // let post = up.related("post").toJSON();
-      // console.log('POST', post);
       up = up.toJSON();
-      let startAt = new Date(up.startAt);
-      let data = {
+      const startAt = new Date(up.startAt);
+      const data = {
         id: up.id,
         title: up.project.title,
         description: up.project.description
@@ -31,26 +24,22 @@ const fetchOngoingProjects = (url, q, res)=>{
       /* Check Project status */
       console.log(today.valueOf());
       console.log(startAt.valueOf());
-      let diff = today.valueOf() - startAt.valueOf();
-      diff = Math.ceil(diff/(60*60*24*1000));
-      console.log('DIFF', diff);
-      if ( diff <= 0 ){
-        result.waiting.push(data);
-      } else if ( diff > 0 && diff <= 7 ){
+
+      const diff = Math.ceil((today.valueOf() - startAt.valueOf()) / (60 * 60 * 24 * 1000));
+      console.log("DIFF ", diff);
+      if (diff > 0 && diff <= 7) {
         data.onDay = diff;
         data.todayDone = false;
-        up.post.forEach((item)=>{
-          if(item.day === diff){
+        up.post.forEach((item) => {
+          if (item.day === diff) {
             data.todayDone = true;
           }
         });
-        result.ongoing.push(data);
-      } else {
-        result.complete.push(data);
+        result.push(data);
       }
     });
     return result;
-  }).then((data)=>res.status(200).send(data));
+  }).then((data) => res.status(200).send(data));
 
 };
 
