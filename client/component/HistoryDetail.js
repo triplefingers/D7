@@ -8,6 +8,7 @@ class HistoryDetail extends Component {
 
   componentDidMount() {
     console.log("HistoryDetail Mounted :)");
+    console.log("Detail Passed?: ", this.props.data.detail);
   }
 
   render() {

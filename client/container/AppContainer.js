@@ -120,6 +120,25 @@ class AppContainer extends Component {
     });
   };
 
+  // userId to be added
+  fetchDayDetail(userId, userProjectId) {
+    axios.get("/api/project/", {
+      params: {
+        userId: userId,
+        id: userProjectId
+      }
+    })
+    .then((res) => {
+      // App Container 에 detail 데이터 추가
+      this.setState({detail: res.data});
+      // console.log(this.state.detail);
+      this.goto("/history/project/" + userProjectId);
+    })
+    .catch((err) => {
+      console.error("Error occured while fetching project details");
+    })
+  }
+
   // For recommendation
   fetchRecommendation(userId) {
     axios.get("/api/projects", {
@@ -157,6 +176,7 @@ class AppContainer extends Component {
 
     // For History
     injection.fetchAllProjects = this.fetchAllProjects.bind(this);
+    injection.fetchDayDetail = this.fetchDayDetail.bind(this);
 
     // For recommendation
     injection.fetchRecommendation = this.fetchRecommendation.bind(this);
