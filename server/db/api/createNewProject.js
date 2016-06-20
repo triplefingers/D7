@@ -6,8 +6,11 @@ const createNewProject = (url, q, body, res) => {
   const { userId, title, description, startAt } = body;
   const today = new Date();
   const startAtInObj = new Date(startAt);
-  startAtInObj.setDate(startAtInObj.getDate() + 6);
-  const endAt = startAtInObj.toJSON().slice(0, 10);
+
+  let endAt = new Date(startAt);
+  endAt.setDate(startAtInObj.getDate() + 6);
+  endAt = endAt.toJSON().slice(0, 10);
+  
   let onDay = null;
   if (today.toJSON().slice(0, 10) === startAtInObj.toJSON().slice(0, 10)) {
     onDay = 1;
@@ -27,7 +30,7 @@ const createNewProject = (url, q, body, res) => {
     }).save()
     .then((userProject) => {
       res.send({
-        userProjectId: userProject.id,
+        id: userProject.id,
         title: title,
         description: description,
         onDay: onDay
