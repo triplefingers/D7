@@ -1,10 +1,10 @@
 import db from "./setConfig";
 
 const resetDB = ()=>{
-  db.knex.schema.dropTableIfExists("Users")
-  .dropTableIfExists("Projects")
-  .dropTableIfExists("UserProjects")
-  .dropTableIfExists("Posts")
+  db.knex.schema.dropTableIfExists("user")
+  .dropTableIfExists("project")
+  .dropTableIfExists("userProject")
+  .dropTableIfExists("post")
   .createTableIfNotExists("user", function(user){
     user.increments("id").primary();
     user.string("username");

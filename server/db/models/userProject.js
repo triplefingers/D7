@@ -8,7 +8,12 @@ const UserProject = db.Model.extend({
   hasTimestamps: true,
   posts: ()=>this.hasMany(Post, "userProjectId"),
   user: ()=>this.belongsTo(User, "userId"),
-  project: ()=>this.belongsTo(Project, "projectId"),
+  project: function(){
+    return this.belongsTo(Project, "projectId");
+  },
+  post: function(){
+    return this.hasMany(Post, "userProjectId");
+  }
 });
 
 export default UserProject;
