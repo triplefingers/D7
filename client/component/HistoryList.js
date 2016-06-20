@@ -16,7 +16,8 @@ class HistoryList extends Component {
     let validateCallback = (project) => {
       if (!project.doneToday) {
         this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"});
-        this.props.goto("/history/project/" + project.id);
+        // this.props.goto("/history/project/" + project.id);
+        this.props.fetchDayDetail("1234", project.id);
       } else {
         alert("This project is already done today");
       }
