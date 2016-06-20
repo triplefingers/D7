@@ -25,7 +25,7 @@ class ProjectDetail extends Component {
     let validator = () => {
       if (this.props.validateAll(vaidationCallback, id, text, onDay)) {
         console.log("validator activated");
-        this.props.saveDayDetail("1234", id, onDay, text);
+        this.props.saveDayDetail(1, id, onDay, text);
       } else {
         alert("Check again : there is invalid inputs");
       }

@@ -9,7 +9,7 @@ class Recommendation extends Component {
 
   componentDidMount() {
     this.props.reset();
-    this.props.fetchRecommendation("1234");
+    this.props.fetchRecommendation(1);
     console.log("Recommendation mounted");
   }
 

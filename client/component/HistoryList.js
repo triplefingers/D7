@@ -8,24 +8,26 @@ class HistoryList extends Component {
 
   componentDidMount() {
     this.props.reset();
-    this.props.fetchAllProjects("1234");
+    // should change userid
+    this.props.fetchAllProjects(1);
     console.log("HistoryList mounted");
   }
 
   render() {
-    let validateCallback = (project) => {
-      if (!project.doneToday) {
-        this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"});
-        // this.props.goto("/history/project/" + project.id);
-        this.props.fetchDayDetail("1234", project.id);
-      } else {
-        alert("This project is already done today");
-      }
-    };
-
-    let validator = (doneToday) => {
-      this.props.validateAll(validateCallback, doneToday);
-    };
+    // let validateCallback = (project) => {
+    //   if (!project.doneToday) {
+    //     this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"});
+    //     // this.props.goto("/history/project/" + project.id);
+    //     // should change userid
+    //     this.props.fetchDayDetail(1, project.id);
+    //   } else {
+    //     alert("This project is already done today");
+    //   }
+    // };
+    //
+    // let validator = (doneToday) => {
+    //   this.props.validateAll(validateCallback, doneToday);
+    // };
 
     let complete = [];
     let onGoing = [];
@@ -45,7 +47,11 @@ class HistoryList extends Component {
     }
 
     onGoing = onGoing.map((project) => (
-        <li onClick={() => {validator(project)}}>
+        <li onClick={() => {
+          this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing"});
+          // should change userid;
+          this.props.fetchDayDetail(1, project.id);
+        }}>
         {
           project.title
           + " on day" + " " + project.onDay

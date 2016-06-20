@@ -69,10 +69,9 @@ class AppContainer extends Component {
 
   // For Record
   fetchOngoingProjects(userId) {
-    axios.get("/api/projects", {
+    axios.get("/api/projects/ongoing", {
       params: {
-        userId : userId,
-        type: "ongoing"
+        userId : userId
       }
     })
     .then((res) => {
@@ -105,10 +104,9 @@ class AppContainer extends Component {
 
   // For History
   fetchAllProjects(userId) {
-    axios.get("/api/projects", {
+    axios.get("/api/projects/all", {
       params: {
-        userId : userId,
-        type: "all"
+        userId : userId
       }
     })
     .then((res) => {
@@ -141,10 +139,9 @@ class AppContainer extends Component {
 
   // For recommendation
   fetchRecommendation(userId) {
-    axios.get("/api/projects", {
+    axios.get("/api/projects/recommended", {
       params: {
-        userId : userId,
-        type: "recommended"
+        userId : userId
       }
     })
     .then((res) => {

@@ -8,7 +8,7 @@ class ProjectList extends Component {
 
   componentDidMount() {
     this.props.reset();
-    this.props.fetchOngoingProjects();
+    this.props.fetchOngoingProjects(1);
   }
 
   render() {
