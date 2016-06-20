@@ -3,9 +3,7 @@ import collection from "../collections";
 
 const fetchAllProjects = (url, q, res)=>{
   var { userId } = q;
-  console.dir(collection.UserProjects);
-  const result = [];
-  let up = model.UserProject.where("userId", userId).fetchAll({withRelated: [
+  model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
     "post"
   ]}).then((projects)=>{
@@ -16,10 +14,6 @@ const fetchAllProjects = (url, q, res)=>{
     };
     const today = new Date();
     projects.forEach((up)=>{
-      console.log(">>>>>>>>>>>>>>>>>>>>>", up.id);
-      // let project = up.related("project").toJSON();
-      // let post = up.related("post").toJSON();
-      // console.log('POST', post);
       up = up.toJSON();
       let startAt = new Date(up.startAt);
       let data = {
@@ -29,11 +23,8 @@ const fetchAllProjects = (url, q, res)=>{
       };
 
       /* Check Project status */
-      console.log(today.valueOf());
-      console.log(startAt.valueOf());
       let diff = today.valueOf() - startAt.valueOf();
       diff = Math.ceil(diff/(60*60*24*1000));
-      console.log('DIFF', diff);
       if ( diff <= 0 ){
         result.waiting.push(data);
       } else if ( diff > 0 && diff <= 7 ){
