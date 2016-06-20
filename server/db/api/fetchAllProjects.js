@@ -29,10 +29,10 @@ const fetchAllProjects = (url, q, res)=>{
         result.waiting.push(data);
       } else if ( diff > 0 && diff <= 7 ){
         data.onDay = diff;
-        data.todayDone = false;
+        data.doneToday = false;
         up.post.forEach((item)=>{
           if(item.day === diff){
-            data.todayDone = true;
+            data.doneToday = true;
           }
         });
         result.ongoing.push(data);
