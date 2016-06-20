@@ -1,4 +1,7 @@
-import fetchAllProjects from "./projects";
+import fetchAllProjects from "./fetchAllProjects";
+import fetchOngoingProjects from "./fetchOngoingProjects";
+import fetchRecommendedProjects from "./fetchRecommendedProjects";
+
 
 const handler = (apiMethod)=>{
   return (req, res, next) => {
@@ -19,4 +22,6 @@ const handler = (apiMethod)=>{
 export default {
   handler: handler,
   fetchAllProjects: fetchAllProjects,
+  fetchOngoingProjects: fetchOngoingProjects,
+  fetchRecommendedProjects: fetchRecommendedProjects
 };

@@ -5,7 +5,7 @@ import dummy from "./db/temp";
 
 /* api Handler Methods 가져오기 */
 import api from "./db/api";
-var {handler, fetchAllProjects} = api;
+var {handler, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects} = api;
 
 const router = express.Router();
 
@@ -34,7 +34,9 @@ router.get("/api/user", (req, res, next) => {
 //   }
 // });
 
-router.get("/api/projects", handler(fetchAllProjects)); 
+router.get("/api/projects/all", handler(fetchAllProjects));
+router.get("/api/projects/ongoing", handler(fetchOngoingProjects));
+router.get("/api/projects/recommended", handler(fetchRecommendedProjects));
 
 router.get("/api/project", (req, res, next) => {
   let url = req.url;
