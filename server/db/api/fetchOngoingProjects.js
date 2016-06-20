@@ -29,10 +29,10 @@ const fetchOngoingProjects = (url, q, res) => {
       console.log("DIFF ", diff);
       if (diff > 0 && diff <= 7) {
         data.onDay = diff;
-        data.todayDone = false;
+        data.doneToday = false;
         up.post.forEach((item) => {
           if (item.day === diff) {
-            data.todayDone = true;
+            data.doneToday = true;
           }
         });
         result.push(data);
