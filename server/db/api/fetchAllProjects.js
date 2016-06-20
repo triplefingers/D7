@@ -5,7 +5,7 @@ const fetchAllProjects = (url, q, res)=>{
   var { userId } = q;
   console.dir(collection.UserProjects);
   const result = [];
-  let up = model.UserProject.where("userId", userId).fetchAll({withRelated: [
+  model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
     "post"
   ]}).then((projects)=>{
