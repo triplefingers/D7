@@ -17,15 +17,15 @@ const fetchAllProjects = (url, q, res)=>{
     const today = new Date();
     projects.forEach((up)=>{
       console.log(">>>>>>>>>>>>>>>>>>>>>", up.id);
-      let project = up.related("project").toJSON();
-      let post = up.related("post").toJSON();
-      console.log('POST', post);
+      // let project = up.related("project").toJSON();
+      // let post = up.related("post").toJSON();
+      // console.log('POST', post);
       up = up.toJSON();
       let startAt = new Date(up.startAt);
       let data = {
         id: up.id,
-        title: project.title,
-        description: project.description
+        title: up.project.title,
+        description: up.project.description
       };
 
       /* Check Project status */
@@ -39,7 +39,7 @@ const fetchAllProjects = (url, q, res)=>{
       } else if ( diff > 0 && diff <= 7 ){
         data.onDay = diff;
         data.todayDone = false;
-        post.forEach((item)=>{
+        up.post.forEach((item)=>{
           if(item.day === diff){
             data.todayDone = true;
           }
