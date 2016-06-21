@@ -29,6 +29,12 @@ const createTables = () => {
     post.text("text");
     post.timestamps();
     console.log("created table post");
+  }).createTableIfNotExists("postImage", function(postImage){
+    post.increments("id").primary();
+    post.integer("postId").references("id").inTable("post");
+    post.text("url");
+    post.timestamps();
+    console.log("created table postImage");
   });
 };
 
