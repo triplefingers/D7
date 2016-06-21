@@ -101,6 +101,51 @@ const initDB = ()=>{
   }].forEach((item)=>{
     new model.Post(item).save().then((model)=>console.log("Created Post model", model));
   });
+
+  /* PostImage model data 생성 */
+  [{
+    postId: 1,
+    index: 0,
+    url: "https://www.google.co.kr/imgres?imgurl=http%3A%2F%2Fwww.gpension.co.kr%2Fdata%2Fportal%2Fterra%2Fext%2F1437028828_A3E2z9px_ECA3BCEAB2BD4.jpg&imgrefurl=http%3A%2F%2Fwww.todotour.co.kr%2Fhome%2Fview%2F%3Fp_no%3DG0lyE2Yf&docid=3prYKHBsS_E8LM&tbnid=i-uQqEKKdRAt2M%3A&w=909&h=610&itg=1&bih=758&biw=1536&ved=0ahUKEwiX7KfsurjNAhVGqY8KHZmcBMMQMwgrKA8wDw&iact=mrc&uact=8"
+  },{
+    postId: 1,
+    index: 1,
+    url: "abcd"
+  },{
+    postId: 2,
+    index: 0,
+    url: "https://www.google.co.kr/imgres?imgurl=http%3A%2F%2Fwww.koreatrails.or.kr%2Fupload%2Fphoto%2FFILE_20160526122629602524.jpg&imgrefurl=http%3A%2F%2Fwww.koreatrails.or.kr%2Fcourse_view%2F%3Fcourse%3D503&docid=RD1M9JR6JbS4BM&tbnid=crF58f8YbnybJM%3A&w=800&h=450&bih=739&biw=765&ved=0ahUKEwiX7KfsurjNAhVGqY8KHZmcBMMQMwgfKAMwAw&iact=mrc&uact=8"
+  },{
+    postId: 3,
+    index: 0,
+    url: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR5ql_TWZAtvJ2MXVhAMsWK01zH99KZ3QUeorJUJiOObRR48wZSvQ"
+  },{
+    postId: 4,
+    index: 0,
+    url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRSmPMXDOWYqZT8QiawpJacw_bGrLlp6YO59MEKpNI5yAChy4Xq"
+  },{
+    postId: 5,
+    index: 0,
+    url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRKtBxLURMoqlIrmmkPlBEkfH8qqEWMIjUI_20oisHz1OllkZKk"
+  },{
+    postId: 6,
+    index: 0,
+    url: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSdBIUVuaWAQyS1F1s3X35_BxgZWV5Bz_0dTlFReknpaEiSIvxM"
+  },{
+    postId: 7,
+    index: 0,
+    url: "https://www.google.co.kr/imgres?imgurl=http%3A%2F%2Fwww.koreatrails.or.kr%2Fupload%2Fphoto%2FFILE_20130913012239760006.jpg&imgrefurl=http%3A%2F%2Fwww.koreatrails.or.kr%2Fcourse_view%2F%3Fcourse%3D503&docid=RD1M9JR6JbS4BM&tbnid=3TFApBc_cE_75M%3A&w=520&h=346&bih=739&biw=765&ved=0ahUKEwiX7KfsurjNAhVGqY8KHZmcBMMQMwhiKDwwPA&iact=mrc&uact=8"
+  },{
+    postId: 8,
+    index: 0,
+    url: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRuS8U_VndUKp-USyOACRsoH4w3GcCHPdIHQbj9mxxcZduvdx8-UQ"
+  },{
+    postId: 9,
+    index: 0,
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzcwb3ZYc3_Kmz8LtE1mjVMiYN26E9dB31uSDNLoZoSIoenStrIA"
+  }].forEach((item)=>{
+    new model.PostImage(item).save().then((model)=>console.log("Created PostImage model", model));
+  });
 };
 
 export default initDB;

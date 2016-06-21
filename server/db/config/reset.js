@@ -5,6 +5,7 @@ const resetDB = ()=>{
   .dropTableIfExists("project")
   .dropTableIfExists("userProject")
   .dropTableIfExists("post")
+  .dropTableIfExists("postImage")
   .createTableIfNotExists("user", function(user){
     user.increments("id").primary();
     user.string("username");
@@ -33,6 +34,13 @@ const resetDB = ()=>{
     post.text("text");
     post.timestamps();
     console.log("created table post");
+  }).createTableIfNotExists("postImage", function(postImage){
+    postImage.increments("id").primary();
+    postImage.integer("postId").references("id").inTable("post");
+    postImage.integer("index");
+    postImage.text("url");
+    postImage.timestamps();
+    console.log("created table postImage");
   }).then(()=>console.log("reset DB"));
 };
 
