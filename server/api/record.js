@@ -1,6 +1,6 @@
-import model from "../models";
-import collection from "../collections";
-import db from "../config/setConfig";
+import model from "../db/models";
+import collection from "../db/collections";
+import db from "../db/config/setConfig";
 
 const record = (url, q, body, res)=>{
   var { id, onDay, text, publicIds } = body;

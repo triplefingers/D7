@@ -4,7 +4,7 @@ import express from "express";
 import dummy from "./db/temp";
 
 /* api Handler Methods 가져오기 */
-import api from "./db/api";
+import api from "./api";
 var {handler, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, fetchProjectDetail, createNewProject, record} = api;
 
 const router = express.Router();

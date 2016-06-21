@@ -8,8 +8,9 @@ const resetDB = ()=>{
   .dropTableIfExists("postImage")
   .createTableIfNotExists("user", function(user){
     user.increments("id").primary();
-    user.string("username");
     user.string("email");
+    user.string("password");
+    user.string("username");
     user.timestamps();
     console.log("created table user");
   }).createTableIfNotExists("project", function(project){

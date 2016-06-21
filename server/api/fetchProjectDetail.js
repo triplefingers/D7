@@ -1,5 +1,5 @@
-import model from "../models";
-import collection from "../collections";
+import model from "../db/models";
+import collection from "../db/collections";
 import Promise from "bluebird";
 
 const fetchProjectDetail = (url, q, res)=>{
