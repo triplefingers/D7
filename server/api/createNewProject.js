@@ -1,5 +1,5 @@
-import model from "../models";
-import collection from "../collections";
+import model from "./db/models";
+import collection from "./db/collections";
 
 
 const createNewProject = (url, q, body, res) => {
@@ -10,7 +10,7 @@ const createNewProject = (url, q, body, res) => {
   let endAt = new Date(startAt);
   endAt.setDate(startAtInObj.getDate() + 6);
   endAt = endAt.toJSON().slice(0, 10);
-  
+
   let onDay = null;
   if (today.toJSON().slice(0, 10) === startAtInObj.toJSON().slice(0, 10)) {
     onDay = 1;

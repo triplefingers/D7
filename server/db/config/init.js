@@ -2,7 +2,7 @@ import model from "../models";
 
 const initDB = ()=>{
   /* User model data 생성 */
-  let user = new model.User({username: "Lenny Kim", email: "idforcoding@gmail.com"});
+  let user = new model.User({username: "Lenny Kim", email: "idforcoding@gmail.com", password: 12345678});
   user.save().then((model)=>console.log("Created User model", model));
 
   /* Project model data 생성 */

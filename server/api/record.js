@@ -1,5 +1,5 @@
-import model from "../models";
-import collection from "../collections";
+import model from "./db/models";
+import collection from "./db/collections";
 
 const record = (url, q, body, res)=>{
   var { id, onDay, text } = body;
