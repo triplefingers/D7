@@ -86,12 +86,13 @@ class AppContainer extends Component {
     this.setState(dataObject);
   };
 
-  saveDayDetail(userId, id, onDay, text) {
+  saveDayDetail(userId, id, onDay, text, publicIds) {
     axios.post("/api/record", {
       userId : userId,
       id: id,
       onDay: onDay,
-      text: text
+      text: text,
+      publicIds: JSON.stringify(publicIds)
     })
     .then((res) => {
       console.log("saveDayDetail success: ", res);
