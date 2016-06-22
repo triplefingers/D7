@@ -17,10 +17,17 @@ class HistoryDetail extends Component {
     let description = this.props.data.description;
     let details = this.props.data.detail;
 
+    let imageHeight = 200;
+    let imageWidth = 200;
+    let imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_fill,h_" + imageHeight + ",w_" + imageWidth + "/v1466579054/";
+
     details = details.map((detail) => {
       let publicIds = detail.publicIds;
       publicIds = publicIds.map((id) => {
-        return <img src={id} style={{width: "200px", height: "200px"}}/>
+        if (id.indexOf("http") === -1) {
+          id = imageUrl + id;
+        }
+        return <img src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>
       })
       return (
         <li>
