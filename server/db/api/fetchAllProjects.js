@@ -6,7 +6,8 @@ const fetchAllProjects = (url, q, res)=>{
   model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
     "post"
-  ]}).then((projects)=>{
+  ]})
+  .then((projects)=>{
     const result = {
       waiting: [],
       ongoing: [],
@@ -41,7 +42,12 @@ const fetchAllProjects = (url, q, res)=>{
       }
     });
     return result;
-  }).then((data)=>res.status(200).send(data));
+  })
+  .then((data) => res.status(200).send(data))
+  .catch((err) =>{
+    console.error("-----Error: Failed to read projects in 'fetchAllProjects.js': ", err);
+    res.status(500).end();
+  });
 
 };
 

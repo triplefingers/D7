@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 import Navigation from "./Navigation";
 
 class CreateBasicInfo extends Component {
@@ -9,7 +8,6 @@ class CreateBasicInfo extends Component {
   };
 
   componentDidMount() {
-
   }
 
   render() {

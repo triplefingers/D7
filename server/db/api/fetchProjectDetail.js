@@ -8,21 +8,18 @@ const fetchProjectDetail = (url, q, res)=>{
   .then((posts) => {
     posts = posts.toJSON();
     posts.forEach((post) => {
-      console.log("----------post is --------", post);
       let postImages = post.postImage;
       let newPostImages = [];
-      console.log("-----------postImages are", postImages);
       postImages.forEach((postImage) => {
         newPostImages[postImage.index] = postImage.url;
       });
-      console.log("----------newPostImages are-----", newPostImages);
       post.publicIds = newPostImages;
       delete post.postImage;
     });
     return posts;
   })
   .then((data) => res.status(200).send(data))
-  .catch((err) => console.log("Error: Cannot read projectDetails from db", err));
+  .catch((err) => console.log("Error: Cannot read projectDetails from db in 'fetchProjectDetail.js'", err));
 };
 
 export default fetchProjectDetail;

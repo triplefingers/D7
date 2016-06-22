@@ -1,9 +1,7 @@
 import React, {Component, cloneElement} from "react";
-// import {Link} from "react-router";
-import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
+import {Link} from "react-router";
 
 class App extends Component {
-
   // Everytime App is mounted, resets the current data passed by AppContainer
   componentDidMount() {
     this.props.reset();

@@ -19,7 +19,6 @@ import HistoryDetail from "./component/HistoryDetail";
 
 import Recommendation from "./component/Recommendation";
 
-
 ReactDOM.render(
   (
   <Router history={browserHistory}>
