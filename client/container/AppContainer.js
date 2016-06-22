@@ -114,12 +114,13 @@ class AppContainer extends Component {
       console.log(this.state.list);
     })
     .catch((err) => {
-      console.error("Error occured while fetching all projects");
+      console.error("Error occured while fetching all projects: ", err);
     });
   };
 
   // userId to be added
   fetchDayDetail(userId, userProjectId) {
+    console.log("here in fetchdaydetail");
     axios.get("/api/project/", {
       params: {
         userId: userId,
@@ -128,12 +129,12 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // App Container 에 detail 데이터 추가
-      this.setState({detail: res.data});
-      // console.log(this.state.detail);
+      this._save({detail: res.data});
+      console.log(this.state.detail);
       this.goto("/history/project/" + userProjectId);
     })
     .catch((err) => {
-      console.error("Error occured while fetching project details");
+      console.error("Error occured while fetching project details: ", err);
     })
   }
 

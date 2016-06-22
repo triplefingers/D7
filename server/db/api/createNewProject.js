@@ -10,7 +10,7 @@ const createNewProject = (url, q, body, res) => {
   let endAt = new Date(startAt);
   endAt.setDate(startAtInObj.getDate() + 6);
   endAt = endAt.toJSON().slice(0, 10);
-  
+
   let onDay = null;
   if (today.toJSON().slice(0, 10) === startAtInObj.toJSON().slice(0, 10)) {
     onDay = 1;
@@ -35,7 +35,12 @@ const createNewProject = (url, q, body, res) => {
         description: description,
         onDay: onDay
       });
-    });
+    })
+    .catch((err) => console.error("-----Error: Failed to store in 'userProject' table: ", err));
+  })
+  .catch((err) => {
+    console.error("-----Error: Failed to store in 'project' or 'userProject' table: ", err);
+    res.status(500).end();
   });
 };
 

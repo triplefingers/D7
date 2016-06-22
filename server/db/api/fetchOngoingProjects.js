@@ -7,12 +7,13 @@ const fetchOngoingProjects = (url, q, res) => {
   model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
     "post"
-  ]}).then((projects) => {
+  ]})
+  .then((projects) => {
     // result is 'Ongoing projects'
     const result = [];
     const today = new Date();
     projects.forEach((up) => {
-      console.log(">>>>>>>>>>>>>>>>>>>>>", up.id);
+      // console.log(">>>>>>>>>>>>>>>>>>>>>", up.id);
       up = up.toJSON();
       const startAt = new Date(up.startAt);
       const data = {
@@ -22,8 +23,8 @@ const fetchOngoingProjects = (url, q, res) => {
       };
 
       /* Check Project status */
-      console.log(today.valueOf());
-      console.log(startAt.valueOf());
+      // console.log(today.valueOf());
+      // console.log(startAt.valueOf());
 
       const diff = Math.ceil((today.valueOf() - startAt.valueOf()) / (60 * 60 * 24 * 1000));
       console.log("DIFF ", diff);
@@ -39,8 +40,12 @@ const fetchOngoingProjects = (url, q, res) => {
       }
     });
     return result;
-  }).then((data) => res.status(200).send(data));
-
+  })
+  .then((data) => res.status(200).send(data))
+  .catch((err) => {
+    console.error("-----Error: Failed to read projects in 'fetchOngoingProjects'");
+    res.status(500).end();
+  });
 };
 
 export default fetchOngoingProjects;

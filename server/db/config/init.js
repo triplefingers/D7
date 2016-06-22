@@ -55,7 +55,7 @@ const initDB = ()=>{
   },{
     userId: 1,
     projectId: 4,
-    startAt: "2016-06-21",
+    startAt: "2016-06-24",
     endAt: "2016-06-27",
   }].forEach((item)=>{
     new model.UserProject(item).save().then((model)=>console.log("Created userProject model", model));
@@ -106,15 +106,15 @@ const initDB = ()=>{
   [{
     postId: 1,
     index: 0,
-    url: "https://www.google.co.kr/imgres?imgurl=http%3A%2F%2Fwww.gpension.co.kr%2Fdata%2Fportal%2Fterra%2Fext%2F1437028828_A3E2z9px_ECA3BCEAB2BD4.jpg&imgrefurl=http%3A%2F%2Fwww.todotour.co.kr%2Fhome%2Fview%2F%3Fp_no%3DG0lyE2Yf&docid=3prYKHBsS_E8LM&tbnid=i-uQqEKKdRAt2M%3A&w=909&h=610&itg=1&bih=758&biw=1536&ved=0ahUKEwiX7KfsurjNAhVGqY8KHZmcBMMQMwgrKA8wDw&iact=mrc&uact=8"
+    url: "http://www.gpension.co.kr/data/portal/terra/ext/1437028828_A3E2z9px_ECA3BCEAB2BD4.jpg"
   },{
     postId: 1,
     index: 1,
-    url: "abcd"
+    url: "http://www.koreatrails.or.kr/upload/photo/FILE_20130913012239760006.jpg"
   },{
     postId: 2,
     index: 0,
-    url: "https://www.google.co.kr/imgres?imgurl=http%3A%2F%2Fwww.koreatrails.or.kr%2Fupload%2Fphoto%2FFILE_20160526122629602524.jpg&imgrefurl=http%3A%2F%2Fwww.koreatrails.or.kr%2Fcourse_view%2F%3Fcourse%3D503&docid=RD1M9JR6JbS4BM&tbnid=crF58f8YbnybJM%3A&w=800&h=450&bih=739&biw=765&ved=0ahUKEwiX7KfsurjNAhVGqY8KHZmcBMMQMwgfKAMwAw&iact=mrc&uact=8"
+    url: "http://www.koreatrails.or.kr/upload/photo/FILE_20160526122629602524.jpg"
   },{
     postId: 3,
     index: 0,
@@ -134,7 +134,7 @@ const initDB = ()=>{
   },{
     postId: 7,
     index: 0,
-    url: "https://www.google.co.kr/imgres?imgurl=http%3A%2F%2Fwww.koreatrails.or.kr%2Fupload%2Fphoto%2FFILE_20130913012239760006.jpg&imgrefurl=http%3A%2F%2Fwww.koreatrails.or.kr%2Fcourse_view%2F%3Fcourse%3D503&docid=RD1M9JR6JbS4BM&tbnid=3TFApBc_cE_75M%3A&w=520&h=346&bih=739&biw=765&ved=0ahUKEwiX7KfsurjNAhVGqY8KHZmcBMMQMwhiKDwwPA&iact=mrc&uact=8"
+    url: "http://www.koreatrails.or.kr/upload/photo/FILE_20130913012239760006.jpg"
   },{
     postId: 8,
     index: 0,

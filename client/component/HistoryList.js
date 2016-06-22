@@ -60,11 +60,27 @@ class HistoryList extends Component {
       ));
 
     waiting = waiting.map((project) => (
-        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "waiting"}); this.props.goto("/history/project/" + project.id);}}>{project.title}</li>
+        <li onClick={() => {
+          this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "waiting"});
+          // should change userid;
+          this.props.fetchDayDetail(1, project.id);
+        }}>
+        {
+          project.title
+        }
+        </li>
       ));
 
     complete = complete.map((project) => (
-        <li onClick={() => {this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "complete"}); this.props.goto("/history/project/" + project.id);}}>{project.title}</li>
+        <li onClick={() => {
+          this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "complete"});
+          // should change userid;
+          this.props.fetchDayDetail(1, project.id);
+        }}>
+        {
+          project.title
+        }
+        </li>
       ));
     return (
       <div>

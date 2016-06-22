@@ -8,7 +8,6 @@ const record = (url, q, body, res)=>{
     return {index: index, url: publicId};
   })
 
-  console.log("---------------", publicIds);
   model.Post.forge().set({
     userProjectId: id,
     day: onDay,
@@ -24,10 +23,13 @@ const record = (url, q, body, res)=>{
         console.log("post is ", post);
         return post;
       })
-      .catch((err) => console.error("Error: cannot save postImages in db"));
+      .catch((err) => console.error("Error: Failed to store postImages in db in 'record.js': ", err));
   })
   .then((data) => res.status(200).send(data))
-  .catch((err) => console.error("Error: cannot save dayDetail in db"));
+  .catch((err) => {
+    console.error("Error: Failed to store dayDetail in db in 'record.js': ", err);
+    res.status(500).end();
+  });
 };
 
 export default record;
