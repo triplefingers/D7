@@ -6,47 +6,41 @@ class HistoryDetail extends Component {
     super(props);
   };
 
-  componentDidMount() {
-    console.log("HistoryDetail Mounted :)");
-    console.log("Detail Passed?: ", this.props.data.detail);
-  }
-
   render() {
     let id = this.props.data.id;
     let title = this.props.data.title;
     let description = this.props.data.description;
-    let details = this.props.data.detail;
+    let dayDetails = this.props.data.dayDetails;
 
     let imageHeight = 200;
     let imageWidth = 200;
     let imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_fill,h_" + imageHeight + ",w_" + imageWidth + "/v1466579054/";
 
-    details = details.map((detail) => {
-      let publicIds = detail.publicIds;
-      publicIds = publicIds.map((id) => {
+    dayDetails = dayDetails.map((dayDetail) => {
+      let images = dayDetail.publicIds;
+      images = images.map((id) => {
         if (id.indexOf("http") === -1) {
           id = imageUrl + id;
         }
         return <img src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>
-      })
+      });
+
       return (
         <li>
-          <span>On Day {detail.day}</span>
+          <span>On Day {dayDetail.day}</span>
           <div>
-            {publicIds}
+            {images}
           </div>
           <div>
-            {detail.text}
+            {dayDetail.text}
           </div>
         </li>
       )
     })
-    console.log("details is ", details);
     let writeButton;
     if (this.props.data.status === "ongoing") {
       writeButton = <button onClick={this.props.goto.bind(null, "/record/project/" + id)}>write</button>;
     }
-
 
     return (
       <div>
@@ -54,13 +48,10 @@ class HistoryDetail extends Component {
         <h1>Project Detail</h1><hr/>
         <h1>Title: {title}</h1>
         <h1>Description: {description}</h1>
-
         <ul>
-          {details}
-
+          {dayDetails}
         </ul>
         <button onClick={this.context.router.goBack.bind(this)}>Back</button>
-        {/*<button onClick={this.props.saveDayDetail.bind(this, id, onDay, text)}>Save</button>*/}
       </div>
     );
   }

@@ -130,12 +130,12 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // App Container 에 detail 데이터 추가
-      this._save({detail: res.data});
-      console.log(this.state.detail);
+      this.setState({dayDetails: res.data});
+      console.log(this.state.dayDetails);
       this.goto("/history/project/" + userProjectId);
     })
     .catch((err) => {
-      console.error("Error occured while fetching project details: ", err);
+      console.error("Error occured while fetching project dayDetails: ", err);
     })
   }
 
