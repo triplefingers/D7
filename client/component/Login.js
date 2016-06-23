@@ -14,13 +14,17 @@ class Login extends Component {
       email : this.state.email,
       password: this.state.password
     }).then((res) => {
+      console.log("login res is", res);
       if(res.status===200){
         console.log("Login success: ", res);
         this.props.goto("/home");
       }
-
-    }).catch(()=>{
-
+    }).catch((err)=>{
+      console.error("Error: Login failed: ", err);
+      this.setState({
+        email: "",
+        password: ""
+      });
     });
   };
 
