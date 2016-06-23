@@ -35,16 +35,12 @@ class HistoryDetail extends Component {
             {dayDetail.text}
           </div>
         </li>
-      );
-    });
-    let writeButton;
-    if (this.props.data.status === "ongoing") {
-      writeButton = <button onClick={this.props.goto.bind(null, "/record/project/" + id)}>write</button>;
-    }
+      )
+    })
 
     return (
       <div>
-        <Navigation title="Detail" rightButtonName="write" rightButtonLink={"/record/project/" + id} rightButtonCondition={() => !this.props.data.doneToday}/>
+        <Navigation title="Detail" rightButtonName="write" rightButtonLink={"/record/project/" + id} rightButtonCondition={() => this.props.data.status === "ongoing" && !this.props.data.doneToday}/>
         <h1>Project Detail</h1><hr/>
         <h1>Title: {title}</h1>
         <h1>Description: {description}</h1>

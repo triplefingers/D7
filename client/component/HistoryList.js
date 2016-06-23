@@ -48,7 +48,7 @@ class HistoryList extends Component {
 
     onGoing = onGoing.map((project) => (
         <li onClick={() => {
-          this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, doneToday: project.doneToday});
+          this.props._save({id: project.id, title: project.title, description: project.description, onDay: project.onDay, status: "ongoing", doneToday: project.doneToday});
           // should change userid;
           this.props.fetchDayDetail(1, project.id);
         }}>
