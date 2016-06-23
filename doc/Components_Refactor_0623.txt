@@ -1,5 +1,22 @@
 Component 화 idea
 
+Card Types
+1. ActionCard
+ - Leave History
+ - Create New Project
+ - History
+ - Recommendation
+ + View History, Home
+
+2. ProjectCard
+ eg) Draw one painting a day
+
+3. HistoryCard
+
+4. ThumbnailCard (Image + Title)
+
+------------------------------------
+
 /
 App
 	ActionCard (Title) X ?
@@ -14,7 +31,7 @@ App
 	Title (Sub, Main)
 	Camera
 	Memo
-	BottomLine
+	ActionBar
 		BackButton
 		SaveButton
 
@@ -27,7 +44,7 @@ App
 App
 	Category (Title) X ?
 		InputField (Line 갯수)
-	BottomLine
+	ActionBar
 		BackButton
 		NextButton
 
@@ -35,14 +52,14 @@ App
 App
 	Title (Sub, Main)
 	Calendar
-	BottomLine
+	ActionBar
 		BackButton
 		SaveButton
 
 /create/complete
 App
 	Message
-	ActionButton (Title) X ?
+	ActionCard (Title) X ?
 
 /history/projects
 App
@@ -52,7 +69,9 @@ App
 
 /history/project/:id
 App
-	Navigation (RightButton)
+	Navigation
+		WrtieButton
+		LogoutButton
 	Title (Main, Optional)
 	HistoryCard (Day, Contents)
 
@@ -62,6 +81,12 @@ App
 	ThumbnailCard (Image + Title) X ?
 	Modal (ActionCard X 2)
 
+// Feedback
+06.23
+1. Button과 Card 의 Distinction
+2. Navigation 내 우측버튼 삽입방법
 
-	
+
+
+
 
