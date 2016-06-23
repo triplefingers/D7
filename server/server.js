@@ -6,6 +6,7 @@ import router from "./router";
 
 import cookieParser from "cookie-parser";
 import passport from "passport";
+import LocalStrategy from "passport-local";
 import flash from "connect-flash";
 import session from "express-session";
 
@@ -21,7 +22,7 @@ app.use(express.static(__dirname + "/../client"));
 
 /* Set up Passport */
 app.use(session({secret: "iloved7olived7iloved7"}));
-app.use(passport.Initialize());
+app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
