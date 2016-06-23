@@ -14,7 +14,7 @@ class CreateComplete extends Component {
       <div>
         <h1>Save Complete!</h1>
         {toHistoryButton}
-        <button onClick={this.props.goto.bind(this, "/")}>Home</button>
+        <button onClick={this.props.goto.bind(this, "/home")}>Home</button>
       </div>
     );
   }
