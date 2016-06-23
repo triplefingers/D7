@@ -1,3 +1,5 @@
+import "./assets/style.css";
+
 import React, {Component, cloneElement} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 import ReactDOM from "react-dom";

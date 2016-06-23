@@ -40,9 +40,13 @@
 .Calendar .Day a.Day-inner {
     color: inherit;
 }
-.Calendar .Day.weekend {
+/*.Calendar .Day.weekend {
     background: #bdc3c7;
     color: #000;
+}*/
+.Calendar .Day.inavailableDay {
+  background: #bdc3c7;
+  color: #000;
 }
 .Calendar .Day.other-month {
     color: #999;
@@ -52,7 +56,7 @@
     background: #fafad2;
     color: #000;
 }
-.Calendar .Day:hover .Day-inner {
+.Calendar .Day.availableDay:hover .Day-inner {
     background: #eee;
     color: #000;
 }
