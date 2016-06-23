@@ -19,8 +19,9 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
-  model.User.forge().get(id).fetch({require: true})
-  .then((user)=> done(err, user.toJSON()));
+  model.User.forge().where({id: id}).fetch({require: true})
+  .then((user) => done(null, user.toJSON()))
+  .catch((err) => done(err, false));
 });
 passport.use(new LocalStrategy({
   usernameField: "email",
