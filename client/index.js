@@ -13,6 +13,7 @@ import RecordComplete from "./component/RecordComplete";
 import CreateDate from "./component/CreateDate";
 import CreateComplete from "./component/CreateComplete";
 import CreateBasicInfo from "./component/CreateBasicInfo";
+import Login from "./component/Login";
 
 import HistoryList from "./component/HistoryList";
 import HistoryDetail from "./component/HistoryDetail";
@@ -23,7 +24,8 @@ ReactDOM.render(
   (
   <Router history={browserHistory}>
     <Route component={AppContainer}>
-      <Route path="/" component={App}/>
+      <Route path="/" component={Login}/>
+      <Route path="/home" component={App}/>
 
     {/* Record */}
         <Route path="/record/projects" component={ProjectList}/>
