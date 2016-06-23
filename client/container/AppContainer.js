@@ -9,6 +9,12 @@ class AppContainer extends Component {
   };
 
   componentDidMount() {
+    axios.post("/api/login", {
+      email : "idforcoding@gmail.com",
+      password: "12345678"
+    }).then((res) => {
+      console.log("Login success: ", res);
+    });
     console.log("RecordContainer Mounted :)");
   };
 

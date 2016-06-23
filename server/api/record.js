@@ -2,7 +2,7 @@ import model from "../db/models";
 import collection from "../db/collections";
 import db from "../db/config/setConfig";
 
-const record = (url, q, body, res)=>{
+const record = (user, q, body, res)=>{
   var { id, onDay, text, publicIds } = body;
   publicIds = JSON.parse(publicIds).map((publicId, index) => {
     return {index: index, url: publicId};

@@ -8,6 +8,16 @@ import dummy from "./db/temp";
 import api from "./api";
 var {handler, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, fetchProjectDetail, createNewProject, record} = api;
 
+/* Authentication checking middleware */
+const isAuthenticated = (req, res, next) => {
+  if (req.user){
+    console.log(">>>>>>>>>>>>",req.user);
+    return next();
+  } else {
+    res.redirect("/");
+  }
+};
+
 /* Passport import */
 import passport from "passport";
 import LocalStrategy from "passport-local";
@@ -19,8 +29,9 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
-  model.User.forge().get(id).fetch({require: true})
-  .then((user)=> done(err, user.toJSON()));
+  model.User.forge().where({id: id}).fetch({require: true})
+  .then((user) => done(null, user.toJSON()))
+  .catch((err) => done(err, false));
 });
 passport.use(new LocalStrategy({
   usernameField: "email",
@@ -30,7 +41,6 @@ passport.use(new LocalStrategy({
   .where({email: email})
   .fetch({require: true})
   .then((user) => {
-    console.log("USER", user);
     user = user.toJSON();
     if(bcrypt.compareSync(password, user.password)){
       done(null, user);
@@ -83,15 +93,20 @@ router.post("/api/login", function (req, res, next){
     })(req, res, next);
 });
 
+router.get("/api/logout", function (req, res){
+  req.logout();
+  return res.status(200).json({
+    message: "You have been successfully logged out."
+  });
+});
 
+router.get("/api/projects/all", isAuthenticated, handler(fetchAllProjects));
+router.get("/api/projects/ongoing", isAuthenticated, handler(fetchOngoingProjects));
+router.get("/api/projects/recommended", isAuthenticated, handler(fetchRecommendedProjects));
+router.get("/api/project", isAuthenticated, handler(fetchProjectDetail));
 
-router.get("/api/projects/all", handler(fetchAllProjects));
-router.get("/api/projects/ongoing", handler(fetchOngoingProjects));
-router.get("/api/projects/recommended", handler(fetchRecommendedProjects));
-router.get("/api/project", handler(fetchProjectDetail));
-
-router.post("/api/record", handler(record));
-router.post("/api/newproject", handler(createNewProject));
+router.post("/api/record", isAuthenticated, handler(record));
+router.post("/api/newproject", isAuthenticated, handler(createNewProject));
 
 router.get("*", (req, res, next) => {
   res.send(404, "404 - uhehehe");
