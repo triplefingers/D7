@@ -1,5 +1,5 @@
-import model from "./db/models";
-import collection from "./db/collections";
+import model from "../db/models";
+import collection from "../db/collections";
 
 const fetchRecommendedProjects = (url, q, res) => {
   collection.Projects.orderBy("-wish").fetch().then((projects)=>{
