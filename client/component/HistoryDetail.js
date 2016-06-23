@@ -22,7 +22,7 @@ class HistoryDetail extends Component {
         if (id.indexOf("http") === -1) {
           id = imageUrl + id;
         }
-        return <img src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>
+        return <img src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>;
       });
 
       return (
@@ -35,8 +35,8 @@ class HistoryDetail extends Component {
             {dayDetail.text}
           </div>
         </li>
-      )
-    })
+      );
+    });
     let writeButton;
     if (this.props.data.status === "ongoing") {
       writeButton = <button onClick={this.props.goto.bind(null, "/record/project/" + id)}>write</button>;

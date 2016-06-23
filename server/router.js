@@ -21,27 +21,26 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   model.User.forge().get(id).fetch({require: true})
   .then((user)=> done(err, user.toJSON()));
-})
+});
 passport.use(new LocalStrategy({
   usernameField: "email",
   passwordField: "password"
 }, (email, password, done) => {
-    model.User.forge()
-    .where({email: email})
-    .fetch({require: true})
-    .then((user) => {
-      console.log('USER', user);
-      user = user.toJSON();
-      if(bcrypt.compareSync(password, user.password)){
-        done(null, user)
-      } else {
-        done(null, false, { message: "Incorrect password."})
-      }
-    }).catch((err) => {
-      done(null, false, { message: "Incorrect username" })
-    });
-  })
-);
+  model.User.forge()
+  .where({email: email})
+  .fetch({require: true})
+  .then((user) => {
+    console.log("USER", user);
+    user = user.toJSON();
+    if(bcrypt.compareSync(password, user.password)){
+      done(null, user);
+    } else {
+      done(null, false, { message: "Incorrect password."});
+    }
+  }).catch((err) => {
+    done(null, false, { message: "Incorrect username" });
+  });
+}));
 
 /* Passport route */
 router.post("/api/signup", function (req, res, next){
@@ -57,7 +56,7 @@ router.post("/api/signup", function (req, res, next){
     });
   })
   .catch((err) => {
-      return res.status(401).json({ message: "This email is already registered. Please try another email." });
+    return res.status(401).json({ message: "This email is already registered. Please try another email." });
   });
 });
 
@@ -82,7 +81,7 @@ router.post("/api/login", function (req, res, next){
         }
       });
     })(req, res, next);
-  });
+});
 
 
 

@@ -136,7 +136,7 @@ class AppContainer extends Component {
     })
     .catch((err) => {
       console.error("Error occured while fetching project dayDetails: ", err);
-    })
+    });
   }
 
   // For recommendation
