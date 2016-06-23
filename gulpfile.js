@@ -8,7 +8,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
   server: ["server/**/*.js"],
-  client: ["client/**/*.js", "client/**/*.html", "!client/bundle.js", "!client/helpers"]
+  client: ["client/**/*.js", "client/**/*.html", "!client/bundle.js", "!client/helpers/*.js"]
 };
 
 gulp.task("babel", () => {
@@ -28,7 +28,7 @@ gulp.task("webpack", () => {
 });
 
 gulp.task("eslint", () => {
-  gulp.src([paths.server[0], paths.client[0], paths.client[2], "!node_modules/**"])
+  gulp.src([paths.server[0], paths.client[0], paths.client[2], paths.client[3], "!node_modules/**"])
   .pipe(eslint({
     rules: {
       quotes: [1, "double"],
