@@ -35,8 +35,8 @@ class HistoryDetail extends Component {
             {dayDetail.text}
           </div>
         </li>
-      )
-    })
+      );
+    });
 
     return (
       <div>
