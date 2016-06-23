@@ -1,0 +1,67 @@
+Component 화 idea
+
+/
+App
+	ActionCard (Title) X ?
+
+/record/projects
+App
+	Navigation
+	ProjectCard (Title, Day) X ?
+
+/record/project/:id
+App
+	Title (Sub, Main)
+	Camera
+	Memo
+	BottomLine
+		BackButton
+		SaveButton
+
+/record/complete
+App
+	Message
+	ActionCard (Title) X 2
+
+/create/basicinfo
+App
+	Category (Title) X ?
+		InputField (Line 갯수)
+	BottomLine
+		BackButton
+		NextButton
+
+/create/date
+App
+	Title (Sub, Main)
+	Calendar
+	BottomLine
+		BackButton
+		SaveButton
+
+/create/complete
+App
+	Message
+	ActionButton (Title) X ?
+
+/history/projects
+App
+	Navigation
+	Category (Title) X ?
+		ProjectCard X ?
+
+/history/project/:id
+App
+	Navigation (RightButton)
+	Title (Main, Optional)
+	HistoryCard (Day, Contents)
+
+/recommendation/projects
+App
+	Navigation
+	ThumbnailCard (Image + Title) X ?
+	Modal (ActionCard X 2)
+
+
+	
+
