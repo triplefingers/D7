@@ -23,6 +23,7 @@ class Login extends Component {
         email: "",
         password: ""
       });
+      alert(err.data.message);
     });
   };
 
@@ -50,6 +51,10 @@ class Login extends Component {
     let data = {};
     data[what] = event.target.value;
     this.setState(data);
+  };
+
+  componentWillMount() {
+    this.props.checkIfLogined();
   };
 
   render() {

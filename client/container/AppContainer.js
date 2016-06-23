@@ -19,6 +19,18 @@ class AppContainer extends Component {
   };
 
   // For App
+  checkIfLogined() {
+    axios.get("/api/checklogin")
+    .then((res) => {
+      console.log("already logined");
+      this.goto("/home");
+    })
+    .catch((err) => {
+      console.log("error in checkIfLogined: ", err);
+      this.goto(err.data.path);
+    });
+  };
+
   reset() {
     var prevState = this.state;
     var nextState = {};
@@ -166,6 +178,7 @@ class AppContainer extends Component {
 
     // For App
     injection.reset = this.reset.bind(this);
+    injection.checkIfLogined = this.checkIfLogined.bind(this);
 
     // For Record
     injection.saveNewProject = this.saveNewProject.bind(this);
