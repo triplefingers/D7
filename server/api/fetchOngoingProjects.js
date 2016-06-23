@@ -2,8 +2,7 @@ import model from "../db/models";
 import collection from "../db/collections";
 
 const fetchOngoingProjects = (user, q, res) => {
-  const { id as userId } = user;
-  console.dir(collection.UserProjects);
+  const userId = user.id;
   model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
     "post"

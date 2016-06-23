@@ -1,7 +1,7 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-const fetchProjectDetail = (url, q, res)=>{
+const fetchProjectDetail = (user, q, res)=>{
   var { id } = q;
   model.Post.where("userProjectId", id).fetchAll({withRelated: ["postImage"]})
   .then((posts) => {
