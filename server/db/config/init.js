@@ -49,13 +49,13 @@ const initDB = ()=>{
   },{
     userId: 1,
     projectId: 2,
-    startAt: "2016-06-16",
-    endAt: "2016-06-22",
+    startAt: "2016-06-23",
+    endAt: "2016-06-29",
   },{
     userId: 1,
     projectId: 4,
-    startAt: "2016-06-24",
-    endAt: "2016-06-27",
+    startAt: "2016-06-30",
+    endAt: "2016-07-06",
   }].forEach((item)=>{
     new model.UserProject(item).save().then((model)=>console.log("Created userProject model", model.attributes.id));
   });
