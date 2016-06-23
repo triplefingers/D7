@@ -1,5 +1,5 @@
 import db from "../config/setConfig";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 import UserProject from "./userProject";
 
