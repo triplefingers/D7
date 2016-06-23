@@ -9,7 +9,7 @@ const record = (url, q, body, res)=>{
   });
 
   model.Post.forge().set({
-    userProjectId: id,
+    userProjectId: userProjectId,
     day: onDay,
     text: text
   }).save()

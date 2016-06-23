@@ -1,8 +1,8 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-const fetchAllProjects = (url, q, res)=>{
-  var { userId } = q;
+const fetchAllProjects = (user, q, res)=>{
+  const { id as userId } = user;
   model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
     "post"

@@ -1,7 +1,7 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-const fetchRecommendedProjects = (url, q, res) => {
+const fetchRecommendedProjects = (user, q, res) => {
   collection.Projects.orderBy("-wish").fetch().then((projects)=>{
     return projects.slice(0, 4);
   })
