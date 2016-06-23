@@ -9,16 +9,28 @@ class AppContainer extends Component {
   };
 
   componentDidMount() {
-    axios.post("/api/login", {
-      email : "idforcoding@gmail.com",
-      password: "12345678"
-    }).then((res) => {
-      console.log("Login success: ", res);
-    });
+    // axios.post("/api/login", {
+    //   email : "idforcoding@gmail.com",
+    //   password: "12345678"
+    // }).then((res) => {
+    //   console.log("Login success: ", res);
+    // });
     console.log("RecordContainer Mounted :)");
   };
 
   // For App
+  checkIfLogined() {
+    axios.get("/api/checklogin")
+    .then((res) => {
+      console.log("already logined");
+      this.goto("/home");
+    })
+    .catch((err) => {
+      console.log("error in checkIfLogined: ", err);
+      this.goto(err.data.path);
+    });
+  };
+
   reset() {
     var prevState = this.state;
     var nextState = {};
@@ -166,6 +178,7 @@ class AppContainer extends Component {
 
     // For App
     injection.reset = this.reset.bind(this);
+    injection.checkIfLogined = this.checkIfLogined.bind(this);
 
     // For Record
     injection.saveNewProject = this.saveNewProject.bind(this);

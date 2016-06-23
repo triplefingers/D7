@@ -14,7 +14,8 @@ const isAuthenticated = (req, res, next) => {
     console.log(">>>>>>>>>>>>",req.user);
     return next();
   } else {
-    res.redirect("/");
+    // res.redirect("/");
+    res.status(401).json({path: "/"});
   }
 };
 
@@ -79,7 +80,7 @@ router.post("/api/login", function (req, res, next){
         return next(authErr);
       }
       if (!user) {
-        return res.status(401).json({ message: info.message });
+        return res.status(401).json({ message: "There is no user matches" });
       }
       return req.logIn(user, (loginErr) => {
         if (loginErr) {
@@ -98,6 +99,14 @@ router.get("/api/logout", function (req, res){
   return res.status(200).json({
     message: "You have been successfully logged out."
   });
+});
+
+router.get("/api/checklogin", function (req, res) {
+  if (req.user) {
+    res.status(200).send();
+  } else {
+    res.status(401).send();
+  }
 });
 
 router.get("/api/projects/all", isAuthenticated, handler(fetchAllProjects));
