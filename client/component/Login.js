@@ -14,11 +14,8 @@ class Login extends Component {
       email : this.state.email,
       password: this.state.password
     }).then((res) => {
-      console.log("login res is", res);
-      if(res.status===200){
-        console.log("Login success: ", res);
-        this.props.goto("/home");
-      }
+      console.log("Login success: ", res);
+      this.props.goto("/home");
     }).catch((err)=>{
       console.error("Error: Login failed: ", err);
       this.setState({
@@ -29,7 +26,6 @@ class Login extends Component {
   };
 
   handleChange(what, event) {
-    console.log("what is ", what);
     let data = {};
     data[what] = event.target.value;
     this.setState(data);
