@@ -2,7 +2,7 @@ import model from "../models";
 
 const initDB = ()=>{
   /* User model data 생성 */
-   new model.User({ username: "Lenny Kim", email: "idforcoding@gmail.com", password: "12345678" }).save().then((model)=>console.log("Created User model", model));
+   new model.User({ username: "Lenny Kim", email: "idforcoding@gmail.com", password: "12345678" }).save().then((model)=>console.log("Created User model", model.attributes.username));
 
   /* Project model data 생성 */
   [{
@@ -32,7 +32,7 @@ const initDB = ()=>{
   }].forEach((item)=>{
     new model.Project(item)
     .save()
-    .then((model)=>console.log("Created Project model", model));
+    .then((model)=>console.log("Created Project model", model.attributes.title));
   });
 
   /* userProject model data 생성 */
@@ -57,7 +57,7 @@ const initDB = ()=>{
     startAt: "2016-06-24",
     endAt: "2016-06-27",
   }].forEach((item)=>{
-    new model.UserProject(item).save().then((model)=>console.log("Created userProject model", model));
+    new model.UserProject(item).save().then((model)=>console.log("Created userProject model", model.attributes.id));
   });
 
   /* Post model data 생성 */
@@ -98,7 +98,7 @@ const initDB = ()=>{
     day: 3,
     text: "그러므로 있으며, 인생을 가치를 때에, 새 스며들어 사라지지 있다. 주는 고행을 설레는 물방아 오아이스도 그리하였는가?"
   }].forEach((item)=>{
-    new model.Post(item).save().then((model)=>console.log("Created Post model", model));
+    new model.Post(item).save().then((model)=>console.log("Created Post model", model.attributes.text));
   });
 
   /* PostImage model data 생성 */
@@ -143,7 +143,7 @@ const initDB = ()=>{
     index: 0,
     url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzcwb3ZYc3_Kmz8LtE1mjVMiYN26E9dB31uSDNLoZoSIoenStrIA"
   }].forEach((item)=>{
-    new model.PostImage(item).save().then((model)=>console.log("Created PostImage model", model));
+    new model.PostImage(item).save().then((model)=>console.log("Created PostImage model", model.attributes.url));
   });
 };
 
