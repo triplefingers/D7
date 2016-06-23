@@ -19,10 +19,10 @@ class ProjectDetail extends Component {
       $(".upload_form").append($.cloudinary.unsigned_upload_tag("mmbawtto",
         { cloud_name: "daxutqqyt" }));
 
-      $('.cloudinary_fileupload').attr("accept", "image/*;capture=camera");
+      $(".cloudinary_fileupload").attr("accept", "image/*;capture=camera");
 
-      $('.cloudinary_fileupload').unsigned_cloudinary_upload("mmbawtto",
-        { cloud_name: 'daxutqqyt', tags: 'browser_uploads' })
+      $(".cloudinary_fileupload").unsigned_cloudinary_upload("mmbawtto",
+        { cloud_name: "daxutqqyt", tags: "browser_uploads" })
 
       .bind("cloudinarydone", function(e, data) {
         $(".preview").append($.cloudinary.image(data.result.public_id,
