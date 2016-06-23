@@ -12,7 +12,7 @@ var {handler, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, 
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import model from "./db/models";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 /* Passport local setting */
 passport.serializeUser((user, done) => {
