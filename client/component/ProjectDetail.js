@@ -16,26 +16,26 @@ class ProjectDetail extends Component {
       $.cloudinary.config({cloud_name: "daxutqqyt"});
 
       // Dynamically Attached
-      $('.upload_form').append($.cloudinary.unsigned_upload_tag("mmbawtto",
-        { cloud_name: 'daxutqqyt' }));
+      $(".upload_form").append($.cloudinary.unsigned_upload_tag("mmbawtto",
+        { cloud_name: "daxutqqyt" }));
 
-      $('.cloudinary_fileupload').unsigned_cloudinary_upload("mmbawtto",
-        { cloud_name: 'daxutqqyt', tags: 'browser_uploads' })
+      $(".cloudinary_fileupload").unsigned_cloudinary_upload("mmbawtto",
+        { cloud_name: "daxutqqyt", tags: "browser_uploads" })
 
-      .bind('cloudinarydone', function(e, data) {
-        $('.preview').append($.cloudinary.image(data.result.public_id,
+      .bind("cloudinarydone", function(e, data) {
+        $(".preview").append($.cloudinary.image(data.result.public_id,
               { format: data.result.format, version: data.result.version,
-                crop: 'fill', width: 300, height: 300 }));
+                crop: "fill", width: 300, height: 300 }));
         console.log("Pushing new public ID");
         console.log("Uploaded image: ", data);
         publicIds.push(data.result.public_id);
       })
 
-      .bind('cloudinaryprogress', function(e, data) {
-        $('.progress_bar').css('width',
-          Math.round((data.loaded * 100.0) / data.total) + '%');
-        });
-    })
+      .bind("cloudinaryprogress", function(e, data) {
+        $(".progress_bar").css("width",
+          Math.round((data.loaded * 100.0) / data.total) + "%");
+      });
+    });
   }
 
   render() {

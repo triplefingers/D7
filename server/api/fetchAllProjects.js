@@ -1,5 +1,5 @@
-import model from "../models";
-import collection from "../collections";
+import model from "../db/models";
+import collection from "../db/collections";
 
 const fetchAllProjects = (url, q, res)=>{
   var { userId } = q;

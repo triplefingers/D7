@@ -1,5 +1,5 @@
 import Post from "./post";
-import PostImage from "./postImage"
+import PostImage from "./postImage";
 import Project from "./project";
 import UserProject from "./userProject";
 import User from "./user";
