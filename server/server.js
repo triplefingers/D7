@@ -22,7 +22,7 @@ app.use(express.static(__dirname + "/../client"));
 
 /* Set up Passport */
 app.use(session({secret: "iloved7olived7iloved7"}));
-app.use(passport.initialize());
+app.use(passport.Initialize());
 app.use(passport.session());
 app.use(flash());
 

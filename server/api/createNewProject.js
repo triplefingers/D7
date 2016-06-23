@@ -1,7 +1,6 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-
 const createNewProject = (url, q, body, res) => {
   const { userId, title, description, startAt } = body;
   const today = new Date();
