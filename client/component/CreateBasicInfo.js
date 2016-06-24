@@ -38,7 +38,7 @@ class CreateBasicInfo extends Component {
           <br/>
           <textarea value = {this.props.data.description} onChange={this.props.handleChange.bind(undefined,"description")} rows="6"/>
           <br/>
-          <button onClick={() => this.props.goto("/")}>Cancel</button>
+          <button onClick={() => this.props.goto("/home")}>Cancel</button>
           <button onClick={validator}>Next</button>
         </div>
       </div>

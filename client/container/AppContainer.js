@@ -1,6 +1,7 @@
 import React, {Component, cloneElement} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 import axios from "axios";
+import $ from "jquery";
 
 class AppContainer extends Component {
   constructor(props) {
@@ -8,13 +9,13 @@ class AppContainer extends Component {
     this.state = {list: null};
   };
 
+  componentWillMount() {
+    let height = this.calcWindowSize("h");
+    let width = this.calcWindowSize("W");
+    $("#container").css({"height": height, "width": width});
+  };
+
   componentDidMount() {
-    // axios.post("/api/login", {
-    //   email : "idforcoding@gmail.com",
-    //   password: "12345678"
-    // }).then((res) => {
-    //   console.log("Login success: ", res);
-    // });
     console.log("RecordContainer Mounted :)");
   };
 
@@ -39,6 +40,24 @@ class AppContainer extends Component {
     }
     this.setState(nextState);
   };
+
+  calcWindowSize(whichSide) {
+    // argument "h" means height, "w" means width
+    if (typeof whichSide !== "string") {
+      return null;
+    }
+    let result = null;
+    whichSide = whichSide.toLowerCase();
+
+    if (whichSide === "h" || whichSide === "height") {
+      console.log("innerHeight is ", innerHeight);
+      result = innerHeight;
+    } else if (whichSide === "w" || whichSide === "width") {
+      console.log("innerWidth is ", innerWidth);
+      result = innerWidth;
+    }
+    return result;
+  }
 
 
   // For Create
@@ -179,6 +198,7 @@ class AppContainer extends Component {
     // For App
     injection.reset = this.reset.bind(this);
     injection.checkIfLogined = this.checkIfLogined.bind(this);
+    injection.calcWindowSize = this.calcWindowSize.bind(this);
 
     // For Record
     injection.saveNewProject = this.saveNewProject.bind(this);

@@ -8,7 +8,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
   server: ["server/**/*.js"],
-  client: ["client/**/*.js", "client/**/*.html", "!client/bundle.js", "!client/helpers/*.js"]
+  client: ["client/**/*.js", "client/**/*.html", "!client/bundle.js", "!client/helpers/*.js", "client/**/*.css"]
 };
 
 gulp.task("babel", () => {
