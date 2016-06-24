@@ -3,6 +3,8 @@
     padding: 0;
     margin: 1rem auto 0;
     background: #fff;
+    width: 100%;
+    font-size: 5em;
 }
 .Calendar th,
 .Calendar td {
@@ -23,6 +25,7 @@
 }
 .Calendar .Day {
     cursor: pointer;
+    width: 14%;
 }
 .Calendar .Day .Day-inner {
     background: none;
@@ -30,9 +33,12 @@
     cursor: pointer;
     display: inline-block;
     padding: 0;
-    height: 2.5rem;
+    /*height: 2.5rem;
     line-height: 2.5rem;
-    width: 2.5rem;
+    width: 2.5rem;*/
+    line-height: 2em;
+    width: 100%;
+    height: 100%
 }
 .Calendar .Day button.Day-inner {
     border: 0;
@@ -45,7 +51,7 @@
     color: #000;
 }*/
 .Calendar .Day.inavailableDay {
-  background: #bdc3c7;
+  background: #cacaca;
   color: #000;
 }
 .Calendar .Day.other-month {
@@ -56,10 +62,10 @@
     background: #fafad2;
     color: #000;
 }
-.Calendar .Day.availableDay:hover .Day-inner {
+/*.Calendar .Day.availableDay:hover .Day-inner {
     background: #eee;
     color: #000;
-}
+}*/
 .Calendar .Day.selected .Day-inner {
     background: #2980b9;
     color: #fff;
