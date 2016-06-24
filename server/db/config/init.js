@@ -36,6 +36,7 @@ const initDB = () => {
     new model.PostImage(item).save()
     .then((model)=>console.log("Created PostImage model", model.attributes.url));
   });
+
 };
 
 export default initDB;
