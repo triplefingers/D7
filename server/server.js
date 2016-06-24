@@ -24,6 +24,8 @@ app.use(express.static(__dirname + "/../client"));
 app.use(session({secret: "iloved7olived7iloved7"}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+/* Set up Flash */
 app.use(flash());
 
 /* Routes */
