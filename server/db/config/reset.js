@@ -1,3 +1,5 @@
+/* Defines DB Schema */
+
 import db from "./setConfig";
 
 const resetDB = () => {
