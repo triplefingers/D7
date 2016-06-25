@@ -4,9 +4,11 @@ const router = express.Router();
 /* dummy data 가져오기 */
 import dummy from "./db/temp";
 
+
 /* api Handler Methods 가져오기 */
 import api from "./api";
 var {handler, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, fetchProjectDetail, createNewProject, record} = api;
+
 
 /* Authentication checking middleware */
 const isAuthenticated = (req, res, next) => {
@@ -67,4 +69,4 @@ router.get("*", (req, res, next) => {
   res.redirect("/");
 });
 
-module.exports = router;
+export default router;
