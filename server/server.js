@@ -39,5 +39,5 @@ config.resetDB()
 
 /* Launch Server */
 const server = app.listen(port, () => {
-  console.log("Express listening on port", port);
+  console.log("Express listening on port ", port);
 });
