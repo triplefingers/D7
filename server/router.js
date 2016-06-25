@@ -25,35 +25,16 @@ import LocalStrategy from "passport-local";
 import model from "./db/models";
 import bcrypt from "bcryptjs";
 
-/* */
+import localSetup from './helpers/passport_setup/local';
 
 /* Passport local setting */
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-passport.deserializeUser((id, done) => {
-  model.User.forge().where({id: id}).fetch({require: true})
-  .then((user) => done(null, user.toJSON()))
-  .catch((err) => done(err, false));
-});
-passport.use(new LocalStrategy({
-  usernameField: "email",
-  passwordField: "password"
-}, (email, password, done) => {
-  model.User.forge()
-  .where({email: email})
-  .fetch({require: true})
-  .then((user) => {
-    user = user.toJSON();
-    if(bcrypt.compareSync(password, user.password)){
-      done(null, user);
-    } else {
-      done(null, false, { message: "Incorrect password."});
-    }
-  }).catch((err) => {
-    done(null, false, { message: "Incorrect username" });
-  });
-}));
+localSetup();
+
+/* Passport Facebook setting */
+// some code
+
+/* Passport Google setting */
+// some code
 
 /* Passport route */
 router.post("/api/signup", function (req, res, next){
