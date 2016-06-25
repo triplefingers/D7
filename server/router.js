@@ -50,7 +50,7 @@ import checkLogin from "./api/auth/checkLogin";
 
 router.post("/api/signup", signup());
 router.post("/api/login", login());
-router.get("/api/logout", logout());
+router.get("/api/logout", isAuthenticated, logout());
 router.get("/api/checklogin", checkLogin());
 
 
