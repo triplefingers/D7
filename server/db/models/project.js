@@ -9,9 +9,15 @@ const Project = db.Model.extend({
   defaults: {
     wishCount: 0,
   },
-  user: () => this.belongsTo(User, "userId"),
-  userProjects: () => this.hasMany(UserProject, "projectId"),
-  wishes: () => this.hasMany(Wish, "projectId"),
+  user: function () {
+    return this.belongsTo(User, "userId");
+  },
+  userProjects: function () {
+    return this.hasMany(UserProject, "projectId");
+  },
+  wishes: function () {
+    return this.hasMany(Wish, "projectId");
+  },
 });
 
 export default Project;

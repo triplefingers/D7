@@ -20,13 +20,27 @@ const User = db.Model.extend({
     let hash = bcrypt.hashSync(model.attributes.password, salt);
     model.set("password", hash).save();
   },
-  projects: () => this.hasMany(Project, "userId"),
-  userProjects: () => this.hasMany(UserProject, "userId"),
-  posts: () => this.hasMany(Post, "userId"),
-  wishes: () => this.hasMany(Wish, "userId"),
-  likes: () => this.hasMany(Like, "userId"),
-  reports: () => this.hasMany(Report, "userId"),
-  transactions: () => this.hasMany(Transaction, "userId"),
+  projects: function () {
+    return this.hasMany(Project, "userId");
+  },
+  userProjects: function () {
+    return this.hasMany(UserProject, "userId");
+  },
+  posts: function () {
+    return this.hasMany(Post, "userId");
+  },
+  wishes: function () {
+    return this.hasMany(Wish, "userId");
+  },
+  likes: function () {
+    return this.hasMany(Like, "userId");
+  },
+  reports: function () {
+    return this.hasMany(Report, "userId");
+  },
+  transactions: function () {
+    return this.hasMany(Transaction, "userId");
+  },
 });
 
 export default User;

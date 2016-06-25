@@ -10,10 +10,18 @@ const UserProject = db.Model.extend({
   defaults: {
     success: false
   },
-  user: () => this.belongsTo(User, "userId"),
-  project: () =>this.belongsTo(Project, "projectId"),
-  posts: () => this.hasMany(Post, "userProjectId"),
-  transactions: () => this.hasMany(Transaction, "userProjectId"),
+  user: function () {
+    return this.belongsTo(User, "userId");
+  },
+  project: function () {
+    return this.belongsTo(Project, "projectId");
+  },
+  posts: function () {
+    return this.hasMany(Post, "userProjectId");
+  },
+  transactions: function () {
+    return this.hasMany(Transaction, "userProjectId");
+  },
 });
 
 export default UserProject;

@@ -5,8 +5,12 @@ import Post from "./post";
 const Report = db.Model.extend({
   tableName: "report",
   hasTimestamps: true,
-  user : () => this.belongsTo(User, "userId"),
-  post : () => this.belongsTo(Post, "postId"),
+  user: function () {
+    return this.belongsTo(User, "userId");
+  },
+  post: function () {
+    return this.belongsTo(Post, "postId");
+  },
 });
 
 export default Report;
