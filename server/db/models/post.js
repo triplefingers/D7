@@ -11,11 +11,21 @@ const Post = db.Model.extend({
   defaults: {
     likeCount: 0
   },
-  user: () => this.belongsTo(User, "userId"),
-  userProject : () => this.belongsTo(UserProject, "userProjectId"),
-  postImages: () => this.hasMany(PostImage, "postId"),
-  likes: () => this.hasMany(Like, "postId"),
-  reports: () => this.hasMany(Report, "postId"),
+  user: function () {
+    return this.belongsTo(User, "userId");
+  },
+  userProject: function () {
+    return this.belongsTo(UserProject, "userProjectId");
+  },
+  postImages: function () {
+    return this.hasMany(PostImage, "postId");
+  },
+  likes: function () {
+    return this.hasMany(Like, "postId");
+  },
+  reports: function () {
+    return this.hasMany(Report, "postId");
+  },
 });
 
 export default Post;

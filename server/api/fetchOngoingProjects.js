@@ -5,7 +5,7 @@ const fetchOngoingProjects = (user, q, res) => {
   const userId = user.id;
   model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
-    "post"
+    "posts"
   ]})
   .then((projects) => {
     // result is 'Ongoing projects'
@@ -30,7 +30,7 @@ const fetchOngoingProjects = (user, q, res) => {
       if (diff > 0 && diff <= 7) {
         data.onDay = diff;
         data.doneToday = false;
-        up.post.forEach((item) => {
+        up.posts.forEach((item) => {
           if (item.day === diff) {
             data.doneToday = true;
           }

@@ -5,8 +5,12 @@ import Project from "./project";
 const Wish = db.Model.extend({
   tableName: "like",
   hasTimestamps: true,
-  user : () => this.belongsTo(User, "userId"),
-  project : () => this.belongsTo(Project, "postId"),
+  user : function () {
+    return this.belongsTo(User, "userId");
+  },
+  project : function () {
+    return this.belongsTo(Project, "postId");
+  },
 });
 
 export default Wish;

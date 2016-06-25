@@ -3,11 +3,11 @@ import collection from "../db/collections";
 
 const fetchProjectDetail = (user, q, res)=>{
   var { id } = q;
-  model.Post.where("userProjectId", id).fetchAll({withRelated: ["postImage"]})
+  model.Post.where("userProjectId", id).fetchAll({withRelated: ["postImages"]})
   .then((posts) => {
     posts = posts.toJSON();
     posts.forEach((post) => {
-      let postImages = post.postImage;
+      let postImages = post.postImages;
       let newPostImages = [];
       postImages.forEach((postImage) => {
         newPostImages[postImage.index] = postImage.url;
