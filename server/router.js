@@ -25,6 +25,8 @@ import LocalStrategy from "passport-local";
 import model from "./db/models";
 import bcrypt from "bcryptjs";
 
+/* */
+
 /* Passport local setting */
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -118,7 +120,7 @@ router.post("/api/record", isAuthenticated, handler(record));
 router.post("/api/newproject", isAuthenticated, handler(createNewProject));
 
 router.get("*", (req, res, next) => {
-  res.send(404, "404 - uhehehe");
+  res.redirect("/");
 });
 
 module.exports = router;
