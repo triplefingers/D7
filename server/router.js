@@ -7,7 +7,7 @@ import dummy from "./db/temp";
 
 /* api Handler Methods 가져오기 */
 import api from "./api";
-var {handler, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, fetchProjectDetail, createNewProject, record} = api;
+var {handler, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, fetchProjectDetail, fetchAllPosts, createNewProject, record} = api;
 
 
 /* Authentication checking middleware */
@@ -61,6 +61,7 @@ router.get("/api/projects/all", isAuthenticated, handler(fetchAllProjects));
 router.get("/api/projects/ongoing", isAuthenticated, handler(fetchOngoingProjects));
 router.get("/api/projects/recommended", isAuthenticated, handler(fetchRecommendedProjects));
 router.get("/api/project", isAuthenticated, handler(fetchProjectDetail));
+router.get("/api/posts/all", /* needs isAuthenticated*/handler(fetchAllPosts));
 
 router.post("/api/record", isAuthenticated, handler(record));
 router.post("/api/newproject", isAuthenticated, handler(createNewProject));

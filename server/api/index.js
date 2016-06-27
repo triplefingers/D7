@@ -2,6 +2,7 @@ import fetchAllProjects from "./fetchAllProjects";
 import fetchOngoingProjects from "./fetchOngoingProjects";
 import fetchRecommendedProjects from "./fetchRecommendedProjects";
 import fetchProjectDetail from "./fetchProjectDetail";
+import fetchAllPosts from "./fetchAllPosts";
 import createNewProject from "./createNewProject";
 import record from "./record";
 
@@ -13,10 +14,10 @@ const handler = (apiMethod)=>{
     let user = req.user;
 
     if (Object.keys(body).length===0){
-      console.log("Request GET for ", url, query);
+      console.log("Request GET for ", url, query, "by", user);
       apiMethod(user, query, res);
     } else {
-      console.log("Request POST to ", url, query, "to write", body);
+      console.log("Request POST to ", url, query, "to write", body, "by", user);
       apiMethod(user, query, body, res);
     }
   };
@@ -28,6 +29,7 @@ export default {
   fetchOngoingProjects: fetchOngoingProjects,
   fetchRecommendedProjects: fetchRecommendedProjects,
   fetchProjectDetail: fetchProjectDetail,
+  fetchAllPosts: fetchAllPosts,
   createNewProject: createNewProject,
   record: record
 };
