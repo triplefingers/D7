@@ -2,7 +2,7 @@ import model from "../db/models";
 import collection from "../db/collections";
 
 const fetchAllPosts = (user, q, res)=>{
-  // const userId = user.id; // needs to be re
+  // const userId = user.id;
   const userId = 1;
 
   collection.Posts.orderBy("-created_at").fetch({withRelated: [
@@ -19,33 +19,43 @@ const fetchAllPosts = (user, q, res)=>{
       post.username = post.user.username;
       post.userPhoto = post.user.photo;
       delete post.user;
-      /* project title*/
+
+      /* postId */
+      post.postId = post.id;
+
+      /* project title, description*/
       model.UserProject.where("id", post.userProjectId).fetch({withRelated: ["project"]})
       .then((userProject) => {
         post.projectTitle = userProject.project.title;
+        post.projectDescription = userProject.project.description;
       })
       .catch((err) => {
         console.error("Error: Failed to read userProject data in fetchAllPosts: ", err);
         return err;
       })
       delete post.userProject;
+
       /* userProjectId*/
       /* like */
       post.doneLike = false;
       post.likes.forEach((like) => {
         if (like.userId === userId) {
           post.doneLike = true;
+          break;
         }
       });
       delete post.likes;
+
       /* report */
       post.doneReport = false;
       post.reports.forEach((report) => {
         if (report.userId === userId) {
           post.doneReport = true;
+          break;
         }
       });
-      delete post.reports
+      delete post.reports;
+
       /* text, picture */
       let postImages = post.postImages;
       let newPostImages = [];
@@ -54,6 +64,7 @@ const fetchAllPosts = (user, q, res)=>{
       });
       post.publicIds = newPostImages;
       delete post.postImages;
+
       /* created_at */
       post.createdAt = post.created_at;
       delete post.created_at;

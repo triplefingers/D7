@@ -100,16 +100,24 @@ const UserProjectData = [{
     projectId: 1,
     startAt: "2016-06-06",
     endAt: "2016-06-12",
+    success: true
   },{
     userId: 1,
     projectId: 1,
     startAt: "2016-06-14",
     endAt: "2016-06-20",
+    success: true
+  // },{
+  //   userId: 1,
+  //   projectId: 2,
+  //   startAt: "2016-06-27",
+  //   endAt: "2016-07-03",
+  // },{
   },{
     userId: 1,
     projectId: 2,
-    startAt: "2016-06-27",
-    endAt: "2016-07-03",
+    startAt: "2016-06-21",
+    endAt: "2016-06-27",
   },{
     userId: 1,
     projectId: 4,

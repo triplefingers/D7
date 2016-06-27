@@ -21,15 +21,16 @@ const fetchAllProjects = (user, q, res)=>{
       let data = {
         id: up.id,
         title: up.project.title,
-        description: up.project.description
+        description: up.project.description,
+        success: up.success
       };
-
+      console.log("----------------data in fetchAllProjects is..", up);
       /* Check Project status */
       let diff = today.valueOf() - startAt.valueOf();
       diff = Math.ceil(diff/(60*60*24*1000));
       if ( diff <= 0 ){
         result.waiting.push(data);
-      } else if ( diff > 0 && diff <= 7 ){
+      } else if ( diff > 0 && diff <= 7 && !data.success){
         data.onDay = diff;
         data.doneToday = false;
         up.posts.forEach((item)=>{
