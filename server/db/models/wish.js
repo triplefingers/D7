@@ -3,7 +3,7 @@ import User from "./user";
 import Project from "./project";
 
 const Wish = db.Model.extend({
-  tableName: "like",
+  tableName: "Wish",
   hasTimestamps: true,
   user : function () {
     return this.belongsTo(User, "userId");
