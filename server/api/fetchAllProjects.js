@@ -5,7 +5,7 @@ const fetchAllProjects = (user, q, res)=>{
   const userId = user.id;
   model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
-    "post"
+    "posts"
   ]})
   .then((projects)=>{
     const result = {
@@ -14,6 +14,7 @@ const fetchAllProjects = (user, q, res)=>{
       complete: []
     };
     const today = new Date();
+    console.log("----projects are ", projects.toJSON());
     projects.forEach((up)=>{
       up = up.toJSON();
       let startAt = new Date(up.startAt);
@@ -31,7 +32,7 @@ const fetchAllProjects = (user, q, res)=>{
       } else if ( diff > 0 && diff <= 7 ){
         data.onDay = diff;
         data.doneToday = false;
-        up.post.forEach((item)=>{
+        up.posts.forEach((item)=>{
           if(item.day === diff){
             data.doneToday = true;
           }

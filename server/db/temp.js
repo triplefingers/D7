@@ -42,12 +42,12 @@ let dummy = {
     id: 1,
     title: "드로잉 1작품 그리기",
     description: "매일 드로잉 1작품 그리기",
-    wish: 1
+    wishCount: 1
   },{
     id: 3,
     title: "칭찬하기",
     description: "매일 주변 사람을 관찰하고 칭찬할 점 1가지 찾아서 말해주기",
-    wish: 1
+    wishCount: 1
   }],
   project: {
     id: 4,
