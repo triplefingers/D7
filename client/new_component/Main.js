@@ -1,4 +1,7 @@
 import React, {Component} from "react";
+import Tabbar from "./Tabbar";
+import RecordBox from "./RecordBox";
+import axios from "axios";
 
 class Main extends Component {
   constructor(props) {
@@ -8,13 +11,30 @@ class Main extends Component {
   }
 
   componentDidMount() {
-
+    // this.fetchRecentposts();
   }
 
+  fetchRecentPosts() {
+    axios.get("/api/post/recent")
+    .then((res) => {
+      console.log("Recent Posts: ", res);
+    })
+    .catch((err) => {
+      console.log("Error occurred while fetching recent posts: ", err);
+    });
+  }
+
+
   render() {
+    // let Contents;
+    // if() Contents=Recent;
+    // else if() Contents=Popular;
+    // else() Contents=Suggestion;
+
     return (
       <div>
-        This is Main Page
+        <Tabbar />
+        <RecordBox />
       </div>
     );
   }

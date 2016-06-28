@@ -52,7 +52,7 @@ import AppContainer from "./container/AppContainer";
 //   ), document.getElementById("container"));
 
 
-
+import App from "./new_component/App";
 import Login from "./new_component/Login";
 
 import Main from "./new_component/Main";
@@ -61,8 +61,10 @@ ReactDOM.render(
   (
   <Router history={browserHistory}>
     <Route component={AppContainer}>
-      <Route path="/" component={Main}/>
       <Route path="/login" component={Login}/>
+      <Route component={App}>
+        <Route path="/" component={Main}/>
+      </Route>
 
     </Route>
   </Router>

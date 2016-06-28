@@ -18,7 +18,7 @@ class Navigation extends Component {
           <span>D7</span>
           <button>write</button>
         </div>
-        <div>
+        <div style={{display:"none"}}>
           Save Complete!
         </div>
       </div>

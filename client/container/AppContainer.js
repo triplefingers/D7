@@ -223,7 +223,6 @@ class AppContainer extends Component {
 
     return (
       <div>
-        <p>Work?</p>
         {child}
       </div>);
   }
