@@ -20,8 +20,8 @@ class Main extends Component {
   componentDidMount() {
     console.log("Main mounted");
     this.props.fetchRecentPosts();
-    // this.props.fetchPopularPosts();
-    // this.props.fetchRecommendation();
+    this.props.fetchPopularPosts();
+    this.props.fetchRecommendation();
   }
 
   componentWillUpdate() {
@@ -31,17 +31,19 @@ class Main extends Component {
 
   render() {
     let Contents;
+    if (!this.state.data){
+      return(<div>Loading...</div>);
+    }
     if (this.state.selected === "recent") {
-      // Contents = this.props.appstate.recent.data.map((post) => {
-      //   <MainPostCard data={post}/>
-      // });
+      Contents = this.props.data.recent.data.map((post) => {
+        <MainPostCard data={post}/>
+      });
     } else if (this.state.selected === "popular") {
-      Contents = this.props.appstate.popular.data.map((post) => {
+      Contents = this.props.data.popular.data.map((post) => {
         <MainPostCard data={post}/>
       });
     } else {
-      /* Fetched data about RecommendedProjects are stored in AppContainer*/
-
+      /* Fetched data about RecommendedProjects are stored in AppContainer */
       Contents = this.props.data.list.map((post) => {
         <MainProjectCard data={post}/>
       });
@@ -55,7 +57,6 @@ class Main extends Component {
         {/* RecordBox don't appear on Recommended Project page */}
         <RecordBox />
         {Contents}
-
       </div>
     );
   }

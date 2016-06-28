@@ -55,7 +55,6 @@ import AppContainer from "./container/AppContainer";
 
 import App from "./new_component/App";
 import Login from "./new_component/Login";
-
 import Main from "./new_component/Main";
 
 ReactDOM.render(
@@ -70,4 +69,3 @@ ReactDOM.render(
     </Route>
   </Router>
   ), document.getElementById("container"));
-
