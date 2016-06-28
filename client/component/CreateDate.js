@@ -66,12 +66,12 @@ class CreateDate extends Component {
 
     return (
       <div>
-        <h1>Pick a Date</h1>
-        <h2>Title: {this.props.data.title}</h2>
-        <hr/>
-        <div>
-          <Calendar date={moment(today, "YYYY-MM-DD")} dayClasses={this.dayClasses} onSelect={this.onSelect.bind(this)}/>
-          <br/>
+        <div className="Title">
+          <h1>Pick a Date</h1>
+          <h2>Title: {this.props.data.title}</h2>
+        </div>
+        <Calendar date={moment(today, "YYYY-MM-DD")} dayClasses={this.dayClasses} onSelect={this.onSelect.bind(this)}/>
+        <div className="ActionBar">
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
             // have to edit userId

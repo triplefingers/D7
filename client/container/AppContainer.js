@@ -9,11 +9,11 @@ class AppContainer extends Component {
     this.state = {list: null};
   };
 
-  componentWillMount() {
-    let height = this.calcWindowSize("h");
-    let width = this.calcWindowSize("W");
-    $("#container").css({"height": height, "width": width});
-  };
+  // componentWillMount() {
+  //   let height = this.calcWindowSize("h");
+  //   let width = this.calcWindowSize("W");
+  //   $("#container").css({"height": height, "width": width});
+  // };
 
   componentDidMount() {
     console.log("RecordContainer Mounted :)");
