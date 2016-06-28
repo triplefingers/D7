@@ -9,11 +9,10 @@ class AppContainer extends Component {
     this.state = {list: null};
   };
 
-  // componentWillMount() {
-  //   let height = this.calcWindowSize("h");
-  //   let width = this.calcWindowSize("W");
-  //   $("#container").css({"height": height, "width": width});
-  // };
+  // Check if session exists
+  componentWillMount() {
+    this.checkIfLogined();
+  }
 
   componentDidMount() {
     console.log("RecordContainer Mounted :)");
@@ -24,11 +23,12 @@ class AppContainer extends Component {
     axios.get("/api/checklogin")
     .then((res) => {
       console.log("already logined");
-      this.goto("/home");
+      this.goto("/");
     })
     .catch((err) => {
       console.log("error in checkIfLogined: ", err);
-      this.goto(err.data.path);
+      // this.goto(err.data.path);
+      this.goto("/login");
     });
   };
 
@@ -221,7 +221,11 @@ class AppContainer extends Component {
 
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 
-    return child;
+    return (
+      <div>
+        <p>Work?</p>
+        {child}
+      </div>);
   }
 }
 
