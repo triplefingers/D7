@@ -26,22 +26,22 @@ class Main extends Component {
 
 
   render() {
-    let Contents;
-    if (this.state.selected === "recent") {
-      Contents = this.props.appstate.recent.map((post) => {
-        <MainPostCard data={post}/>
-      });
-    } else if (this.state.selected === "popular") {
-      Contents = this.props.appstate.popular.map((post) => {
-        <MainPostCard data={post}/>
-      });
-    } else {
-      /* Fetched data about RecommendedProjects are stored in AppContainer*/
+    // let Contents;
+    // if (this.state.selected === "recent") {
+    //   Contents = this.props.appstate.recent.map((post) => {
+    //     <MainPostCard data={post}/>
+    //   });
+    // } else if (this.state.selected === "popular") {
+    //   Contents = this.props.appstate.popular.map((post) => {
+    //     <MainPostCard data={post}/>
+    //   });
+    // } else {
+    //   /* Fetched data about RecommendedProjects are stored in AppContainer*/
 
-      // Contents = this.state.recent.map((post) => {
-      //   <MainProjectCard data={post}/>
-      // });
-    }
+    //   // Contents = this.state.recent.map((post) => {
+    //   //   <MainProjectCard data={post}/>
+    //   // });
+    // }
 
     // some code about RecordBox rendering
 
@@ -50,7 +50,7 @@ class Main extends Component {
         <Tabbar />
         {/* RecordBox don't appear on Recommended Project page */}
         <RecordBox />
-        {Contents}
+        {/*{Contents}*/}
 
       </div>
     );
