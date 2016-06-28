@@ -1,5 +1,6 @@
 import React, {Component, cloneElement} from "react";
 import Navigation from "./Navigation";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends Component {
 
   render() {
     const injection = {};
+    Object.assign(injection, this.props);
 
     // Main
     // some code

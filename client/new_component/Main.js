@@ -18,8 +18,8 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    // this.props.fetchRecentPosts();
-    // this.props.fetchPopularPosts();
+    this.props.fetchRecentPosts();
+    this.props.fetchPopularPosts();
     // this.props.fetchRecommendation();
   }
 
