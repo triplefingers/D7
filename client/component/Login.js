@@ -60,7 +60,7 @@ class Login extends Component {
   render() {
     if(!this.state.isSignup){
       return (
-        <div>
+        <div className="temp">
           <h1>Login</h1>
           <form onSubmit={this.login.bind(this)}>
             <label for="email">Email</label>
