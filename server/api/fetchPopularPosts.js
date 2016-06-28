@@ -3,7 +3,7 @@ import collection from "../db/collections";
 
 const fetchAllPosts = (user, q, res)=>{
   // const userId = user.id;
-  
+
   // below should be deleted
   let userId;
   if (user && user.id) {
@@ -51,6 +51,7 @@ const fetchAllPosts = (user, q, res)=>{
       post.likes.forEach((like) => {
         if (like.userId === userId) {
           post.doneLike = true;
+          // break;
         }
       });
       delete post.likes;
@@ -60,6 +61,7 @@ const fetchAllPosts = (user, q, res)=>{
       post.reports.forEach((report) => {
         if (report.userId === userId) {
           post.doneReport = true;
+          // break;
         }
       });
       delete post.reports;

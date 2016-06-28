@@ -18,41 +18,23 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    // this.fetchRecentPosts();
-    // this.fetchPopularPosts();
+    // this.props.fetchRecentPosts();
+    // this.props.fetchPopularPosts();
     // this.props.fetchRecommendation();
+    this.appstate.recent=[1,2,3,4,5,6,7,8];
+    this.appstate.popular=[1,2,3,4,5,6,7,8];
   }
 
-  fetchRecentPosts() {
-    axios.get("/api/posts/recent")
-    .then((res) => {
-      console.log("Recent Posts: ", res);
-      this.setState({recent: res});
-    })
-    .catch((err) => {
-      console.log("Error occurred while fetching recent posts: ", err);
-    });
-  }
 
-  fetchPopularPosts() {
-    axios.get("/api/posts/popular")
-    .then((res) => {
-      console.log("Popular Posts: ", res);
-      this.setState({popular: res});
-    })
-    .catch((err) => {
-      console.log("Error occurred while fetching popular posts: ", err);
-    });
-  }
 
   render() {
     let Contents;
     if (this.state.selected === "recent") {
-      Contents = this.state.recent.map((post) => {
+      Contents = this.props.appstate.recent.map((post) => {
         <MainPostCard data={post}/>
       });
     } else if (this.state.selected === "popular") {
-      Contents = this.state.popular.map((post) => {
+      Contents = this.props.appstate.popular.map((post) => {
         <MainPostCard data={post}/>
       });
     } else {
