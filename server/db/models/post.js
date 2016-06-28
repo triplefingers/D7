@@ -3,7 +3,7 @@ import User from "./user";
 import UserProject from "./userProject";
 import PostImage from "./postImage";
 import Like from "./like";
-import report from "./report";
+import Report from "./report";
 
 const Post = db.Model.extend({
   tableName: "post",

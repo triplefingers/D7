@@ -17,6 +17,7 @@ const createNewProject = (user, q, body, res) => {
   }
 
   model.Project.forge().set({
+    userId: userId,
     title: title,
     description: description
   }).save()

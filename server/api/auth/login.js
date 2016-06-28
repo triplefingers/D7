@@ -11,7 +11,8 @@ const login = () => {
           return next(authErr);
         }
         if (!user) {
-          return res.status(401).json({ message: "There is no user matches" });
+          console.log(info);
+          return res.status(401).json({ message: info.message });
         }
         return req.logIn(user, (loginErr) => {
           if (loginErr) {

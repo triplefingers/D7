@@ -1,17 +1,18 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-const fetchProjectDetail = (user, q, res)=>{
-  var userId = user.id
-  var { id } = q;
-  model.Post.where("userProjectId", id).fetchAll({withRelated: [
+const fetchAllPosts = (user, q, res)=>{
+  // const userId = user.id;
+  const userId = 1;
+
+  collection.Posts.orderBy("-created_at").fetch({withRelated: [
     "user",
+    "userProject",
     "postImages",
     "likes",
-    "reports",
-    "userProject"
+    "reports"
   ]})
-  .then((posts) => {
+  .then((posts)=>{
     posts = posts.toJSON();
     posts.forEach((post) => {
       /* userId, username */
@@ -22,7 +23,7 @@ const fetchProjectDetail = (user, q, res)=>{
       /* postId */
       post.postId = post.id;
 
-      /* project title*/
+      /* project title, description*/
       model.UserProject.where("id", post.userProjectId).fetch({withRelated: ["project"]})
       .then((userProject) => {
         post.projectTitle = userProject.project.title;
@@ -40,6 +41,7 @@ const fetchProjectDetail = (user, q, res)=>{
       post.likes.forEach((like) => {
         if (like.userId === userId) {
           post.doneLike = true;
+          break;
         }
       });
       delete post.likes;
@@ -49,6 +51,7 @@ const fetchProjectDetail = (user, q, res)=>{
       post.reports.forEach((report) => {
         if (report.userId === userId) {
           post.doneReport = true;
+          break;
         }
       });
       delete post.reports;
@@ -69,7 +72,11 @@ const fetchProjectDetail = (user, q, res)=>{
     return posts;
   })
   .then((data) => res.status(200).send(data))
-  .catch((err) => console.log("Error: Cannot read projectDetails from db in 'fetchProjectDetail.js'", err));
+  .catch((err) =>{
+    console.error("-----Error: Failed to read projects in 'fetchAllPosts.js': ", err);
+    res.status(500).end();
+  });
+
 };
 
-export default fetchProjectDetail;
+export default fetchAllPosts;

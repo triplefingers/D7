@@ -11,7 +11,7 @@ const Transaction = db.Model.extend({
   userProject: function () {
     return this.belongsTo(UserProject, "userProjectId");
   },
-  default: {
+  defaults: {
     currency: "won",
     success: true
   }

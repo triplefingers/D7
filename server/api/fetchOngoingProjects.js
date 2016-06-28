@@ -18,7 +18,8 @@ const fetchOngoingProjects = (user, q, res) => {
       const data = {
         id: up.id,
         title: up.project.title,
-        description: up.project.description
+        description: up.project.description,
+        success: up.project.success
       };
 
       /* Check Project status */
