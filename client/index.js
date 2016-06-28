@@ -5,6 +5,7 @@ import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "reac
 import ReactDOM from "react-dom";
 
 import AppContainer from "./container/AppContainer";
+/* Original AppContainer is now Appcontainer_original */
 
 // import App from "./component/App";
 
