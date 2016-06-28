@@ -15,7 +15,7 @@ class AppContainer extends Component {
   }
 
   componentDidMount() {
-    console.log("AppContainer Mounted :)");
+    console.log("RecordContainer Mounted :)");
   };
 
   // For App
@@ -188,33 +188,9 @@ class AppContainer extends Component {
       console.log(this.state.list);
     })
     .catch((err) => {
-      console.error("Error occured while fetching recommended projects", err);
+      console.error("Error occured while fetching recommended projects");
     });
   };
-
-  /* FETCH RECENT POSTS IN MAIN PAGE */
-  fetchRecentPosts() {
-    axios.get("/api/posts/recent")
-    .then((res) => {
-      console.log("Recent Posts: ", res);
-      this.setState({recent: res.data});
-    })
-    .catch((err) => {
-      console.error("Error occurred while fetching recent posts: ", err);
-    });
-  }
-
-  /* FETCH POPULAR POSTS IN MAIN PAGE */
-  fetchPopularPosts() {
-    axios.get("/api/posts/popular")
-    .then((res) => {
-      console.log("Popular Posts: ", res);
-      this.setState({popular: res.data});
-    })
-    .catch((err) => {
-      console.error("Error occurred while fetching popular posts: ", err);
-    });
-  }
 
   render() {
     let injection = {};
@@ -242,10 +218,6 @@ class AppContainer extends Component {
 
     // For recommendation
     injection.fetchRecommendation = this.fetchRecommendation.bind(this);
-
-    // For main
-    injection.fetchRecentPosts = this.fetchRecentPosts.bind(this);
-    injection.fetchPopularPosts = this.fetchPopularPosts.bind(this);
 
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 
