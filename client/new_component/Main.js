@@ -18,30 +18,34 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    console.log("Main mounted");
     this.props.fetchRecentPosts();
-    this.props.fetchPopularPosts();
+    // this.props.fetchPopularPosts();
     // this.props.fetchRecommendation();
   }
 
-
+  componentWillUpdate() {
+    // console.log("Main rerendered");
+    console.log("Received Recent posts: ", this.props.appstate.recent.data);
+  }
 
   render() {
-    // let Contents;
-    // if (this.state.selected === "recent") {
-    //   Contents = this.props.appstate.recent.map((post) => {
-    //     <MainPostCard data={post}/>
-    //   });
-    // } else if (this.state.selected === "popular") {
-    //   Contents = this.props.appstate.popular.map((post) => {
-    //     <MainPostCard data={post}/>
-    //   });
-    // } else {
-    //   /* Fetched data about RecommendedProjects are stored in AppContainer*/
+    let Contents;
+    if (this.state.selected === "recent") {
+      // Contents = this.props.appstate.recent.data.map((post) => {
+      //   <MainPostCard data={post}/>
+      // });
+    } else if (this.state.selected === "popular") {
+      Contents = this.props.appstate.popular.data.map((post) => {
+        <MainPostCard data={post}/>
+      });
+    } else {
+      /* Fetched data about RecommendedProjects are stored in AppContainer*/
 
-    //   // Contents = this.state.recent.map((post) => {
-    //   //   <MainProjectCard data={post}/>
-    //   // });
-    // }
+      Contents = this.props.data.list.map((post) => {
+        <MainProjectCard data={post}/>
+      });
+    }
 
     // some code about RecordBox rendering
 
@@ -50,7 +54,7 @@ class Main extends Component {
         <Tabbar />
         {/* RecordBox don't appear on Recommended Project page */}
         <RecordBox />
-        {/*{Contents}*/}
+        {Contents}
 
       </div>
     );

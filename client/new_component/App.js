@@ -10,6 +10,12 @@ class App extends Component {
 
   componentDidMount() {
     // fetch all projects
+    console.log("App Mounted");
+  }
+
+  componentWillUpdate() {
+    console.log("App rerenderd");
+    console.log("Current State: ", this.state);
   }
 
   /* FETCH RECENT POSTS IN MAIN PAGE */
@@ -17,7 +23,7 @@ class App extends Component {
     axios.get("/api/posts/recent")
     .then((res) => {
       console.log("Recent Posts: ", res);
-      this.setState({recent: res});
+      this.setState({recent: res.data});
     })
     .catch((err) => {
       console.log("Error occurred while fetching recent posts: ", err);
@@ -29,7 +35,7 @@ class App extends Component {
     axios.get("/api/posts/popular")
     .then((res) => {
       console.log("Popular Posts: ", res);
-      this.setState({popular: res});
+      this.setState({popular: res.data});
     })
     .catch((err) => {
       console.log("Error occurred while fetching popular posts: ", err);
@@ -42,7 +48,7 @@ class App extends Component {
 
     // Main
     // some code
-    injection.appstate = this.state;
+    injection.appstate = Object.assign({}, this.state);
 
     injection.fetchRecentPosts = this.fetchRecentPosts.bind(this);
     injection.fetchPopularPosts = this.fetchPopularPosts.bind(this);
