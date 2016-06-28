@@ -22,24 +22,23 @@ class Main extends Component {
     this.props.fetchRecentPosts();
     this.props.fetchPopularPosts();
     this.props.fetchRecommendation();
+    console.log("Received Recent posts: ", this.props.data.recent);
   }
 
-  componentWillUpdate() {
-    // console.log("Main rerendered");
-    console.log("Received Recent posts: ", this.props.appstate.recent.data);
-  }
 
   render() {
     let Contents;
-    if (!this.state.data){
+    if (!this.props.data){
       return(<div>Loading...</div>);
-    }
-    if (this.state.selected === "recent") {
-      Contents = this.props.data.recent.data.map((post) => {
-        <MainPostCard data={post}/>
-      });
+    } else if (this.state.selected === "recent") {
+      if(this.props.data.recent) {
+        Contents = this.props.data.recent.map((post) => {
+          return <MainPostCard data={post}/>
+        });
+      }
+
     } else if (this.state.selected === "popular") {
-      Contents = this.props.data.popular.data.map((post) => {
+      Contents = this.props.data.popular.map((post) => {
         <MainPostCard data={post}/>
       });
     } else {

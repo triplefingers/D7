@@ -15,7 +15,7 @@ class AppContainer extends Component {
   }
 
   componentDidMount() {
-    console.log("RecordContainer Mounted :)");
+    console.log("AppContainer Mounted :)");
   };
 
   // For App

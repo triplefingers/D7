@@ -22,7 +22,7 @@ class App extends Component {
 
   render() {
     const injection = {};
-    Object.assign(injection, this.props);    
+    Object.assign(injection, this.props);
 
     const child = this.props.children && React.cloneElement(this.props.children, injection);
 

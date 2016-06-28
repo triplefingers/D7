@@ -14,12 +14,13 @@ class MainPostCard extends Component {
 
     return (
       <div>
+
         {/* Card Header */}
         <div>
           {/* Header Left Part */}
           <div>
             <div>
-              <img src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" alt="user profile"/>
+              <img src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" width="20px" height="20px" alt="user profile"/>
               <span>User Name</span>
             </div>
             <div>Project Title</div>
@@ -53,6 +54,7 @@ class MainPostCard extends Component {
             ...
           </div>
         </div>
+
       </div>
     );
   }
