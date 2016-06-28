@@ -7,7 +7,7 @@ import dummy from "./db/temp";
 
 /* api Handler Methods 가져오기 */
 import api from "./api";
-var {handler, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, fetchProjectDetail, fetchAllPosts, createNewProject, record} = api;
+var {handler, fetchUser, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, fetchWishProjects, fetchProjectDetail, fetchRecentPosts, fetchPopularPosts, createNewProject, record} = api;
 
 
 /* Authentication checking middleware */
@@ -57,11 +57,15 @@ router.get("/api/checklogin", checkLogin());
 
 
 /* Data save/fetch APIs */
-router.get("/api/projects/all", isAuthenticated, handler(fetchAllProjects));
-router.get("/api/projects/ongoing", isAuthenticated, handler(fetchOngoingProjects));
-router.get("/api/projects/recommended", isAuthenticated, handler(fetchRecommendedProjects));
-router.get("/api/project", isAuthenticated, handler(fetchProjectDetail));
-router.get("/api/posts/all", /* needs isAuthenticated*/handler(fetchAllPosts));
+router.get("/api/user", /* needs isAuthenticated*/handler(fetchUser));
+router.get("/api/posts/popular", /* needs isAuthenticated*/handler(fetchPopularPosts));
+router.get("/api/posts/recent", /* needs isAuthenticated*/handler(fetchRecentPosts));
+
+router.get("/api/projects/all", /* needs isAuthenticated*/handler(fetchAllProjects));
+router.get("/api/projects/ongoing", /* needs isAuthenticated*/handler(fetchOngoingProjects));
+router.get("/api/projects/recommended", /* needs isAuthenticated*/handler(fetchRecommendedProjects));
+router.get("/api/projects/wish", /* needs isAuthenticated*/handler(fetchWishProjects));
+router.get("/api/project", /* needs isAuthenticated*/handler(fetchProjectDetail));
 
 router.post("/api/record", isAuthenticated, handler(record));
 router.post("/api/newproject", isAuthenticated, handler(createNewProject));
