@@ -21,8 +21,6 @@ class Main extends Component {
     // this.props.fetchRecentPosts();
     // this.props.fetchPopularPosts();
     // this.props.fetchRecommendation();
-    this.appstate.recent=[1,2,3,4,5,6,7,8];
-    this.appstate.popular=[1,2,3,4,5,6,7,8];
   }
 
 

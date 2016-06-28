@@ -11,13 +11,12 @@ class WishList extends Component {
   }
 
   componentDidMount() {
-    this.appstate.wishlist=[1,2,3,4,5,6,7,8];
   }
 
   render() {
     let Contents;
-    this.props.appstate.wishlist.map((post) => {
-        <MainProjectCard data={post}/>
+    Contents = this.props.appstate.wishlist.map((project) => {
+        <MainProjectCard data={project}/>
     });
 
     // some code about RecordBox rendering

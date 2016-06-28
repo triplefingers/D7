@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 
+import UserProjectHeader from "./UserProjectHeader";
 import DetailPostCard from "./DetailPostCard";
 
 class UserProjectDetail extends Component {
@@ -10,14 +11,11 @@ class UserProjectDetail extends Component {
   }
 
   componentDidMount() {
-    this.appstate.up=[1,2,3,4,5,6,7,8];
   }
-
-
 
   render() {
     let Contents;
-    this.props.appstate.up.map((post) => {
+    Contents = this.props.appstate.up.map((post) => {
         <DetailPostCard data={post}/>
     });
 
@@ -25,14 +23,11 @@ class UserProjectDetail extends Component {
 
     return (
       <div>
-        {/* USERPROJECT HEADER */}
-        <div>
-
-        </div>
+        {UserProjectHeader}
         {Contents}
       </div>
     );
   }
 }
 
-export default UserProjectDetail;
+export default UserProjectHeader;

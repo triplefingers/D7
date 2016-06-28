@@ -27,12 +27,12 @@ class RecommendedProjectCard extends Component {
         </div>
         {/* Card Footer */}
         <div>
-          {/* Footer Right Part */}
+          {/* Footer Left Part */}
           <div>
             <span>Pin</span>
             <span>12</span>
           </div>
-          {/* Footer Left Part */}
+          {/* Footer Right Part */}
           <div>
             <span>by</span>
             <span>User Name</span>

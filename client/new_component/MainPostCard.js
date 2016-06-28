@@ -18,8 +18,10 @@ class MainPostCard extends Component {
         <div>
           {/* Header Left Part */}
           <div>
-            <img src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" alt="user profile"/>
-            <div>User Name</div>
+            <div>
+              <img src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" alt="user profile"/>
+              <span>User Name</span>
+            </div>
             <div>Project Title</div>
           </div>
           {/* Header Right Part */}
@@ -41,12 +43,12 @@ class MainPostCard extends Component {
         </div>
         {/* Card Footer */}
         <div>
-          {/* Footer Right Part */}
+          {/* Footer Left Part */}
           <div>
             <span>Like</span>
             <span>12</span>
           </div>
-          {/* Footer Left Part */}
+          {/* Footer Right Part */}
           <div>
             ...
           </div>
