@@ -19,6 +19,7 @@ class Main extends Component {
 
   componentDidMount() {
     console.log("Main mounted");
+    this.props.reset();
     /* Promise로 순서 적용 */
     this.props.fetchRecentPosts();
     this.props.fetchPopularPosts();
@@ -26,7 +27,7 @@ class Main extends Component {
     console.log("Received Recent posts: ", this.props.data.recent);
 
     /* Reset the AppContainer's state */
-    this.props.reset();
+
   }
 
   // some code about tapping tab and according rendering
@@ -59,8 +60,8 @@ class Main extends Component {
       }
     } else {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
-      if (this.props.data.list) {
-        Contents = this.props.data.list.map((project) => {
+      if (this.props.data.recommended) {
+        Contents = this.props.data.recommended.map((project) => {
           return <MainProjectCard data={project} key={project.id}/>
         });
       }

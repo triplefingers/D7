@@ -22,8 +22,8 @@ class SideBar extends Component {
       width: "70%",
       height: "100%",
       position: "fixed",
-      background: "skyblue",
-      left: "0%"
+      background: "skyblue"
+      // ,left: "0%"
     }
 
     /* ongoing = onGoing*/
