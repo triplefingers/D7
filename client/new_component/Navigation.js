@@ -24,7 +24,7 @@ class Navigation extends Component {
     return (
       <div>
         <div style={navigationStyle}>
-          <button style={buttonStyle}>side</button>
+          <button style={buttonStyle} /*onClick={() => this.props.data.toggleSideBar()}*/>side</button>
           <button style={buttonStyle} onClick={() => this.props.data.goto("/")}>D7</button>
           <button style={buttonStyle} onClick={() => this.props.data.goto("/write")}>write</button>
         </div>

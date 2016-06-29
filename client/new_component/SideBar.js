@@ -18,7 +18,8 @@ class SideBar extends Component {
 
     const sideBarStyle = {
       left: "-100%",
-      width: "100%",
+      top: "0px",
+      width: "70%",
       height: "100%",
       position: "fixed",
       background: "skyblue",
@@ -34,7 +35,7 @@ class SideBar extends Component {
 
     if (this.state.data && this.state.data.ongoing) {
       onGoingProjects = this.state.data.ongoing.map((project) => {
-        return (<li>{project.title}</li>);
+        return (<li>{project.title} (on day {project.onDay})</li>);
       })
     }
 
