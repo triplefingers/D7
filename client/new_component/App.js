@@ -25,12 +25,8 @@ class App extends Component {
 
     const child = this.props.children && React.cloneElement(this.props.children, injection);
 
-    const appStyle = {
-      position: "fixed"
-    }
-
     return (
-      <div style={appStyle}>
+      <div>
         <Navigation data={injection}/>
         <SideBar data={injection} className="sidebar" />
         {child}

@@ -10,7 +10,6 @@ html { height: 100%; }
 body {
     height: inherit;
     background: gray;
-    position: fixed;
 }
 
 li {
@@ -25,7 +24,7 @@ textarea {
 .sidebar {
     left: -100%;
     width: 100%;
-    position: fixed;
+    /*position: fixed;*/
     background: sky-blue;
     left: 0;
 }
