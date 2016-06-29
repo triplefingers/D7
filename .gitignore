@@ -4,3 +4,4 @@ client/bundle.js
 **/*.sqlite
 npm-debug.log
 *.log
+*.jshintrc

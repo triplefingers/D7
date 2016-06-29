@@ -1,11 +1,12 @@
 import dummy from "../db/temp";
 
 import fetchUser from "./fetchUser";
-// import fetchAllProjects from "./fetchAllProjects";
-// import fetchOngoingProjects from "./fetchOngoingProjects";
+import fetchAllProjects from "./fetchAllProjects";
+import fetchOngoingProjects from "./fetchOngoingProjects";
 // import fetchRecommendedProjects from "./fetchRecommendedProjects";
 // import fetchWishProjects from "./fetchWishProjects";
 // import fetchProjectDetail from "./fetchProjectDetail";
+import fetchPostDetail from "./fetchPostDetail";
 import fetchRecentPosts from "./fetchRecentPosts";
 import fetchPopularPosts from "./fetchPopularPosts";
 import createNewProject from "./createNewProject";
@@ -29,20 +30,20 @@ const handler = (apiMethod)=>{
 };
 
 /* 임시 자료 */
-var fetchOngoingProjects = (user, q, res) => {
-  var data = {};
-  data.count = {
-    total: 9,
-    success: 7,
-    fail: 3
-  }
-  data.ongoing = dummy.all.ongoing;
-  res.status(200).send(data);
-};
-var fetchAllProjects = (user, q, res) => {
-  var data = dummy.all;
-  res.status(200).send(data);
-}
+// var fetchOngoingProjects = (user, q, res) => {
+//   var data = {};
+//   data.count = {
+//     total: 9,
+//     success: 7,
+//     fail: 3
+//   }
+//   data.ongoing = dummy.all.ongoing;
+//   res.status(200).send(data);
+// };
+// var fetchAllProjects = (user, q, res) => {
+//   var data = dummy.all;
+//   res.status(200).send(data);
+// }
 var fetchRecommendedProjects = (user, q, res) => {
   var data = {};
   data = dummy.recommended;
@@ -60,8 +61,6 @@ var fetchProjectDetail = (user, q, res) => {
 }
 
 
-
-
 export default {
   handler: handler,
   fetchUser: fetchUser,
@@ -72,6 +71,7 @@ export default {
   fetchProjectDetail: fetchProjectDetail,
   fetchRecentPosts: fetchRecentPosts,
   fetchPopularPosts: fetchPopularPosts,
+  fetchPostDetail: fetchPostDetail,
   createNewProject: createNewProject,
   record: record
 };
