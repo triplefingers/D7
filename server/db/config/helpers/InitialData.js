@@ -199,10 +199,13 @@ const LikeData = [{
     postId: 4
   },{
     userId: 1,
-    postId: 6
+    postId: 5
   },{
     userId: 1,
     postId: 7
+  },{
+    userId: 1,
+    postId: 8
   },{
     userId: 1,
     postId: 9
