@@ -10,6 +10,16 @@ html { height: 100%; }
 body {
     height: inherit;
     background: gray;
+    position: fixed;
+}
+
+li {
+    display: inline;
+    margin-right: 30%;
+}
+
+textarea {
+    width: 100%;
 }
 
 .Calendar {

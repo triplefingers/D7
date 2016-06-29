@@ -8,8 +8,8 @@ class SideBar extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchOngoingProjects();
-    this.setState({onGoing: this.props.data.list});
+    // this.props.fetchOngoingProjects();
+    // this.setState({onGoing: this.props.data.list});
     // How the number data get passed into data.list?
   }
 
@@ -24,8 +24,8 @@ class SideBar extends Component {
           <div>
             <h2>Ongoing Projects</h2>
             <ul>
-              <li>Draw 1 Picture A day (on day 4)<li>
-              <li>Toy Problem (on Day 1)<li>
+              <li>Draw 1 Picture A day (on day 4)</li>
+              <li>Toy Problem (on Day 1)</li>
             </ul>
             <h2>Project History</h2>
             <h2>Wish List</h2>
