@@ -18,8 +18,6 @@ class App extends Component {
     console.log("Current State: ", this.state);
   }
 
-
-
   render() {
     const injection = {};
     Object.assign(injection, this.props);
