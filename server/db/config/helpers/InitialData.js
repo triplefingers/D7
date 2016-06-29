@@ -100,7 +100,7 @@ const TransactionData = [{
     customer_uid: "idforcoding@gmail.com",
     merchant_uid: "Transaction1",
     paymentDue: "2016-06-12",
-    amount: 7000
+    amount: 14000
   },{
     userId: 1,
     userProjectId: 2,
