@@ -52,6 +52,10 @@ const fetchUser = (user, q, res) => {
     });
     user.userProjects = projectCountData;
 
+    /* userPhoto */
+    user.userPhoto = user.photo;
+    delete user.photo;
+
     /* Transaction data */
     const transactionData = [];
     const transactionPromiseArray = [];
