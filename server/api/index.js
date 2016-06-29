@@ -13,6 +13,7 @@ import createNewProject from "./createNewProject";
 import record from "./record";
 import like from "./like";
 import report from "./report";
+import wish from "./wish";
 
 const handler = (apiMethod)=>{
   return (req, res, next) => {
@@ -77,5 +78,6 @@ export default {
   createNewProject: createNewProject,
   record: record,
   like: like,
-  report: report
+  report: report,
+  wish: wish
 };
