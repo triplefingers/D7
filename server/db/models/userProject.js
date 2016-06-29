@@ -19,8 +19,8 @@ const UserProject = db.Model.extend({
   posts: function () {
     return this.hasMany(Post, "userProjectId");
   },
-  transactions: function () {
-    return this.hasMany(Transaction, "userProjectId");
+  transaction: function () {
+    return this.hasOne(Transaction, "userProjectId");
   },
 });
 
