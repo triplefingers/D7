@@ -24,7 +24,6 @@ class Main extends Component {
     this.props.fetchRecentPosts();
     this.props.fetchPopularPosts();
     this.props.fetchRecommendation();
-    console.log("Received Recent posts: ", this.props.data.recent);
 
     /* Reset the AppContainer's state */
 
