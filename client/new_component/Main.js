@@ -23,11 +23,24 @@ class Main extends Component {
     this.props.fetchPopularPosts();
     this.props.fetchRecommendation();
     console.log("Received Recent posts: ", this.props.data.recent);
+
+
   }
 
+  // some code about tapping tab and according rendering
+  switchContents(menu) {
+    if (menu === "recent") {
+      this.setState({selected: "recent"});
+    } else if (menu === "popular") {
+      this.setState({selected: "popular"});
+    } else {
+      this.setState({selected: "suggestion"});
+    }
+  }
 
   render() {
     let Contents;
+
     if (!this.props.data){
       return(<div>Loading...</div>);
     } else if (this.state.selected === "recent") {
@@ -36,23 +49,26 @@ class Main extends Component {
           return <MainPostCard data={post}/>
         });
       }
-
     } else if (this.state.selected === "popular") {
-      Contents = this.props.data.popular.map((post) => {
-        <MainPostCard data={post}/>
-      });
+      if (this.props.data.popular) {
+        Contents = this.props.data.popular.map((post) => {
+          return <MainPostCard data={post}/>
+        });
+      }
     } else {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
-      Contents = this.props.data.list.map((post) => {
-        <MainProjectCard data={post}/>
-      });
+      if (this.props.data.list) {
+        Contents = this.props.data.list.map((post) => {
+          return <MainProjectCard data={post}/>
+        });
+      }
     }
 
     // some code about RecordBox rendering
 
     return (
       <div>
-        <Tabbar />
+        <Tabbar switchContents={this.switchContents.bind(this)} />
         {/* RecordBox don't appear on Recommended Project page */}
         <RecordBox />
         {Contents}
