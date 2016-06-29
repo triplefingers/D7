@@ -17,31 +17,44 @@ const like = (user, q, body, res) => {
     userId = 1;
   }
 
+  /* likeCount */
+  let likeCount = 0;
+
   model.Post.where("id", postId).fetch()
   .then((post) => {
     if (post) {
+      post = post.toJSON();
+      likeCount = post.likeCount;
+      console.log("----------likeCount is ", likeCount);
       return model.Like.where({userId: userId, postId: postId}).fetch();
     } else {
       throw "Invalid postId";
     }
   })
   .then((like) => {
-    console.log("like is ------------, ", like);
     if (like) {
-      return new model.Like({id: like.id}).destroy();
+      likeCount -= 1;
+      return new model.Like({id: like.id}).destroy()
+      .catch((err) => "Failed to destroy like table row: " + err);
     } else {
-      return new model.Like({userId: userId, postId: postId}).save();
+      likeCount += 1;
+      return new model.Like({userId: userId, postId: postId}).save()
+      .catch((err) => "Failed to add new like row: " + err);
     }
   })
+  .then(() => {
+    new model.Post({id: postId}).save({likeCount: likeCount});
+  })
+  .then(() => {
+    return {postId: postId, likeCount: likeCount};
+  })
   .then((data) => {
-    console.log("data is -------------,", data);
     res.status(200).send(data);
   })
   .catch((err) => {
     console.error("Error: Failed to store like info in Like Table in 'like.js': ", err);
     res.status(500).end();
   });
-
 };
 
 export default like;
