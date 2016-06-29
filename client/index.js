@@ -56,6 +56,7 @@ import AppContainer from "./container/AppContainer";
 import App from "./new_component/App";
 import Login from "./new_component/Login";
 import Main from "./new_component/Main";
+import LeaveHistory from "./new_component/LeaveHistory";
 
 ReactDOM.render(
   (
@@ -64,6 +65,7 @@ ReactDOM.render(
       <Route path="/login" component={Login}/>
       <Route component={App}>
         <Route path="/" component={Main}/>
+        <Route path="/write" component={LeaveHistory}/>
       </Route>
 
     </Route>

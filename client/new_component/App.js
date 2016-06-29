@@ -28,7 +28,7 @@ class App extends Component {
 
     return (
       <div>
-        <Navigation />
+        <Navigation data={injection}/>
         {child}
       </div>
     );

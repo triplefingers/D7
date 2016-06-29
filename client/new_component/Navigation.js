@@ -16,7 +16,7 @@ class Navigation extends Component {
         <div>
           <button>menu</button>
           <span>D7</span>
-          <button>write</button>
+          <button onClick={this.props.data.goto.bind(null, "/write")}>write</button>
         </div>
         <div style={{display:"none"}}>
           Save Complete!
