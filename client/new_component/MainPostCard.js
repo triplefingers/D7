@@ -20,7 +20,7 @@ class MainPostCard extends Component {
           {/* Header Left Part */}
           <div>
             <div>
-              <img src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" width="20px" height="20px" alt="user profile"/>
+              <img src={this.props.data.userPhoto} width="100px" height="100px" alt="user profile"/>
               <span>User Name</span>
             </div>
             <div>Project Title</div>
