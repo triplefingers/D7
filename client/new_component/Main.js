@@ -59,8 +59,8 @@ class Main extends Component {
       }
     } else {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
-      if (this.props.data.recommended) {
-        Contents = this.props.data.recommended.map((project) => {
+      if (this.props.data.list) {
+        Contents = this.props.data.list.map((project) => {
           return <MainProjectCard data={project} key={project.id}/>
         });
       }
