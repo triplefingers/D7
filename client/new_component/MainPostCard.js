@@ -1,13 +1,33 @@
 import React, {Component} from "react";
+import axios from "axios";
 
 class MainPostCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      liked: false,
+      likeCount: 0
+    };
   }
 
   componentDidMount() {
+    const { doneLike, likeCount } = this.props.data;
+    if(doneLike){
+      this.setState({liked: true, likeCount: likeCount});
+    } else {
+      this.setState({likeCount: likeCount});
+    }
+  }
+
+  toggleLike() {
+    if(this.state.liked){
+      this.setState({liked: false, likeCount: this.state.likeCount - 1});
+    } else {
+      this.setState({liked: true, likeCount: this.state.likeCount + 1});
+    }
+
+    /* Add send post request to server api for like */
   }
 
   render() {
@@ -29,6 +49,19 @@ class MainPostCard extends Component {
       backgroundColor: "white",
       margin: "10px 0",
     };
+
+    let likeButton;
+    if(this.state.liked){
+      likeButton = (
+        <button onClick={this.toggleLike.bind(this)}>Like clicked</button>
+      );
+    } else {
+      likeButton = (
+        <button onClick={this.toggleLike.bind(this)}>Like not clicked</button>
+      );
+    }
+
+
 
     return (
       <div style={cardStyle}>
@@ -54,7 +87,6 @@ class MainPostCard extends Component {
           <div>
           {images}
           </div>
-          {/* Text */}
           <div>
             <p>
               {text}
@@ -65,8 +97,8 @@ class MainPostCard extends Component {
         <div>
           {/* Footer Left Part */}
           <div>
-            <button>Like</button>
-            <span>{likeCount}</span>
+            {likeButton}
+            <span>{this.state.likeCount}</span>
           </div>
           {/* Footer Right Part */}
           <div>
