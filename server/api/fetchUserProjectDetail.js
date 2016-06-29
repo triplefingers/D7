@@ -1,7 +1,7 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-const fetchProjectDetail = (user, q, res)=>{
+const fetchUserProjectDetail = (user, q, res)=>{
   // const userId = user.id;
   var { userProjectId } = q;
   // below should be deleted
@@ -193,4 +193,4 @@ const fetchProjectDetail = (user, q, res)=>{
 
 };
 
-export default fetchProjectDetail;
+export default fetchUserProjectDetail;

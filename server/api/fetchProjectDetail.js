@@ -3,7 +3,7 @@ import collection from "../db/collections";
 
 const fetchProjectDetail = (user, q, res)=>{
   // const userId = user.id;
-  var { id } = q;
+  var { projectId } = q;
   // below should be deleted
   let userId;
   if (user && user.id) {
@@ -15,19 +15,45 @@ const fetchProjectDetail = (user, q, res)=>{
     userId = 1;
   }
 
-  model.Post.where("projectId", id).fetchAll({withRelated: [
-    "user",
-    "postImages",
-    "likes",
-    "reports",
-    "project",
-    "userProject"
+  /* data container to send */
+  const result = {};
+
+
+  model.Project.where("id", projectId).fetch({withRelated: [
+    "user"
   ]})
+  .then((project) => {
+    project = project.toJSON();
+
+    /* project id, title, description, wishCount */
+    result.projectId = project.id;
+    result.projectTitle = project.title;
+    result.projectDescription = project.description;
+    result.wishCount = project.wishCount;
+
+    /* username, userId, photo */
+    result.userId = project.user.id;
+    result.username = project.user.username;
+    result.userPhoto = project.user.photo;
+
+    /* wishcount */
+    result.wishCount = project.wishCount;
+  })
+  .then(() => {
+    /* posts + doneLike */
+    return model.Post.where({projectId: projectId}).orderBy("-created_at").fetchAll({withRelated: [
+      "user",
+      "postImages",
+      "likes",
+      "reports"
+    ]});
+  })
   .then((posts) => {
-    const result = {};
     posts = posts.toJSON();
     result.posts = posts;
-
+    if (!posts) {
+      posts = [];
+    }
     const postsPromiseArray = [];
 
     posts.forEach((post) => {
@@ -39,10 +65,10 @@ const fetchProjectDetail = (user, q, res)=>{
         delete post.user;
 
         /* postId */
-        post.postId = post.id;
+        // post.postId = post.id;
 
         /* userProjectId*/
-        /* like */
+        /* doneLike */
         post.doneLike = false;
         post.likes.forEach((like) => {
           if (like.userId === userId) {
@@ -73,7 +99,7 @@ const fetchProjectDetail = (user, q, res)=>{
         post.createdAt = post.created_at;
         delete post.created_at;
 
-        /* project title, description*/
+        /* project title, description */
         model.UserProject.where("id", post.userProjectId).fetch({withRelated: ["project"]})
         .then((userProject) => {
           userProject = userProject.toJSON();
@@ -88,20 +114,33 @@ const fetchProjectDetail = (user, q, res)=>{
         .catch((err) => {
           console.error("Error: Failed to read userProject data in fetchAllPosts: ", err);
           return err;
-        })
-      })
+        });
+      });
       postsPromiseArray.push(postPromise);
     });
 
     return Promise.all(postsPromiseArray)
     .then(() => {
-      console.log("-------posts are", posts);
-      return posts
+      return posts;
+    });
+  })
+  .then(() => {
+    /* doneWish */
+    result.doneWish = false;
+    return model.Wish.where({userId: userId, projectId: result.projectId}).fetch()
+    .then((wishes) => {
+      if (!wishes) {
+        result.doneWish = true;
+      }
     })
+    .catch((err) => "Failed to print doneWish: " + err);
+  })
+  .then(() => {
+    return result;
   })
   .then((data) => res.status(200).send(data))
   .catch((err) =>{
-    console.error("-----Error: Failed to read projects in 'fetchAllPosts.js': ", err);
+    console.error("Error: Failed to read projects in 'fetchAllPosts.js': ", err);
     res.status(500).end();
   });
 

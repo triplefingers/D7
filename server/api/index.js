@@ -5,7 +5,7 @@ import fetchAllProjects from "./fetchAllProjects";
 import fetchOngoingProjects from "./fetchOngoingProjects";
 // import fetchRecommendedProjects from "./fetchRecommendedProjects";
 // import fetchWishProjects from "./fetchWishProjects";
-// import fetchProjectDetail from "./fetchProjectDetail";
+import fetchProjectDetail from "./fetchProjectDetail";
 import fetchUserProjectDetail from "./fetchUserProjectDetail";
 import fetchRecentPosts from "./fetchRecentPosts";
 import fetchPopularPosts from "./fetchPopularPosts";
@@ -57,11 +57,11 @@ var fetchWishProjects = (user, q, res) => {
   data = dummy.wish;
   res.status(200).send(data);
 };
-var fetchProjectDetail = (user, q, res) => {
-  var data = {};
-  data = dummy.project;
-  res.status(200).send(data);
-};
+// var fetchProjectDetail = (user, q, res) => {
+//   var data = {};
+//   data = dummy.project;
+//   res.status(200).send(data);
+// };
 
 
 export default {
