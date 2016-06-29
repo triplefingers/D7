@@ -1,9 +1,9 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-const fetchProjectDetail = (user, q, res)=>{
+const fetchUserProjectDetail = (user, q, res)=>{
   // const userId = user.id;
-  var { projectId } = q;
+  var { userProjectId } = q;
   // below should be deleted
   let userId;
   if (user && user.id) {
@@ -18,30 +18,77 @@ const fetchProjectDetail = (user, q, res)=>{
   /* data container to send */
   const result = {};
 
-
-  model.Project.where("id", projectId).fetch({withRelated: [
-    "user"
+  model.UserProject.where("id", userProjectId).fetch({withRelated: [
+    "user",
+    "project",
+    "posts",
+    "transaction"
   ]})
-  .then((project) => {
-    project = project.toJSON();
+  .then((userProject) => {
+    userProject = userProject.toJSON();
+    console.log("----here in userproject ", userProject);
+
+    /* userProject id */
+    result.userProjectId = userProject.id;
 
     /* project id, title, description, wishCount */
-    result.projectId = project.id;
-    result.projectTitle = project.title;
-    result.projectDescription = project.description;
-    result.wishCount = project.wishCount;
+    result.projectId = userProject.project.id;
+    result.projectTitle = userProject.project.title;
+    result.projectDescription = userProject.project.description;
+    result.wishCount = userProject.project.wishCount;
 
     /* username, userId, photo */
-    result.userId = project.user.id;
-    result.username = project.user.username;
-    result.userPhoto = project.user.photo;
+    result.userId = userProject.user.id;
+    result.username = userProject.user.username;
+    result.userPhoto = userProject.user.photo;
+
+    /* startAt, endAt */
+    result.startAt = userProject.startAt;
+    result.endAt = userProject.endAt;
+
+    /* status : ongoing(+doneToday), waiting, complete /and/ onDay */
+    if (userProject.success) {
+      /* success case */
+      result.status = "success";
+    } else {
+      /* fail, ongoing, waiting case */
+      const today = new Date();
+      const startAt = new Date(userProject.startAt);
+      let diff = today.valueOf() - startAt.valueOf();
+      diff = Math.ceil(diff / (60 * 60 * 24 * 1000));
+      if (diff > 0 && diff <= 7) {
+        result.status = "ongoing";
+        result.onDay = diff;
+        result.doneToday = false;
+        userProject.posts.forEach((item) => {
+          if (item.day === diff) {
+            result.doneToday = true;
+          }
+        });
+      } else if (diff <= 0) {
+        result.status = "waiting";
+        result.onDay = diff;
+      } else {
+        result.status = "failed";
+      }
+    }
 
     /* wishcount */
-    result.wishCount = project.wishCount;
+    result.wishCount = userProject.project.wishCount;
+
+    /* transaction : amount, currency, paymentDue */
+    /* only if session's user.id === userProject.user.id */
+    if (userId === result.userId) {
+      result.transaction = {
+        amount: userProject.transaction.amount,
+        currency: userProject.transaction.currency,
+        paymentDue: userProject.transaction.paymentDue
+      };
+    }
   })
   .then(() => {
     /* posts + doneLike */
-    return model.Post.where({projectId: projectId}).orderBy("-created_at").fetchAll({withRelated: [
+    return model.Post.where({userProjectId: userProjectId}).fetchAll({withRelated: [
       "user",
       "postImages",
       "likes",
@@ -146,4 +193,4 @@ const fetchProjectDetail = (user, q, res)=>{
 
 };
 
-export default fetchProjectDetail;
+export default fetchUserProjectDetail;
