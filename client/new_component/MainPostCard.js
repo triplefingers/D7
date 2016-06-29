@@ -12,33 +12,52 @@ class MainPostCard extends Component {
 
   render() {
 
-    return (
-      <div>
+    const { createdAt, day, doneLike, doneReport, likeCount, projectTitle, projectDescription, publicIds, text, userPhoto, userProjectId, userId, username } = this.props.data;
 
+    const imageHeight = 200;
+    const imageWidth = 200;
+    const imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_fill,h_" + imageHeight + ",w_" + imageWidth + "/v1466579054/";
+
+    const images = publicIds.map((id) => {
+        if (id.indexOf("http") === -1) {
+          id = imageUrl + id;
+        }
+        return <img key={id} src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>;
+      });
+
+    const cardStyle = {
+      backgroundColor: "white",
+      margin: "10px 0",
+    };
+
+    return (
+      <div style={cardStyle}>
         {/* Card Header */}
         <div>
           {/* Header Left Part */}
           <div>
             <div>
-              <img src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" width="20px" height="20px" alt="user profile"/>
-              <span>User Name</span>
+              {/* 추후에 Cloudinary id로 변경해야 함 */}
+              <img src={userPhoto} width="20px" height="20px"/>
+              <span>{username}</span>
             </div>
-            <div>Project Title</div>
+            <div>{projectTitle}</div>
           </div>
           {/* Header Right Part */}
           <div>
-            <div>Day 1</div>
-            <div>6 hours ago</div>
+            <div>{day}</div>
+            <div>{createdAt}</div>
           </div>
         </div>
         {/* Card Content */}
         <div>
-          {/* Images */}
-          <div>Images</div>
+          <div>
+          {images}
+          </div>
           {/* Text */}
           <div>
             <p>
-              At the very first, You have to transpile ES6 written Javascript files. Run gulp and you will get bundled file of client-side-files in client/, and babel-transpiled file of server-side
+              {text}
             </p>
           </div>
         </div>
@@ -46,15 +65,14 @@ class MainPostCard extends Component {
         <div>
           {/* Footer Left Part */}
           <div>
-            <span>Like</span>
-            <span>12</span>
+            <button>Like</button>
+            <span>{likeCount}</span>
           </div>
           {/* Footer Right Part */}
           <div>
-            ...
+            <button>...</button>
           </div>
         </div>
-
       </div>
     );
   }

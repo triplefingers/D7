@@ -8,25 +8,61 @@ class SideBar extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchOngoingProjects();
-    this.setState({onGoing: this.props.data.list});
-    // How the number data get passed into data.list?
+    this.props.data.fetchOngoingProjects();
+
+    /* list: ongoing / userProjects */
+    this.setState({data: this.props.data.data.list});
   }
 
   render() {
 
+    const sideBarStyle = {
+      left: "-100%",
+      top: "0px",
+      width: "70%",
+      height: "100%",
+      position: "fixed",
+      background: "skyblue"
+      // ,left: "0%"
+    }
+
+    /* ongoing = onGoing*/
+    let onGoingProjects, userStats;
+    if (this.state.data && this.state.data.userProjects) {
+      var stats = this.state.data.userProjects;
+    }
+
+
+    if (this.state.data && this.state.data.ongoing) {
+      onGoingProjects = this.state.data.ongoing.map((project) => {
+        return (<li>{project.title} (on day {project.onDay})</li>);
+      })
+    }
+
+    if (this.state.data && this.state.data.userProjects) {
+      userStats = (
+        <div>
+          <li>Total: {stats.total}</li>
+          <li>Success: {stats.success}</li>
+          <li>Fail: {stats.fail}</li>
+        </div>
+      );
+    }
+
     return (
-      <div>
+      <div style={sideBarStyle}>
         <div>
           <p>Photo</p>
           <h1>Dongwoo Kim</h1>
+          <ul>
+            {userStats}
+          </ul>
         </div>
         <div>
           <div>
             <h2>Ongoing Projects</h2>
             <ul>
-              <li>Draw 1 Picture A day (on day 4)<li>
-              <li>Toy Problem (on Day 1)<li>
+              {onGoingProjects}
             </ul>
             <h2>Project History</h2>
             <h2>Wish List</h2>

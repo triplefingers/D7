@@ -16,9 +16,9 @@ class Tabbar extends Component {
       <div>
         <ul>
           {/* Define onClick callbacks later */}
-          <li><a>Recent</a></li>
-          <li><a>Popular</a></li>
-          <li><a>Suggestion</a></li>
+          <li><a onClick={this.props.switchContents.bind(this, "recent")}>Recent</a></li>
+          <li><a onClick={this.props.switchContents.bind(this, "popular")}>Popular</a></li>
+          <li><a onClick={this.props.switchContents.bind(this, "suggestion")}>Suggestion</a></li>
         </ul>
       </div>
     );

@@ -12,6 +12,23 @@ body {
     background: gray;
 }
 
+li {
+    display: inline;
+    margin-right: 30%;
+}
+
+textarea {
+    width: 100%;
+}
+
+.sidebar {
+    left: -100%;
+    width: 100%;
+    /*position: fixed;*/
+    background: sky-blue;
+    left: 0;
+}
+
 .Calendar {
     border-collapse: collapse;
     padding: 0;

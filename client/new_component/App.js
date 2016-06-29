@@ -1,5 +1,6 @@
 import React, {Component, cloneElement} from "react";
 import Navigation from "./Navigation";
+import SideBar from "./SideBar";
 import axios from "axios";
 
 class App extends Component {
@@ -18,8 +19,6 @@ class App extends Component {
     console.log("Current State: ", this.state);
   }
 
-
-
   render() {
     const injection = {};
     Object.assign(injection, this.props);
@@ -28,7 +27,8 @@ class App extends Component {
 
     return (
       <div>
-        <Navigation />
+        <Navigation data={injection}/>
+        <SideBar data={injection} className="sidebar" />
         {child}
       </div>
     );

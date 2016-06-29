@@ -45,6 +45,12 @@ class LeaveHistory extends Component {
 
   render() {
 
+    let progress_bar_style = {
+      background: "red",
+      height: "20px",
+      width: "0px"
+    };
+
     return (
       <div>
         <h1>Leave History</h1>

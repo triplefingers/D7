@@ -19,40 +19,58 @@ class Main extends Component {
 
   componentDidMount() {
     console.log("Main mounted");
+    this.props.reset();
+    /* Promise로 순서 적용 */
     this.props.fetchRecentPosts();
     this.props.fetchPopularPosts();
     this.props.fetchRecommendation();
-    console.log("Received Recent posts: ", this.props.data.recent);
+
+    /* Reset the AppContainer's state */
+
   }
 
+  // some code about tapping tab and according rendering
+  switchContents(menu) {
+    if (menu === "recent") {
+      this.setState({selected: "recent"});
+    } else if (menu === "popular") {
+      this.setState({selected: "popular"});
+    } else {
+      this.setState({selected: "suggestion"});
+    }
+  }
 
   render() {
     let Contents;
+
     if (!this.props.data){
       return(<div>Loading...</div>);
     } else if (this.state.selected === "recent") {
-      if(this.props.data.recent) {
+      if (this.props.data.recent) {
         Contents = this.props.data.recent.map((post) => {
-          return <MainPostCard data={post}/>
+          return <MainPostCard data={post} key={post.id}/>
         });
       }
-
     } else if (this.state.selected === "popular") {
-      Contents = this.props.data.popular.map((post) => {
-        <MainPostCard data={post}/>
-      });
+      if (this.props.data.popular) {
+        Contents = this.props.data.popular.map((post) => {
+          return <MainPostCard data={post} key={post.id}/>
+        });
+      }
     } else {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
-      Contents = this.props.data.list.map((post) => {
-        <MainProjectCard data={post}/>
-      });
+      if (this.props.data.recommended) {
+        Contents = this.props.data.recommended.map((project) => {
+          return <MainProjectCard data={project} key={project.id}/>
+        });
+      }
     }
 
     // some code about RecordBox rendering
 
     return (
       <div>
-        <Tabbar />
+        <Tabbar switchContents={this.switchContents.bind(this)} />
         {/* RecordBox don't appear on Recommended Project page */}
         <RecordBox />
         {Contents}

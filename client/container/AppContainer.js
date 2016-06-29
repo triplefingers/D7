@@ -184,8 +184,7 @@ class AppContainer extends Component {
       }
     })
     .then((res) => {
-      this.setState({list: res.data});
-      console.log(this.state.list);
+      this.setState({recommended: res.data});
     })
     .catch((err) => {
       console.error("Error occured while fetching recommended projects", err);
