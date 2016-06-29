@@ -15,7 +15,7 @@ const fetchOngoingProjects = (user, q, res) => {
     userId = 1;
   }
 
-  model.UserProject.where("userId", userId).fetchAll({withRelated: [
+  model.UserProject.where("userId", userId).orderBy("-created_at").fetchAll({withRelated: [
     "project",
     "posts"
   ]})
@@ -23,19 +23,9 @@ const fetchOngoingProjects = (user, q, res) => {
     userProjects = userProjects.toJSON();
     console.log("-----------userProjects are", userProjects);
     const today = new Date();
-    const result = {};
 
     /* ongoing list */
-    const ongoing = [];
-    result.ongoing = ongoing;
-
-    /* userProject counts */;
-    const projectCountData = {
-      total: userProjects.length,
-      success: 0,
-      fail: 0
-    };
-    result.userProjects = projectCountData;
+    const result = [];
 
     userProjects.forEach((userProject) => {
       // userProject = userProject.toJSON();
@@ -49,21 +39,15 @@ const fetchOngoingProjects = (user, q, res) => {
       /* Check Project status : doneToday /and/ count as total, success, fail */
       const startAt = new Date(userProject.startAt);
       const diff = Math.ceil((today.valueOf() - startAt.valueOf()) / (60 * 60 * 24 * 1000));
-      if (userProject.success) {
-        projectCountData.success++;
-      } else {
-        if (diff > 0 && diff <= 7) {
-          data.onDay = diff;
-          data.doneToday = false;
-          userProject.posts.forEach((item) => {
-            if (item.day === diff) {
-              data.doneToday = true;
-            }
-          });
-          ongoing.push(data);
-        } else if (diff > 7) {
-          projectCountData.fail++;
-        }
+      if (!userProject.success && diff > 0 && diff <= 7) {
+        data.onDay = diff;
+        data.doneToday = false;
+        userProject.posts.forEach((item) => {
+          if (item.day === diff) {
+            data.doneToday = true;
+          }
+        });
+        result.push(data);
       }
     });
 
@@ -71,7 +55,7 @@ const fetchOngoingProjects = (user, q, res) => {
   })
   .then((data) => res.status(200).send(data))
   .catch((err) => {
-    console.error("Error: Failed to read projects in 'fetchOngoingProjects'");
+    console.error("Error: Failed to read projects in 'fetchOngoingProjects.js'");
     res.status(500).end();
   });
 };

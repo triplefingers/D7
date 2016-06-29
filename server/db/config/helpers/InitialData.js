@@ -44,12 +44,6 @@ const WishData = [{
     projectId: 1
   },{
     userId: 1,
-    projectId: 2
-  },{
-    userId: 1,
-    projectId: 2
-  },{
-    userId: 1,
     projectId: 3
   },{
     userId: 1,
@@ -66,33 +60,6 @@ const WishData = [{
   },{
     userId: 1,
     projectId: 4
-  },{
-    userId: 1,
-    projectId: 5
-  },{
-    userId: 1,
-    projectId: 5
-  },{
-    userId: 1,
-    projectId: 5
-  },{
-    userId: 1,
-    projectId: 6
-  },{
-    userId: 1,
-    projectId: 6
-  },{
-    userId: 1,
-    projectId: 6
-  },{
-    userId: 1,
-    projectId: 6
-  },{
-    userId: 1,
-    projectId: 6
-  },{
-    userId: 1,
-    projectId: 6
   }
 ];
 const UserProjectData = [{
@@ -226,73 +193,16 @@ const LikeData = [{
     postId: 1
   },{
     userId: 1,
-    postId: 1
-  },{
-    userId: 1,
-    postId: 1
-  },{
-    userId: 1,
-    postId: 2
-  },{
-    userId: 1,
-    postId: 3
-  },{
-    userId: 1,
-    postId: 3
-  },{
-    userId: 1,
-    postId: 3
-  },{
-    userId: 1,
     postId: 3
   },{
     userId: 1,
     postId: 4
   },{
     userId: 1,
-    postId: 4
-  },{
-    userId: 1,
-    postId: 5
-  },{
-    userId: 1,
-    postId: 5
-  },{
-    userId: 1,
-    postId: 5
-  },{
-    userId: 1,
-    postId: 6
-  },{
-    userId: 1,
-    postId: 6
-  },{
-    userId: 1,
-    postId: 6
-  },{
-    userId: 1,
-    postId: 6
-  },{
-    userId: 1,
-    postId: 6
-  },{
-    userId: 1,
     postId: 6
   },{
     userId: 1,
     postId: 7
-  },{
-    userId: 1,
-    postId: 7
-  },{
-    userId: 1,
-    postId: 7
-  },{
-    userId: 1,
-    postId: 8
-  },{
-    userId: 1,
-    postId: 9
   },{
     userId: 1,
     postId: 9
