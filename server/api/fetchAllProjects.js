@@ -52,6 +52,7 @@ const fetchAllProjects = (user, q, res)=>{
         });
         result.ongoing.push(data);
       } else if ( diff <= 0 ){
+        data.onday = diff;
         result.waiting.push(data);
       } else {
         result.complete.push(data);

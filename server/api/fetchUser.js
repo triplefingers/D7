@@ -23,16 +23,19 @@ const fetchUser = (user, q, res) => {
     user = user.toJSON();
     console.log("Now fetching... userProfile is", user);
 
-    /* userProject counts */;
+    /* userProject counts */
     const projectCountData = {
-      complete: 0,
+      success: 0,
+      fail: 0,
       ongoing: 0,
-      fail: 0
+      waiting: 0,
+      total: 0
     };
     const today = new Date(new Date().toJSON().slice(0, 10));
     user.userProjects.forEach((project) => {
+      projectCountData.total++;
       if (project.success) {
-        projectCountData.complete++;
+        projectCountData.success++;
       } else {
         const startAt = new Date(project.startAt);
         let diff = today.valueOf() - startAt.valueOf();
@@ -42,6 +45,8 @@ const fetchUser = (user, q, res) => {
           projectCountData.ongoing++;
         } else if (diff > 7) {
           projectCountData.fail++;
+        } else {
+          projectCountData.waiting++;
         }
       }
     });
