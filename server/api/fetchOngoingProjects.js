@@ -47,7 +47,7 @@ const fetchOngoingProjects = (user, q, res) => {
             data.doneToday = true;
           }
         });
-        ongoing.push(data);
+        result.push(data);
       }
     });
 
