@@ -46,7 +46,7 @@ class Main extends Component {
     if (!this.props.data){
       return(<div>Loading...</div>);
     } else if (this.state.selected === "recent") {
-      if(this.props.data.recent) {
+      if (this.props.data.recent) {
         Contents = this.props.data.recent.map((post) => {
           return <MainPostCard data={post} key={post.id}/>
         });
