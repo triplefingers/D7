@@ -25,7 +25,8 @@ class Main extends Component {
     this.props.fetchRecommendation();
     console.log("Received Recent posts: ", this.props.data.recent);
 
-
+    /* Reset the AppContainer's state */
+    this.props.reset();
   }
 
   // some code about tapping tab and according rendering
