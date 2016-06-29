@@ -1,5 +1,6 @@
 import db from "../config/setConfig";
 import User from "./user";
+import Project from "./project";
 import UserProject from "./userProject";
 import PostImage from "./postImage";
 import Like from "./like";
@@ -16,6 +17,9 @@ const Post = db.Model.extend({
   },
   userProject: function () {
     return this.belongsTo(UserProject, "userProjectId");
+  },
+  project: function() {
+    return this.belongsTo(Project, "projectId");
   },
   postImages: function () {
     return this.hasMany(PostImage, "postId");

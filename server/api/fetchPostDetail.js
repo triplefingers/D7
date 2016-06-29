@@ -1,9 +1,9 @@
 import model from "../db/models";
 import collection from "../db/collections";
-import Promise from "bluebird";
 
-const fetchPopularPosts = (user, q, res)=>{
+const fetchPostDetail = (user, q, res)=>{
   // const userId = user.id;
+  const postId = q.id;
 
   // below should be deleted
   let userId;
@@ -16,18 +16,34 @@ const fetchPopularPosts = (user, q, res)=>{
     userId = 1;
   }
 
-  collection.Posts.orderBy("-likeCount").fetch({withRelated: [
+  model.Post.where("id", postId).fetch({withRelated: [
     "user",
-    "userProject",
     "postImages",
     "likes",
-    "reports"
+    "reports",
+    "project",
+    "userProject"
   ]})
-  .then((posts)=>{
-    posts = posts.toJSON();
+  .then((post) => {
+    post = post[0];
+    const result = {
+      username: post.user.username,
+      userPhoto: post.user.photo,
+
+    };
+
+
+
+
+
+
+    result.posts = posts.toJSON();
+
     const postsPromiseArray = [];
 
-    posts.forEach((post) => {
+    result.posts[0]
+
+    result.posts.forEach((post) => {
       /* make thenable promise object */
       let postPromise = new Promise((resolve, reject) => {
         /* userId, username */
@@ -36,7 +52,7 @@ const fetchPopularPosts = (user, q, res)=>{
         delete post.user;
 
         /* postId */
-        // post.postId = post.id;
+        post.postId = post.id;
 
         /* userProjectId*/
         /* like */
@@ -66,11 +82,9 @@ const fetchPopularPosts = (user, q, res)=>{
         post.publicIds = newPostImages;
         delete post.postImages;
 
-        /* created_at, updated_at */
+        /* created_at */
         post.createdAt = post.created_at;
-        post.updatedAt = post.updated_at;
         delete post.created_at;
-        delete post.updated_at;
 
         /* project title, description*/
         model.UserProject.where("id", post.userProjectId).fetch({withRelated: ["project"]})
@@ -85,7 +99,7 @@ const fetchPopularPosts = (user, q, res)=>{
           resolve();
         })
         .catch((err) => {
-          console.error("Error: Failed to read userProject data in 'fetchPopularPosts.js': ", err);
+          console.error("Error: Failed to read userProject data in 'fetchRecentPosts.js': ", err);
           return err;
         })
       })
@@ -100,10 +114,10 @@ const fetchPopularPosts = (user, q, res)=>{
   })
   .then((data) => res.status(200).send(data))
   .catch((err) =>{
-    console.error("-----Error: Failed to read projects in 'fetchPopularPosts.js': ", err);
+    console.error("-----Error: Failed to read projects in 'fetchRecentPosts.js': ", err);
     res.status(500).end();
   });
 
 };
 
-export default fetchPopularPosts;
+export default fetchPostDetail

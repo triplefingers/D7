@@ -2,35 +2,47 @@ import model from "../db/models";
 import collection from "../db/collections";
 
 const fetchAllProjects = (user, q, res)=>{
-  const userId = user.id;
+  // const userId = user.id;
+
+  // below should be deleted
+  let userId;
+  if (user && user.id) {
+    userId = user.id;
+  }
+  if (q && q.id) {
+    userId = q.id;
+  } else {
+    userId = 1;
+  }
+
   model.UserProject.where("userId", userId).fetchAll({withRelated: [
     "project",
     "posts"
   ]})
   .then((projects)=>{
+    const today = new Date();
     const result = {
       waiting: [],
       ongoing: [],
       complete: []
     };
-    const today = new Date();
-    console.log("----projects are ", projects.toJSON());
+
     projects.forEach((up)=>{
       up = up.toJSON();
-      let startAt = new Date(up.startAt);
       let data = {
         id: up.id,
         title: up.project.title,
         description: up.project.description,
+        startAt: up.startAt,
+        endAt: up.endAt,
         success: up.success
       };
-      console.log("----------------data in fetchAllProjects is..", up);
+
       /* Check Project status */
+      let startAt = new Date(up.startAt);
       let diff = today.valueOf() - startAt.valueOf();
       diff = Math.ceil(diff/(60*60*24*1000));
-      if ( diff <= 0 ){
-        result.waiting.push(data);
-      } else if ( diff > 0 && diff <= 7 && !data.success){
+      if ( diff > 0 && diff <= 7 && !data.success){
         data.onDay = diff;
         data.doneToday = false;
         up.posts.forEach((item)=>{
@@ -39,6 +51,8 @@ const fetchAllProjects = (user, q, res)=>{
           }
         });
         result.ongoing.push(data);
+      } else if ( diff <= 0 ){
+        result.waiting.push(data);
       } else {
         result.complete.push(data);
       }
@@ -47,7 +61,7 @@ const fetchAllProjects = (user, q, res)=>{
   })
   .then((data) => res.status(200).send(data))
   .catch((err) =>{
-    console.error("-----Error: Failed to read projects in 'fetchAllProjects.js': ", err);
+    console.error("Error: Failed to read projects in 'fetchAllProjects.js': ", err);
     res.status(500).end();
   });
 

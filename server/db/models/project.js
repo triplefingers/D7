@@ -1,5 +1,6 @@
 import db from "../config/setConfig";
 import User from "./user";
+import Post from "./post";
 import UserProject from "./userProject";
 import Wish from "./wish";
 
@@ -14,6 +15,9 @@ const Project = db.Model.extend({
   },
   userProjects: function () {
     return this.hasMany(UserProject, "projectId");
+  },
+  posts: function () {
+    return this.hasMany(Post, "projectId");
   },
   wishes: function () {
     return this.hasMany(Wish, "projectId");

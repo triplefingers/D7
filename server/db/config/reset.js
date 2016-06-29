@@ -43,6 +43,7 @@ const resetDB = ()=>{
   .createTableIfNotExists("post", function(post) {
     post.increments("id").primary();
     post.integer("userId").references("id").inTable("user");
+    post.integer("projectId").references("id").inTable("project");
     post.integer("userProjectId").references("id").inTable("userProject");
     post.integer("day");
     post.integer("likeCount");
