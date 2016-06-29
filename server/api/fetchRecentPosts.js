@@ -16,7 +16,7 @@ const fetchRecentPosts = (user, q, res)=>{
     userId = 1;
   }
 
-  collection.Posts.orderBy("-created_at").fetch({withRelated: [
+  collection.Posts.orderByiu("-created_at").fetch({withRelated: [
     "user",
     "userProject",
     "postImages",
