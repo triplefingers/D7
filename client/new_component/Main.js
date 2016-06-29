@@ -19,6 +19,7 @@ class Main extends Component {
 
   componentDidMount() {
     console.log("Main mounted");
+    /* Promise로 순서 적용 */
     this.props.fetchRecentPosts();
     this.props.fetchPopularPosts();
     this.props.fetchRecommendation();
@@ -46,20 +47,20 @@ class Main extends Component {
     } else if (this.state.selected === "recent") {
       if(this.props.data.recent) {
         Contents = this.props.data.recent.map((post) => {
-          return <MainPostCard data={post}/>
+          return <MainPostCard data={post} key={post.id}/>
         });
       }
     } else if (this.state.selected === "popular") {
       if (this.props.data.popular) {
         Contents = this.props.data.popular.map((post) => {
-          return <MainPostCard data={post}/>
+          return <MainPostCard data={post} key={post.id}/>
         });
       }
     } else {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
       if (this.props.data.list) {
-        Contents = this.props.data.list.map((post) => {
-          return <MainProjectCard data={post}/>
+        Contents = this.props.data.list.map((project) => {
+          return <MainProjectCard data={project} key={project.id}/>
         });
       }
     }

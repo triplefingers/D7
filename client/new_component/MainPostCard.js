@@ -22,11 +22,16 @@ class MainPostCard extends Component {
         if (id.indexOf("http") === -1) {
           id = imageUrl + id;
         }
-        return <img src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>;
+        return <img key={id} src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>;
       });
 
+    const cardStyle = {
+      backgroundColor: "white",
+      margin: "10px 0",
+    };
+
     return (
-      <div>
+      <div style={cardStyle}>
         {/* Card Header */}
         <div>
           {/* Header Left Part */}

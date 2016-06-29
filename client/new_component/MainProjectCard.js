@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-class RecommendedProjectCard extends Component {
+class MainProjectCard extends Component {
   constructor(props) {
     super(props);
 
@@ -11,31 +11,38 @@ class RecommendedProjectCard extends Component {
   }
 
   render() {
+    /* Project image 추가, userPhoto 제외 */
+    const { title, description, doneWish, username, wishCount } = this.props.data;
+
+    const cardStyle = {
+      backgroundColor: "white",
+      margin: "10px 0",
+    }
 
     return (
-      <div>
+      <div style={cardStyle}>
         {/* Card Header */}
         <div>
-          Project Image
+          <img src="https://www.colourbox.com/preview/1744283-set-of-paintbrushes-and-color-paint-on-canvas-background.jpg" width="400px" height="200px"/>
         </div>
         {/* Card Content */}
         <div>
-          <h2>Project Title</h2>
+          <h2>{title}</h2>
           <p>
-            At the very first, You have to transpile ES6 written Javascript files. Run gulp and you will get bundled file of client-side-files in client/, and babel-transpiled file of server-side
+            {description}
           </p>
         </div>
         {/* Card Footer */}
         <div>
           {/* Footer Left Part */}
           <div>
-            <span>Pin</span>
-            <span>12</span>
+            <button>Pin</button>
+            <span>{wishCount}</span>
           </div>
           {/* Footer Right Part */}
           <div>
             <span>by</span>
-            <span>User Name</span>
+            <span>{username}</span>
           </div>
         </div>
       </div>
@@ -43,4 +50,4 @@ class RecommendedProjectCard extends Component {
   }
 }
 
-export default RecommendedProjectCard;
+export default MainProjectCard;
