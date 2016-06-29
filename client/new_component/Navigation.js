@@ -14,9 +14,9 @@ class Navigation extends Component {
     return (
       <div>
         <div>
-          <button>menu</button>
-          <span>D7</span>
-          <button onClick={this.props.data.goto.bind(null, "/write")}>write</button>
+          <button>side</button>
+          <button onClick={() => this.props.data.goto("/")}>D7</button>
+          <button onClick={() => this.props.data.goto("/write")}>write</button>
         </div>
         <div style={{display:"none"}}>
           Save Complete!
