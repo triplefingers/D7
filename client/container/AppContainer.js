@@ -217,6 +217,18 @@ class AppContainer extends Component {
     });
   }
 
+  /* FETCH POPULAR POSTS IN MAIN PAGE */
+  fetchProjectDetail() {
+    axios.get("/api/project")
+    .then((res) => {
+      console.log("Project detail: ", res);
+      this.setState({project: res.data});
+    })
+    .catch((err) => {
+      console.error("Error occurred while fetching project detail: ", err);
+    });
+  }
+
   render() {
     let injection = {};
 
@@ -247,6 +259,8 @@ class AppContainer extends Component {
     // For main
     injection.fetchRecentPosts = this.fetchRecentPosts.bind(this);
     injection.fetchPopularPosts = this.fetchPopularPosts.bind(this);
+
+    injection.fetchProjectDetail = this.fetchProjectDetail.bind(this);
 
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 

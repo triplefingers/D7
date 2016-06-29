@@ -48,20 +48,20 @@ class Main extends Component {
     } else if (this.state.selected === "recent") {
       if (this.props.data.recent) {
         Contents = this.props.data.recent.map((post) => {
-          return <MainPostCard data={post} key={post.id}/>
+          return <MainPostCard data={post} key={post.id} goto={this.props.goto}/>
         });
       }
     } else if (this.state.selected === "popular") {
       if (this.props.data.popular) {
         Contents = this.props.data.popular.map((post) => {
-          return <MainPostCard data={post} key={post.id}/>
+          return <MainPostCard data={post} key={post.id} goto={this.props.goto}/>
         });
       }
     } else {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
       if (this.props.data.recommended) {
         Contents = this.props.data.recommended.map((project) => {
-          return <MainProjectCard data={project} key={project.id}/>
+          return <MainProjectCard data={project} key={project.id} goto={this.props.goto}/>
         });
       }
     }

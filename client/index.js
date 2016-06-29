@@ -58,6 +58,7 @@ import Login from "./new_component/Login";
 import Main from "./new_component/Main";
 import LeaveHistory from "./new_component/LeaveHistory";
 import SelectProject from "./new_component/SelectProject";
+import ProjectDetail from "./new_component/ProjectDetail";
 
 ReactDOM.render(
   (
@@ -68,6 +69,7 @@ ReactDOM.render(
         <Route path="/" component={Main}/>
         <Route path="/write" component={LeaveHistory}/>
         <Route path="/select" component={SelectProject}/>
+        <Route path="/project" component={ProjectDetail}/>
       </Route>
 
     </Route>
