@@ -11,6 +11,8 @@ import fetchRecentPosts from "./fetchRecentPosts";
 import fetchPopularPosts from "./fetchPopularPosts";
 import createNewProject from "./createNewProject";
 import record from "./record";
+import like from "./like";
+import report from "./report";
 
 const handler = (apiMethod)=>{
   return (req, res, next) => {
@@ -73,5 +75,7 @@ export default {
   fetchPopularPosts: fetchPopularPosts,
   fetchPostDetail: fetchPostDetail,
   createNewProject: createNewProject,
-  record: record
+  record: record,
+  like: like,
+  report: report
 };
