@@ -26,8 +26,12 @@ class MainPostCard extends Component {
     } else {
       this.setState({liked: true, likeCount: this.state.likeCount + 1});
     }
-
     /* Add send post request to server api for like */
+  }
+
+  clickUserProjectCard() {
+    this.props.fetchUserProjectDetail(this.props.data.userProjectId);
+    this.props.goto("/userproject");
   }
 
   render() {
@@ -62,7 +66,7 @@ class MainPostCard extends Component {
     }
 
     return (
-      <div style={cardStyle}>
+      <div style={cardStyle} onClick={this.clickUserProjectCard.bind(this)}>
         {/* Card Header */}
         <div>
           {/* Header Left Part */}

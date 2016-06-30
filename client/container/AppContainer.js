@@ -6,9 +6,8 @@ import $ from "jquery";
 class AppContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {list: null};
-
     window.publicIds = [];
+    this.state = {list: null, selectedMain: "recent"};
   };
 
   // Check if session exists
@@ -34,13 +33,8 @@ class AppContainer extends Component {
     });
   };
 
-  reset() {
-    var prevState = this.state;
-    var nextState = {};
-    for (let key in prevState) {
-      nextState[key] = undefined;
-    }
-    this.setState(nextState);
+  reset(key) {
+    this.setState({key: undefined});
   };
 
   calcWindowSize(whichSide) {
@@ -233,38 +227,56 @@ class AppContainer extends Component {
     });
   }
 
+  /* FETCH USERPROJECT DETAIL PAGE */
+  fetchUserProjectDetail(userProjectId) {
+    axios.get("/api/userproject", {
+      params: {
+        userProjectId : userProjectId
+      }
+    })
+    .then((res) => {
+      console.log("Userproject detail: ", res);
+      this.setState({userproject: res.data});
+    })
+    .catch((err) => {
+      console.error("Error occurred while fetching project detail: ", err);
+    });
+  }
+
   render() {
     let injection = {};
 
-    // For App
+    /* For App */
     injection.reset = this.reset.bind(this);
     injection.checkIfLogined = this.checkIfLogined.bind(this);
     injection.calcWindowSize = this.calcWindowSize.bind(this);
 
-    // For Record
+    /* For Record */
     injection.saveNewProject = this.saveNewProject.bind(this);
     injection.data = this.state;
     injection.handleChange = this.handleChange.bind(this);
     injection.goto = this.goto.bind(this);
 
-    // For Create
+    /* For Create */
     injection._save = this._save.bind(this);
     injection.fetchOngoingProjects = this.fetchOngoingProjects.bind(this);
     injection.saveDayDetail = this.saveDayDetail.bind(this);
     injection.validateAll = this.validateAll.bind(this);
 
-    // For History
+    /* For History */
     injection.fetchAllProjects = this.fetchAllProjects.bind(this);
     injection.fetchDayDetail = this.fetchDayDetail.bind(this);
 
-    // For recommendation
+    /* For recommendation */
     injection.fetchRecommendation = this.fetchRecommendation.bind(this);
 
-    // For main
+    /* For main */
     injection.fetchRecentPosts = this.fetchRecentPosts.bind(this);
     injection.fetchPopularPosts = this.fetchPopularPosts.bind(this);
 
+    /* For detail pages */
     injection.fetchProjectDetail = this.fetchProjectDetail.bind(this);
+    injection.fetchUserProjectDetail = this.fetchUserProjectDetail.bind(this);
 
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 
