@@ -57,6 +57,7 @@ import App from "./new_component/App";
 import Login from "./new_component/Login";
 import Main from "./new_component/Main";
 import LeaveHistory from "./new_component/LeaveHistory";
+import SelectProject from "./new_component/SelectProject";
 
 ReactDOM.render(
   (

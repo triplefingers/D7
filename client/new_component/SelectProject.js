@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ActionBar from "./ActionBar";
+import SelectBox from "./SelectBox";
 
 class SelectProject extends Component {
   constructor(props) {
@@ -10,20 +11,23 @@ class SelectProject extends Component {
 
   componentDidMount() {
     this.props.fetchOngoingProjects();
-    const onGoingProjects = this.props.data.list;
   }
 
   render() {
+    const onGoingProjects = this.props.data.list;
+    let projects;
 
-    const projects = onGoingProjects.map((project) => {
-      <SelectBox data={project} />
+    projects = onGoingProjects.map((project) => {
+      return <SelectBox title={this.props.data.selectedProject} handleChange={this.props.handleChange} project={project} />
     })
 
     return (
       <div>
         <div>
           <h2>Select Your Project</h2>
-          {projects}
+          <form>
+            {projects}
+          </form>
         </div>
         <div>
           <h2>Create New Project</h2>

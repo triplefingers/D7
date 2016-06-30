@@ -80,7 +80,7 @@ class AppContainer extends Component {
   };
 
   handleChange(what, event) {
-    console.log("what is ", what);
+    console.log("EVENT: ", event);
     let data = {};
     data[what] = event.target.value;
     this.setState(data);

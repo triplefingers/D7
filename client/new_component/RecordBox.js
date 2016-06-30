@@ -16,7 +16,7 @@ class RecordBox extends Component {
       <div>
         <textarea value={this.props.data.text} onChange={this.props.data.handleChange.bind(null, "text")} rows="2" placeholder="What did you do today?"/><br/>
         <button>Add Photos</button>
-        <button onClick={this.props.goto("/select")}>Post</button>
+        <button onClick={() => this.props.data.goto("/select")}>Post</button>
       </div>
     );
   }
