@@ -29,6 +29,42 @@ textarea {
     left: 0;
 }
 
+/*Hiding default input type=file button*/
+/*http://stackoverflow.com/questions/6376452/hide-the-browse-button-on-a-input-type-file*/
+.upload_form {
+    display: inline;
+    height: 30px;
+    margin: 2px;
+    overflow: hidden;
+    position: relative;
+    width: 118px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.upload_form > input[type="file"] {
+    font-size: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.upload_form > .btn-file-input {
+    background-color: #494949;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    height: 34px;
+    margin: 0 0 0 -1px;
+    padding-left: 0;
+    width: 121px;
+    cursor: pointer;
+}
+.upload_form:hover > .btn-file-input {
+    //background-color: #494949;
+}
+
+/*Calendar*/
 .Calendar {
     border-collapse: collapse;
     padding: 0;

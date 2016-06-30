@@ -9,16 +9,6 @@ class App extends Component {
     this.state = { list: null };
   }
 
-  componentDidMount() {
-    // fetch all projects
-    console.log("App Mounted");
-  }
-
-  componentWillUpdate() {
-    console.log("App rerenderd");
-    console.log("Current State: ", this.state);
-  }
-
   render() {
     const injection = {};
     Object.assign(injection, this.props);

@@ -10,6 +10,11 @@ class MainProjectCard extends Component {
   componentDidMount() {
   }
 
+  clickProjectCard() {
+    this.props.fetchProjectDetail(this.props.data.id);
+    this.props.goto("/project");
+  }
+
   render() {
     /* Project image 추가, userPhoto 제외 */
     const { title, description, doneWish, username, wishCount } = this.props.data;
@@ -20,7 +25,7 @@ class MainProjectCard extends Component {
     }
 
     return (
-      <div style={cardStyle}>
+      <div style={cardStyle} onClick={this.clickProjectCard.bind(this)}>
         {/* Card Header */}
         <div>
           <img src="https://www.colourbox.com/preview/1744283-set-of-paintbrushes-and-color-paint-on-canvas-background.jpg" width="400px" height="200px"/>

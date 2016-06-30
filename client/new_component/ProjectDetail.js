@@ -1,39 +1,36 @@
 import React, {Component} from "react";
 
-import
+import ProjectHeader from "./ProjectHeader";
+import MainPostCard from "./MainPostCard";
 
 class ProjectDetail extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
     };
   }
 
   componentDidMount() {
-    this.appstate.popular=[1,2,3,4,5,6,7,8];
   }
 
-
-
   render() {
-    let Contents;
-    this.props.appstate.wishlist.map((post) => {
-        <DetailPostCard data={post}/>
-    });
+    const { project } = this.props.data;
 
-
-    // some code about RecordBox rendering
-
-    return (
-      <div>
-        <Tabbar />
-        {/* RecordBox don't appear on Recommended Project page */}
-        <RecordBox />
-        {Contents}
-
-      </div>
-    );
+    if(project){
+      let Contents;
+      console.log(project);
+      Contents = project.posts.map((post)=>{
+        return <MainPostCard data={post} key={post.id}/>
+      });
+      return (
+        <div>
+          <ProjectHeader data={project}/>
+          {Contents}
+        </div>
+      );
+    } else {
+      return <div>Loading....</div>
+    }
   }
 }
 

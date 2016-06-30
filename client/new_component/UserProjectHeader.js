@@ -18,7 +18,7 @@ class UserProjectHeader extends Component {
           <p>Project description Project description Project description</p>
         </div>
         <div>
-          <img src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" alt="user profile"/>
+          <img src="http://library.unn.edu.ng/wp-content/uploads/sites/42/2016/03/prifile-pic.png" alt="user profile" width="20px" height="20px"/>
           <span>User Name</span>
         </div>
         <div>

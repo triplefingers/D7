@@ -11,15 +11,18 @@ class UserProjectDetail extends Component {
   }
 
   componentDidMount() {
+    console.log("UserProjectDetail Mounted ", this.props.data);
   }
 
   render() {
-    let Contents;
-    Contents = this.props.appstate.up.map((post) => {
-        <DetailPostCard data={post}/>
-    });
+    let Contents=(<div>Contents</div>);
 
-    // some code about RecordBox rendering
+    console.log(this.props.data);
+
+    // Contents = this.props.data.useproject.map((post) => {
+    //     <DetailPostCard data={post}/>
+    // });
+
 
     return (
       <div>
@@ -30,4 +33,4 @@ class UserProjectDetail extends Component {
   }
 }
 
-export default UserProjectHeader;
+export default UserProjectDetail;
