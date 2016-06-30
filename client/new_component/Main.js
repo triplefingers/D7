@@ -16,7 +16,6 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    console.log("this.props._save");
     if(!this.props.data.selectedMain){
       this.props._save({selectedMain: "recent"});
     }
@@ -26,6 +25,8 @@ class Main extends Component {
     this.props.fetchPopularPosts();
     this.props.fetchRecommendation();
     /* Reset the AppContainer's state */
+
+    console.log("Main Mounted ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
   }
 
   // some code about tapping tab and according rendering
