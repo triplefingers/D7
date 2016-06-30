@@ -3,8 +3,8 @@ import dummy from "../db/temp";
 import fetchUser from "./fetchUser";
 import fetchAllProjects from "./fetchAllProjects";
 import fetchOngoingProjects from "./fetchOngoingProjects";
-// import fetchRecommendedProjects from "./fetchRecommendedProjects";
-// import fetchWishProjects from "./fetchWishProjects";
+import fetchRecommendedProjects from "./fetchRecommendedProjects";
+import fetchWishProjects from "./fetchWishProjects";
 import fetchProjectDetail from "./fetchProjectDetail";
 import fetchUserProjectDetail from "./fetchUserProjectDetail";
 import fetchRecentPosts from "./fetchRecentPosts";
@@ -14,6 +14,7 @@ import record from "./record";
 import like from "./like";
 import report from "./report";
 import wish from "./wish";
+import user from "./user";
 
 const handler = (apiMethod)=>{
   return (req, res, next) => {
@@ -47,16 +48,16 @@ const handler = (apiMethod)=>{
 //   var data = dummy.all;
 //   res.status(200).send(data);
 // }
-var fetchRecommendedProjects = (user, q, res) => {
-  var data = {};
-  data = dummy.recommended;
-  res.status(200).send(data);
-};
-var fetchWishProjects = (user, q, res) => {
-  var data = {};
-  data = dummy.wish;
-  res.status(200).send(data);
-};
+// var fetchRecommendedProjects = (user, q, res) => {
+//   var data = {};
+//   data = dummy.recommended;
+//   res.status(200).send(data);
+// };
+// var fetchWishProjects = (user, q, res) => {
+//   var data = {};
+//   data = dummy.wish;
+//   res.status(200).send(data);
+// };
 // var fetchProjectDetail = (user, q, res) => {
 //   var data = {};
 //   data = dummy.project;
@@ -79,5 +80,6 @@ export default {
   record: record,
   like: like,
   report: report,
-  wish: wish
+  wish: wish,
+  user: user
 };
