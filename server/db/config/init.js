@@ -59,7 +59,7 @@ const initDB = () => {
   /* Transaction model data 생성 */
   InitialData.TransactionData.forEach((item) => {
     new model.Transaction(item).save()
-    .then((model) => console.log("Created Transaction model", model.attributes));
+    .then((model) => console.log("Created Transaction model"));
   });
 };
 
