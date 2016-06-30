@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 import ProjectHeader from "./ProjectHeader";
-import DetailPostCard from "./DetailPostCard";
+import MainPostCard from "./MainPostCard";
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class ProjectDetail extends Component {
       let Contents;
       console.log(project);
       Contents = project.posts.map((post)=>{
-        return <DetailPostCard data={post} key={post.id}/>
+        return <MainPostCard data={post} key={post.id}/>
       });
       return (
         <div>
