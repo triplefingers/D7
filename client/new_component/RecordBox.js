@@ -8,15 +8,15 @@ class RecordBox extends Component {
   }
 
   componentDidMount() {
-
+    console.log("RecordBox mounted");
   }
 
   render() {
     return (
       <div>
-        <textarea rows="2" placeholder="What did you do today?"/><br/>
+        <textarea value={this.props.data.text} onChange={this.props.data.handleChange.bind(null, "text")} rows="2" placeholder="What did you do today?"/><br/>
         <button>Add Photos</button>
-        <button>Post</button>
+        <button onClick={this.props.goto("/select")}>Post</button>
       </div>
     );
   }

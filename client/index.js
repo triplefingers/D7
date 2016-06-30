@@ -66,6 +66,7 @@ ReactDOM.render(
       <Route component={App}>
         <Route path="/" component={Main}/>
         <Route path="/write" component={LeaveHistory}/>
+        <Route path="/select" component={SelectProject}/>
       </Route>
 
     </Route>

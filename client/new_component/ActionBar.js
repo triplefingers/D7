@@ -21,7 +21,7 @@ class ActionBar extends Component {
     if (!this.props.nextUrl) {
       rightButton = <button>Next</button>
     } else {
-      rightButton = <button>Save</button>
+      rightButton = <button onClick={() => {this.props.data.}}>Save</button>
     }
 
     return (
