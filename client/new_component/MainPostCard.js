@@ -61,8 +61,6 @@ class MainPostCard extends Component {
       );
     }
 
-
-
     return (
       <div style={cardStyle}>
         {/* Card Header */}

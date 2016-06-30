@@ -61,7 +61,8 @@ class Main extends Component {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
       if (this.props.data.recommended) {
         Contents = this.props.data.recommended.map((project) => {
-          return <MainProjectCard data={project} key={project.id} goto={this.props.goto}/>
+          console.log(project);
+          return <MainProjectCard data={project} key={project.id} goto={this.props.goto} fetchProjectDetail={this.props.fetchProjectDetail}/>
         });
       }
     }

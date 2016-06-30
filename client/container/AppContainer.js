@@ -217,9 +217,13 @@ class AppContainer extends Component {
     });
   }
 
-  /* FETCH POPULAR POSTS IN MAIN PAGE */
-  fetchProjectDetail() {
-    axios.get("/api/project")
+  /* FETCH PROJECT DETAIL PAGE */
+  fetchProjectDetail(projectId) {
+    axios.get("/api/project", {
+      params: {
+        projectId : projectId
+      }
+    })
     .then((res) => {
       console.log("Project detail: ", res);
       this.setState({project: res.data});

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
 import ProjectHeader from "./ProjectHeader";
+import DetailPostCard from "./DetailPostCard";
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -10,21 +11,26 @@ class ProjectDetail extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchProjectDetail();
   }
 
   render() {
-    let Contents;
-    if(this.props.data.project){
-      console.log(this.props.data.project);
-    }
+    const { project } = this.props.data;
 
-    return (
-      <div>
-        <ProjectHeader />
-        Project Contents!
-      </div>
-    );
+    if(project){
+      let Contents;
+      console.log(project);
+      Contents = project.posts.map((post)=>{
+        return <DetailPostCard data={post} key={post.id}/>
+      });
+      return (
+        <div>
+          <ProjectHeader data={project}/>
+          {Contents}
+        </div>
+      );
+    } else {
+      return <div>Loading....</div>
+    }
   }
 }
 
