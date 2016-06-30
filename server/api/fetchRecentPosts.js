@@ -25,6 +25,7 @@ const fetchRecentPosts = (user, q, res)=>{
   ]})
   .then((posts)=>{
     posts = posts.toJSON();
+    console.log("posts in recent tab is ", posts);
     const postsPromiseArray = [];
 
     posts.forEach((post) => {

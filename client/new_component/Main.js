@@ -72,7 +72,7 @@ class Main extends Component {
       <div>
         <Tabbar switchContents={this.switchContents.bind(this)} />
         {/* RecordBox don't appear on Recommended Project page */}
-        <RecordBox />
+        <RecordBox data={this.props} handleChange={this.props.handleChange}/>
         {Contents}
       </div>
     );
