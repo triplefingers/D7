@@ -17,9 +17,11 @@ class SelectProject extends Component {
     const onGoingProjects = this.props.data.onGoing;
     let projects;
 
-    projects = onGoingProjects.map((project) => {
-      return <SelectBox _save={this.props._save} project={project} />
-    })
+    if (onGoingProjects) {
+      projects = onGoingProjects.map((project) => {
+        return <SelectBox _save={this.props._save} project={project} />
+      })
+    }
 
     return (
       <div>
