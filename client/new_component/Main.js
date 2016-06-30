@@ -16,14 +16,12 @@ class Main extends Component {
   }
 
   componentDidMount() {
+
+    /* Promise로 순서 적용 */
+    this.props.fetchRecentPosts();
     if(!this.props.data.selectedMain){
       this.props._save({selectedMain: "recent"});
     }
-    this.props.reset("recent");
-    /* Promise로 순서 적용 */
-    this.props.fetchRecentPosts();
-    this.props.fetchPopularPosts();
-    this.props.fetchRecommendation();
     /* Reset the AppContainer's state */
 
     console.log("Main Mounted ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
@@ -36,12 +34,15 @@ class Main extends Component {
       this.props.fetchRecentPosts();
     } else if (menu === "popular") {
       this.props._save({selectedMain: "popular"});
+      this.props.fetchPopularPosts();
     } else {
       this.props._save({selectedMain: "suggestion"});
+      this.props.fetchRecommendation();
     }
   }
 
   render() {
+    console.log("Rerender main")
     let Contents;
 
     if (!this.props.data.selectedMain){

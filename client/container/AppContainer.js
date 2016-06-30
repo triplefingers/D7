@@ -33,8 +33,21 @@ class AppContainer extends Component {
     });
   };
 
-  reset(key) {
-    this.setState({key: undefined});
+  reset(keys) {
+    if(!keys){
+      const prevState = this.state;
+      const nextState = {};
+      for (let key in prevState) {
+        nextState[key] = undefined;
+      }
+      this.setState(nextState);
+    } else {
+      const nextState = {};
+      for(let i=0; i<keys.length; i++) {
+        nextState[keys[i]] = undefined;
+      }
+    this.setState(nextState);
+    }
   };
 
   calcWindowSize(whichSide) {
@@ -191,7 +204,7 @@ class AppContainer extends Component {
   fetchRecentPosts() {
     axios.get("/api/posts/recent")
     .then((res) => {
-      console.log("Recent Posts: ", res);
+      // console.log("Recent Posts: ", res);
       this.setState({recent: res.data});
     })
     .catch((err) => {
@@ -203,7 +216,7 @@ class AppContainer extends Component {
   fetchPopularPosts() {
     axios.get("/api/posts/popular")
     .then((res) => {
-      console.log("Popular Posts: ", res);
+      // console.log("Popular Posts: ", res);
       this.setState({popular: res.data});
     })
     .catch((err) => {
@@ -219,7 +232,7 @@ class AppContainer extends Component {
       }
     })
     .then((res) => {
-      console.log("Project detail: ", res);
+      // console.log("Project detail: ", res);
       this.setState({project: res.data});
     })
     .catch((err) => {
@@ -235,7 +248,7 @@ class AppContainer extends Component {
       }
     })
     .then((res) => {
-      console.log("Userproject detail: ", res);
+      // console.log("Userproject detail: ", res);
       this.setState({userproject: res.data});
     })
     .catch((err) => {
