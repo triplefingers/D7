@@ -14,11 +14,11 @@ class SelectProject extends Component {
   }
 
   render() {
-    const onGoingProjects = this.props.data.list;
+    const onGoingProjects = this.props.data.onGoing;
     let projects;
 
     projects = onGoingProjects.map((project) => {
-      return <SelectBox title={this.props.data.selectedProject} handleChange={this.props.handleChange} project={project} />
+      return <SelectBox _save={this.props._save} project={project} />
     })
 
     return (
@@ -33,7 +33,7 @@ class SelectProject extends Component {
           <h2>Create New Project</h2>
           <button>+</button>
         </div>
-        <ActionBar />
+        <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data}/>
       </div>
 
     );

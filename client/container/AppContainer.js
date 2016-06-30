@@ -7,6 +7,8 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {list: null};
+
+    window.publicIds = [];
   };
 
   // Check if session exists
@@ -112,7 +114,7 @@ class AppContainer extends Component {
       }
     })
     .then((res) => {
-      this.setState({list: res.data});
+      this.setState({onGoing: res.data});
     });
   };
 
@@ -133,7 +135,7 @@ class AppContainer extends Component {
     })
     .then((res) => {
       console.log("saveDayDetail success: ", res);
-      this.goto("/record/complete");
+      this.goto("/");
     })
     .catch((err) => {
       console.error("Error occured while saving DayDetail");
