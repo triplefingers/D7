@@ -48,6 +48,7 @@ textarea {
     right: 0;
     opacity: 0;
     cursor: pointer;
+    height: 20px;
 }
 .upload_form > .btn-file-input {
     background-color: #494949;
