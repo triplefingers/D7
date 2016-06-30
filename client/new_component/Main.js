@@ -32,6 +32,7 @@ class Main extends Component {
   switchContents(menu) {
     if (menu === "recent") {
       this.props._save({selectedMain: "recent"});
+      this.props.fetchRecentPosts();
     } else if (menu === "popular") {
       this.props._save({selectedMain: "popular"});
     } else {
@@ -46,6 +47,7 @@ class Main extends Component {
       return(<div>Loading...</div>);
     } else if (this.props.data.selectedMain === "recent") {
       if (this.props.data.recent) {
+        console.log("Recent ",this.props.data.recent);
         Contents = this.props.data.recent.map((post) => {
           return <MainPostCard data={post} key={post.id} goto={this.props.goto} fetchUserProjectDetail={this.props.fetchUserProjectDetail}/>
         });
