@@ -52,16 +52,17 @@ class MainPostCard extends Component {
     const cardStyle = {
       backgroundColor: "white",
       margin: "10px 0",
+      zIndex: "-10"
     };
 
     let likeButton;
     if(this.state.liked){
       likeButton = (
-        <button onClick={this.toggleLike.bind(this)}>Like clicked</button>
+        <button style={{zIndex: "10"}} onClick={this.toggleLike.bind(this)}>Like clicked</button>
       );
     } else {
       likeButton = (
-        <button onClick={this.toggleLike.bind(this)}>Like not clicked</button>
+        <button style={{zIndex: "10"}} onClick={this.toggleLike.bind(this)}>Like not clicked</button>
       );
     }
 

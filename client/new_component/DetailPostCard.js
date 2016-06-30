@@ -25,8 +25,8 @@ class DetailPostCard extends Component {
   }
 
   render() {
-    console.log(this.props.data);
-    const { createdAt, day, doneLike, doneReport, likeCount, projectTitle, projectDescription, publicIds, text, userId } = this.props.data;
+    console.log("DetailPostCard", this.props.data);
+    const { createdAt, day, likeCount, doneLike, doneReport, publicIds, text } = this.props.data;
 
     const imageHeight = 200;
     const imageWidth = 200;
@@ -95,6 +95,7 @@ class DetailPostCard extends Component {
         </div>
       </div>
     );
+    return <div>Card</div>
   }
 }
 
