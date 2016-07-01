@@ -1,4 +1,10 @@
-import React, {Component} from "react";
+
+
+
+
+
+
+  import React, {Component} from "react";
 
 class SideBar extends Component {
   constructor(props) {
@@ -22,7 +28,9 @@ class SideBar extends Component {
       width: "70%",
       height: "100%",
       position: "fixed",
-      background: "skyblue"
+      background: "skyblue",
+      transition: "all 0.5s",
+      zIndex: "10"
       // ,left: "0%"
     }
 
@@ -50,7 +58,7 @@ class SideBar extends Component {
     }
 
     return (
-      <div style={sideBarStyle}>
+      <div style={sideBarStyle} id="sidebar">
         <div>
           <p>Photo</p>
           <h1>Dongwoo Kim</h1>
