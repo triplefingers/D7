@@ -16,17 +16,32 @@ class DetailPostCard extends Component {
     }
   }
 
-  toggleLike() {
+  toggleLike(postId, e) {
+    e.stopPropagation();
     if(this.state.liked){
-      this.setState({liked: false, likeCount: this.state.likeCount - 1});
+      axios.post("/api/like", {
+        postId: postId
+      }).then((res) => {
+        this.setState({
+          liked: false,
+          likeCount: res.data.likeCount
+        });
+      });
     } else {
-      this.setState({liked: true, likeCount: this.state.likeCount + 1});
+      axios.post("/api/like", {
+        postId: postId
+      }).then((res) => {
+        this.setState({
+          liked: true,
+          likeCount: res.data.likeCount
+        });
+      });
     }
   }
 
   render() {
-    console.log(this.props.data);
-    const { createdAt, day, doneLike, doneReport, likeCount, projectTitle, projectDescription, publicIds, text, userId } = this.props.data;
+    console.log("DetailPostCard", this.props.data);
+    const { createdAt, day, likeCount, doneLike, doneReport, publicIds, text } = this.props.data;
 
     const imageHeight = 200;
     const imageWidth = 200;
@@ -95,6 +110,7 @@ class DetailPostCard extends Component {
         </div>
       </div>
     );
+    return <div>Card</div>
   }
 }
 

@@ -11,25 +11,28 @@ class UserProjectDetail extends Component {
   }
 
   componentDidMount() {
-    console.log("UserProjectDetail Mounted ", this.props.data);
   }
 
   render() {
-    let Contents=(<div>Contents</div>);
+    /* status > waiting, ongoing 추가 */
+    const { userproject } = this.props.data;
 
-    console.log(this.props.data);
+    console.log("UserProjectDetail Rendered ", this.props.data.userproject);
 
-    // Contents = this.props.data.useproject.map((post) => {
-    //     <DetailPostCard data={post}/>
-    // });
-
-
-    return (
-      <div>
-        {UserProjectHeader}
-        {Contents}
-      </div>
-    );
+    let Contents;
+    if(userproject){
+      Contents = userproject.posts.map((post) => {
+          return <DetailPostCard data={post} key={post.id}/>
+      });
+      return (
+        <div>
+          <UserProjectHeader data={userproject}/>
+          {Contents}
+        </div>
+      );
+    } else {
+      return (<div>Loading</div>);
+    }
   }
 }
 

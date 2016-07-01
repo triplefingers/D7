@@ -16,7 +16,6 @@ class Main extends Component {
   }
 
   componentDidMount() {
-
     /* Promise로 순서 적용 */
     this.props.fetchRecentPosts();
     if(!this.props.data.selectedMain){

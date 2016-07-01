@@ -20,13 +20,27 @@ class MainPostCard extends Component {
     }
   }
 
-  toggleLike() {
+  toggleLike(postId, e) {
+    e.stopPropagation();
     if(this.state.liked){
-      this.setState({liked: false, likeCount: this.state.likeCount - 1});
+      axios.post("/api/like", {
+        postId: postId
+      }).then((res) => {
+        this.setState({
+          liked: false,
+          likeCount: res.data.likeCount
+        });
+      });
     } else {
-      this.setState({liked: true, likeCount: this.state.likeCount + 1});
+      axios.post("/api/like", {
+        postId: postId
+      }).then((res) => {
+        this.setState({
+          liked: true,
+          likeCount: res.data.likeCount
+        });
+      });
     }
-    /* Add send post request to server api for like */
   }
 
   clickUserProjectCard() {
@@ -36,7 +50,7 @@ class MainPostCard extends Component {
 
   render() {
 
-    const { createdAt, day, doneLike, doneReport, likeCount, projectTitle, projectDescription, publicIds, text, userPhoto, userProjectId, userId, username } = this.props.data;
+    const { id, createdAt, day, doneLike, doneReport, likeCount, projectTitle, projectDescription, publicIds, text, userPhoto, userProjectId, userId, username } = this.props.data;
 
     const imageHeight = 200;
     const imageWidth = 200;
@@ -57,11 +71,11 @@ class MainPostCard extends Component {
     let likeButton;
     if(this.state.liked){
       likeButton = (
-        <button onClick={this.toggleLike.bind(this)}>Like clicked</button>
+        <button style={{zIndex: "10"}} onClick={this.toggleLike.bind(this, id)}>Like clicked</button>
       );
     } else {
       likeButton = (
-        <button onClick={this.toggleLike.bind(this)}>Like not clicked</button>
+        <button style={{zIndex: "10"}} onClick={this.toggleLike.bind(this, id)}>Like not clicked</button>
       );
     }
 
