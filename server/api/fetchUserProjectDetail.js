@@ -79,11 +79,14 @@ const fetchUserProjectDetail = (user, q, res)=>{
     /* transaction : amount, currency, paymentDue */
     /* only if session's user.id === userProject.user.id */
     if (userId === result.userId) {
+      result.others = false;
       result.transaction = {
         amount: userProject.transaction.amount,
         currency: userProject.transaction.currency,
         paymentDue: userProject.transaction.paymentDue
       };
+    } else {
+      result.others = true;
     }
   })
   .then(() => {
