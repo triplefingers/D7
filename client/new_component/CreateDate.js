@@ -70,6 +70,8 @@ class CreateDate extends Component {
 
     if (window.publicIds) {
       var publicIds = window.publicIds;
+    } else {
+      publicIds = [];
     }
 
 
@@ -83,7 +85,7 @@ class CreateDate extends Component {
         <div className="ActionBar">
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
-            this.props.saveDayDetail(1, 1, 1, text, publicIds, newProject);
+            this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
           }}>Save</button>
         </div>
       </div>

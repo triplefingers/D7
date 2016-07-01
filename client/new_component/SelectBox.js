@@ -22,10 +22,9 @@ class SelectBox extends Component {
 
     return (
       <div>
-        <input type="radio" name={this.props.project.title} value={this.props.project.title} onChange={this.props._save.bind(null, selectedProject)} />
-        <label for={this.props.project.title}> {this.props.project.title}</label>
+        <input type="radio" id={this.props.project.id} name="project" value={this.props.project.title} onChange={this.props._save.bind(null, selectedProject)} />
+        <label for={this.props.project.id}> {this.props.project.title}</label>
       </div>
-
     );
   }
 }
