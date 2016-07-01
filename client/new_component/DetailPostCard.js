@@ -1,47 +1,15 @@
 import React, {Component} from "react";
+import LikeSet from "./LikeSet";
 
 class DetailPostCard extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
-  }
-
-  componentDidMount() {
-    const { doneLike, likeCount } = this.props.data;
-    if(doneLike){
-      this.setState({liked: true, likeCount: likeCount});
-    } else {
-      this.setState({likeCount: likeCount});
-    }
-  }
-
-  toggleLike(postId, e) {
-    e.stopPropagation();
-    if(this.state.liked){
-      axios.post("/api/like", {
-        postId: postId
-      }).then((res) => {
-        this.setState({
-          liked: false,
-          likeCount: res.data.likeCount
-        });
-      });
-    } else {
-      axios.post("/api/like", {
-        postId: postId
-      }).then((res) => {
-        this.setState({
-          liked: true,
-          likeCount: res.data.likeCount
-        });
-      });
-    }
   }
 
   render() {
     console.log("DetailPostCard", this.props.data);
-    const { createdAt, day, likeCount, doneLike, doneReport, publicIds, text } = this.props.data;
+    const { id, createdAt, day, likeCount, doneLike, doneReport, publicIds, text } = this.props.data;
 
     const imageHeight = 200;
     const imageWidth = 200;
@@ -58,17 +26,6 @@ class DetailPostCard extends Component {
       backgroundColor: "white",
       margin: "10px 0",
     };
-
-    let likeButton;
-    if(this.state.liked){
-      likeButton = (
-        <button onClick={this.toggleLike.bind(this)}>Like clicked</button>
-      );
-    } else {
-      likeButton = (
-        <button onClick={this.toggleLike.bind(this)}>Like not clicked</button>
-      );
-    }
 
     return (
       <div style={cardStyle}>
@@ -99,10 +56,7 @@ class DetailPostCard extends Component {
         {/* Card Footer */}
         <div>
           {/* Footer Right Part */}
-          <div>
-            {likeButton}
-            <span>{this.state.likeCount}</span>
-          </div>
+          <LikeSet id={id} doneLike={doneLike} likeCount={likeCount}/>
           {/* Footer Left Part */}
           <div>
             <button>...</button>
@@ -110,7 +64,6 @@ class DetailPostCard extends Component {
         </div>
       </div>
     );
-    return <div>Card</div>
   }
 }
 

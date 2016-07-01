@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import WishSet from "./WishSet";
 
 class ProjectHeader extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class ProjectHeader extends Component {
   render() {
     console.log(this.props);
 
-    const { projectTitle, projectDescription, doneWish, userPhoto, username, wishCount } = this.props.data;
+    const { projectId, projectTitle, projectDescription, doneWish, userPhoto, username, wishCount } = this.props.data;
 
     return (
       <div>
@@ -28,10 +29,7 @@ class ProjectHeader extends Component {
         </div>
         {/* Footer */}
         <div>
-          <div>
-            <button>Pin</button>
-            <span>{wishCount}</span>
-          </div>
+          <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} />
           <div>
             <img src={userPhoto} width="20px" height="20px"/>
             <span>{username}</span>

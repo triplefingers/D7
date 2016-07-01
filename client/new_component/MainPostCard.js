@@ -1,46 +1,10 @@
 import React, {Component} from "react";
-import axios from "axios";
+import LikeSet from "./LikeSet";
 
 class MainPostCard extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      liked: false,
-      likeCount: 0
-    };
-  }
-
-  componentDidMount() {
-    const { doneLike, likeCount } = this.props.data;
-    if(doneLike){
-      this.setState({liked: true, likeCount: likeCount});
-    } else {
-      this.setState({likeCount: likeCount});
-    }
-  }
-
-  toggleLike(postId, e) {
-    e.stopPropagation();
-    if(this.state.liked){
-      axios.post("/api/like", {
-        postId: postId
-      }).then((res) => {
-        this.setState({
-          liked: false,
-          likeCount: res.data.likeCount
-        });
-      });
-    } else {
-      axios.post("/api/like", {
-        postId: postId
-      }).then((res) => {
-        this.setState({
-          liked: true,
-          likeCount: res.data.likeCount
-        });
-      });
-    }
+    this.state = {};
   }
 
   clickUserProjectCard() {
@@ -50,7 +14,7 @@ class MainPostCard extends Component {
 
   render() {
 
-    const { id, createdAt, day, doneLike, doneReport, likeCount, projectTitle, projectDescription, publicIds, text, userPhoto, userProjectId, userId, username } = this.props.data;
+    const { id, doneLike, likeCount, createdAt, day, doneReport, projectTitle, projectDescription, publicIds, text, userPhoto, userProjectId, userId, username } = this.props.data;
 
     const imageHeight = 200;
     const imageWidth = 200;
@@ -67,17 +31,6 @@ class MainPostCard extends Component {
       backgroundColor: "white",
       margin: "10px 0",
     };
-
-    let likeButton;
-    if(this.state.liked){
-      likeButton = (
-        <button style={{zIndex: "10"}} onClick={this.toggleLike.bind(this, id)}>Like clicked</button>
-      );
-    } else {
-      likeButton = (
-        <button style={{zIndex: "10"}} onClick={this.toggleLike.bind(this, id)}>Like not clicked</button>
-      );
-    }
 
     return (
       <div style={cardStyle} onClick={this.clickUserProjectCard.bind(this)}>
@@ -112,10 +65,7 @@ class MainPostCard extends Component {
         {/* Card Footer */}
         <div>
           {/* Footer Left Part */}
-          <div>
-            {likeButton}
-            <span>{this.state.likeCount}</span>
-          </div>
+          <LikeSet id={id} doneLike={doneLike} likeCount={likeCount} />
           {/* Footer Right Part */}
           <div>
             <button>...</button>

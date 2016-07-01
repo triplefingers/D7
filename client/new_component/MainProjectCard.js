@@ -1,13 +1,11 @@
 import React, {Component} from "react";
+import WishSet from "./WishSet";
 
 class MainProjectCard extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
-  }
-
-  componentDidMount() {
+    this.state = {
+    };
   }
 
   clickProjectCard() {
@@ -17,7 +15,7 @@ class MainProjectCard extends Component {
 
   render() {
     /* Project image 추가, userPhoto 제외 */
-    const { title, description, doneWish, username, wishCount } = this.props.data;
+    const { id, title, description, doneWish, wishCount, username } = this.props.data;
 
     const cardStyle = {
       backgroundColor: "white",
@@ -40,10 +38,7 @@ class MainProjectCard extends Component {
         {/* Card Footer */}
         <div>
           {/* Footer Left Part */}
-          <div>
-            <button>Pin</button>
-            <span>{wishCount}</span>
-          </div>
+          <WishSet id={id} doneWish={doneWish} wishCount={wishCount} />
           {/* Footer Right Part */}
           <div>
             <span>by</span>
