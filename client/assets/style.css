@@ -24,9 +24,9 @@ textarea {
 .sidebar {
     left: -100%;
     width: 100%;
-    /*position: fixed;*/
     background: sky-blue;
-    left: 0;
+    transition: all 1s;
+    z-index: 10;
 }
 
 /*Hiding default input type=file button*/

@@ -10,6 +10,10 @@ class Navigation extends Component {
   componentDidMount() {
   }
 
+  toggleSidebar() {
+    $('#sidebar').css("left", "0%");
+  }
+
   render() {
 
     const buttonStyle = {
@@ -21,10 +25,12 @@ class Navigation extends Component {
       background: "#BF8C6F"
     }
 
+
+
     return (
       <div>
         <div style={navigationStyle}>
-          <button style={buttonStyle} /*onClick={() => this.props.data.toggleSideBar()}*/>side</button>
+          <button style={buttonStyle} onClick={() => this.toggleSidebar()}>side</button>
           <button style={buttonStyle} onClick={() => this.props.data.goto("/")}>D7</button>
           <button style={buttonStyle} onClick={() => this.props.data.goto("/new")}>new</button>
         </div>

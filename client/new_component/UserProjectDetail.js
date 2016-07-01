@@ -27,7 +27,7 @@ class UserProjectDetail extends Component {
       });
       return (
         <div>
-          <UserProjectHeader data={userproject}/>
+          <UserProjectHeader data={userproject} fetchProjectDetail={this.props.fetchProjectDetail} goto={this.props.goto}/>
           {Contents}
         </div>
       );

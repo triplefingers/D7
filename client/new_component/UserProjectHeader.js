@@ -7,10 +7,16 @@ class UserProjectHeader extends Component {
     this.state = {};
   }
 
+  handleProjectClick(){
+      this.props.fetchProjectDetail(this.props.data.projectId);
+      this.props.goto("/project");
+    }
+
+
   render() {
     console.log("USERPROEJCT HEADER", this.props.data);
 
-    const { projectId, projectTitle, projectDescription, wishCount, doneWish, startAt, endAt, userPhoto, username, status, others } = this.props.data;
+    const { projectId, projectTitle, projectDescription, wishCount, doneWish, startAt, endAt, userPhoto, username, status, others, onDay } = this.props.data;
     const { amount, currency, paymentDue } = this.props.data.transaction;
 
     let projectStatus;
@@ -43,7 +49,7 @@ class UserProjectHeader extends Component {
         </div>
         <div>
           <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} />
-          <button>-></button>
+          <button onClick={this.handleProjectClick.bind(this)}>-></button>
         </div>
         <div>
           {projectStatus}
