@@ -13,6 +13,9 @@ class Main extends Component {
     super(props);
     this.state = {
     };
+  }
+
+  componentWillMount(){
     this.props._save({
       leaveHistoryClicked: false,
       creatingProjectFirst: false,
@@ -21,6 +24,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    this.props.reset(["text", "selectedProject", "title", "description", "startAt"]);
     const { selectedMain } = this.props.data;
     /* Promise로 순서 적용 */
     if(!selectedMain){
