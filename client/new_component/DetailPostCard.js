@@ -16,11 +16,26 @@ class DetailPostCard extends Component {
     }
   }
 
-  toggleLike() {
+  toggleLike(postId, e) {
+    e.stopPropagation();
     if(this.state.liked){
-      this.setState({liked: false, likeCount: this.state.likeCount - 1});
+      axios.post("/api/like", {
+        postId: postId
+      }).then((res) => {
+        this.setState({
+          liked: false,
+          likeCount: res.data.likeCount
+        });
+      });
     } else {
-      this.setState({liked: true, likeCount: this.state.likeCount + 1});
+      axios.post("/api/like", {
+        postId: postId
+      }).then((res) => {
+        this.setState({
+          liked: true,
+          likeCount: res.data.likeCount
+        });
+      });
     }
   }
 
