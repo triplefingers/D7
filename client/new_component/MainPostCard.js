@@ -4,12 +4,7 @@ import LikeSet from "./LikeSet";
 class MainPostCard extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-    };
-  }
-
-  componentDidMount() {
+    this.state = {};
   }
 
   clickUserProjectCard() {

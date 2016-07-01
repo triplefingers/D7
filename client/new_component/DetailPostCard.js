@@ -1,43 +1,10 @@
 import React, {Component} from "react";
-import axios from "axios";
+import LikeSet from "./LikeSet";
 
 class DetailPostCard extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
-  }
-
-  componentDidMount() {
-    const { doneLike, likeCount } = this.props.data;
-    if(doneLike){
-      this.setState({liked: true, likeCount: likeCount});
-    } else {
-      this.setState({liked:false, likeCount: likeCount});
-    }
-  }
-
-  toggleLike(postId, e) {
-    e.stopPropagation();
-    if(this.state.liked){
-      axios.post("/api/like", {
-        postId: postId
-      }).then((res) => {
-        this.setState({
-          liked: false,
-          likeCount: res.data.likeCount
-        });
-      });
-    } else {
-      axios.post("/api/like", {
-        postId: postId
-      }).then((res) => {
-        this.setState({
-          liked: true,
-          likeCount: res.data.likeCount
-        });
-      });
-    }
   }
 
   render() {
@@ -59,17 +26,6 @@ class DetailPostCard extends Component {
       backgroundColor: "white",
       margin: "10px 0",
     };
-
-    let likeButton;
-    if(this.state.liked){
-      likeButton = (
-        <button onClick={this.toggleLike.bind(this, id)}>Like clicked</button>
-      );
-    } else {
-      likeButton = (
-        <button onClick={this.toggleLike.bind(this, id)}>Like not clicked</button>
-      );
-    }
 
     return (
       <div style={cardStyle}>
@@ -100,10 +56,7 @@ class DetailPostCard extends Component {
         {/* Card Footer */}
         <div>
           {/* Footer Right Part */}
-          <div>
-            {likeButton}
-            <span>{this.state.likeCount}</span>
-          </div>
+          <LikeSet id={id} doneLike={doneLike} likeCount={likeCount}/>
           {/* Footer Left Part */}
           <div>
             <button>...</button>
@@ -111,7 +64,6 @@ class DetailPostCard extends Component {
         </div>
       </div>
     );
-    return <div>Card</div>
   }
 }
 
