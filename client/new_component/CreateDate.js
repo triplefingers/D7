@@ -62,6 +62,8 @@ class CreateDate extends Component {
       const data = this.props.data.selectedProject;
       var title = data.projectTitle;
       var description = data.projectDescription;
+      var projectId = data.projectId;
+      console.log("제대로 들어왔니? ", data);
     }
 
     const today = new Date().toJSON().slice(0,10);
@@ -100,8 +102,7 @@ class CreateDate extends Component {
             } else if (!this.props.data.creatingProjectFirst) {
               console.log("CreatingNEwProject is false");
               this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
-            }
-            else {
+            } else {
               console.log("CreatingNEwProject is true");
               this.props.saveNewProject(undefined, title, description, startAt);
             }
