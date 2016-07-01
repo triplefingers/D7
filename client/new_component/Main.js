@@ -15,7 +15,8 @@ class Main extends Component {
     };
     this.props._save({
       leaveHistoryClicked: false,
-      creatingProjectFirst: false
+      creatingProjectFirst: false,
+
     });
   }
 

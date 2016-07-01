@@ -59,7 +59,7 @@ class LeaveHistory extends Component {
         <form className="upload_form"></form>
         <div className="preview"></div>
         <div className="progress_bar" style={progress_bar_style}></div>
-
+        <br /><br /><br /><br /><br /><br />
         <textarea value = {this.props.data.text} onChange={this.props.handleChange.bind(null,"text")} rows="6"/>
 
         {/* Pass next url as props */}

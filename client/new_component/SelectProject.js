@@ -25,7 +25,7 @@ class SelectProject extends Component {
       })
     }
 
-    if (!this.props.data.LeaveHistoryClicked) {
+    if (!this.props.data.leaveHistoryClicked) {
       createNewProject = (
         <div>
           <h2>Create New Project</h2>
@@ -33,6 +33,8 @@ class SelectProject extends Component {
         </div>
       );
     }
+
+    const nextUrl = (this.props.data.creatingProjectFirst) ? "/write" : undefined;
 
     return (
       <div>
@@ -43,7 +45,7 @@ class SelectProject extends Component {
           </form>
         </div>
         {createNewProject}
-        <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data}/>
+        <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data} nextUrl={nextUrl} />
       </div>
 
     );

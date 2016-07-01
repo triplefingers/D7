@@ -62,6 +62,7 @@ import ProjectDetail from "./new_component/ProjectDetail";
 import UserProjectDetail from "./new_component/UserProjectDetail";
 import CreateProject from "./new_component/CreateProject";
 import CreateDate from "./new_component/CreateDate";
+import LeaveHistory from "./new_component/LeaveHistory";
 
 ReactDOM.render(
   (
@@ -73,6 +74,7 @@ ReactDOM.render(
         <Route path="/new" component={New}/>
         <Route path="/select" component={SelectProject}/>
         <Route path="/create" component={CreateProject}/>
+        <Route path="/write" component={LeaveHistory}/>
         <Route path="/create/date" component={CreateDate}/>
         <Route path="/project" component={ProjectDetail}/>
         <Route path="/userproject" component={UserProjectDetail}/>

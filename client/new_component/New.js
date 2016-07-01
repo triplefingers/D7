@@ -18,7 +18,7 @@ class New extends Component {
       <div>
         <button onClick={() => {this.props.goto("/create"); this.props._save({creatingProjectFirst: true})}}>Create New Project</button>
         <br /><br /><br /><br /><br /><br />
-        <button onClick={() => {this.props.goto("/select"); this.props._save({LeaveHistoryClicked: true})}}>Leave History</button>
+        <button onClick={() => {this.props.goto("/select"); this.props._save({leaveHistoryClicked: true})}}>Leave History</button>
       </div>
     );
   }
