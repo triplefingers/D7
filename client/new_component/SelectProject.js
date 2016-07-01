@@ -19,7 +19,9 @@ class SelectProject extends Component {
 
     if (onGoingProjects) {
       projects = onGoingProjects.map((project) => {
-        return <SelectBox _save={this.props._save} project={project} />
+        if (!project.doneToday) {
+          return <SelectBox _save={this.props._save} project={project} />
+        }
       })
     }
 
