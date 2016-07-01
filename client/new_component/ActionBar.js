@@ -23,6 +23,8 @@ class ActionBar extends Component {
 
       if (window.publicIds) {
         var publicIds = window.publicIds;
+      } else {
+        publicIds = [];
       }
     }
 
