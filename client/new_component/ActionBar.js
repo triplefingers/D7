@@ -34,7 +34,7 @@ class ActionBar extends Component {
     // onClick 할때 이동하는 url 을 props 로 받음
     // url이 넘어오지 않는다면 항상 SAVE -> / 로 이동
     if (this.props.nextUrl) {
-      rightButton = <button>Next</button>
+      rightButton = <button onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</button>
     } else {
       rightButton = <button onClick={() => this.props.saveDayDetail(null, userProjectId, onDay, text, publicIds)}>Save</button>
     }

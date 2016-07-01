@@ -13,7 +13,10 @@ class Main extends Component {
     super(props);
     this.state = {
     };
-    this.props._save({LeaveHistoryClicked: false});
+    this.props._save({
+      leaveHistoryClicked: false,
+      creatingProjectFirst: false
+    });
   }
 
   componentDidMount() {
