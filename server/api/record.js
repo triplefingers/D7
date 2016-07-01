@@ -18,7 +18,6 @@ const record = (user, q, body, res) => {
     userId = 1;
   }
 
-
   let { id, onDay, text, publicIds, newProject } = body;
   const data = {
     userId: userId,
@@ -35,7 +34,7 @@ const record = (user, q, body, res) => {
       resolve();
     });
   };
-  if (id === undefined && newProject) {
+  if ((id === undefined || id === null) && newProject) {
     createNewProjectPromise = () => {
       const parsedNewProject = JSON.parse(newProject);
       return new Promise.resolve(createNewProject(user, q, parsedNewProject, null))

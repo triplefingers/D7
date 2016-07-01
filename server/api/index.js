@@ -10,11 +10,13 @@ import fetchUserProjectDetail from "./fetchUserProjectDetail";
 import fetchRecentPosts from "./fetchRecentPosts";
 import fetchPopularPosts from "./fetchPopularPosts";
 import createNewProject from "./createNewProject";
+import createNewUserProject from "./createNewUserProject";
 import record from "./record";
 import like from "./like";
 import report from "./report";
 import wish from "./wish";
 import user from "./user";
+import payment from "./payment";
 
 const handler = (apiMethod)=>{
   return (req, res, next) => {
@@ -77,9 +79,11 @@ export default {
   fetchPopularPosts: fetchPopularPosts,
   fetchUserProjectDetail: fetchUserProjectDetail,
   createNewProject: createNewProject,
+  createNewUserProject: createNewUserProject,
   record: record,
   like: like,
   report: report,
   wish: wish,
-  user: user
+  user: user,
+  payment: payment
 };

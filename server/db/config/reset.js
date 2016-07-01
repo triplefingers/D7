@@ -26,6 +26,7 @@ const resetDB = ()=>{
     project.integer("userId").references("id").inTable("user");
     project.string("title");
     project.string("description");
+    project.text("image");
     project.integer("wishCount");
     project.timestamps();
     console.log("created table project");
