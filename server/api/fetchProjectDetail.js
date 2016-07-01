@@ -128,8 +128,8 @@ const fetchProjectDetail = (user, q, res)=>{
     /* doneWish */
     result.doneWish = false;
     return model.Wish.where({userId: userId, projectId: result.projectId}).fetch()
-    .then((wishes) => {
-      if (!wishes) {
+    .then((wish) => {
+      if (wish) {
         result.doneWish = true;
       }
     })
