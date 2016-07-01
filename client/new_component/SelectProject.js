@@ -15,16 +15,32 @@ class SelectProject extends Component {
 
   render() {
     const onGoingProjects = this.props.data.onGoing;
-    let projects;
+    let projects, createNewProject;
 
     if (onGoingProjects) {
       projects = onGoingProjects.map((project) => {
-        // if (!project.doneToday) {
-          return (
-            <SelectBox _save={this.props._save} project={project} />
-            );
-        // }
+        return (
+          <SelectBox _save={this.props._save} project={project} />
+          );
       })
+    }
+
+    if (!this.props.data.leaveHistoryClicked) {
+      createNewProject = (
+        <div>
+          <h2>Create New Project</h2>
+          <button onClick={()=>this.props.goto("/create")}>+</button>
+        </div>
+      );
+    }
+
+    let nextUrl = undefined;
+
+    if (this.props.data.creatingProjectFirst) {
+      nextUrl = "/write"
+    } else if (this.props.data.leaveHistoryClicked) {
+      nextUrl = "/write"
+
     }
 
     return (
@@ -35,11 +51,8 @@ class SelectProject extends Component {
             {projects}
           </form>
         </div>
-        <div>
-          <h2>Create New Project</h2>
-          <button onClick={()=>this.props.goto("/create")}>+</button>
-        </div>
-        <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data}/>
+        {createNewProject}
+        <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data} nextUrl={nextUrl} />
       </div>
 
     );

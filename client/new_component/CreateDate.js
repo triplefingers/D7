@@ -85,7 +85,13 @@ class CreateDate extends Component {
         <div className="ActionBar">
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
-            this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
+            if (!this.props.data.creatingProjectFirst) {
+              console.log("CreatingNEwProject is false");
+              this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
+            } else {
+              console.log("CreatingNEwProject is true");
+              this.props.saveNewProject(undefined, title, description, startAt);
+            }
           }}>Save</button>
         </div>
       </div>

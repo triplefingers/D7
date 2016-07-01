@@ -56,12 +56,13 @@ import AppContainer from "./container/AppContainer";
 import App from "./new_component/App";
 import Login from "./new_component/Login";
 import Main from "./new_component/Main";
-import LeaveHistory from "./new_component/LeaveHistory";
+import New from "./new_component/New";
 import SelectProject from "./new_component/SelectProject";
 import ProjectDetail from "./new_component/ProjectDetail";
 import UserProjectDetail from "./new_component/UserProjectDetail";
 import CreateProject from "./new_component/CreateProject";
 import CreateDate from "./new_component/CreateDate";
+import LeaveHistory from "./new_component/LeaveHistory";
 
 ReactDOM.render(
   (
@@ -70,9 +71,10 @@ ReactDOM.render(
       <Route path="/login" component={Login}/>
       <Route component={App}>
         <Route path="/" component={Main}/>
-        <Route path="/write" component={LeaveHistory}/>
+        <Route path="/new" component={New}/>
         <Route path="/select" component={SelectProject}/>
         <Route path="/create" component={CreateProject}/>
+        <Route path="/write" component={LeaveHistory}/>
         <Route path="/create/date" component={CreateDate}/>
         <Route path="/project" component={ProjectDetail}/>
         <Route path="/userproject" component={UserProjectDetail}/>

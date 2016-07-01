@@ -106,7 +106,7 @@ class AppContainer extends Component {
       console.log("saveNewProject success: ", res);
       //store {id, title, description, onDay} to this.state
       this._save({id: res.data.id, onDay: res.data.onDay});
-      this.goto("/create/complete");
+      this.goto("/");
     })
     .catch((err) => {
       console.error("Error occured while saving new Project");
