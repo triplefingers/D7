@@ -143,13 +143,27 @@ class AppContainer extends Component {
       newProject: JSON.stringify(newProject)
     })
     .then((res) => {
-      console.log("saveDayDetail success: ", res);
+      console.log("saveDayDetail success: ", res.data);
       this.goto("/");
     })
     .catch((err) => {
       console.error("Error occured while saving DayDetail");
     });
   };
+
+  saveExistingProject(projectId, startAt) {
+    axios.post("/api/newuserproject", {
+      projectId: projectId,
+      startAt: startAt
+    })
+    .then((res) => {
+      console.log("start existing project success: ", res.data);
+      this.goto("/");
+    })
+    .catch((err) => {
+      console.error("Error occurred while starting existing project");
+    });
+  }
 
   // For History
   fetchAllProjects(userId) {
@@ -261,6 +275,7 @@ class AppContainer extends Component {
   render() {
     let injection = {};
 
+
     /* For App */
     injection.reset = this.reset.bind(this);
     injection.checkIfLogined = this.checkIfLogined.bind(this);
@@ -271,6 +286,8 @@ class AppContainer extends Component {
     injection.data = this.state;
     injection.handleChange = this.handleChange.bind(this);
     injection.goto = this.goto.bind(this);
+    injection.saveExistingProject = this.saveExistingProject.bind(this);
+
 
     /* For Create */
     injection._save = this._save.bind(this);

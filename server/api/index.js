@@ -16,7 +16,11 @@ import like from "./like";
 import report from "./report";
 import wish from "./wish";
 import user from "./user";
-import payment from "./payment";
+// import payment from "./payment";
+
+var payment = (user, q, body, res) => {
+
+}
 
 const handler = (apiMethod)=>{
   return (req, res, next) => {

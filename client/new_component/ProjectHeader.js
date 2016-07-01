@@ -25,7 +25,7 @@ class ProjectHeader extends Component {
           <p>
             {projectDescription}
           </p>
-          <button>Start this project</button>
+          <button onClick={() => {this.props.callback.goto("/create/date"); this.props.callback._save({selectedProject: this.props.data, existingProjectChosen: true});}}>Start this project</button>
         </div>
         {/* Footer */}
         <div>

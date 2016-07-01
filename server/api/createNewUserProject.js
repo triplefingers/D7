@@ -18,6 +18,8 @@ const createNewUserProject = (user, q, body, res) => {
   }
 
   const { projectId, startAt } = body;
+
+  console.log("------------projecgid and startat: ", projectId, " ", startAt, " ", typeof(startAt));
   const today = new Date();
   const startAtInObj = new Date(startAt);
   console.log("body is, ", body, typeof(body), Object.keys(body));

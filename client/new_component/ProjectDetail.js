@@ -25,7 +25,7 @@ class ProjectDetail extends Component {
       });
       return (
         <div>
-          <ProjectHeader data={project}/>
+          <ProjectHeader callback={this.props} data={project}/>
           {Contents}
         </div>
       );

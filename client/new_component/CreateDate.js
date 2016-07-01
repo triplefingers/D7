@@ -54,13 +54,22 @@ class CreateDate extends Component {
   };
 
   render() {
-    const title = this.props.data.title;
-    const description = this.props.data.description;
-    const startAt = this.props.data.startAt;
-    const text = this.props.data.text;
+
+    if (!this.props.data.existingProjectChosen) {
+      var title = this.props.data.title;
+      var description = this.props.data.description;
+    } else {
+      const data = this.props.data.selectedProject;
+      var title = data.projectTitle;
+      var description = data.projectDescription;
+      var projectId = data.projectId;
+      console.log("제대로 들어왔니? ", data);
+    }
 
     const today = new Date().toJSON().slice(0,10);
 
+    const startAt = this.props.data.startAt;
+    const text = this.props.data.text;
 
     const newProject = {
       title: title,
@@ -74,7 +83,6 @@ class CreateDate extends Component {
       publicIds = [];
     }
 
-
     return (
       <div>
         <div className="Title">
@@ -85,7 +93,13 @@ class CreateDate extends Component {
         <div className="ActionBar">
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
-            if (!this.props.data.creatingProjectFirst) {
+            if (this.props.data.existingProjectChosen) {
+              console.log("Starting existing project: ");
+              console.log("projectId: ", projectId);
+              console.log("today: ", typeof(today));
+
+              this.props.saveExistingProject(projectId, today);
+            } else if (!this.props.data.creatingProjectFirst) {
               console.log("CreatingNEwProject is false");
               this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
             } else {
