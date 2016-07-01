@@ -1,13 +1,48 @@
 import React, {Component} from "react";
+import axios from "axios";
 
 class MainProjectCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      wished: false,
+      wishCount: 0
+    };
   }
 
   componentDidMount() {
+    const { doneWish, wishCount } = this.props.data;
+    if(doneWish){
+      this.setState({wished: true, wishCount: wishCount});
+    } else {
+      this.setState({wishCount: wishCount});
+    }
+  }
+
+  toggleWish(projectId, e) {
+    e.stopPropagation();
+    if(this.state.wished){
+      axios.post("/api/wish", {
+        projectId: projectId
+      }).then((res) => {
+        console.log('RES', res);
+        this.setState({
+          wished: false,
+          wishCount: res.data.wishCount
+        });
+      });
+    } else {
+      axios.post("/api/wish", {
+        projectId: projectId
+      }).then((res) => {
+        console.log('RES', res);
+        this.setState({
+          wished: true,
+          wishCount: res.data.wishCount
+        });
+      });
+    }
   }
 
   clickProjectCard() {
@@ -17,11 +52,22 @@ class MainProjectCard extends Component {
 
   render() {
     /* Project image 추가, userPhoto 제외 */
-    const { title, description, doneWish, username, wishCount } = this.props.data;
+    const { id, title, description, doneWish, username } = this.props.data;
 
     const cardStyle = {
       backgroundColor: "white",
       margin: "10px 0",
+    }
+
+    let wishButton;
+    if(this.state.wished){
+      wishButton = (
+        <button style={{zIndex: "10"}} onClick={this.toggleWish.bind(this, id)}>Wish clicked</button>
+      );
+    } else {
+      wishButton = (
+        <button style={{zIndex: "10"}} onClick={this.toggleWish.bind(this, id)}>Wish not clicked</button>
+      );
     }
 
     return (
@@ -41,8 +87,8 @@ class MainProjectCard extends Component {
         <div>
           {/* Footer Left Part */}
           <div>
-            <button>Pin</button>
-            <span>{wishCount}</span>
+            {wishButton}
+            <span>{this.state.wishCount}</span>
           </div>
           {/* Footer Right Part */}
           <div>
