@@ -34,7 +34,14 @@ class SelectProject extends Component {
       );
     }
 
-    const nextUrl = (this.props.data.creatingProjectFirst) ? "/write" : undefined;
+    let nextUrl = undefined;
+
+    if (this.props.data.creatingProjectFirst) {
+      nextUrl = "/write"
+    } else if (this.props.data.leaveHistoryClicked) {
+      nextUrl = "/write"
+
+    }
 
     return (
       <div>
