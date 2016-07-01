@@ -19,7 +19,7 @@ class MainPostCard extends Component {
 
   render() {
 
-    const { createdAt, day, doneReport, projectTitle, projectDescription, publicIds, text, userPhoto, userProjectId, userId, username } = this.props.data;
+    const { id, doneLike, likeCount, createdAt, day, doneReport, projectTitle, projectDescription, publicIds, text, userPhoto, userProjectId, userId, username } = this.props.data;
 
     const imageHeight = 200;
     const imageWidth = 200;
@@ -70,7 +70,7 @@ class MainPostCard extends Component {
         {/* Card Footer */}
         <div>
           {/* Footer Left Part */}
-          <LikeSet data={this.props.data} />
+          <LikeSet id={id} doneLike={doneLike} likeCount={likeCount} />
           {/* Footer Right Part */}
           <div>
             <button>...</button>
