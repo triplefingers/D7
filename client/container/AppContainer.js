@@ -140,7 +140,7 @@ class AppContainer extends Component {
       onDay: onDay,
       text: text,
       publicIds: JSON.stringify(publicIds),
-      newProject: newProject
+      newProject: JSON.stringify(newProject)
     })
     .then((res) => {
       console.log("saveDayDetail success: ", res);
