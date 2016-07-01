@@ -10,7 +10,7 @@ class UserProjectHeader extends Component {
   render() {
     console.log("USERPROEJCT HEADER", this.props.data);
 
-    const { projectId, projectTitle, projectDescription, wishCount, doneWish, startAt, endAt, userPhoto, username, status, others } = this.props.data;
+    const { projectId, projectTitle, projectDescription, wishCount, doneWish, startAt, endAt, userPhoto, username, status, others, onDay } = this.props.data;
     const { amount, currency, paymentDue } = this.props.data.transaction;
 
     let projectStatus;
