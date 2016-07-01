@@ -14,7 +14,7 @@ class LikeSet extends Component {
     if(doneLike){
       this.setState({liked: true, likeCount: likeCount});
     } else {
-      this.setState({like:false, likeCount: likeCount});
+      this.setState({liked:false, likeCount: likeCount});
     }
   }
 
