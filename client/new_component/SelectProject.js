@@ -19,7 +19,11 @@ class SelectProject extends Component {
 
     if (onGoingProjects) {
       projects = onGoingProjects.map((project) => {
-        return <SelectBox _save={this.props._save} project={project} />
+        // if (!project.doneToday) {
+          return (
+            <SelectBox _save={this.props._save} project={project} />
+            );
+        // }
       })
     }
 
@@ -33,7 +37,7 @@ class SelectProject extends Component {
         </div>
         <div>
           <h2>Create New Project</h2>
-          <button>+</button>
+          <button onClick={()=>this.props.goto("/create")}>+</button>
         </div>
         <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data}/>
       </div>
