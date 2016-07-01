@@ -46,7 +46,7 @@ class ActionBar extends Component {
     if ((this.props.data && (!this.props.data.leaveHistoryClicked)) ||
       ((this.props.callback) && this.props.callback.data.leaveHistoryInProgress)) {
 
-      rightButton = <button onClick={() => this.props.saveDayDetail(1, 1, onDay, text, publicIds)}>Save</button>
+      rightButton = <button onClick={() => this.props.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)}>Save</button>
 
       if (this.props.callback) {
         rightButton = <button onClick={() => this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)}>Save</button>
