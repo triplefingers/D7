@@ -19,7 +19,8 @@ class SelectBox extends Component {
         selectedProject: this.props.project
       }
     }
-    const disable = this.props.project.doneToday ? true : false;
+    const disable = this.props.project.doneToday;
+
     return (
       <div>
         <input type="radio" id={this.props.project.id} name="project" value={this.props.project.title} onChange={this.props._save.bind(null, selectedProject)} disabled={disable}/>
