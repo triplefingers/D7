@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import WishSet from "./WishSet";
 
 class UserProjectHeader extends Component {
   constructor(props) {
@@ -6,12 +7,29 @@ class UserProjectHeader extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-  }
-
   render() {
     console.log("USERPROEJCT HEADER", this.props.data);
-    const { projectTitle, projectDescription, wishCount, doneWish, startAt, endAt, userPhoto, username, posts } = this.props.data;
+
+    const { projectId, projectTitle, projectDescription, wishCount, doneWish, startAt, endAt, userPhoto, username, status, others } = this.props.data;
+    const { amount, currency, paymentDue } = this.props.data.transaction;
+
+    let projectStatus;
+    let transaction;
+
+    if(others){
+      if(status === "ongoing" || status === "waiting"){
+        projectStatus = <div>On day {onDay}</div>;
+      } else {
+        projectStatus = "COMPLETE";
+      }
+    } else {
+      if(status === "ongoing" || status === "waiting"){
+        projectStatus = <div>On day {onDay}</div>;
+      } else {
+        projectStatus = status.toUpperCase();
+      }
+      transaction = (<div>{amount} {currency} on {paymentDue}</div>);
+    }
 
     return (
       <div>
@@ -24,13 +42,14 @@ class UserProjectHeader extends Component {
           <span>{username}</span>
         </div>
         <div>
-          <button>Pin</button><span>{wishCount}</span>
+          <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} />
           <button>-></button>
         </div>
         <div>
-          <div>On day {posts[posts.length-1].day}</div>
+          {projectStatus}
           <div>{startAt}~{endAt}</div>
         </div>
+        {transaction}
       </div>
     );
   }
