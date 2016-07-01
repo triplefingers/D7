@@ -2,10 +2,27 @@ import model from "../db/models";
 import collection from "../db/collections";
 
 const createNewProject = (user, q, body, res) => {
-  const userId = user.id;
+  console.log("------variable iin createNewProject is ", user, q, body, " typeof body is ", typeof(body), res);
+
+  // const userId = user.id;
+
+  // below should be deleted
+  let userId;
+  if (user && user.id) {
+    userId = user.id;
+  }
+  if (q && q.id) {
+    userId = q.id;
+  } else {
+    userId = 1;
+  }
+
+
   const { title, description, startAt } = body;
   const today = new Date();
   const startAtInObj = new Date(startAt);
+  console.log("body is, ", body, typeof(body), Object.keys(body));
+  console.log("before slice, ", today, startAtInObj, startAt);
 
   let endAt = new Date(startAt);
   endAt.setDate(startAtInObj.getDate() + 6);
@@ -16,32 +33,47 @@ const createNewProject = (user, q, body, res) => {
     onDay = 1;
   }
 
-  model.Project.forge().set({
+  return model.Project.forge().set({
     userId: userId,
     title: title,
     description: description
   }).save()
   .then((project) => {
     const projectId = project.id;
-    model.UserProject.forge().set({
+    return model.UserProject.forge().set({
       userId: userId,
       projectId: projectId,
       startAt: startAt,
       endAt: endAt
-    }).save()
-    .then((userProject) => {
-      res.send({
-        id: userProject.id,
-        title: title,
-        description: description,
-        onDay: onDay
-      });
-    })
-    .catch((err) => console.error("-----Error: Failed to store in 'userProject' table: ", err));
+    }).save();
+
+    // .catch((err) => console.error("-----Error: Failed to store in 'userProject' table: ", err));
+  })
+  .then((userProject) => {
+    const data = {
+      id: userProject.id,
+      title: title,
+      description: description,
+      onDay: onDay
+    };
+
+    /* If res === null or res === undefined, just return data */
+    if (!res) {
+      console.log("Method use: Return createNewProject Result: ", data);
+      return data;
+    } else {
+      res.status(200).send(data);
+    }
   })
   .catch((err) => {
     console.error("-----Error: Failed to store in 'project' or 'userProject' table: ", err);
-    res.status(500).end();
+
+    /* If res === null or res === undefined, just return data */
+    if (!res) {
+      return data;
+    } else {
+      res.status(500).end();
+    }
   });
 };
 

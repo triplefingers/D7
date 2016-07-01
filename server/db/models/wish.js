@@ -9,7 +9,7 @@ const Wish = db.Model.extend({
     return this.belongsTo(User, "userId");
   },
   project : function () {
-    return this.belongsTo(Project, "postId");
+    return this.belongsTo(Project, "projectId");
   },
 });
 

@@ -23,7 +23,7 @@ const fetchAllProjects = (user, q, res)=>{
     const today = new Date();
     const result = {
       waiting: [],
-      ongoing: [],
+      onGoing: [],
       complete: []
     };
 
