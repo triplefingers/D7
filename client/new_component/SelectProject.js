@@ -15,16 +15,23 @@ class SelectProject extends Component {
 
   render() {
     const onGoingProjects = this.props.data.onGoing;
-    let projects;
+    let projects, createNewProject;
 
     if (onGoingProjects) {
       projects = onGoingProjects.map((project) => {
-        // if (!project.doneToday) {
-          return (
-            <SelectBox _save={this.props._save} project={project} />
-            );
-        // }
+        return (
+          <SelectBox _save={this.props._save} project={project} />
+          );
       })
+    }
+
+    if (!this.props.data.LeaveHistoryClicked) {
+      createNewProject = (
+        <div>
+          <h2>Create New Project</h2>
+          <button onClick={()=>this.props.goto("/create")}>+</button>
+        </div>
+      );
     }
 
     return (
@@ -35,10 +42,7 @@ class SelectProject extends Component {
             {projects}
           </form>
         </div>
-        <div>
-          <h2>Create New Project</h2>
-          <button onClick={()=>this.props.goto("/create")}>+</button>
-        </div>
+        {createNewProject}
         <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data}/>
       </div>
 
