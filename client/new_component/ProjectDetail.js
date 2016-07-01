@@ -10,7 +10,8 @@ class ProjectDetail extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillUnmount() {
+    this.props.reset(["project"]);
   }
 
   render() {

@@ -10,7 +10,8 @@ class UserProjectDetail extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillUnmount() {
+    this.props.reset(["userproject"]);
   }
 
   render() {

@@ -4,10 +4,7 @@ import axios from "axios";
 class MainProjectCard extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      wished: false,
-      wishCount: 0
     };
   }
 
@@ -16,7 +13,7 @@ class MainProjectCard extends Component {
     if(doneWish){
       this.setState({wished: true, wishCount: wishCount});
     } else {
-      this.setState({wishCount: wishCount});
+      this.setState({wished: false, wishCount: wishCount});
     }
   }
 

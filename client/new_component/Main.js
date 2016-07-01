@@ -21,14 +21,26 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    const { selectedMain } = this.props.data;
     /* Promise로 순서 적용 */
-    this.props.fetchRecentPosts();
-    if(!this.props.data.selectedMain){
+    if(!selectedMain){
       this.props._save({selectedMain: "recent"});
+      this.props.fetchRecentPosts();
+    } else if(selectedMain==="recent"){
+      this.props.fetchRecentPosts();
+    } else if(selectedMain==="popular"){
+      this.props.fetchPopularPosts();
+    } else {
+      this.props.fetchRecommendation();
     }
+
     /* Reset the AppContainer's state */
 
     console.log("Main Mounted ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+  }
+
+  componentWillUnmount() {
+    this.props.reset(["recent", "popular", "recommended"]);
   }
 
   // some code about tapping tab and according rendering

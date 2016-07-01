@@ -5,17 +5,16 @@ class ProjectHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      wished: false,
-      wishCount: 0
     };
   }
 
   componentDidMount() {
+    console.log("ProjectHeader Mounted");
     const { doneWish, wishCount } = this.props.data;
     if(doneWish){
       this.setState({wished: true, wishCount: wishCount});
     } else {
-      this.setState({wishCount: wishCount});
+      this.setState({wished: false, wishCount: wishCount});
     }
   }
 

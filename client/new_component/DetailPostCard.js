@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from "axios";
 
 class DetailPostCard extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class DetailPostCard extends Component {
     if(doneLike){
       this.setState({liked: true, likeCount: likeCount});
     } else {
-      this.setState({likeCount: likeCount});
+      this.setState({liked:false, likeCount: likeCount});
     }
   }
 
@@ -41,7 +42,7 @@ class DetailPostCard extends Component {
 
   render() {
     console.log("DetailPostCard", this.props.data);
-    const { createdAt, day, likeCount, doneLike, doneReport, publicIds, text } = this.props.data;
+    const { id, createdAt, day, likeCount, doneLike, doneReport, publicIds, text } = this.props.data;
 
     const imageHeight = 200;
     const imageWidth = 200;
@@ -62,11 +63,11 @@ class DetailPostCard extends Component {
     let likeButton;
     if(this.state.liked){
       likeButton = (
-        <button onClick={this.toggleLike.bind(this)}>Like clicked</button>
+        <button onClick={this.toggleLike.bind(this, id)}>Like clicked</button>
       );
     } else {
       likeButton = (
-        <button onClick={this.toggleLike.bind(this)}>Like not clicked</button>
+        <button onClick={this.toggleLike.bind(this, id)}>Like not clicked</button>
       );
     }
 
