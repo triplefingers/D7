@@ -54,13 +54,20 @@ class CreateDate extends Component {
   };
 
   render() {
-    const title = this.props.data.title;
-    const description = this.props.data.description;
-    const startAt = this.props.data.startAt;
-    const text = this.props.data.text;
+
+    if (!this.props.data.existingProjectChosen) {
+      var title = this.props.data.title;
+      var description = this.props.data.description;
+    } else {
+      const data = this.props.data.selectedProject;
+      var title = data.projectTitle;
+      var description = data.projectDescription;
+    }
 
     const today = new Date().toJSON().slice(0,10);
 
+    const startAt = this.props.data.startAt;
+    const text = this.props.data.text;
 
     const newProject = {
       title: title,
@@ -73,7 +80,6 @@ class CreateDate extends Component {
     } else {
       publicIds = [];
     }
-
 
     return (
       <div>
@@ -88,7 +94,8 @@ class CreateDate extends Component {
             if (!this.props.data.creatingProjectFirst) {
               console.log("CreatingNEwProject is false");
               this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
-            } else {
+            }
+            else {
               console.log("CreatingNEwProject is true");
               this.props.saveNewProject(undefined, title, description, startAt);
             }
