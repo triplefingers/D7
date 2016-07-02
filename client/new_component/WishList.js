@@ -23,7 +23,8 @@ class WishList extends Component {
 
     return (
       <div>
-        {Contents}
+        {/*{Contents}*/}
+        WishList
       </div>
     );
   }

@@ -6,7 +6,7 @@ import axios from "axios";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { list: null };
+    this.state = {};
   }
 
   render() {

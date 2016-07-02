@@ -272,6 +272,30 @@ class AppContainer extends Component {
     });
   }
 
+  /* FETCH USER DATA */
+  fetchUser() {
+    axios.get("/api/user")
+    .then((res) => {
+      console.log("User: ", res);
+      this.setState({user: res.data});
+    })
+    .catch((err) => {
+      console.error("Error occurred while fetching project detail: ", err);
+    });
+  }
+
+  /* POST EDITED USER DATA */
+  saveUserData(data) {
+    axios.post("/api/user", data)
+    .then((res) => {
+      console.log("User: ", res);
+      // this.setState({user: res.data});
+    })
+    .catch((err) => {
+      console.error("Error occurred while fetching project detail: ", err);
+    });
+  }
+
   render() {
     let injection = {};
 
@@ -309,6 +333,10 @@ class AppContainer extends Component {
     /* For detail pages */
     injection.fetchProjectDetail = this.fetchProjectDetail.bind(this);
     injection.fetchUserProjectDetail = this.fetchUserProjectDetail.bind(this);
+
+    /* For user data */
+    injection.fetchUser = this.fetchUser.bind(this);
+    injection.saveUserData = this.saveUserData.bind(this);
 
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 

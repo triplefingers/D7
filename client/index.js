@@ -63,6 +63,10 @@ import UserProjectDetail from "./new_component/UserProjectDetail";
 import CreateProject from "./new_component/CreateProject";
 import CreateDate from "./new_component/CreateDate";
 import LeaveHistory from "./new_component/LeaveHistory";
+import History from "./new_component/History";
+import WishList from "./new_component/WishList";
+import Settings from "./new_component/Settings";
+
 
 ReactDOM.render(
   (
@@ -78,6 +82,9 @@ ReactDOM.render(
         <Route path="/create/date" component={CreateDate}/>
         <Route path="/project" component={ProjectDetail}/>
         <Route path="/userproject" component={UserProjectDetail}/>
+        <Route path="/history" component={History}/>
+        <Route path="/wishlist" component={WishList}/>
+        <Route path="/settings" component={Settings}/>
       </Route>
 
     </Route>
