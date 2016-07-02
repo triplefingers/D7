@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import DetailUserProjectCard from "./DetailUserProjectCard";
+
 
 class History extends Component {
   constructor(props) {
@@ -21,61 +23,17 @@ class History extends Component {
       console.log('WAITING', waiting);
       console.log('ONGOING', onGoing);
 
-      onGoing = onGoing.map((project) => (
-          <li key={project.id} onClick={() => {
-            this.props._save({
-              id: project.id,
-              title: project.title,
-              description: project.description,
-              onDay: project.onDay,
-              status: "ongoing",
-              doneToday: project.doneToday
-            });
-            // should change userid;
-            this.props.fetchDayDetail(1, project.id);
-          }}>
-          {
-            project.title
-            + " on day" + " " + project.onDay
-          }
-          </li>
-        ));
+      onGoing = onGoing.map((project) => {
+          return <DetailUserProjectCard key={project.id} data={project} />
+        });
 
-      waiting = waiting.map((project) => (
-          <li key={project.id} onClick={() => {
-            this.props._save({
-              id: project.id,
-              title: project.title,
-              description: project.description,
-              onDay: project.onDay,
-              status: "waiting"
-            });
-            // should change userid;
-            this.props.fetchDayDetail(1, project.id);
-          }}>
-          {
-            project.title
-          }
-          </li>
-        ));
+      waiting = waiting.map((project) => {
+          return <DetailUserProjectCard key={project.id} data={project} />
+        });
 
-      complete = complete.map((project) => (
-          <li key={project.id} onClick={() => {
-            this.props._save({
-              id: project.id,
-              title: project.title,
-              description: project.description,
-              onDay: project.onDay,
-              status: "complete"
-            });
-            // should change userid;
-            this.props.fetchDayDetail(1, project.id);
-          }}>
-          {
-            project.title
-          }
-          </li>
-        ));
+      complete = complete.map((project) => {
+          return <DetailUserProjectCard key={project.id} data={project} />
+        });
 
       return (
         <div>

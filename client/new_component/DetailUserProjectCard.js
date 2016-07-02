@@ -13,35 +13,50 @@ class DetailUserProjectCard extends Component {
   }
 
   render() {
-    /* Project image 추가, userPhoto 제외 */
-    const { id, title, description, doneWish, wishCount, username } = this.props.data;
 
-    const cardStyle = {
-      backgroundColor: "white",
-      margin: "10px 0",
+    if(this.props.data){
+      console.log('THIS.PROPS.DATA in DetailUserProjectCard', this.props.data);
     }
-
-    return (
-      <div tyle={cardStyle} onClick={this.clickProjectCard.bind(this)}>
-        <div>
-          <h1>{projectTitle}</h1>
-          <p>{projectDescription}</p>
-        </div>
-        <div>
-          <img src={userPhoto} alt="user profile" width="20px" height="20px"/>
-          <span>{username}</span>
-        </div>
-        <div>
-          <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} />
-          <button onClick={this.handleProjectClick.bind(this)}>-></button>
-        </div>
-        <div>
-          {projectStatus}
-          <div>{startAt}~{endAt}</div>
-        </div>
-        {transaction}
-      </div>
-    );
+    /* Project image 추가, userPhoto 제외 */
+    // const cardStyle = {
+    //   backgroundColor: "white",
+    //   margin: "10px 0",
+    // }
+    //
+    // const { projectId, projectTitle, projectDescription, wishCount, doneWish, startAt, endAt, userPhoto, username, status, others, onDay } = this.props.data;
+    // const { amount, currency, paymentDue } = this.props.data.transaction;
+    //
+    // let projectStatus;
+    // let transaction;
+    //
+    // if(others){
+    //   if(status === "ongoing" || status === "waiting"){
+    //     projectStatus = <div>On day {onDay}</div>;
+    //   } else {
+    //     projectStatus = "COMPLETE";
+    //   }
+    // } else {
+    //   if(status === "ongoing" || status === "waiting"){
+    //     projectStatus = <div>On day {onDay}</div>;
+    //   } else {
+    //     projectStatus = status.toUpperCase();
+    //   }
+    //   transaction = (<div>{amount} {currency} on {paymentDue}</div>);
+    // }
+    //
+    // return (
+    //   <div tyle={cardStyle} onClick={this.clickProjectCard.bind(this)}>
+    //     <div>
+    //       <h1>{projectTitle}</h1>
+    //       <p>{projectDescription}</p>
+    //     </div>
+    //     <div>
+    //       {projectStatus}
+    //       <div>{startAt}~{endAt}</div>
+    //     </div>
+    //   </div>
+    // );
+    return (<div>My project card</div>);
   }
 }
 
