@@ -24,6 +24,7 @@ class History extends Component {
 
     if(history){
       let { onGoing, waiting, complete } = history;
+
       console.log('COMPLETE', complete);
       console.log('WAITING', waiting);
       console.log('ONGOING', onGoing);
@@ -49,7 +50,6 @@ class History extends Component {
           <h1>Complete</h1>
           {complete}
         </div>
-
       );
     }
 
