@@ -6,7 +6,7 @@ import $ from "jquery";
 class AppContainer extends Component {
   constructor(props) {
     super(props);
-    window.publicIds = [];
+
     this.state = {list: null, selectedMain: "recent"};
   };
 
@@ -16,6 +16,7 @@ class AppContainer extends Component {
   }
 
   componentDidMount() {
+    window.publicIds = [];
     console.log("AppContainer Mounted :)");
   };
 

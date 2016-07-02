@@ -15,12 +15,33 @@ class CreateProject extends Component {
     };
 
     let validator = () => {
-      if (this.props.validateAll(vaidationCallback, this.props.data.title, this.props.data.description)) {
+      if (this.props.data.creatingProjectLast) {
+        const text = this.props.data.text;
+        const publicIds = window.publicIds;
+        const newProject = {
+          title: this.props.data.title,
+          description: this.props.data.description,
+          startAt: new Date().toJSON().slice(0,10)
+        }
+
+        console.log("dasfsdfsdfasdfadsfasd", typeof(text), publicIds, newProject);
+
+        this.props.goto("/");
+        this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
+      } else if (this.props.validateAll(vaidationCallback, this.props.data.title, this.props.data.description)) {
         this.props.goto("/create/date");
       } else {
         alert("Check again : there is invalid inputs");
       }
     };
+
+    let nextButton;
+
+    if (this.props.data.creatingProjectLast) {
+      nextButton = <button onClick={validator}>Save</button>
+    } else {
+      nextButton = <button onClick={validator}>Next</button>
+    }
 
 
     return (
@@ -36,7 +57,7 @@ class CreateProject extends Component {
           <textarea value = {this.props.data.description} onChange={this.props.handleChange.bind(undefined,"description")} rows="6"/>
           <br/>
           <button onClick={() => this.props.goto("/select")}>Back</button>
-          <button onClick={validator}>Next</button>
+          {nextButton}
         </div>
       </div>
     );

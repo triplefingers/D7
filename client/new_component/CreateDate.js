@@ -97,7 +97,6 @@ class CreateDate extends Component {
               console.log("Starting existing project: ");
               console.log("projectId: ", projectId);
               console.log("today: ", typeof(today));
-
               this.props.saveExistingProject(projectId, today);
             } else if (!this.props.data.creatingProjectFirst) {
               console.log("CreatingNEwProject is false");
