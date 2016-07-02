@@ -43,8 +43,6 @@ const createNewUserProject = (user, q, body, res) => {
   .then((userProject) => {
     const data = {
       id: userProject.id,
-      title: title,
-      description: description,
       onDay: onDay
     };
 
