@@ -14,15 +14,18 @@ class ReportSet extends Component {
     console.log("ReportSet mounted ", this.props);
   }
 
-  clickDotButton() {
+  clickDotButton(e) {
+    e.stopPropagation();
     this.setState({step: 1});
   }
 
-  clickReport() {
+  clickReport(e) {
+    e.stopPropagation();
     this.setState({step: 2});
   }
 
-  clickCancel(){
+  clickCancel(e){
+    e.stopPropagation();
     this.setState({step: 0});
   }
 
@@ -32,13 +35,15 @@ class ReportSet extends Component {
     this.setState(data);
   };
 
-  saveReport(postId, description, url) {
+  saveReport(postId, description, url, e) {
+    e.stopPropagation();
     axios.get("/api/projects/report", {
        postId: postId,
        description: description
     })
     .then((res) => {
-      this.goto(url);
+      this.setState({step: 0, text:""});
+      this.props.goto(url);
     })
     .catch((err) => {
       console.error("Error occurred while saving report: ", err);
@@ -48,38 +53,44 @@ class ReportSet extends Component {
   render() {
 
     const { id } = this.props;
-    let step1;
-    let step2;
 
-    if(step===0){
-      step1 = null;
-      step2 = null;
-    } else if(step===1){
-      step1 = (
-        <div>
-          <button onClick={this.clickReport.bind(this)}>Report</button>
-          <button onClick={this.clickCancel.bind(this)}>Cancel</button>
-        </div>
+    if(id) {
+      const {step, text} = this.state;
+      let step1;
+      let step2;
+
+      if(step===0){
+        step1 = null;
+        step2 = null;
+      } else if(step===1){
+        step1 = (
+          <div>
+            <button onClick={this.clickReport.bind(this)}>Report</button>
+            <button onClick={this.clickCancel.bind(this)}>Cancel</button>
+          </div>
+          );
+        step2=null;
+      } else if(step===2){
+        step1= null;
+        step2 = (
+          <div>
+            <textarea onClick={(e)=> e.stopPropagation()} value={text} onChange={this.handleChange.bind(this, "text")} rows="2" placeholder="Why do you want to report this post?"/><br/>
+            <button onClick={this.clickCancel.bind(this)}>Cancel</button>
+            <button onClick={this.saveReport.bind(this, id, text, "/")}>Report</button>
+          </div>
         );
-      step2=null;
-    } else if(step===2){
-      step1= null;
-      step2 = (
-        <div>
-          <textarea value={this.state.text} onChange={this.handleChange.bind(this, "text")} rows="2" placeholder="Why do you want to report this post?"/><br/>
-          <button onClick={this.clickCancel.bind(this)}>Cancel</button>
-          <button onClick={this.saveReport(id, this.state.text, "/")}>Report</button>
-        </div>
-      )
-    }
+      }
 
-    return (
-      <div>
-        <button onClick={this.clickDotButton.bind(this)}>...</button>
-        {step1}
-        {step2}
-      </div>
-    );
+      return (
+        <div>
+          <button onClick={this.clickDotButton.bind(this)}>...</button>
+          {step1}
+          {step2}
+        </div>
+      );
+    } else {
+      return <div>loading...</div>
+    }
   }
 }
 

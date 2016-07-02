@@ -69,7 +69,7 @@ class MainPostCard extends Component {
           {/* Footer Left Part */}
           <LikeSet id={id} doneLike={doneLike} likeCount={likeCount} />
           {/* Footer Right Part */}
-          <ReportSet id={id} />
+          <ReportSet id={id} goto={this.props.goto}/>
         </div>
       </div>
     );
