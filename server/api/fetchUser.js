@@ -56,6 +56,9 @@ const fetchUser = (user, q, res) => {
     user.userPhoto = user.photo;
     delete user.photo;
 
+    /* password -> delete */
+    delete user.password;
+
     /* Transaction data */
     const transactionData = [];
     const transactionPromiseArray = [];
