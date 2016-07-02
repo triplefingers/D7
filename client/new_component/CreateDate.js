@@ -94,19 +94,16 @@ class CreateDate extends Component {
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
             if (this.props.data.existingProjectChosen) {
-              console.log("Starting existing project: ");
-              console.log("projectId: ", projectId);
-              console.log("today: ", typeof(today));
-
-              this.props.saveExistingProject(projectId, today);
+              // this.props.saveExistingProject(projectId, today);
+              this.props.goto("/payment");
             } else if (!this.props.data.creatingProjectFirst) {
-              console.log("CreatingNEwProject is false");
-              this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
+              this.props.goto("/payment");
+              // this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
             } else {
-              console.log("CreatingNEwProject is true");
-              this.props.saveNewProject(undefined, title, description, startAt);
+              // this.props.saveNewProject(undefined, title, description, startAt);
+              this.props.goto("/payment");
             }
-          }}>Save</button>
+          }}>Next</button>
         </div>
       </div>
     );

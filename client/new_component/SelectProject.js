@@ -29,7 +29,7 @@ class SelectProject extends Component {
       createNewProject = (
         <div>
           <h2>Create New Project</h2>
-          <button onClick={()=>this.props.goto("/create")}>+</button>
+          <button onClick={() => {this.props.goto("/create"); this.props._save({creatingProjectLast: true});}}>+</button>
         </div>
       );
     }
@@ -40,7 +40,6 @@ class SelectProject extends Component {
       nextUrl = "/write"
     } else if (this.props.data.leaveHistoryClicked) {
       nextUrl = "/write"
-
     }
 
     return (

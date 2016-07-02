@@ -42,17 +42,20 @@ class ActionBar extends Component {
     // If parent passes nextUrl props
     // onClick 할때 이동하는 url 을 props 로 받음
     // url이 넘어오지 않는다면 항상 SAVE -> / 로 이동
-
-    if ((this.props.data && (!this.props.data.leaveHistoryClicked)) ||
+    if (this.props.nextUrl) {
+      console.log("First case");
+      rightButton = <button onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</button>
+    }
+    else if ((this.props.data && (!this.props.data.leaveHistoryClicked)) ||
       ((this.props.callback) && this.props.callback.data.leaveHistoryInProgress)) {
-
+      console.log("Second case");
       rightButton = <button onClick={() => this.props.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)}>Save</button>
 
       if (this.props.callback) {
         rightButton = <button onClick={() => this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)}>Save</button>
       }
-
     } else {
+      console.log("Third case");
       rightButton = <button onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</button>
     }
 
