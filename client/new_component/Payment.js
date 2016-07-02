@@ -49,15 +49,22 @@ class Payment extends Component {
         </div>
       );
     } else if (this.props.data.creatingProjectLast) {
-      console.log(text);
-      console.log(publicIds);
-      console.log(newProject);
-      console.log(payment);
-
       actionBar = (
         <div>
           <button onClick={() => this.props.goto("/create")}>Back</button>
           <button onClick={() => this.props.saveDayDetail(undefined, undefined, 1, text, publicIds, newProject, payment)}>
+          Save</button>
+        </div>
+      );
+    } else if (this.props.data.existingProjectChosen) {
+      if (this.props.data.selectedProject) {
+        const selectedProject =this.props.data.selectedProject;
+        var projectId = selectedProject.projectId;
+      }
+      actionBar = (
+        <div>
+          <button onClick={() => this.props.goto("/create/date")}>Back</button>
+          <button onClick={() => this.props.saveExistingProject(projectId, startAt, payment)}>
           Save</button>
         </div>
       );

@@ -166,10 +166,11 @@ class AppContainer extends Component {
     });
   };
 
-  saveExistingProject(projectId, startAt) {
+  saveExistingProject(projectId, startAt, payment) {
     axios.post("/api/newuserproject", {
       projectId: projectId,
-      startAt: startAt
+      startAt: startAt,
+      payment: JSON.stringify(payment)
     })
     .then((res) => {
       console.log("start existing project success: ", res.data);

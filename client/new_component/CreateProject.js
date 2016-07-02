@@ -16,16 +16,7 @@ class CreateProject extends Component {
 
     let validator = () => {
       if (this.props.data.creatingProjectLast) {
-        const text = this.props.data.text;
-        const publicIds = window.publicIds;
-        const newProject = {
-          title: this.props.data.title,
-          description: this.props.data.description,
-          startAt: new Date().toJSON().slice(0,10)
-        }
-
         this.props.goto("/payment");
-        // this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
       } else if (this.props.validateAll(vaidationCallback, this.props.data.title, this.props.data.description)) {
         this.props.goto("/create/date");
       } else {
