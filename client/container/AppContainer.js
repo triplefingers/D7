@@ -327,6 +327,17 @@ class AppContainer extends Component {
     });
   }
 
+  /* FETCH WISHLIST PROJECTS */
+  fetchWishList() {
+    axios.get("/api/projects/wish")
+    .then((res) => {
+      this.setState({wishList: res.data});
+    })
+    .catch((err) => {
+      console.error("Error occurred while fetching wish list: ", err);
+    });
+  }
+
   render() {
     let injection = {};
 
@@ -366,6 +377,9 @@ class AppContainer extends Component {
     /* For user data */
     injection.fetchUser = this.fetchUser.bind(this);
     injection.saveUserData = this.saveUserData.bind(this);
+
+    /* For Wish List */
+    injection.fetchWishList = this.fetchWishList.bind(this);
 
     let child = this.props.children && React.cloneElement(this.props.children, injection);
 
