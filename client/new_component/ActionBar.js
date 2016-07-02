@@ -54,8 +54,8 @@ class ActionBar extends Component {
       if (this.props.callback) {
         rightButton = <button onClick={() => this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)}>Save</button>
       }
-
     } else {
+      console.log("Third case");
       rightButton = <button onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</button>
     }
 

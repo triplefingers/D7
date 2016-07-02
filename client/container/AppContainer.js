@@ -7,7 +7,19 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {list: null, selectedMain: "recent"};
+    this.state = {
+      selectedMain: "recent",
+      text: "",
+      description: "",
+      title: "",
+      startAt: "",
+      cardNumber: "",
+      expiry: "",
+      birth: "",
+      pwd2digit: "",
+      amount: "",
+      currency: "won"
+    };
   };
 
   // Check if session exists
@@ -90,18 +102,19 @@ class AppContainer extends Component {
   };
 
   handleChange(what, event) {
-    console.log("EVENT: ", event);
+    // console.log("EVENT: ", event);
     let data = {};
     data[what] = event.target.value;
     this.setState(data);
   };
 
-  saveNewProject(userId, title, desc, startDate) {
+  saveNewProject(userId, title, desc, startDate, payment) {
     axios.post("/api/newproject", {
       userId : userId,
       title: title,
       description: desc,
-      startAt: startDate
+      startAt: startDate,
+      payment: JSON.stringify(payment)
     })
     .then((res) => {
       console.log("saveNewProject success: ", res);
@@ -134,14 +147,15 @@ class AppContainer extends Component {
   };
 
   /*newProject : object (title, description, startAt - 10자리 string)*/
-  saveDayDetail(userId, id, onDay, text, publicIds, newProject) {
+  saveDayDetail(userId, id, onDay, text, publicIds, newProject, payment) {
     axios.post("/api/record", {
       userId : userId,
       id: id,
       onDay: onDay,
       text: text,
       publicIds: JSON.stringify(publicIds),
-      newProject: JSON.stringify(newProject)
+      newProject: JSON.stringify(newProject),
+      payment: JSON.stringify(payment)
     })
     .then((res) => {
       console.log("saveDayDetail success: ", res.data);

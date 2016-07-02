@@ -24,10 +24,8 @@ class CreateProject extends Component {
           startAt: new Date().toJSON().slice(0,10)
         }
 
-        console.log("dasfsdfsdfasdfadsfasd", typeof(text), publicIds, newProject);
-
-        this.props.goto("/");
-        this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
+        this.props.goto("/payment");
+        // this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
       } else if (this.props.validateAll(vaidationCallback, this.props.data.title, this.props.data.description)) {
         this.props.goto("/create/date");
       } else {
@@ -38,7 +36,7 @@ class CreateProject extends Component {
     let nextButton;
 
     if (this.props.data.creatingProjectLast) {
-      nextButton = <button onClick={validator}>Save</button>
+      nextButton = <button onClick={validator}>Next</button>
     } else {
       nextButton = <button onClick={validator}>Next</button>
     }
