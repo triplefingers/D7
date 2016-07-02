@@ -8,7 +8,7 @@ class DetailUserProjectCard extends Component {
   }
 
   clickProjectCard() {
-    this.props.fetchProjectDetail(this.props.data.id);
+    this.props.fetchUserProjectDetail(this.props.data.id);
     this.props.goto("/userproject");
   }
 

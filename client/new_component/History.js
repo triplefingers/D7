@@ -13,9 +13,14 @@ class History extends Component {
     this.props.fetchAllProjects();
   }
 
+  componentWillUnmount() {
+    this.props.reset(["history"]);
+  }
+
   render() {
 
     const { history } = this.props.data;
+    const { fetchUserProjectDetail, goto } = this.props;
 
     if(history){
       let { onGoing, waiting, complete } = history;
@@ -24,15 +29,15 @@ class History extends Component {
       console.log('ONGOING', onGoing);
 
       onGoing = onGoing.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} />
+          return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto} />
         });
 
       waiting = waiting.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} />
+          return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
         });
 
       complete = complete.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} />
+          return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
         });
 
       return (
