@@ -73,13 +73,13 @@ class Main extends Component {
       if (this.props.data.recent) {
         console.log("Recent ",this.props.data.recent);
         Contents = this.props.data.recent.map((post) => {
-          return <MainPostCard data={post} key={post.id} goto={this.props.goto} fetchUserProjectDetail={this.props.fetchUserProjectDetail}/>
+          return <MainPostCard data={post} key={post.id} goto={this.props.goto} fetchUserProjectDetail={this.props.fetchUserProjectDetail} saveReport={this.props.saveReport}/>
         });
       }
     } else if (this.props.data.selectedMain === "popular") {
       if (this.props.data.popular) {
         Contents = this.props.data.popular.map((post) => {
-          return <MainPostCard data={post} key={post.id} goto={this.props.goto} fetchUserProjectDetail={this.props.fetchUserProjectDetail}/>
+          return <MainPostCard data={post} key={post.id} goto={this.props.goto} fetchUserProjectDetail={this.props.fetchUserProjectDetail} saveReport={this.props.saveReport} />
         });
       }
     } else if(this.props.data.selectedMain === "suggestion") {
@@ -87,7 +87,7 @@ class Main extends Component {
       if (this.props.data.recommended) {
         Contents = this.props.data.recommended.map((project) => {
           console.log(project);
-          return <MainProjectCard data={project} key={project.id} goto={this.props.goto} fetchProjectDetail={this.props.fetchProjectDetail}/>
+          return <MainProjectCard data={project} key={project.id} goto={this.props.goto} fetchProjectDetail={this.props.fetchProjectDetail} />
         });
       }
     }
