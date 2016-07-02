@@ -20,7 +20,12 @@ class SideBar extends Component {
     $('#sidebar').css("left", "-100%");
   }
 
-  handleClickOngoing(id, e){
+  handleClick(url) {
+    this.props.data.goto(url);
+    this.toggleSidebar();
+  }
+
+  handleClickOngoing(id, e) {
     e.preventDefault();
     this.props.data.fetchUserProjectDetail(id);
     this.props.data.goto("/userproject");
@@ -74,13 +79,13 @@ class SideBar extends Component {
           </div>
           <div>
             <div>
-              <h2 onClick={()=>goto("/history")}>Ongoing Projects</h2>
+              <h2 onClick={this.handleClick.bind(this, "/history")}>Ongoing Projects</h2>
               <ul>
                 {onGoingProjects}
               </ul>
-              <h2 onClick={()=>goto("/history")}>Project History</h2>
-              <h2 onClick={()=>goto("/wish")}>Wish List</h2>
-              <h2 onClick={()=>goto("/settings")}>Settings</h2>
+              <h2 onClick={this.handleClick.bind(this, "/history")}>Project History</h2>
+              <h2 onClick={this.handleClick.bind(this, "/wishlist")}>Wish List</h2>
+              <h2 onClick={this.handleClick.bind(this, "/settings")}>Settings</h2>
             </div>
           </div>
         </div>
