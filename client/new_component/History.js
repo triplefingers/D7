@@ -50,6 +50,7 @@ class History extends Component {
           <h1>Complete</h1>
           {complete}
         </div>
+
       );
     }
 
