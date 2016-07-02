@@ -25,7 +25,7 @@ class Settings extends Component {
           <h2>Transaction History</h2>
           <ul>
             <li>Date, Project, Amount, Status</li>
-          <ul>
+          </ul>
         </div>
       </div>
     );

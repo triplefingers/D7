@@ -1,23 +1,35 @@
-
-
-
-
-
-
-  import React, {Component} from "react";
+import React, {Component} from "react";
 
 class SideBar extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.data.fetchOngoingProjects();
+    this.props.data.fetchUser();
+  }
 
-    /* list: ongoing / userProjects */
-    this.setState({data: this.props.data.data.list});
+  componentDidMount() {
+    console.log("Sidebar Mounted");
+    // this.setState({data: this.props.data.data.list});
+  }
+
+  toggleSidebar() {
+    $('#sidebar').css("left", "-100%");
+  }
+
+  handleClick(url) {
+    this.props.data.goto(url);
+    this.toggleSidebar();
+  }
+
+  handleClickOngoing(id, e) {
+    e.preventDefault();
+    this.props.data.fetchUserProjectDetail(id);
+    this.props.data.goto("/userproject");
+    this.toggleSidebar();
   }
 
   render() {
@@ -36,49 +48,51 @@ class SideBar extends Component {
 
     /* ongoing = onGoing*/
     let onGoingProjects, userStats;
-    if (this.state.data && this.state.data.userProjects) {
-      var stats = this.state.data.userProjects;
-    }
+    const { user, onGoing } = this.props.data.data;
+    const { goto } = this.props.data;
+    console.log('THIS.PROPS.DATA', this.props.data);
+    console.log('ONGOING', onGoing);
+    console.log('USER', user);
 
-
-    if (this.state.data && this.state.data.ongoing) {
-      onGoingProjects = this.state.data.ongoing.map((project) => {
-        return (<li>{project.title} (on day {project.onDay})</li>);
-      })
-    }
-
-    if (this.state.data && this.state.data.userProjects) {
+    if (user && onGoing) {
       userStats = (
-        <div>
-          <li>Total: {stats.total}</li>
-          <li>Success: {stats.success}</li>
-          <li>Fail: {stats.fail}</li>
-        </div>
+        <ul>
+          <li>Total: {user.userProjects.total}</li>
+          <li>Success: {user.userProjects.success}</li>
+          <li>Fail: {user.userProjects.fail}</li>
+        </ul>
       );
-    }
 
-    return (
-      <div style={sideBarStyle} id="sidebar">
-        <div>
-          <p>Photo</p>
-          <h1>Dongwoo Kim</h1>
-          <ul>
-            {userStats}
-          </ul>
-        </div>
-        <div>
+      onGoingProjects = onGoing.map((project) => {
+        return (<li key={project.id}><a onClick={this.handleClickOngoing.bind(this, project.id)}>{project.title} on day {project.onDay}</a></li>);
+      });
+
+      return (
+        <div style={sideBarStyle} id="sidebar">
+          <button onClick={this.toggleSidebar}>X close</button>
           <div>
-            <h2>Ongoing Projects</h2>
+            <img src={user.userPhoto} width="100px" height="100px"/>
+            <h1>{user.username}</h1>
             <ul>
-              {onGoingProjects}
+              {userStats}
             </ul>
-            <h2>Project History</h2>
-            <h2>Wish List</h2>
-            <h2>Settings</h2>
+          </div>
+          <div>
+            <div>
+              <h2 onClick={this.handleClick.bind(this, "/history")}>Ongoing Projects</h2>
+              <ul>
+                {onGoingProjects}
+              </ul>
+              <h2 onClick={this.handleClick.bind(this, "/history")}>Project History</h2>
+              <h2 onClick={this.handleClick.bind(this, "/wishlist")}>Wish List</h2>
+              <h2 onClick={this.handleClick.bind(this, "/settings")}>Settings</h2>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (<div style={sideBarStyle} id="sidebar"><button onClick={this.toggleSidebar}>X close</button>loading...</div>);
+    }
   }
 }
 
