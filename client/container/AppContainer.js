@@ -299,7 +299,7 @@ class AppContainer extends Component {
       });
     })
     .catch((err) => {
-      console.error("Error occurred while fetching project detail: ", err);
+      console.error("Error occurred while fetching userproject detail: ", err);
     });
   }
 
@@ -311,7 +311,7 @@ class AppContainer extends Component {
       this.setState({user: res.data});
     })
     .catch((err) => {
-      console.error("Error occurred while fetching project detail: ", err);
+      console.error("Error occurred while fetching user data: ", err);
     });
   }
 
@@ -337,6 +337,7 @@ class AppContainer extends Component {
       console.error("Error occurred while fetching wish list: ", err);
     });
   }
+
 
   render() {
     let injection = {};
