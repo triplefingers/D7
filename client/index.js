@@ -66,14 +66,7 @@ import LeaveHistory from "./new_component/LeaveHistory";
 import History from "./new_component/History";
 import WishList from "./new_component/WishList";
 import Settings from "./new_component/Settings";
-
-
-import History from "./new_component/History";
-import WishList from "./new_component/WishList";
-import Settings from "./new_component/Settings";
-
 import Payment from "./new_component/Payment";
-
 
 ReactDOM.render(
   (
