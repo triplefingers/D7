@@ -30,7 +30,6 @@ class History extends Component {
       console.log('ONGOING', onGoing);
 
       onGoing = onGoing.map((project) => {
-<<<<<<< 7894603aa24382ac77dd07252c2a1b86451fd46f
           return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto} />
         });
 
@@ -40,17 +39,6 @@ class History extends Component {
 
       complete = complete.map((project) => {
           return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
-=======
-          return <DetailUserProjectCard key={project.id} data={project} />
-        });
-
-      waiting = waiting.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} />
-        });
-
-      complete = complete.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} />
->>>>>>> (feat) Apply DetailUserProjectCard Component in History page
         });
 
       return (
