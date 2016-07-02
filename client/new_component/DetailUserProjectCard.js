@@ -22,28 +22,24 @@ class DetailUserProjectCard extends Component {
     }
 
     return (
-      <div style={cardStyle} onClick={this.clickProjectCard.bind(this)}>
-        {/* Card Header */}
+      <div tyle={cardStyle} onClick={this.clickProjectCard.bind(this)}>
         <div>
-          <img src="https://www.colourbox.com/preview/1744283-set-of-paintbrushes-and-color-paint-on-canvas-background.jpg" width="400px" height="200px"/>
+          <h1>{projectTitle}</h1>
+          <p>{projectDescription}</p>
         </div>
-        {/* Card Content */}
         <div>
-          <h2>{title}</h2>
-          <p>
-            {description}
-          </p>
+          <img src={userPhoto} alt="user profile" width="20px" height="20px"/>
+          <span>{username}</span>
         </div>
-        {/* Card Footer */}
         <div>
-          {/* Footer Left Part */}
-          <WishSet id={id} doneWish={doneWish} wishCount={wishCount} />
-          {/* Footer Right Part */}
-          <div>
-            <span>by</span>
-            <span>{username}</span>
-          </div>
+          <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} />
+          <button onClick={this.handleProjectClick.bind(this)}>-></button>
         </div>
+        <div>
+          {projectStatus}
+          <div>{startAt}~{endAt}</div>
+        </div>
+        {transaction}
       </div>
     );
   }
