@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-class DetailProjectCard extends Component {
+class DetailUserProjectCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,7 +9,7 @@ class DetailProjectCard extends Component {
 
   clickProjectCard() {
     this.props.fetchProjectDetail(this.props.data.id);
-    this.props.goto("/project");
+    this.props.goto("/userproject");
   }
 
   render() {
@@ -49,4 +49,4 @@ class DetailProjectCard extends Component {
   }
 }
 
-export default DetailProjectCard;
+export default DetailUserProjectCard;
