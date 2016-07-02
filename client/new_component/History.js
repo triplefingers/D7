@@ -7,11 +7,29 @@ class History extends Component {
     };
   }
 
+  componentWillMount(){
+    this.props.fetchAllProjects();
+  }
+
   render() {
+
+    const { onGoing, waiting, complete } = this.props.data.history;
+
+    if(history){
+      console.log('COMPLETE', complete);
+      console.log('WAITING', waiting);
+      console.log('ONGOING', onGoing);
+
+      return (
+        <div>
+          History
+        </div>
+      );
+    }
 
     return (
       <div>
-        History
+        loading...
       </div>
     );
   }

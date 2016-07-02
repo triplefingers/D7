@@ -63,6 +63,10 @@ import UserProjectDetail from "./new_component/UserProjectDetail";
 import CreateProject from "./new_component/CreateProject";
 import CreateDate from "./new_component/CreateDate";
 import LeaveHistory from "./new_component/LeaveHistory";
+import History from "./new_component/History";
+import WishList from "./new_component/WishList";
+import Settings from "./new_component/Settings";
+
 
 import History from "./new_component/History";
 import WishList from "./new_component/WishList";

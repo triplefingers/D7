@@ -119,7 +119,10 @@ class AppContainer extends Component {
     .then((res) => {
       console.log("saveNewProject success: ", res);
       //store {id, title, description, onDay} to this.state
-      this._save({id: res.data.id, onDay: res.data.onDay});
+      this._save({
+        id: res.data.id,
+        onDay: res.data.onDay
+      });
       this.goto("/");
     })
     .catch((err) => {
@@ -135,7 +138,9 @@ class AppContainer extends Component {
       }
     })
     .then((res) => {
-      this.setState({onGoing: res.data});
+      this.setState({
+        onGoing: res.data
+      });
     });
   };
 
@@ -208,7 +213,9 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // App Container 에 detail 데이터 추가
-      this.setState({dayDetails: res.data});
+      this.setState({
+        dayDetails: res.data
+      });
       console.log(this.state.dayDetails);
       this.goto("/history/project/" + userProjectId);
     })
@@ -225,7 +232,9 @@ class AppContainer extends Component {
       }
     })
     .then((res) => {
-      this.setState({recommended: res.data});
+      this.setState({
+        recommended: res.data
+      });
     })
     .catch((err) => {
       console.error("Error occured while fetching recommended projects", err);
@@ -237,7 +246,9 @@ class AppContainer extends Component {
     axios.get("/api/posts/recent")
     .then((res) => {
       // console.log("Recent Posts: ", res);
-      this.setState({recent: res.data});
+      this.setState({
+        recent: res.data
+      });
     })
     .catch((err) => {
       console.error("Error occurred while fetching recent posts: ", err);
@@ -249,7 +260,9 @@ class AppContainer extends Component {
     axios.get("/api/posts/popular")
     .then((res) => {
       // console.log("Popular Posts: ", res);
-      this.setState({popular: res.data});
+      this.setState({
+        popular: res.data
+      });
     })
     .catch((err) => {
       console.error("Error occurred while fetching popular posts: ", err);
@@ -265,7 +278,9 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // console.log("Project detail: ", res);
-      this.setState({project: res.data});
+      this.setState({
+        project: res.data
+      });
     })
     .catch((err) => {
       console.error("Error occurred while fetching project detail: ", err);
@@ -315,7 +330,6 @@ class AppContainer extends Component {
   render() {
     let injection = {};
 
-
     /* For App */
     injection.reset = this.reset.bind(this);
     injection.checkIfLogined = this.checkIfLogined.bind(this);
@@ -327,7 +341,6 @@ class AppContainer extends Component {
     injection.handleChange = this.handleChange.bind(this);
     injection.goto = this.goto.bind(this);
     injection.saveExistingProject = this.saveExistingProject.bind(this);
-
 
     /* For Create */
     injection._save = this._save.bind(this);

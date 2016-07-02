@@ -79,6 +79,7 @@ class SideBar extends Component {
           </div>
           <div>
             <div>
+<<<<<<< 9f0e6d1e79229980dea667d265ad7678db2de77b
               <h2 onClick={this.handleClick.bind(this, "/history")}>Ongoing Projects</h2>
               <ul>
                 {onGoingProjects}
@@ -86,6 +87,15 @@ class SideBar extends Component {
               <h2 onClick={this.handleClick.bind(this, "/history")}>Project History</h2>
               <h2 onClick={this.handleClick.bind(this, "/wishlist")}>Wish List</h2>
               <h2 onClick={this.handleClick.bind(this, "/settings")}>Settings</h2>
+=======
+              <h2 onClick={()=>goto("/history")}>Ongoing Projects</h2>
+              <ul>
+                {onGoingProjects}
+              </ul>
+              <h2 onClick={()=>goto("/history")}>Project History</h2>
+              <h2 onClick={()=>goto("/wish")}>Wish List</h2>
+              <h2 onClick={()=>goto("/settings")}>Settings</h2>
+>>>>>>> (fix) Apply actual fetched data in Sidebar
             </div>
           </div>
         </div>
