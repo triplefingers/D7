@@ -187,15 +187,13 @@ class AppContainer extends Component {
   }
 
   // For History
-  fetchAllProjects(userId) {
-    axios.get("/api/projects/all", {
-      params: {
-        userId : userId
-      }
-    })
+  fetchAllProjects() {
+    axios.get("/api/projects/all")
     .then((res) => {
-      this.setState({list: res.data});
-      console.log(this.state.list);
+      this.setState({
+        history: res.data
+      });
+      console.log('HISTORY', this.state.history);
     })
     .catch((err) => {
       console.error("Error occured while fetching all projects: ", err);
@@ -296,7 +294,9 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // console.log("Userproject detail: ", res);
-      this.setState({userproject: res.data});
+      this.setState({
+        userproject: res.data
+      });
     })
     .catch((err) => {
       console.error("Error occurred while fetching project detail: ", err);
