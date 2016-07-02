@@ -50,9 +50,9 @@ const fetchAllProjects = (user, q, res)=>{
             data.doneToday = true;
           }
         });
-        result.ongoing.push(data);
+        result.onGoing.push(data);
       } else if ( diff <= 0 ){
-        data.onday = diff;
+        data.onDay = diff;
         result.waiting.push(data);
       } else {
         result.complete.push(data);
