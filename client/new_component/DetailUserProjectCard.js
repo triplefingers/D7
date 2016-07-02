@@ -16,9 +16,6 @@ class DetailUserProjectCard extends Component {
 
     if(this.props.data){
       console.log('THIS.PROPS.DATA in DetailUserProjectCard', this.props.data);
-<<<<<<< 7894603aa24382ac77dd07252c2a1b86451fd46f
-
-<<<<<<< 6d3f2265cc9a5f64eb441fb4ca1285d7d7bf79b5
       const { id, title, description, startAt, endAt, onDay, success } = this.props.data;
 
       let projectStatus;
