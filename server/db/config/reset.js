@@ -81,7 +81,7 @@ const resetDB = ()=>{
     transaction.date("paymentDue");
     transaction.integer("amount");
     transaction.string("currency");
-    transaction.boolean("success");
+    transaction.boolean("refund");
     transaction.timestamps();
   })
   .createTableIfNotExists("report", function(report) {
