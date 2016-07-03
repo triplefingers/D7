@@ -1,11 +1,8 @@
 import model from "../db/models";
 import collection from "../db/collections";
 import paymentReq from "./payment";
-import Promise from "bluebird";
 
 const createNewProject = (user, q, body, res) => {
-  console.log("------variable iin createNewProject is ", user, q, body, " typeof body is ", typeof(body), res);
-
   // const userId = user.id;
 
   // below should be deleted
@@ -96,7 +93,8 @@ const createNewProject = (user, q, body, res) => {
     /* delete project, userproject */
     new model.Project({id: projectId}).destroy()
     .then(() => {
-      console.log("now deleting false project info");
+      console.log("deteted false project info");
+      console.log("now deleting false userproject info");
       new model.UserProject({id: userProjectId}).destroy();
     })
     .catch((err) => {
@@ -106,7 +104,7 @@ const createNewProject = (user, q, body, res) => {
     if (!res) {
       return err;
     } else {
-      res.status(500).end();
+      res.status(500).send({donePayment: false}).end();
     }
   });
 };

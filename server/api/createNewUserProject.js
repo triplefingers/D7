@@ -1,5 +1,6 @@
 import model from "../db/models";
 import collection from "../db/collections";
+import paymentReq from "./payment";
 
 const createNewUserProject = (user, q, body, res) => {
   console.log("------variable iin createNewProject is ", user, q, body, " typeof body is ", typeof(body), res);
@@ -17,13 +18,18 @@ const createNewUserProject = (user, q, body, res) => {
     userId = 1;
   }
 
-  const { projectId, startAt } = body;
+  const { projectId, startAt, payment } = body;
 
-  console.log("------------projecgid and startat: ", projectId, " ", startAt, " ", typeof(startAt));
+  /* if the payment is failed, should del and userProject */
+  /* by using id below */
+  let userProjectId;
+
+
+  // console.log("------------projecgid and startat: ", projectId, " ", startAt, " ", typeof(startAt));
   const today = new Date();
   const startAtInObj = new Date(startAt);
-  console.log("body is, ", body, typeof(body), Object.keys(body));
-  console.log("before slice, ", today, startAtInObj, startAt);
+  // console.log("body is, ", body, typeof(body), Object.keys(body));
+  // console.log("before slice, ", today, startAtInObj, startAt);
 
   let endAt = new Date(startAt);
   endAt.setDate(startAtInObj.getDate() + 6);
@@ -41,11 +47,29 @@ const createNewUserProject = (user, q, body, res) => {
     endAt: endAt
   }).save()
   .then((userProject) => {
+    userProjectId = userProject.id;
     const data = {
       id: userProject.id,
-      onDay: onDay
+      onDay: onDay,
+      endAt: endAt,
+      donePayment: false
     };
-
+    return data;
+  })
+  .then((data) => {
+    const body = {
+      userProjectId: data.id,
+      endAt: data.endAt,
+      payment: payment
+    };
+    console.log("----before paymentReq, body is ",  body);
+    return paymentReq(null, null, body, null)
+    .then((answer) => {
+      data.donePayment = true;
+      return data;
+    });
+  })
+  .then((data) => {
     /* If res === null or res === undefined, just return data */
     if (!res) {
       console.log("Method use: Return createNewUserProject Result: ", data);
@@ -57,11 +81,19 @@ const createNewUserProject = (user, q, body, res) => {
   .catch((err) => {
     console.error("-----Error: Failed to store in 'project' or 'userProject' table: ", err);
 
+    /* delete project, userproject */
+    new model.UserProject({id: userProjectId}).destroy()
+    .then(() => {
+      console.log("deleted false userproject info");
+    })
+    .catch((err) => {
+      console.error("Error: Failed to revert project and userproject");
+    });
     /* If res === null or res === undefined, just return data */
     if (!res) {
       return data;
     } else {
-      res.status(500).end();
+      res.status(500).send({donePayment: false}).end();
     }
   });
 };
