@@ -19,6 +19,9 @@ const createNewProject = (user, q, body, res) => {
     userId = 1;
   }
 
+  /* if the payment is failed, should del project and userProject */
+  /* by using ids below */
+  let projectId, userProjectId;
 
   const { title, description, startAt, payment } = body;
   const today = new Date();
@@ -41,7 +44,7 @@ const createNewProject = (user, q, body, res) => {
     description: description
   }).save()
   .then((project) => {
-    const projectId = project.id;
+    projectId = project.id;
     return model.UserProject.forge().set({
       userId: userId,
       projectId: projectId,
@@ -53,6 +56,7 @@ const createNewProject = (user, q, body, res) => {
   })
   .then((userProject) => {
     userProject = userProject.toJSON();
+    userProjectId = userProject.id;
     const data = {
       id: userProject.id,
       title: title,
@@ -89,6 +93,15 @@ const createNewProject = (user, q, body, res) => {
   .catch((err) => {
     console.error("-----Error: Failed to store in 'project' or 'userProject' table: ", err);
 
+    /* delete project, userproject */
+    new model.Project({id: projectId}).destroy()
+    .then(() => {
+      console.log("now deleting false project info");
+      new model.UserProject({id: userProjectId}).destroy();
+    })
+    .catch((err) => {
+      console.error("Error: Failed to revert project and userproject");
+    });
     /* If res === null or res === undefined, just return err */
     if (!res) {
       return err;

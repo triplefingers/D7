@@ -45,9 +45,9 @@ const payment = (user, q, body, res) => {
   }
   const paymentReq = {
     params: {},
-    customer_uid: userId + "-" + username, // distinctive customer uid
+    customer_uid: userId + "--" + username, // distinctive customer uid
     checking_amount: 0, // if you want check the credit card is valid, can validate with checking_amount more then;
-    card_number: cardNumber, // stirng, "xxxx-xxxx-xxxx-xxxx"
+    //card_number: cardNumber, // stirng, "xxxx-xxxx-xxxx-xxxx"
     expiry: expiry, // string, "yyyy-mm"
     birth: birth, // string, "yymmdd"
     pwd_2digit: pwd2digit, // string, "xx"
@@ -81,6 +81,7 @@ const payment = (user, q, body, res) => {
       console.error("Failed to store access_token on the server");
       throw "Failed to store access_token on the server";
     }
+    console.log("paymentInfo is ", paymentReq);
     return axios.post("https://api.iamport.kr/subscribe/payments/schedule?_token=" + accessToken, paymentReq)
     .then((answer) => answer);
   })
