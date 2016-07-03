@@ -13,6 +13,18 @@ class ActionBar extends Component {
 
   render() {
 
+    /* Validation Process */
+    let validationCallback = (item) => {
+      if (item && item.length > 0) {
+        return true;
+      } else if (item) {
+        return true;
+      }
+      return false;
+    };
+
+
+
     if (this.props.project) {
       var data = this.props.project;
       var userProjectId = data.id;
@@ -44,7 +56,16 @@ class ActionBar extends Component {
     // url이 넘어오지 않는다면 항상 SAVE -> / 로 이동
     if (this.props.nextUrl) {
       console.log("First case");
-      rightButton = <button onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</button>
+      let validator = () => {
+        if (this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
+          console.log("Project Selected");
+          this.props.goto(this.props.nextUrl)
+        } else {
+          alert("Check again : Pick a project before proceed");
+        }
+      };
+
+      rightButton = <button onClick={validator}>Next</button>
     }
     else if ((this.props.data && (!this.props.data.leaveHistoryClicked)) ||
       ((this.props.callback) && this.props.callback.data.leaveHistoryInProgress)) {
