@@ -17,6 +17,7 @@ import report from "./report";
 import wish from "./wish";
 import user from "./user";
 import payment from "./payment";
+import paymentCancel from "./paymentCancel";
 
 // var payment = (user, q, body, res) => {
 //
@@ -89,5 +90,6 @@ export default {
   report: report,
   wish: wish,
   user: user,
-  payment: payment
+  payment: payment,
+  paymentCancel: paymentCancel
 };
