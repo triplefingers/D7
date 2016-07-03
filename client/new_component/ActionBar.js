@@ -66,14 +66,24 @@ class ActionBar extends Component {
       };
 
       rightButton = <button onClick={validator}>Next</button>
-    }
-    else if ((this.props.data && (!this.props.data.leaveHistoryClicked)) ||
+    } else if ((this.props.data && (!this.props.data.leaveHistoryClicked)) ||
       ((this.props.callback) && this.props.callback.data.leaveHistoryInProgress)) {
       console.log("Second case");
-      rightButton = <button onClick={() => this.props.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)}>Save</button>
+      let validator = () => {
+        if (this.props.validateAll(validationCallback, this.props.data.selectedProject) && this.props.callback) {
+          console.log("Project Selected");
+          this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)
+        } else if (this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
+          this.props.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
+        } else {
+          alert("Check again : Pick a project before proceed");
+        }
+      };
+
+      rightButton = <button onClick={validator}>Save</button>
 
       if (this.props.callback) {
-        rightButton = <button onClick={() => this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)}>Save</button>
+        rightButton = <button onClick={validator}>Save</button>
       }
     } else {
       console.log("Third case");
