@@ -2,6 +2,7 @@ import model from "../db/models";
 import collection from "../db/collections";
 import db from "../db/config/setConfig";
 import createNewProject from "./createNewProject";
+import paymentCancelReq from "./paymentCancel";
 import Promise from "bluebird";
 
 const record = (user, q, body, res) => {
@@ -104,9 +105,27 @@ const record = (user, q, body, res) => {
       /* check if the date of posting is same with endDate of the userProject */
       /* and if so, update success col of userProject, from false to true */
       if (postDate === endDate) {
-        // console.log("successssssssssssssssssss---------------");
-        return new model.UserProject({id: post.userProjectId}).save({success: true})
-        .then(() => post)
+        return model.Transaction.where({userProjectId: post.userProjectId}).fetch()
+        .then((transaction) => {
+          transaction = transaction.toJSON();
+          const body = {
+            customer_uid: transaction.customer_uid,
+            merchant_uid: transaction.merchant_uid
+          };
+          return paymentCancelReq(null, null, body, null)
+          .then((answer) => {
+            post.doneCancelPayment = true;
+          });
+        })
+        .then(() => {
+          return new model.Transaction({userProjectId: post.userProjectId}).save({refund: true});
+        })
+        .then(() => {
+          return new model.UserProject({id: post.userProjectId}).save({success: true});
+        })
+        .then(() => {
+          return post;
+        })
         .catch((err) => {
           console.error("Error: Failed to change userProject S/U status in 'record.js': ", err);
           return err;

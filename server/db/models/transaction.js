@@ -13,7 +13,7 @@ const Transaction = db.Model.extend({
   },
   defaults: {
     currency: "won",
-    success: true
+    refund: false
   }
 });
 

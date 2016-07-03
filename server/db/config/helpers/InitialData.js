@@ -74,17 +74,11 @@ const UserProjectData = [{
     startAt: "2016-06-14",
     endAt: "2016-06-20",
     success: false,
-  // },{
-  //   userId: 1,
-  //   projectId: 2,
-  //   startAt: "2016-06-27",
-  //   endAt: "2016-07-03",
-  // },{
   },{
     userId: 1,
     projectId: 2,
-    startAt: "2016-06-27",
-    endAt: "2016-07-03",
+    startAt: "2016-06-28",
+    endAt: "2016-07-04",
     success: false,
   },{
     userId: 1,
@@ -111,8 +105,8 @@ const TransactionData = [{
   },{
     userId: 1,
     userProjectId: 3,
-    customer_uid: "idforcoding@gmail.com",
-    merchant_uid: "Transaction3",
+    customer_uid: "1--Lenny",
+    merchant_uid: "1-6-1467566615137",
     paymentDue: "2016-06-30",
     amount: 7000
   },{
