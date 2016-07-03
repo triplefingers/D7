@@ -8,6 +8,23 @@ class Settings extends Component {
  }
 
  componentDidMount() {
+   $.cloudinary.config({cloud_name: "daxutqqyt"});
+
+   // Dynamically Attached
+   $(".upload_form").append($.cloudinary.unsigned_upload_tag("mmbawtto",
+     { cloud_name: "daxutqqyt" }));
+
+   $(".cloudinary_fileupload").attr("accept", "image/*;capture=camera");
+
+   $(".cloudinary_fileupload").unsigned_cloudinary_upload("mmbawtto",
+     { cloud_name: "daxutqqyt", tags: "browser_uploads" })
+
+   .bind("cloudinarydone", (e, data) => {
+     publicIds.push(data.result.public_id);
+     $('img').attr("src", "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + data.result.public_id + ".jpg");
+
+     // some code to send new user data
+   })
 
  }
 
@@ -36,6 +53,7 @@ class Settings extends Component {
        <h1>Settings</h1>
        <p>
          <img src={userData.userPhoto} alt="profile_pic" />
+         <form className="upload_form"></form>
        </p>
        <h2>{userData.username}</h2>
        <h3>{userData.email}</h3>
