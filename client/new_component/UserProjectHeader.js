@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import WishSet from "./WishSet";
+import UserSet from "./UserSet";
 
 class UserProjectHeader extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class UserProjectHeader extends Component {
 
     let projectStatus;
     let transaction;
+    let user;
 
     if(others){
       if(status === "ongoing" || status === "waiting"){
@@ -43,10 +45,7 @@ class UserProjectHeader extends Component {
           <h1>{projectTitle}</h1>
           <p>{projectDescription}</p>
         </div>
-        <div>
-          <img src={userPhoto} alt="user profile" width="20px" height="20px"/>
-          <span>{username}</span>
-        </div>
+        <UserSet userPhoto={userPhoto} username={username} />
         <div>
           <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} />
           <button onClick={this.handleProjectClick.bind(this)}>-></button>

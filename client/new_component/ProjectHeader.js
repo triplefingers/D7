@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import WishSet from "./WishSet";
+import UserSet from "./UserSet";
 
 class ProjectHeader extends Component {
   constructor(props) {
@@ -30,10 +31,7 @@ class ProjectHeader extends Component {
         {/* Footer */}
         <div>
           <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} />
-          <div>
-            <img src={userPhoto} width="20px" height="20px"/>
-            <span>{username}</span>
-          </div>
+          <UserSet userPhoto={userPhoto} username={username} />
         </div>
       </div>
     );

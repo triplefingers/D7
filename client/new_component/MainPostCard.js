@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import LikeSet from "./LikeSet";
 import ReportSet from "./ReportSet";
-
+import UserSet from "./UserSet";
 
 class MainPostCard extends Component {
   constructor(props) {
@@ -40,11 +40,7 @@ class MainPostCard extends Component {
         <div>
           {/* Header Left Part */}
           <div>
-            <div>
-              {/* 추후에 Cloudinary id로 변경해야 함 */}
-              <img src={userPhoto} width="20px" height="20px"/>
-              <span>{username}</span>
-            </div>
+            <UserSet userPhoto={userPhoto} username={username} />
             <div>{projectTitle}</div>
           </div>
           {/* Header Right Part */}

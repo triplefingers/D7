@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import LikeSet from "./LikeSet";
+import ReportSet from "./ReportSet";
 
 class DetailPostCard extends Component {
   constructor(props) {
@@ -58,9 +59,7 @@ class DetailPostCard extends Component {
           {/* Footer Right Part */}
           <LikeSet id={id} doneLike={doneLike} likeCount={likeCount}/>
           {/* Footer Left Part */}
-          <div>
-            <button>...</button>
-          </div>
+          <ReportSet id={id} goto={this.props.goto}/>
         </div>
       </div>
     );
