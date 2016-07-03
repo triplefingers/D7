@@ -111,8 +111,8 @@ const TransactionData = [{
   },{
     userId: 1,
     userProjectId: 3,
-    customer_uid: "idforcoding@gmail.com",
-    merchant_uid: "Transaction3",
+    customer_uid: "1--Lenny",
+    merchant_uid: "1-6-1467566615137",
     paymentDue: "2016-06-30",
     amount: 7000
   },{
