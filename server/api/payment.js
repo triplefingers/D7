@@ -5,7 +5,7 @@ import apiKeys from "./import/apiKeys";
 
 const payment = (user, q, body, res) => {
   // const userId = user.id;
-  // const userNme = user.username
+  // const username = user.username
   const { userProjectId, endAt } = body;
   const payment = JSON.parse(body.payment);
 
@@ -45,9 +45,9 @@ const payment = (user, q, body, res) => {
   }
   const paymentReq = {
     params: {},
-    customer_uid: userId + "---" + username, // distinctive customer uid. If customer_uid is same as before, iamport automatically process with previous card infos even if now we have sent no card infos
+    customer_uid: userId + "--" + username, // distinctive customer uid. If customer_uid is same as before, iamport automatically process with previous card infos even if now we have sent no card infos
     checking_amount: 0, // if you want check the credit card is valid, can validate with checking_amount more then;
-    // card_number: cardNumber, // stirng, "xxxx-xxxx-xxxx-xxxx"
+    card_number: cardNumber, // stirng, "xxxx-xxxx-xxxx-xxxx"
     expiry: expiry, // string, "yyyy-mm"
     birth: birth, // string, "yymmdd"
     pwd_2digit: pwd2digit, // string, "xx"
@@ -89,13 +89,18 @@ const payment = (user, q, body, res) => {
     const data = answer.data;
     if (data.code === 0) {
       console.log("Success: scheduled transaction: ", data);
-      /* If res === null or res === undefined, just return data */
-      if (!res) {
-        console.log("Method use: Return createNewProject Result: ", data);
-        return data;
-      } else {
-        res.status(200).send(data);
-      }
+
+      return new model.Transaction({userId: userId, userProjectId: userProjectId, customer_uid: data.response[0].customer_uid, merchant_uid: data.response[0].merchant_uid, paymentDue: new Date( data.response[0].schedule_at * 1000).toJSON().slice(0, 10), amount: data.response[0].amount, currency: currency}).save()
+      .then(() => {
+        /* If res === null or res === undefined, just return data */
+        if (!res) {
+          console.log("Method use: Return createNewProject Result: ", data);
+          return data;
+        } else {
+          res.status(200).send(data);
+        }
+      });
+
     } else {
       console.error("Error: Failed to schedule transaction: ", data);
       throw "Failed to schedule transaction: " + data.message;
