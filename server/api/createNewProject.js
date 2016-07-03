@@ -1,5 +1,7 @@
 import model from "../db/models";
 import collection from "../db/collections";
+import paymentReq from "./payment";
+import Promise from "bluebird";
 
 const createNewProject = (user, q, body, res) => {
   console.log("------variable iin createNewProject is ", user, q, body, " typeof body is ", typeof(body), res);
@@ -18,7 +20,7 @@ const createNewProject = (user, q, body, res) => {
   }
 
 
-  const { title, description, startAt } = body;
+  const { title, description, startAt, payment } = body;
   const today = new Date();
   const startAtInObj = new Date(startAt);
   console.log("body is, ", body, typeof(body), Object.keys(body));
@@ -50,13 +52,32 @@ const createNewProject = (user, q, body, res) => {
     // .catch((err) => console.error("-----Error: Failed to store in 'userProject' table: ", err));
   })
   .then((userProject) => {
+    userProject = userProject.toJSON();
     const data = {
       id: userProject.id,
       title: title,
       description: description,
-      onDay: onDay
+      onDay: onDay,
+      endAt: userProject.endAt,
+      donePayment: false
     };
 
+    return data;
+  })
+  .then((data) => {
+    const body = {
+      userProjectId: data.id,
+      endAt: data.endAt,
+      payment: payment
+    };
+    console.log("----before paymentReq, body is ",  body);
+    return paymentReq(null, null, body, null)
+    .then((answer) => {
+      data.donePayment = true;
+      return data;
+    });
+  })
+  .then((data) => {
     /* If res === null or res === undefined, just return data */
     if (!res) {
       console.log("Method use: Return createNewProject Result: ", data);
@@ -68,9 +89,9 @@ const createNewProject = (user, q, body, res) => {
   .catch((err) => {
     console.error("-----Error: Failed to store in 'project' or 'userProject' table: ", err);
 
-    /* If res === null or res === undefined, just return data */
+    /* If res === null or res === undefined, just return err */
     if (!res) {
-      return data;
+      return err;
     } else {
       res.status(500).end();
     }
