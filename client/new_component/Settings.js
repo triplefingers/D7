@@ -22,8 +22,6 @@ class Settings extends Component {
 
    .bind("cloudinarydone", (e, data) => {
      publicIds.push(data.result.public_id);
-
-
      // some code to send new user data
      axios.post("/api/user", {
       // publicIds is an array and we need to return only one element
@@ -32,12 +30,18 @@ class Settings extends Component {
      .then((res) => {
        console.log("User Profile Picture Changed ", res.data);
        this.props.fetchUser();
+       $(".progress_bar").css("width", 0 + "%");
+
      })
      .catch((err) => {
       console.log("Error Occured while changing user profile picture");
-     });
-
+     })
    })
+
+   .bind("cloudinaryprogress", function(e, data) {
+     $(".progress_bar").css("width",
+       Math.round((data.loaded * 100.0) / data.total) + "%");
+   });
 
  }
 
@@ -63,11 +67,18 @@ class Settings extends Component {
      );
    })
 
+   const progress_bar_style = {
+     background: "black",
+     height: "5px",
+     width: "0px"
+   }
+
    return (
      <div>
        <h1>Settings</h1>
        <div>
          <img src={imageSrc} alt="profile_pic" />
+         <div className="progress_bar" style={progress_bar_style}></div>
          <form className="upload_form"></form>
        </div>
        <h2>{userData.username}</h2>
