@@ -4,7 +4,7 @@ import Promise from "bluebird";
 
 const fetchPopularPosts = (user, q, res)=>{
   // const userId = user.id;
-  const { page } = q.page;
+  const { page } = q;
 
   // below should be deleted
   let userId;
@@ -100,7 +100,7 @@ const fetchPopularPosts = (user, q, res)=>{
     return Promise.all(postsPromiseArray)
     .then(() => {
       console.log("-------posts are", posts);
-      return posts.slice(0, 20);
+      return posts;
     })
   })
   .then((data) => res.status(200).send(data))

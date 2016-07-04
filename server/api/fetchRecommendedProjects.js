@@ -3,7 +3,8 @@ import collection from "../db/collections";
 
 const fetchRecommendedProjects = (user, q, res) => {
   // const userId = user.id;
-
+  const { page } = q;
+  
   // below should be deleted
   let userId;
   if (user && user.id) {
@@ -15,10 +16,14 @@ const fetchRecommendedProjects = (user, q, res) => {
     userId = 1;
   }
 
-  collection.Projects.orderBy("-wishCount").fetch({withRelated: [
-    "user",
-    "wishes"
-  ]})
+  collection.Projects.orderBy("-wishCount").fetchPage({
+    pageSize: 20,
+    page: page,
+    withRelated: [
+      "user",
+      "wishes"
+    ]
+  })
   .then((projects)=>{
     projects = projects.toJSON();
     console.log("Now fetching.... projects are", projects);
@@ -38,7 +43,7 @@ const fetchRecommendedProjects = (user, q, res) => {
       });
       delete project.wishes;
     });
-    return projects.slice(0, 20);
+    return projects;
   })
   .then((data) => {
     console.log("----------------res is ", res);
