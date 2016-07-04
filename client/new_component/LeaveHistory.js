@@ -36,6 +36,7 @@ class LeaveHistory extends Component {
         console.log("Pushing new public ID");
         console.log("Uploaded image: ", data);
         publicIds.push(data.result.public_id);
+        $(".progress_bar").css("width", 0 + "%");
       })
 
       .bind("cloudinaryprogress", function(e, data) {
@@ -50,13 +51,12 @@ class LeaveHistory extends Component {
 
     $( ".preview" ).on("click", "button", function() {
       var $previewId = $(this).attr("class");
-      $("#"+$previewId).remove();
       for(var i=0; i<publicIds.length; i++){
         if(publicIds[i]===$previewId){
           publicIds.splice(i, 1);
         }
       }
-      $(this).remove();
+      $("#"+$previewId).remove();
     });
   }
 
