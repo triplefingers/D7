@@ -72,6 +72,9 @@ const createNewProject = (user, q, body, res) => {
       endAt: data.endAt,
       payment: payment
     };
+    if (typeof body.payment === "string") {
+      body.payment = JSON.parse(body.payment);
+    }
     console.log("----before paymentReq, body is ",  body);
     return paymentReq(null, null, body, null)
     .then((answer) => {

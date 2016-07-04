@@ -7,7 +7,10 @@ const payment = (user, q, body, res) => {
   // const userId = user.id;
   // const username = user.username
   const { userProjectId, endAt } = body;
-  const payment = JSON.parse(body.payment);
+  let payment = body.payment;
+  if (typeof payment === "string") {
+    payment = JSON.parse(payment);
+  }
 
   // below should be deleted
   let userId;

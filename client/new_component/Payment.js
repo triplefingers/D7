@@ -54,7 +54,7 @@ class Payment extends Component {
           this.props.saveNewProject(undefined, title, description, startAt, payment, window.publicIds.pop());
         } else if (this.props.data.creatingProjectLast) {
           console.log("Second Case");
-          Object.assign(newProject, {image: window.publicIds});
+          Object.assign(newProject, {image: window.publicIds.pop(), payment: payment});
           console.log(text, publicIds, newProject, payment);
           this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject, payment);
         } else if (this.props.data.existingProjectChosen) {
