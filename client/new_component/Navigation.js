@@ -14,6 +14,11 @@ class Navigation extends Component {
     $('#sidebar').css("left", "0%");
   }
 
+  clickHome() {
+    this.props.data._save({selectedMain: "recent"});
+    this.props.data.goto("/");
+  }
+
   render() {
 
     const buttonStyle = {
@@ -25,13 +30,15 @@ class Navigation extends Component {
       background: "#BF8C6F"
     }
 
-
-
     return (
       <div>
         <div style={navigationStyle}>
           <button style={buttonStyle} onClick={() => this.toggleSidebar()}>side</button>
+<<<<<<< fb2f1d2be96fc2b1b56c334708fabc76153c927c
           <button style={buttonStyle} onClick={() => {this.props.data.goto("/");}}>D7</button>
+=======
+          <button style={buttonStyle} onClick={this.clickHome.bind(this)}>D7</button>
+>>>>>>> (feat) Add Load More button to Main.js
           <button style={buttonStyle} onClick={() => this.props.data.goto("/new")}>new</button>
         </div>
         <div style={{display:"none"}}>

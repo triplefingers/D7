@@ -54,6 +54,7 @@ class RecordBox extends Component {
   }
 
   render() {
+    const { data, handleChange, goto } = this.props.data;
 
     const progress_bar_style = {
       background: "black",
@@ -63,13 +64,13 @@ class RecordBox extends Component {
 
     return (
       <div>
-        <textarea value={this.props.data.text} onChange={this.props.data.handleChange.bind(null, "text")} rows="2" placeholder="What did you do today?"/><br/>
+        <textarea value={data.text} onChange={handleChange.bind(null, "text")} rows="2" placeholder="What did you do today?"/><br/>
         {/*<button>Add Photos</button>*/}
 
         <form className="upload_form">Add photos</form>
         <div className="preview"></div>
         <div className="progress_bar" style={progress_bar_style}></div>
-        <button onClick={() => this.props.data.goto("/select")}>Post</button>
+        <button onClick={() => goto("/select")}>Post</button>
       </div>
     );
   }

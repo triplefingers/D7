@@ -30,83 +30,108 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.reset(["text", "selectedProject", "title", "description", "startAt"]);
+    const { _save, fetchRecentPosts, fetchPopularPosts, fetchRecommendation } = this.props;
     const { selectedMain } = this.props.data;
     /* Promise로 순서 적용 */
     if(!selectedMain){
-      this.props._save({selectedMain: "recent"});
-      this.props.fetchRecentPosts();
+      _save({selectedMain: "recent", recentPage: 1});
+      fetchRecentPosts();
     } else if(selectedMain==="recent"){
-      this.props.fetchRecentPosts();
+      _save({recentPage: 1});
+      fetchRecentPosts();
     } else if(selectedMain==="popular"){
-      this.props.fetchPopularPosts();
+      _save({popularPage: 1});
+      fetchPopularPosts();
     } else {
-      this.props.fetchRecommendation();
+      _save({suggestionPage: 1});
+      fetchRecommendation();
     }
-
-    /* Reset the AppContainer's state */
-
-    console.log("Main Mounted ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-    console.log(moment(1467627005907).fromNow());
 
   }
 
   componentWillUnmount() {
-    this.props.reset(["recent", "popular", "recommended"]);
+    this.props.reset(["recent", "popular", "recommended", "recentPage", "popularPage", "suggestionPage"]);
   }
 
-  // some code about tapping tab and according rendering
   switchContents(menu) {
+    const { _save, fetchRecentPosts, fetchPopularPosts, fetchRecommendation } = this.props;
+    const { recent, popular, recommended } = this.props.data;
+
     if (menu === "recent") {
-      this.props._save({selectedMain: "recent"});
-      this.props.fetchRecentPosts();
+      _save({selectedMain: "recent"});
+      // if(!recent){
+      //   fetchRecentPosts();
+      // }
     } else if (menu === "popular") {
-      this.props._save({selectedMain: "popular"});
-      this.props.fetchPopularPosts();
+      _save({selectedMain: "popular"});
+      if(!popular){
+        fetchPopularPosts();
+      }
     } else {
-      this.props._save({selectedMain: "suggestion"});
-      this.props.fetchRecommendation();
+      _save({selectedMain: "suggestion"});
+      if(!recommended){
+        fetchRecommendation();
+      }
     }
   }
 
-  render() {
-    console.log("Rerender main")
-    let Contents;
-    let Record = <RecordBox data={this.props} handleChange={this.props.handleChange}/>;
+  clickMore() {
+    const { _save, fetchRecentPosts, fetchPopularPosts, fetchRecommendation } = this.props;
+    const { recent, popular, recommended, recentPage, popularPage, suggestionPage, selectedMain } = this.props.data;
 
-    if (!this.props.data.selectedMain){
+    if (selectedMain === "recent") {
+      _save({recentPage: recentPage+1});
+      fetchRecentPosts();
+    } else if (selectedMain === "popular") {
+      _save({popularPage: popularPage+1});
+      fetchPopularPosts();
+    } else if (selectedMain==="suggestion"){
+      _save({suggestionPage: suggestionPage+1});
+      fetchRecommendation();
+    }
+
+  }
+
+  render() {
+    console.log("Render main");
+    const { goto, fetchUserProjectDetail, saveReport, fetchProjectDetail } = this.props;
+    const { selectedMain, recent, popular, recommended } = this.props.data;
+
+    let Contents;
+    let Record = <RecordBox data={this.props}/>;
+    let MoreButton = <button onClick={this.clickMore.bind(this)}>Load more...</button>;
+
+    if (!selectedMain){
       return(<div>Loading...</div>);
-    } else if (this.props.data.selectedMain === "recent") {
-      if (this.props.data.recent) {
-        console.log("Recent ",this.props.data.recent);
-        Contents = this.props.data.recent.map((post) => {
-          return <MainPostCard data={post} key={post.id} goto={this.props.goto} fetchUserProjectDetail={this.props.fetchUserProjectDetail} saveReport={this.props.saveReport}/>
+    } else if (selectedMain === "recent") {
+      if (recent) {
+        console.log("Recent ", recent);
+        Contents = recent.map((post) => {
+          return <MainPostCard data={post} key={post.id} goto={goto} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport}/>
         });
       }
-    } else if (this.props.data.selectedMain === "popular") {
-      if (this.props.data.popular) {
-        Contents = this.props.data.popular.map((post) => {
-          return <MainPostCard data={post} key={post.id} goto={this.props.goto} fetchUserProjectDetail={this.props.fetchUserProjectDetail} saveReport={this.props.saveReport} />
+    } else if (selectedMain === "popular") {
+      if (popular) {
+        Contents = popular.map((post) => {
+          return <MainPostCard data={post} key={post.id} goto={goto} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport} />
         });
       }
-    } else if(this.props.data.selectedMain === "suggestion") {
+    } else if(selectedMain === "suggestion") {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
-      if (this.props.data.recommended) {
-        Contents = this.props.data.recommended.map((project) => {
-          console.log(project);
-          return <MainProjectCard data={project} key={project.id} goto={this.props.goto} fetchProjectDetail={this.props.fetchProjectDetail} />
+      if (recommended) {
+        Contents = recommended.map((project) => {
+          return <MainProjectCard data={project} key={project.id} goto={goto} fetchProjectDetail={fetchProjectDetail} />
         });
       }
       Record = null;
     }
 
-    // some code about RecordBox rendering
-
     return (
       <div>
         <Tabbar switchContents={this.switchContents.bind(this)} />
-        {/* RecordBox don't appear on Recommended Project page */}
         {Record}
         {Contents}
+        {MoreButton}
       </div>
     );
   }

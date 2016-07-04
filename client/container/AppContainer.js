@@ -224,16 +224,22 @@ class AppContainer extends Component {
   }
 
   // For recommendation
-  fetchRecommendation(userId) {
+  fetchRecommendation() {
     axios.get("/api/projects/recommended", {
       params: {
-        userId : userId
+        page : this.state.suggestionPage
       }
     })
     .then((res) => {
-      this.setState({
-        recommended: res.data
-      });
+      if(this.state.popularPage===1){
+        this.setState({
+          recommended: res.data
+        });
+      } else {
+        this.setState({
+          recommended: this.state.recommended.concat(res.data)
+        });
+      }
     })
     .catch((err) => {
       console.error("Error occured while fetching recommended projects", err);
@@ -242,12 +248,22 @@ class AppContainer extends Component {
 
   /* FETCH RECENT POSTS IN MAIN PAGE */
   fetchRecentPosts() {
-    axios.get("/api/posts/recent")
+    axios.get("/api/posts/recent", {
+      params: {
+        page : this.state.recentPage
+      }
+    })
     .then((res) => {
       // console.log("Recent Posts: ", res);
-      this.setState({
-        recent: res.data
-      });
+      if(this.state.recentPage===1){
+        this.setState({
+          recent: res.data
+        });
+      } else {
+        this.setState({
+          recent: this.state.recent.concat(res.data)
+        });
+      }
     })
     .catch((err) => {
       console.error("Error occurred while fetching recent posts: ", err);
@@ -256,12 +272,22 @@ class AppContainer extends Component {
 
   /* FETCH POPULAR POSTS IN MAIN PAGE */
   fetchPopularPosts() {
-    axios.get("/api/posts/popular")
+    axios.get("/api/posts/popular", {
+      params: {
+        page : this.state.popularPage
+      }
+    })
     .then((res) => {
       // console.log("Popular Posts: ", res);
-      this.setState({
-        popular: res.data
-      });
+      if(this.state.popularPage===1){
+        this.setState({
+          popular: res.data
+        });
+      } else {
+        this.setState({
+          popular: this.state.popular.concat(res.data)
+        });
+      }
     })
     .catch((err) => {
       console.error("Error occurred while fetching popular posts: ", err);
