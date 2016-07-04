@@ -31,7 +31,7 @@ class Payment extends Component {
       amount: 7000,
       currency: "won"
     };
-    const newProject = {
+    let newProject = {
       title: title,
       description: description,
       startAt: startAt
@@ -50,15 +50,19 @@ class Payment extends Component {
       if (this.props.validateAll(validationCallback, data.cardNumber, data.expiry, data.birth, data.pwd2digit)) {
         console.log("Payment information complete");
         if (this.props.data.creatingProjectFirst) {
+          console.log("First Case");
           this.props.saveNewProject(undefined, title, description, startAt, payment, window.publicIds.pop());
-        } else if (this.props.data.creatingProjectlast) {
-          Object.assign(newProject, {image: window.publicIds.pop()});
-          this.props.saveDayDetail(undefined, undefined, 1, text, publicIds, newProject, payment)
+        } else if (this.props.data.creatingProjectLast) {
+          console.log("Second Case");
+          Object.assign(newProject, {image: window.publicIds});
+          console.log(text, publicIds, newProject, payment);
+          this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject, payment);
         } else if (this.props.data.existingProjectChosen) {
           if (this.props.data.selectedProject) {
             const selectedProject =this.props.data.selectedProject;
             var projectId = selectedProject.projectId;
           }
+          console.log("Third case");
           this.props.saveExistingProject(projectId, startAt, payment)
         }
       } else {
