@@ -11,6 +11,6 @@ const db = bookshelf(knex({
 }));
 
 /* inject plugin into bookshelf */
-db.plugin("pagenation");
+db.plugin("pagination");
 
 export default db;

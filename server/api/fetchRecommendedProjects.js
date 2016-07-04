@@ -4,7 +4,7 @@ import collection from "../db/collections";
 const fetchRecommendedProjects = (user, q, res) => {
   // const userId = user.id;
   const { page } = q;
-  
+
   // below should be deleted
   let userId;
   if (user && user.id) {
@@ -16,7 +16,7 @@ const fetchRecommendedProjects = (user, q, res) => {
     userId = 1;
   }
 
-  collection.Projects.orderBy("-wishCount").fetchPage({
+  model.Project.forge().orderBy("-wishCount").fetchPage({
     pageSize: 20,
     page: page,
     withRelated: [
