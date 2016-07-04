@@ -82,6 +82,7 @@ const fetchUser = (user, q, res) => {
           transData.status = "paid";
           transData.currency = trans.currency;
           transData.projectTitle = undefined;
+          transData.userId = userId;
           console.log("transdata is ", transData);
           /* project title */
           model.UserProject.where("id", trans.userProjectId).fetch({withRelated: ["project"]})
@@ -98,7 +99,7 @@ const fetchUser = (user, q, res) => {
           .catch((err) => {
             console.error("Error: Failed to read userProject data in 'fetchUser.js': ", err);
             resolve();
-          })
+          });
         });
         transactionPromiseArray.push(transPromise);
       }

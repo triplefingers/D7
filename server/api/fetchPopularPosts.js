@@ -4,6 +4,7 @@ import Promise from "bluebird";
 
 const fetchPopularPosts = (user, q, res)=>{
   // const userId = user.id;
+  const { page } = q;
 
   // below should be deleted
   let userId;
@@ -16,13 +17,17 @@ const fetchPopularPosts = (user, q, res)=>{
     userId = 1;
   }
 
-  collection.Posts.orderBy("-likeCount").fetch({withRelated: [
-    "user",
-    "userProject",
-    "postImages",
-    "likes",
-    "reports"
-  ]})
+  collection.Posts.orderBy("-likeCount").fetchPage({
+    pageSize: 20,
+    page: page,
+    withRelated: [
+      "user",
+      "userProject",
+      "postImages",
+      "likes",
+      "reports"
+    ]
+  })
   .then((posts)=>{
     posts = posts.toJSON();
     const postsPromiseArray = [];
@@ -95,7 +100,7 @@ const fetchPopularPosts = (user, q, res)=>{
     return Promise.all(postsPromiseArray)
     .then(() => {
       console.log("-------posts are", posts);
-      return posts.slice(0, 20);
+      return posts;
     })
   })
   .then((data) => res.status(200).send(data))
