@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import LikeSet from "./LikeSet";
 import ReportSet from "./ReportSet";
+import moment from "moment";
 
 class DetailPostCard extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class DetailPostCard extends Component {
           </div>
           {/* Header Right Part */}
           <div>
-            <div>{createdAt}</div>
+            <div>{moment(createdAt).fromNow()}</div>
           </div>
         </div>
         {/* Card Content */}
