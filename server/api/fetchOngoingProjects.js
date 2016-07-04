@@ -33,6 +33,7 @@ const fetchOngoingProjects = (user, q, res) => {
         id: userProject.id,
         title: userProject.project.title,
         description: userProject.project.description,
+        image: userProject.project.image,
         success: userProject.project.success
       };
 

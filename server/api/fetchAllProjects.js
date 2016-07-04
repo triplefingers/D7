@@ -33,6 +33,7 @@ const fetchAllProjects = (user, q, res)=>{
         id: up.id,
         title: up.project.title,
         description: up.project.description,
+        image: up.project.image,
         startAt: up.startAt,
         endAt: up.endAt,
         success: up.success

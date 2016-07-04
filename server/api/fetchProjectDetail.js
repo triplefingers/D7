@@ -25,10 +25,11 @@ const fetchProjectDetail = (user, q, res)=>{
   .then((project) => {
     project = project.toJSON();
 
-    /* project id, title, description, wishCount */
+    /* project id, title, description, image, wishCount */
     result.projectId = project.id;
     result.projectTitle = project.title;
     result.projectDescription = project.description;
+    result.projectImage = project.image;
     result.wishCount = project.wishCount;
 
     /* username, userId, photo */
