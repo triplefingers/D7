@@ -17,7 +17,7 @@ const fetchPopularPosts = (user, q, res)=>{
     userId = 1;
   }
 
-  collection.Posts.orderBy("-likeCount").fetchPage({
+  model.Post.forge().orderBy("-likeCount").fetchPage({
     pageSize: 20,
     page: page,
     withRelated: [

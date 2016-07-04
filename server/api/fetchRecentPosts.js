@@ -17,7 +17,7 @@ const fetchRecentPosts = (user, q, res)=>{
     userId = 1;
   }
 
-  collection.Posts.orderBy("-created_at").fetchPage({
+  model.Post.forge().orderBy("-created_at").fetchPage({
     pageSize: 20,
     page: page,
     withRelated: [
