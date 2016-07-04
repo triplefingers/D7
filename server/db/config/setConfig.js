@@ -10,4 +10,7 @@ const db = bookshelf(knex({
   useNullAsDefault: true
 }));
 
+/* inject plugin into bookshelf */
+db.plugin("pagenation");
+
 export default db;
