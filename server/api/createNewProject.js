@@ -20,7 +20,7 @@ const createNewProject = (user, q, body, res) => {
   /* by using ids below */
   let projectId, userProjectId;
 
-  const { title, description, startAt, payment } = body;
+  const { title, description, startAt, image, payment } = body;
   const today = new Date();
   const startAtInObj = new Date(startAt);
   console.log("body is, ", body, typeof(body), Object.keys(body));
@@ -38,7 +38,8 @@ const createNewProject = (user, q, body, res) => {
   return model.Project.forge().set({
     userId: userId,
     title: title,
-    description: description
+    description: description,
+    image: image
   }).save()
   .then((project) => {
     projectId = project.id;
