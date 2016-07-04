@@ -28,9 +28,11 @@ class LeaveHistory extends Component {
         { cloud_name: "daxutqqyt", tags: "browser_uploads" })
 
       .bind("cloudinarydone", function(e, data) {
-        $(".preview").append($.cloudinary.image(data.result.public_id,
-              { format: data.result.format, version: data.result.version,
-                crop: "fill", width: 300, height: 300 }));
+        $(".preview").append("<div id="+ data.result.public_id+"></div>");
+        $("#"+data.result.public_id).append($.cloudinary.image(data.result.public_id,
+          { format: data.result.format, version: data.result.version,
+            crop: "fill", width: 300, height: 300}))
+          .append("<button class="+data.result.public_id+">X</button>");
         console.log("Pushing new public ID");
         console.log("Uploaded image: ", data);
         publicIds.push(data.result.public_id);
@@ -40,9 +42,22 @@ class LeaveHistory extends Component {
         $(".progress_bar").css("width",
           Math.round((data.loaded * 100.0) / data.total) + "%");
       });
+
+
     });
 
-    this.props._save({leaveHistoryInProgress: true})
+    this.props._save({leaveHistoryInProgress: true});
+
+    $( ".preview" ).on("click", "button", function() {
+      var $previewId = $(this).attr("class");
+      $("#"+$previewId).remove();
+      for(var i=0; i<publicIds.length; i++){
+        if(publicIds[i]===$previewId){
+          publicIds.splice(i, 1);
+        }
+      }
+      $(this).remove();
+    });
   }
 
   render() {
