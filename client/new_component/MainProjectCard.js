@@ -22,11 +22,14 @@ class MainProjectCard extends Component {
       margin: "10px 0",
     }
 
+    const project = this.props.data
+    const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + project.image + ".jpg";
+
     return (
       <div style={cardStyle} onClick={this.clickProjectCard.bind(this)}>
         {/* Card Header */}
         <div>
-          <img src="https://www.colourbox.com/preview/1744283-set-of-paintbrushes-and-color-paint-on-canvas-background.jpg" width="400px" height="200px"/>
+          <img src={imageSrc} width="400px" height="200px"/>
         </div>
         {/* Card Content */}
         <div>
