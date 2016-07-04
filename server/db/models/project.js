@@ -9,6 +9,7 @@ const Project = db.Model.extend({
   hasTimestamps: true,
   defaults: {
     wishCount: 0,
+    image: "wcban3touqae2pkobagf"
   },
   user: function () {
     return this.belongsTo(User, "userId");
