@@ -25,9 +25,11 @@ class RecordBox extends Component {
         { cloud_name: "daxutqqyt", tags: "browser_uploads" })
 
       .bind("cloudinarydone", function(e, data) {
-        $(".preview").append($.cloudinary.image(data.result.public_id,
-              { format: data.result.format, version: data.result.version,
-                crop: "fill", width: 50, height: 50 }));
+        $(".preview").append("<div id="+ data.result.public_id+"></div>");
+        $("#"+data.result.public_id).append($.cloudinary.image(data.result.public_id,
+          { format: data.result.format, version: data.result.version,
+            crop: "fill", width: 50, height: 50}))
+          .append("<button class="+data.result.public_id+">X</button>");
         console.log("Pushing new public ID");
         console.log("Uploaded image: ", data);
         publicIds.push(data.result.public_id);
@@ -37,6 +39,16 @@ class RecordBox extends Component {
       .bind("cloudinaryprogress", function(e, data) {
         $(".progress_bar").css("width",
           Math.round((data.loaded * 100.0) / data.total) + "%");
+      });
+
+      $( ".preview" ).on("click", "button", function() {
+        var $previewId = $(this).attr("class");
+        for(var i=0; i<publicIds.length; i++){
+          if(publicIds[i]===$previewId){
+            publicIds.splice(i, 1);
+          }
+        }
+        $("#"+$previewId).remove();
       });
     });
   }
