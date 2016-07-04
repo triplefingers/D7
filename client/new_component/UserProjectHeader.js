@@ -31,8 +31,10 @@ class UserProjectHeader extends Component {
         projectStatus = "COMPLETE";
       }
     } else {
-      if(status === "ongoing" || status === "waiting"){
+      if(status === "ongoing"){
         projectStatus = <div>On day {onDay}</div>;
+      } else if (status === "waiting") {
+        projectStatus = <div>D{onDay}</div>
       } else {
         projectStatus = status.toUpperCase();
       }

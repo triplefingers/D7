@@ -66,6 +66,7 @@ class Main extends Component {
   render() {
     console.log("Rerender main")
     let Contents;
+    let Record = <RecordBox data={this.props} handleChange={this.props.handleChange}/>;
 
     if (!this.props.data.selectedMain){
       return(<div>Loading...</div>);
@@ -90,6 +91,7 @@ class Main extends Component {
           return <MainProjectCard data={project} key={project.id} goto={this.props.goto} fetchProjectDetail={this.props.fetchProjectDetail} />
         });
       }
+      Record = null;
     }
 
     // some code about RecordBox rendering
@@ -98,7 +100,7 @@ class Main extends Component {
       <div>
         <Tabbar switchContents={this.switchContents.bind(this)} />
         {/* RecordBox don't appear on Recommended Project page */}
-        <RecordBox data={this.props} handleChange={this.props.handleChange}/>
+        {Record}
         {Contents}
       </div>
     );
