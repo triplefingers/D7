@@ -3,7 +3,7 @@ import collection from "../db/collections";
 
 const fetchWishProjects = (user, q, res) => {
   // const userId = user.id;
-
+  
   // below should be deleted
   let userId;
   if (user && user.id) {
