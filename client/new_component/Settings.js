@@ -66,10 +66,10 @@ class Settings extends Component {
    return (
      <div>
        <h1>Settings</h1>
-       <p>
+       <div>
          <img src={imageSrc} alt="profile_pic" />
          <form className="upload_form"></form>
-       </p>
+       </div>
        <h2>{userData.username}</h2>
        <h3>{userData.email}</h3>
        <h3>Success {userStat.success} | Ongoing {userStat.ongoing} | Fail {userStat.fail}</h3>
