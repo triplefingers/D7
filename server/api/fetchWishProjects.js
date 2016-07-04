@@ -28,11 +28,12 @@ const fetchWishProjects = (user, q, res) => {
 
     wishes.forEach((wish) => {
       let data = {};
-      /* project id, title, description, wishCount, created_at, updated_at */
+      /* project id, title, description, image, wishCount, created_at, updated_at */
       const project = wish.project;
       data.id = project.id;
       data.title = project.title;
       data.description = project.description;
+      data.image = project.image;
       data.wishCount = project.wishCount;
       data.created_at = data.createAt = project.created_at;
       data.updated_at = data.updatedAt = project.updated_at;
