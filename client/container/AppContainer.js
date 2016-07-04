@@ -393,7 +393,7 @@ class AppContainer extends Component {
 }
 
 AppContainer.contextTypes = {
-  router: () => React.PropTypes.func.isRequired
+  router: React.PropTypes.object
 };
 
 

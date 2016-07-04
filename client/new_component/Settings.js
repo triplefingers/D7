@@ -58,7 +58,7 @@ class Settings extends Component {
 
    transactionRows = transactions.map((transaction) => {
      return (
-       <tr>
+       <tr key={transaction.id}>
          <td>{transaction.date}</td>
          <td>{transaction.projectTitle}</td>
          <td>{transaction.amount}</td>
