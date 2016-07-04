@@ -14,10 +14,11 @@ class UserSet extends Component {
 
   render() {
     const { userPhoto, username } = this.props;
+    const imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + userPhoto + ".jpg";
 
     return (
       <div>
-        <img src={userPhoto} alt="user profile" width="20px" height="20px"/>
+        <img src={imageUrl} alt="user profile" width="20px" height="20px"/>
         <span>{username}</span>
       </div>
     );

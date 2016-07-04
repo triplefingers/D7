@@ -67,11 +67,13 @@ class SideBar extends Component {
         return (<li key={project.id}><a onClick={this.handleClickOngoing.bind(this, project.id)}>{project.title} on day {project.onDay}</a></li>);
       });
 
+      const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + user.userPhoto + ".jpg";
+
       return (
         <div style={sideBarStyle} id="sidebar">
           <button onClick={this.toggleSidebar}>X close</button>
           <div>
-            <img src={user.userPhoto} width="100px" height="100px"/>
+            <img src={imageSrc} width="100px" height="100px"/>
             <h1>{user.username}</h1>
             <ul>
               {userStats}

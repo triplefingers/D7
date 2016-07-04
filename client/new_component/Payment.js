@@ -37,34 +37,61 @@ class Payment extends Component {
       startAt: startAt
     };
 
+    /* Input Validation */
+    let validationCallback = (item) => {
+      if (item && item.length > 0) {
+        return true;
+      }
+      return false;
+    };
 
+    let validator = () => {
+      console.log("validator clicked");
+      if (this.props.validateAll(validationCallback, data.cardNumber, data.expiry, data.birth, data.pwd2digit)) {
+        console.log("Payment information complete");
+        if (this.props.data.creatingProjectFirst) {
+          this.props.saveNewProject(undefined, title, description, startAt, payment, window.publicIds.pop());
+        } else if (this.props.data.creatingProjectlast) {
+          Object.assign(newProject, {image: window.publicIds.pop()});
+          this.props.saveDayDetail(undefined, undefined, 1, text, publicIds, newProject, payment)
+        } else if (this.props.data.existingProjectChosen) {
+          if (this.props.data.selectedProject) {
+            const selectedProject =this.props.data.selectedProject;
+            var projectId = selectedProject.projectId;
+          }
+          this.props.saveExistingProject(projectId, startAt, payment)
+        }
+      } else {
+        alert("Check Again: There is invalid inputs");
+      }
+
+    };
+
+    /* Define action bar */
     let actionBar;
 
     if (this.props.data.creatingProjectFirst) {
       actionBar = (
         <div>
           <button onClick={() => this.props.goto("/create/date")}>Back</button>
-          <button onClick={() => this.props.saveNewProject(undefined, title, description, startAt, payment)}>
-          Save</button>
+          <button onClick={validator}>Save</button>
         </div>
       );
     } else if (this.props.data.creatingProjectLast) {
       actionBar = (
         <div>
           <button onClick={() => this.props.goto("/create")}>Back</button>
-          <button onClick={() => this.props.saveDayDetail(undefined, undefined, 1, text, publicIds, newProject, payment)}>
+          <button onClick={validator}>
           Save</button>
         </div>
       );
     } else if (this.props.data.existingProjectChosen) {
-      if (this.props.data.selectedProject) {
-        const selectedProject =this.props.data.selectedProject;
-        var projectId = selectedProject.projectId;
-      }
+
+
       actionBar = (
         <div>
           <button onClick={() => this.props.goto("/create/date")}>Back</button>
-          <button onClick={() => this.props.saveExistingProject(projectId, startAt, payment)}>
+          <button onClick={validator}>
           Save</button>
         </div>
       );

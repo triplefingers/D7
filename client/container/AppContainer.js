@@ -108,13 +108,14 @@ class AppContainer extends Component {
     this.setState(data);
   };
 
-  saveNewProject(userId, title, desc, startDate, payment) {
+  saveNewProject(userId, title, desc, startDate, payment, image) {
     axios.post("/api/newproject", {
       userId : userId,
       title: title,
       description: desc,
       startAt: startDate,
-      payment: JSON.stringify(payment)
+      payment: JSON.stringify(payment),
+      image: image
     })
     .then((res) => {
       console.log("saveNewProject success: ", res);

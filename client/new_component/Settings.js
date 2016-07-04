@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from "axios";
 
 class Settings extends Component {
  constructor(props) {
@@ -8,6 +9,35 @@ class Settings extends Component {
  }
 
  componentDidMount() {
+   $.cloudinary.config({cloud_name: "daxutqqyt"});
+
+   // Dynamically Attached
+   $(".upload_form").append($.cloudinary.unsigned_upload_tag("mmbawtto",
+     { cloud_name: "daxutqqyt" }));
+
+   $(".cloudinary_fileupload").attr("accept", "image/*;capture=camera");
+
+   $(".cloudinary_fileupload").unsigned_cloudinary_upload("mmbawtto",
+     { cloud_name: "daxutqqyt", tags: "browser_uploads" })
+
+   .bind("cloudinarydone", (e, data) => {
+     publicIds.push(data.result.public_id);
+
+
+     // some code to send new user data
+     axios.post("/api/user", {
+      // publicIds is an array and we need to return only one element
+      userPhoto: window.publicIds.pop()
+     })
+     .then((res) => {
+       console.log("User Profile Picture Changed ", res.data);
+       this.props.fetchUser();
+     })
+     .catch((err) => {
+      console.log("Error Occured while changing user profile picture");
+     });
+
+   })
 
  }
 
@@ -17,6 +47,8 @@ class Settings extends Component {
      var userStat = this.props.data.user.userProjects;
      var transactions = this.props.data.user.transactions;
    }
+
+   const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + userData.userPhoto + ".jpg";
 
    let transactionRows;
 
@@ -35,7 +67,8 @@ class Settings extends Component {
      <div>
        <h1>Settings</h1>
        <p>
-         <img src={userData.userPhoto} alt="profile_pic" />
+         <img src={imageSrc} alt="profile_pic" />
+         <form className="upload_form"></form>
        </p>
        <h2>{userData.username}</h2>
        <h3>{userData.email}</h3>

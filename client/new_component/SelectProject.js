@@ -14,6 +14,9 @@ class SelectProject extends Component {
   }
 
   render() {
+
+
+
     const onGoingProjects = this.props.data.onGoing;
     let projects, createNewProject;
 
@@ -51,7 +54,7 @@ class SelectProject extends Component {
           </form>
         </div>
         {createNewProject}
-        <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data} nextUrl={nextUrl} />
+        <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data} nextUrl={nextUrl} validateAll={this.props.validateAll}/>
       </div>
 
     );
