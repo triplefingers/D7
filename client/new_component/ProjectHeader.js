@@ -14,6 +14,8 @@ class ProjectHeader extends Component {
 
     const { projectId, projectTitle, projectDescription, doneWish, userPhoto, username, wishCount } = this.props.data;
 
+    const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + this.props.data.userPhoto + ".jpg";
+
     return (
       <div>
         {/* Header */}
