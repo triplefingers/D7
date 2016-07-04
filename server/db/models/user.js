@@ -20,6 +20,9 @@ const User = db.Model.extend({
     let hash = bcrypt.hashSync(model.attributes.password, salt);
     model.set("password", hash).save();
   },
+  defaults: {
+    photo: "a6jnokqrjo9ptrsl1vgv"
+  },
   projects: function () {
     return this.hasMany(Project, "userId");
   },

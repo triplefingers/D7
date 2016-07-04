@@ -50,8 +50,9 @@ class Payment extends Component {
       if (this.props.validateAll(validationCallback, data.cardNumber, data.expiry, data.birth, data.pwd2digit)) {
         console.log("Payment information complete");
         if (this.props.data.creatingProjectFirst) {
-          this.props.saveNewProject(undefined, title, description, startAt, payment)
+          this.props.saveNewProject(undefined, title, description, startAt, payment, window.publicIds.pop());
         } else if (this.props.data.creatingProjectlast) {
+          Object.assign(newProject, {image: window.publicIds.pop()});
           this.props.saveDayDetail(undefined, undefined, 1, text, publicIds, newProject, payment)
         } else if (this.props.data.existingProjectChosen) {
           if (this.props.data.selectedProject) {

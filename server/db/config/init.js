@@ -9,8 +9,7 @@ const initDB = () => {
   new model.User(
     { username: "Lenny Kim",
       email: "idforcoding@gmail.com",
-      password: "12345678",
-      photo: "http://blog.room34.com/wp-content/uploads/underdog/logo.thumbnail.png"
+      password: "12345678"
     }).save().then((model) => console.log("Created User model: ", model.attributes.username));
 
   /* Project model data 생성 */

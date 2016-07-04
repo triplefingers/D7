@@ -22,6 +22,12 @@ const user = (user, q, body, res) => {
     userId = 1;
   }
 
+  for (let key in editData) {
+    if (editData[key] === undefined) {
+      delete editData[key];
+    }
+  }
+
   model.User.where("id", userId).fetch()
   .then((user) => {
     if (user) {
@@ -37,7 +43,7 @@ const user = (user, q, body, res) => {
         delete editData[key];
       }
     }
-    // console.log("Edited data is ", editData);
+    console.log("Edited data is ", editData);
     return new model.User({id: user.id}).save(editData);
   })
   .then((data) => {
