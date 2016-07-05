@@ -15,13 +15,19 @@ class App extends Component {
 
     const child = this.props.children && React.cloneElement(this.props.children, injection);
 
-    return (
-      <div>
-        <Navigation data={injection}/>
-        <SideBar data={injection} className="sidebar" />
-        {child}
-      </div>
-    );
+    if(this.props.data.loggedIn){
+      return (
+        <div>
+          <SideBar data={injection} className="sidebar" />
+          <div>
+            <Navigation data={injection}/>
+            {child}
+          </div>
+        </div>
+      );
+    } else {
+      return <div>Loading...</div>
+    }
   }
 }
 

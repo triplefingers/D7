@@ -10,10 +10,6 @@ class ReportSet extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log("ReportSet mounted ", this.props);
-  }
-
   clickDotButton(e) {
     e.stopPropagation();
     this.setState({step: 1});

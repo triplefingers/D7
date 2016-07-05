@@ -18,7 +18,8 @@ class AppContainer extends Actions {
       birth: "",
       pwd2digit: "",
       amount: "",
-      currency: "won"
+      currency: "won",
+      loggedIn: false,
     };
   };
 
@@ -32,21 +33,10 @@ class AppContainer extends Actions {
     console.log("AppContainer Mounted :)");
   };
 
-  checkIfLogined() {
-    axios.get("/api/checklogin")
-    .then((res) => {
-      console.log("already logined");
-      this.goto("/");
-    })
-    .catch((err) => {
-      console.log("error in checkIfLogined: ", err);
-      // this.goto(err.data.path);
-      this.goto("/login");
-    });
-  };
-
   render() {
     const injection = {};
+
+    injection.data = this.state;
 
     /* For App */
     injection.reset = this.reset.bind(this);
@@ -55,7 +45,6 @@ class AppContainer extends Actions {
 
     /* For Record */
     injection.saveNewProject = this.saveNewProject.bind(this);
-    injection.data = this.state;
     injection.handleChange = this.handleChange.bind(this);
     injection.goto = this.goto.bind(this);
     injection.saveExistingProject = this.saveExistingProject.bind(this);

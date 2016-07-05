@@ -9,7 +9,6 @@ class WishSet extends Component {
   }
 
   componentDidMount() {
-    console.log("wishSet monted ", this.props);
     const { doneWish, wishCount } = this.props;
     if(doneWish){
       this.setState({wished: true, wishCount: wishCount});

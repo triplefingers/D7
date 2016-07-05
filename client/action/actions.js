@@ -8,6 +8,20 @@ class Actions extends Component {
     super(props);
     this.state = {};
 
+    this.checkIfLogined = function() {
+      axios.get("/api/checklogin")
+      .then((res) => {
+        console.log("already logined");
+        this.goto("/");
+        this._save({loggedIn: true});
+      })
+      .catch((err) => {
+        console.log("error in checkIfLogined: ", err);
+        // this.goto(err.data.path);
+        this.goto("/login");
+      });
+    };
+
     this.reset = function(keys) {
       if(!keys){
         const prevState = this.state;
