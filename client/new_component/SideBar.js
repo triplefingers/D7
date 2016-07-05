@@ -21,7 +21,9 @@ class SideBar extends Component {
   }
 
   handleClick(url, statename, fn) {
-    this.props.data.reset([statename]);
+    if(statename){
+      this.props.data.reset([statename]);
+    }
     if(fn){
       fn();
     }
@@ -53,10 +55,7 @@ class SideBar extends Component {
     /* ongoing = onGoing*/
     let onGoingProjects, userStats;
     const { user, onGoing } = this.props.data.data;
-    const { goto, fetchWishList, fetchAllProjects } = this.props.data;
-    console.log('THIS.PROPS.DATA', this.props.data);
-    console.log('ONGOING', onGoing);
-    console.log('USER', user);
+    const { goto, fetchWishList, fetchAllProjects, fetchUser } = this.props.data;
 
 
     /* Practice */
@@ -115,7 +114,7 @@ class SideBar extends Component {
                   Wishlist </a>
                 </li>
                 <li>
-                  <a onClick={this.handleClick.bind(this, "/settings", "settings")}>
+                  <a onClick={this.handleClick.bind(this, "/settings")}>
                   <i className="glyphicon glyphicon-flag"></i>
                   Settings </a>
                 </li>
