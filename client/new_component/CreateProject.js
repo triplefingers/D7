@@ -6,6 +6,8 @@ class CreateProject extends Component {
   }
 
   componentDidMount() {
+    window.publicIds = [];
+
     $(document).ready(() => {
 
           console.log("jQuery Mounted");

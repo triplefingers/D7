@@ -23,9 +23,14 @@ class Payment extends Component {
       startAt = today;
     }
 
+    // I'mport expects card number to 16 digits
+    const cardNumber = data.cardNumber.slice(0,4) + "-" + data.cardNumber.slice(4,8) + "-" + data.cardNumber.slice(8,12) + "-" + data.cardNumber.slice(12);
+
+    const expiry = data.expiry.slice(0,4) + "-" + data.expiry.slice(4);
+
     const payment = {
-      cardNumber: data.cardNumber,
-      expiry: data.expiry,
+      cardNumber: cardNumber,
+      expiry: expiry,
       birth: data.birth,
       pwd2digit: data.pwd2digit,
       amount: 7000,
@@ -105,9 +110,9 @@ class Payment extends Component {
       <div>
         <h1>Payment</h1>
         <label>Card Number </label>
-        <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" onChange={this.props.handleChange.bind(null, "cardNumber")}/><br />
+        <input type="text" size="30" maxLength="16" placeholder="Type your card number without dash" onChange={this.props.handleChange.bind(null, "cardNumber")}/> <br />
         <label>Expiration Date </label>
-        <input type="text" size="7" maxLength="7" placeholder="YYYY-MM" onChange={this.props.handleChange.bind(null, "expiry")} /><br />
+        <input type="text" size="8" maxLength="6" placeholder="YYYYMM" onChange={this.props.handleChange.bind(null, "expiry")} /><br />
         <label>Birth Date </label>
         <input type="text" size="6" maxLength="6" placeholder="921029" onChange={this.props.handleChange.bind(null, "birth")} /><br />
         <label>Password First Two Digit </label>
