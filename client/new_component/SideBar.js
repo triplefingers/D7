@@ -101,7 +101,7 @@ class SideBar extends Component {
     // SIDEBAR USERPIC
       if (user && onGoing) {
 
-        const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + user.userPhoto + ".jpg";
+        const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + user.userPhoto + ".jpg";
         userStats = (
                 <ul>
                   <li>Total: {user.userProjects.total}</li>
@@ -116,6 +116,7 @@ class SideBar extends Component {
 
         return (
           <div style={sideBarStyle} id="sidebar">
+            <button className="pull-right" onClick={this.toggleSidebar}>X close</button>
             <div className="profile-userpic">
               <img src={imageSrc} className="img-responsive" alt="" />
             </div>
