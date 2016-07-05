@@ -110,7 +110,7 @@ class Payment extends Component {
       <div>
         <h1>Payment</h1>
         <label>Card Number </label>
-        <input type="text" inputMode="numeric" size="30" maxLength="16" placeholder="Type your card number without dash" onChange={this.props.handleChange.bind(null, "cardNumber")}/> <br />
+        <input type="text" inputMode="numeric" size="35" maxLength="16" placeholder="Type your card number without dash" onChange={this.props.handleChange.bind(null, "cardNumber")}/> <br />
         <label>Expiration Date </label>
         <input type="text" inputMode="numeric" size="8" maxLength="6" placeholder="YYYYMM" onChange={this.props.handleChange.bind(null, "expiry")} /><br />
         <label>Birth Date </label>
