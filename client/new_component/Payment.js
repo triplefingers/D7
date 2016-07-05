@@ -110,13 +110,13 @@ class Payment extends Component {
       <div>
         <h1>Payment</h1>
         <label>Card Number </label>
-        <input type="text" size="30" maxLength="16" placeholder="Type your card number without dash" onChange={this.props.handleChange.bind(null, "cardNumber")}/> <br />
+        <input type="text" inputMode="numeric" size="30" maxLength="16" placeholder="Type your card number without dash" onChange={this.props.handleChange.bind(null, "cardNumber")}/> <br />
         <label>Expiration Date </label>
-        <input type="text" size="8" maxLength="6" placeholder="YYYYMM" onChange={this.props.handleChange.bind(null, "expiry")} /><br />
+        <input type="text" inputMode="numeric" size="8" maxLength="6" placeholder="YYYYMM" onChange={this.props.handleChange.bind(null, "expiry")} /><br />
         <label>Birth Date </label>
-        <input type="text" size="6" maxLength="6" placeholder="921029" onChange={this.props.handleChange.bind(null, "birth")} /><br />
+        <input type="text" inputMode="numeric" size="6" maxLength="6" placeholder="921029" onChange={this.props.handleChange.bind(null, "birth")} /><br />
         <label>Password First Two Digit </label>
-        <input type="text" maxLength="2" size="2" placeholder="XX" onChange={this.props.handleChange.bind(null, "pwd2digit")}/>XX<br />
+        <input type="text" inputMode="numeric" maxLength="2" size="2" placeholder="XX" onChange={this.props.handleChange.bind(null, "pwd2digit")}/>XX<br />
         {actionBar}
       </div>
     );

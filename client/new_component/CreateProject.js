@@ -29,6 +29,7 @@ class CreateProject extends Component {
             console.log("Pushing new public ID");
             console.log("Uploaded image: ", data);
             publicIds.push(data.result.public_id);
+            $(".progress_bar").css("width", 0 + "%");
           })
 
           .bind("cloudinaryprogress", function(e, data) {
