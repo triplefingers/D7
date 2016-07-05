@@ -1,7 +1,14 @@
 /*    Reset CSS  */
 * { margin:0;  padding:0;}
 ol,ul { list-style: none; }
-a { outline:0; text-decoration:none;    color:#bbb;}
+a { outline:0; text-decoration:none; color: black; text-decoration: none;}
+a:visited, a:focus, a:link, a:active, a:hover {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+}
 img { border:0;}
 h1 { margin: 0; }
 html { height: 100%; }
@@ -10,21 +17,24 @@ html { height: 100%; }
 body {
     height: inherit;
     background: gray;
+    color: black;
 }
 
 /* This prevents horizontal scrolling */
 /*html, body {
     max-width: 100%;
+    overflow-x: hidden;
 }
 
-body {
+html {
+    max-width: 100%;
     overflow-x: hidden;
-}*/
-
-li {
+}
+*/
+/*li {
     display: inline;
     margin-right: 25%;
-}
+}*/
 
 textarea {
     width: 100%;
@@ -36,6 +46,128 @@ textarea {
     background: sky-blue;
     transition: all 1s;
     z-index: 10;
+}
+
+.card {
+    position: relative;
+    display: block;
+    margin-bottom: .75rem;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: .25rem;
+}
+
+.card-block {
+    padding: 1.25rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+}
+
+/* Sidebar */
+#sidebar {
+    padding-top: 30px;
+    position: relative;
+}
+
+#sidebar #close {
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
 }
 
 /*Hiding default input type=file button*/

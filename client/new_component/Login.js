@@ -60,33 +60,35 @@ class Login extends Component {
   render() {
     if(!this.state.isSignup){
       return (
-        <div className="temp">
-          <h1>D7</h1>
+        <div className="text-center" style={{padding: "6rem 3rem"}}>
+          <h1 className="form-signin-heading">D7</h1>
           <h4>Do something every single day</h4>
-          <form onSubmit={this.login.bind(this)}>
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this, "email")} placeholder="email" required/><br />
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this, "password")} placeholder="password" required/><br />
-            <button type="submit">Login</button>
+          <form className="form-signin" onSubmit={this.login.bind(this)}>
+            <input type="email" name="email" value={this.state.email} className="form-control" onChange={this.handleChange.bind(this, "email")} placeholder="email" style={{height: "44px"}} required/>
+            <input type="password" name="password" value={this.state.password} className="form-control" onChange={this.handleChange.bind(this, "password")} placeholder="password" style={{height: "44px"}} required/>
+            <button type="submit" className="btn btn-lg btn-primary btn-block">Login</button>
           </form>
-          <p>
+          {/*<p>
             <span>or login with:</span><br />
             <button type="button">Google</button>
-          </p>
+          </p>*/}
           <a onClick={this.setState.bind(this, {isSignup:true})}>Sign up for D7</a>
         </div>
       );
     } else {
       return (
-        <div>
-          <h1>D7</h1>
+        <div className="text-center" style={{padding: "6rem 3rem"}}>
+          <h1 className="form-signin-heading">D7</h1>
           <h4>Do something every single day</h4>
-          <form onSubmit={this.signup.bind(this)}>
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this, "email")} placeholder="email" required/><br />
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this, "password")} placeholder="password" required/><br />
-            <input type="text" name="name" value={this.state.name} onChange={this.handleChange.bind(this, "name")} placeholder="name" required/><br />
+          <form className="form-signin" onSubmit={this.signup.bind(this)}>
+            <input type="email" name="email" value={this.state.email} className="form-control" onChange={this.handleChange.bind(this, "email")} placeholder="email" style={{height: "44px"}} required/>
+            <input type="password" name="password" value={this.state.password} className="form-control" onChange={this.handleChange.bind(this, "password")} placeholder="password" style={{height: "44px"}} required/>
+            <input type="text" name="name" value={this.state.name} className="form-control" onChange={this.handleChange.bind(this, "name")} placeholder="name" style={{height: "44px"}} required/>
             {/**/}
-            <label><input type="checkbox" defaultChecked="true" />Agree for terms of use</label><br/>
-            <button type="submit">Sign up & Login</button>
+            <div className="checkbox">
+              <label><input type="checkbox" defaultChecked="true" />Agree for terms of use</label>
+            </div>
+            <button type="submit" className="btn btn-lg btn-primary btn-block">Sign up & Login</button>
           </form>
         </div>
       );
