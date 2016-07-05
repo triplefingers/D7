@@ -32,6 +32,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     this.props.reset(["text", "selectedProject", "title", "description", "startAt"]);
     const { _save, fetchRecentPosts, fetchPopularPosts, fetchRecommendation } = this.props;
     const { selectedMain } = this.props.data;
