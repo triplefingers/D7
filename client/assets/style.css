@@ -2,9 +2,12 @@
 * { margin:0;  padding:0;}
 ol,ul { list-style: none; }
 a { outline:0; text-decoration:none; color: black; text-decoration: none;}
-a:visited, a:focus, a:link, a:active {
+a:visited, a:focus, a:link, a:active, a:hover {
     color: black;
     text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
 }
 img { border:0;}
 h1 { margin: 0; }
@@ -68,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-#sidebar button {
+#sidebar #close {
     top: 0;
     right: 0;
     position: absolute;

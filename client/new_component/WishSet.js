@@ -50,11 +50,11 @@ class WishSet extends Component {
     let wishButton;
     if(this.state.wished){
       wishButton = (
-        <button className="glyphicon glyphicon-star" onClick={this.toggleWish.bind(this, id)}></button>
+        <a className="glyphicon glyphicon-star" onClick={this.toggleWish.bind(this, id)}></a>
       );
     } else {
       wishButton = (
-        <button className="glyphicon glyphicon-star-empty" onClick={this.toggleWish.bind(this, id)}></button>
+        <a className="glyphicon glyphicon-star-empty" onClick={this.toggleWish.bind(this, id)}></a>
       );
     }
 

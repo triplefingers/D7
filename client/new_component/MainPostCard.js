@@ -43,8 +43,10 @@ class MainPostCard extends Component {
             <span className="text-muted">{projectTitle}</span>
           </div>
           <div className="pull-right">
-            <div>On Day {day}</div>
             <div>{moment(createdAt).fromNow()}</div>
+          </div><br />
+          <div className="pull-right">
+            <div>On Day {day}</div>
           </div>
           <div style={{clear: "both"}}></div>
         </div>

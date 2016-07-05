@@ -116,7 +116,7 @@ class SideBar extends Component {
 
         return (
           <div style={sideBarStyle} id="sidebar">
-            <button className="pull-right" onClick={this.toggleSidebar}>X close</button>
+            <a id="close" className="pull-right" onClick={this.toggleSidebar}>X close</a>
             <div className="profile-userpic">
               <img src={imageSrc} className="img-responsive" alt="" />
             </div>

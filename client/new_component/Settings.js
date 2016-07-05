@@ -77,7 +77,7 @@ class Settings extends Component {
      <div>
        <h1>Settings</h1>
        <div>
-         <img src={imageSrc} alt="profile_pic" />
+         <img style={{borderRadius: "50%"}} src={imageSrc} alt="profile_pic" />
          <div className="progress_bar" style={progress_bar_style}></div>
          <form className="upload_form"></form>
        </div>
