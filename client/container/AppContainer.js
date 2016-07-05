@@ -242,6 +242,7 @@ class AppContainer extends Component {
           suggestionPage: this.state.suggestionPage+1
         });
       }
+      this._save({suggestionPage: this.state.suggestionPage+1});
     })
     .catch((err) => {
       console.error("Error occured while fetching recommended projects", err);
@@ -268,6 +269,7 @@ class AppContainer extends Component {
           recentPage: this.state.recentPage+1
         });
       }
+      this._save({recentPage: this.state.recentPage+1});
     })
     .catch((err) => {
       console.error("Error occurred while fetching recent posts: ", err);
@@ -294,6 +296,7 @@ class AppContainer extends Component {
           popularPage: this.state.popularPage+1
         });
       }
+      this._save({popularPage: this.state.popularPage+1});
     })
     .catch((err) => {
       console.error("Error occurred while fetching popular posts: ", err);
