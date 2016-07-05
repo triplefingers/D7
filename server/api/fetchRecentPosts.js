@@ -5,6 +5,8 @@ import Promise from "bluebird";
 const fetchRecentPosts = (user, q, res)=>{
   // const userId = user.id;
   const { page } = q;
+  console.log('PAGE', page);
+  
 
   // below should be deleted
   let userId;

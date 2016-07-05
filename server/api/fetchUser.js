@@ -82,7 +82,7 @@ const fetchUser = (user, q, res) => {
           transData.status = "paid";
           transData.currency = trans.currency;
           transData.projectTitle = undefined;
-          transData.userId = userId;
+          transData.id = trans.id;
           console.log("transdata is ", transData);
           /* project title */
           model.UserProject.where("id", trans.userProjectId).fetch({withRelated: ["project"]})
