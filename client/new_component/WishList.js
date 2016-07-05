@@ -11,7 +11,6 @@ class WishList extends Component {
  }
 
  componentDidMount() {
-   this.props.fetchWishList();
  }
 
  render() {
@@ -21,7 +20,7 @@ class WishList extends Component {
      const wishList = this.props.data.wishList;
 
      Contents = wishList.map((project) => {
-         return <MainProjectCard goto={this.props.goto} fetchProjectDetail={this.props.fetchProjectDetail} data={project}/>
+         return <MainProjectCard key={project.id} goto={this.props.goto} fetchProjectDetail={this.props.fetchProjectDetail} data={project}/>
      });
    }
 
