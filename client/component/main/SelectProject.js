@@ -15,8 +15,6 @@ class SelectProject extends Component {
 
   render() {
 
-
-
     const onGoingProjects = this.props.data.onGoing;
     let projects, createNewProject;
 

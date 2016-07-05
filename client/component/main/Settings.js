@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
+import Loading from "../subcomponents/Loading";
 
 class Settings extends Component {
  constructor(props) {
@@ -46,61 +47,63 @@ class Settings extends Component {
 
  render() {
    if (this.props.data.user) {
-     var userData = this.props.data.user;
-     var userStat = this.props.data.user.userProjects;
-     var transactions = this.props.data.user.transactions;
-   }
+     const userData = this.props.data.user;
+     const userStat = this.props.data.user.userProjects;
+     const transactions = this.props.data.user.transactions;
 
-   const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + userData.userPhoto + ".jpg";
+     const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + userData.userPhoto + ".jpg";
 
-   let transactionRows;
+     let transactionRows;
 
-   transactionRows = transactions.map((transaction) => {
+     transactionRows = transactions.map((transaction) => {
+       return (
+         <tr key={transaction.id}>
+           <td>{transaction.date}</td>
+           <td>{transaction.projectTitle}</td>
+           <td>{transaction.amount}</td>
+           <td>{transaction.status}</td>
+         </tr>
+       );
+     })
+
+     const progress_bar_style = {
+       background: "black",
+       height: "5px",
+       width: "0px"
+     }
+
      return (
-       <tr key={transaction.id}>
-         <td>{transaction.date}</td>
-         <td>{transaction.projectTitle}</td>
-         <td>{transaction.amount}</td>
-         <td>{transaction.status}</td>
-       </tr>
+       <div>
+         <h1>Settings</h1>
+         <div>
+           <img style={{borderRadius: "50%"}} src={imageSrc} alt="profile_pic" />
+           <div className="progress_bar" style={progress_bar_style}></div>
+           <form className="upload_form"></form>
+         </div>
+         <h2>{userData.username}</h2>
+         <h3>{userData.email}</h3>
+         <h3>Success {userStat.success} | Ongoing {userStat.ongoing} | Fail {userStat.fail}</h3>
+         <div>
+           <h2>Transaction History</h2>
+           <table style={{width: "100%"}}>
+             <thead>
+               <tr>
+                 <th>Date</th>
+                 <th>Project</th>
+                 <th>Amount</th>
+                 <th>Status</th>
+               </tr>
+             </thead>
+             <tbody>
+               {transactionRows}
+             </tbody>
+           </table>
+         </div>
+       </div>
      );
-   })
-
-   const progress_bar_style = {
-     background: "black",
-     height: "5px",
-     width: "0px"
+   } else {
+     return <Loading />
    }
-
-   return (
-     <div>
-       <h1>Settings</h1>
-       <div>
-         <img style={{borderRadius: "50%"}} src={imageSrc} alt="profile_pic" />
-         <div className="progress_bar" style={progress_bar_style}></div>
-         <form className="upload_form"></form>
-       </div>
-       <h2>{userData.username}</h2>
-       <h3>{userData.email}</h3>
-       <h3>Success {userStat.success} | Ongoing {userStat.ongoing} | Fail {userStat.fail}</h3>
-       <div>
-         <h2>Transaction History</h2>
-         <table style={{width: "100%"}}>
-           <thead>
-             <tr>
-               <th>Date</th>
-               <th>Project</th>
-               <th>Amount</th>
-               <th>Status</th>
-             </tr>
-           </thead>
-           <tbody>
-             {transactionRows}
-           </tbody>
-         </table>
-       </div>
-     </div>
-   );
  }
 }
 

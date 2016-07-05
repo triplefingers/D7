@@ -1,16 +1,13 @@
 import React, {Component} from "react";
 
 import MainProjectCard from "../cards/MainProjectCard";
-
+import Loading from "../subcomponents/Loading";
 
 class WishList extends Component {
  constructor(props) {
    super(props);
    this.state = {
    };
- }
-
- componentDidMount() {
  }
 
  render() {
@@ -22,15 +19,16 @@ class WishList extends Component {
      Contents = wishList.map((project) => {
          return <MainProjectCard key={project.id} goto={this.props.goto} fetchProjectDetail={this.props.fetchProjectDetail} data={project}/>
      });
+
+     return (
+       <div>
+         <h1>Wish List</h1>
+         {Contents}
+       </div>
+     );
+   } else {
+     return <Loading />;
    }
-
-
-   return (
-     <div>
-       <h1>Wish List</h1>
-       {Contents}
-     </div>
-   );
  }
 }
 
