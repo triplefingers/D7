@@ -13,13 +13,15 @@ body {
 }
 
 /* This prevents horizontal scrolling */
-/*html, body {
-    max-width: 100%;
+html, body {
+    /*max-width: 100%;*/
+    /*overflow-x: hidden;*/
 }
 
-body {
+html {
+    max-width: 100%;
     overflow-x: hidden;
-}*/
+}
 
 li {
     display: inline;
