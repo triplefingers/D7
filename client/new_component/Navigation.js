@@ -31,7 +31,7 @@ class Navigation extends Component {
       <div>
         <div style={navigationStyle}>
           <button style={buttonStyle} onClick={() => this.toggleSidebar()}>side</button>
-          <button style={buttonStyle} onClick={() => {this.props.data.goto("/"); this.props._save({selectedMain: "recent"})}}>D7</button>
+          <button style={buttonStyle} onClick={() => {this.props.data.goto("/"); this.props.data._save({selectedMain: "recent"})}}>D7</button>
           <button style={buttonStyle} onClick={() => this.props.data.goto("/new")}>new</button>
         </div>
         <div style={{display:"none"}}>
