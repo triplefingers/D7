@@ -13,54 +13,35 @@ class DetailPostCard extends Component {
     console.log("DetailPostCard", this.props.data);
     const { id, createdAt, day, likeCount, doneLike, doneReport, publicIds, text } = this.props.data;
 
-    const imageHeight = 200;
-    const imageWidth = 200;
+    const imageHeight = 420;
+    const imageWidth = 840;
     const imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_fill,h_" + imageHeight + ",w_" + imageWidth + "/v1466579054/";
 
     const images = publicIds.map((id) => {
         if (id.indexOf("http") === -1) {
           id = imageUrl + id;
         }
-        return <img key={id} src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>;
+        return <img key={id} src={id} style={{width: "100%", height: "auto"}}/>;
       });
 
-    const cardStyle = {
-      backgroundColor: "white",
-      margin: "10px 0",
-    };
-
     return (
-      <div style={cardStyle}>
-        {/* Card Header */}
-        <div>
-          {/* Header Left Part */}
-          <div>
-            <div>
-              <h2>Day {day}</h2>
-            </div>
+      <div className="card">
+        <div className="card-block">
+          <h4 className="card-title pull-left">Day {day}</h4>
+          <div className="pull-right">
+            {moment(createdAt).fromNow()}
           </div>
-          {/* Header Right Part */}
-          <div>
-            <div>{moment(createdAt).fromNow()}</div>
-          </div>
+          <div style={{clear: "both"}}></div>
         </div>
-        {/* Card Content */}
-        <div>
-          {/* Images */}
-          <div>{images}</div>
-          {/* Text */}
-          <div>
-            <p>
-              {text}
-            </p>
-          </div>
+        {images}
+        <div className="card-block">
+          <p className="card-text">{text}</p>
         </div>
-        {/* Card Footer */}
-        <div>
-          {/* Footer Right Part */}
+        <hr/>
+        <div className="card-block">
           <LikeSet id={id} doneLike={doneLike} likeCount={likeCount}/>
-          {/* Footer Left Part */}
           <ReportSet id={id} goto={this.props.goto}/>
+          <div style={{clear: "both"}}></div>
         </div>
       </div>
     );

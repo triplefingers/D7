@@ -59,9 +59,9 @@ class Main extends Component {
 
     if (menu === "recent") {
       _save({selectedMain: "recent"});
-      // if(!recent){
-      //   fetchRecentPosts();
-      // }
+      if(!recent){
+        fetchRecentPosts();
+      }
     } else if (menu === "popular") {
       _save({selectedMain: "popular"});
       if(!popular){
@@ -96,7 +96,11 @@ class Main extends Component {
 
     let Contents;
     let Record = <RecordBox data={this.props}/>;
-    let MoreButton = <button onClick={this.clickMore.bind(this)}>Load more...</button>;
+    let MoreButton = <div className="btn-group btn-group-justified text-center" role="group">
+      <div className="btn-group" role="group">
+        <button className="btn btn-default" onClick={this.clickMore.bind(this)}>Load more...</button>
+      </div>
+    </div>
 
     if (!selectedMain){
       return(<div>Loading...</div>);

@@ -48,6 +48,8 @@ class WishSet extends Component {
     const { id, doneWish, wishCount } = this.props;
 
     let wishButton;
+    let count = <span>{this.state.wishCount}</span>;
+
     if(this.state.wished){
       wishButton = (
         <a className="glyphicon glyphicon-star" onClick={this.toggleWish.bind(this, id)}></a>
@@ -58,10 +60,14 @@ class WishSet extends Component {
       );
     }
 
+    if (this.props.count === false) {
+      count = undefined;
+    }
+
     return (
-      <div className="pull-left">
+      <div className="wishSet pull-left">
         {wishButton}
-        <span>{this.state.wishCount}</span>
+        {count}
       </div>
     );
   }

@@ -61,7 +61,7 @@ class LikeSet extends Component {
     }
 
     return (
-      <div className="pull-left">
+      <div className="likeSet pull-left">
         {likeButton}
         <span> {this.state.likeCount}</span>
       </div>

@@ -13,7 +13,7 @@ class Navigation extends Component {
   toggleSidebar() {
     $('#sidebar').css("left", "0%");
   }
-  // 
+  //
   // clickHome() {
   //   this.props.data._save({selectedMain: "recent"});
   //   this.props.data.goto("/");
@@ -51,7 +51,7 @@ class Navigation extends Component {
             <a className="navbar-btn pull-left glyphicon glyphicon-menu-hamburger" style={navLeft} onClick={() => this.toggleSidebar()} ></a>
             <a className="navbar-btn pull-center" style={navCenter}
               onClick={() => {this.props.data.goto("/"); this.props.data._save({selectedMain: "recent"})}}>D7</a>
-            <a className="navbar-btn pull-right glyphicon glyphicon-pencil"
+            <a className="navbar-btn pull-right glyphicon glyphicon-edit"
               style={navRight} onClick={() => this.props.data.goto("/new")}></a>
         </nav>
         <div style={{display:"none"}}>

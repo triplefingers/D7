@@ -33,6 +33,9 @@ class MainProjectCard extends Component {
           <p className="card-text">
             {description}
           </p>
+        </div>
+        <hr/>
+        <div className="card-block">
           <WishSet id={id} doneWish={doneWish} wishCount={wishCount} />
           <div className="pull-right">
             <span>by </span>

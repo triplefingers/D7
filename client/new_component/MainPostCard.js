@@ -36,25 +36,30 @@ class MainPostCard extends Component {
     // };
 
     return (
-      <div className="card" onClick={this.clickUserProjectCard.bind(this)}>
-        <div className="card-block">
-          <div className="pull-left">
-            <UserSet userPhoto={userPhoto} username={username} />
-            <span className="text-muted">{projectTitle}</span>
+      <div className="card">
+        <div onClick={this.clickUserProjectCard.bind(this)}>
+          <div className="card-block">
+            <div className="pull-left">
+              <UserSet userPhoto={userPhoto} username={username} />
+              <span className="text-muted">{projectTitle}</span>
+            </div>
+            <div className="pull-right">
+              <div>{moment(createdAt).fromNow()}</div>
+            </div><br />
+            <div className="text-muted pull-right">
+              <div>On Day {day}</div>
+            </div>
+            <div style={{clear: "both"}}></div>
           </div>
-          <div className="pull-right">
-            <div>{moment(createdAt).fromNow()}</div>
-          </div><br />
-          <div className="pull-right">
-            <div>On Day {day}</div>
+          {images}
+          <div className="card-block">
+            <p className="card-text">
+              {text}
+            </p>
           </div>
-          <div style={{clear: "both"}}></div>
         </div>
-        {images}
+        <hr/>
         <div className="card-block">
-          <p className="card-text">
-            {text}
-          </p>
           <LikeSet id={id} doneLike={doneLike} likeCount={likeCount} />
           <ReportSet id={id} goto={this.props.goto}/>
           <div style={{clear: "both"}}></div>
