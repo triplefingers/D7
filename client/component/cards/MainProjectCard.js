@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import WishSet from "./WishSet";
+import WishSet from "../subcomponents/WishSet";
 
 class MainProjectCard extends Component {
   constructor(props) {

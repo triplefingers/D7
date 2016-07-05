@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import WishSet from "./WishSet";
-import UserSet from "./UserSet";
+import WishSet from "../subcomponents/WishSet";
+import UserSet from "../subcomponents/UserSet";
 
 class ProjectHeader extends Component {
   constructor(props) {

@@ -2,10 +2,10 @@ import React, {Component} from "react";
 
 import axios from "axios";
 
-import Tabbar from "./Tabbar";
-import RecordBox from "./RecordBox";
-import MainPostCard from "./MainPostCard";
-import MainProjectCard from "./MainProjectCard";
+import Tabbar from "./subcomponents/Tabbar";
+import RecordBox from "./subcomponents/RecordBox";
+import MainPostCard from "./cards/MainPostCard";
+import MainProjectCard from "./cards/MainProjectCard";
 import moment from "moment"
 
 class Main extends Component {

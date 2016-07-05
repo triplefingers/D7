@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import LikeSet from "./LikeSet";
-import ReportSet from "./ReportSet";
-import UserSet from "./UserSet";
+import LikeSet from "../subcomponents/LikeSet";
+import ReportSet from "../subcomponents/ReportSet";
+import UserSet from "../subcomponents/UserSet";
 import moment from "moment";
 
 class MainPostCard extends Component {

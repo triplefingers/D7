@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import MainProjectCard from "./MainProjectCard";
+import MainProjectCard from "../cards/MainProjectCard";
 
 
 class WishList extends Component {

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import ActionBar from "./ActionBar";
-import SelectBox from "./SelectBox";
+import ActionBar from "../subcomponents/ActionBar";
+import SelectBox from "../subcomponents/SelectBox";
 
 class SelectProject extends Component {
   constructor(props) {

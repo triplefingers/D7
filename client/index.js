@@ -8,19 +8,19 @@ import AppContainer from "./container/AppContainer";
 /* Original AppContainer is now Appcontainer_original */
 
 import App from "./component/App";
-import Login from "./component/Login";
 import Main from "./component/Main";
-import New from "./component/New";
-import SelectProject from "./component/SelectProject";
-import ProjectDetail from "./component/ProjectDetail";
-import UserProjectDetail from "./component/UserProjectDetail";
-import CreateProject from "./component/CreateProject";
-import CreateDate from "./component/CreateDate";
-import LeaveHistory from "./component/LeaveHistory";
-import History from "./component/History";
-import WishList from "./component/WishList";
-import Settings from "./component/Settings";
-import Payment from "./component/Payment";
+import Login from "./component/main/Login";
+import New from "./component/main/New";
+import SelectProject from "./component/main/SelectProject";
+import ProjectDetail from "./component/main/ProjectDetail";
+import UserProjectDetail from "./component/main/UserProjectDetail";
+import CreateProject from "./component/main/CreateProject";
+import CreateDate from "./component/main/CreateDate";
+import LeaveHistory from "./component/main/LeaveHistory";
+import History from "./component/main/History";
+import WishList from "./component/main/WishList";
+import Settings from "./component/main/Settings";
+import Payment from "./component/main/Payment";
 
 ReactDOM.render(
   (
@@ -41,7 +41,6 @@ ReactDOM.render(
         <Route path="/settings" component={Settings}/>
         <Route path="/payment" component={Payment}/>
       </Route>
-
     </Route>
   </Router>
   ), document.getElementById("container"));

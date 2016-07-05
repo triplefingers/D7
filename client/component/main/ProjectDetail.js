@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
-import ProjectHeader from "./ProjectHeader";
-import MainPostCard from "./MainPostCard";
+import ProjectHeader from "../headers/ProjectHeader";
+import MainPostCard from "../cards/MainPostCard";
 
 class ProjectDetail extends Component {
   constructor(props) {

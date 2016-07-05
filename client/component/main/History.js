@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import DetailUserProjectCard from "./DetailUserProjectCard";
+import DetailUserProjectCard from "../cards/DetailUserProjectCard";
 
 
 class History extends Component {
