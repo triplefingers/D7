@@ -135,7 +135,7 @@ class SideBar extends Component {
             <div className="profile-usermenu">
               <ul className="nav">
                 <li>
-                  <a onClick={this.handleClick.bind(this, "/history")}>
+                  <a onClick={this.handleClick.bind(this, "/history", "history")}>
                   <i className="glyphicon glyphicon-home"></i>
                   Ongoing Projects </a>
                   <ul>
@@ -143,17 +143,17 @@ class SideBar extends Component {
                   </ul>
                 </li>
                 <li>
-                  <a onClick={this.handleClick.bind(this, "/history")}>
+                  <a onClick={this.handleClick.bind(this, "/history", "history")}>
                   <i className="glyphicon glyphicon-user"></i>
                   Project History </a>
                 </li>
                 <li>
-                  <a onClick={this.handleClick.bind(this, "/wishlist")}>
+                  <a onClick={this.handleClick.bind(this, "/wishlist", "wishlist")}>
                   <i className="glyphicon glyphicon-ok"></i>
                   Wishlist </a>
                 </li>
                 <li>
-                  <a onClick={this.handleClick.bind(this, "/settings")}>
+                  <a onClick={this.handleClick.bind(this, "/settings", "settings")}>
                   <i className="glyphicon glyphicon-flag"></i>
                   Settings </a>
                 </li>

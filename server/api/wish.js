@@ -20,6 +20,7 @@ const wish = (user, q, body, res) => {
     userId = 1;
   }
 
+  console.log("----------body in wish api ", userProjectId, projectId);
   let wishData;
   if (userProjectId !== undefined) {
     wishData = () => {
