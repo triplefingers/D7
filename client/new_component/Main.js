@@ -6,7 +6,7 @@ import Tabbar from "./Tabbar";
 import RecordBox from "./RecordBox";
 import MainPostCard from "./MainPostCard";
 import MainProjectCard from "./MainProjectCard";
-
+import moment from "moment"
 
 class Main extends Component {
   constructor(props) {
@@ -22,6 +22,9 @@ class Main extends Component {
       creatingProjectLast: false,
       leaveHistoryInProgress: false,
       existingProjectChosen: false,
+      cardNumber: "",
+      birth: "",
+      expiry: ""
     });
   }
 
@@ -43,6 +46,8 @@ class Main extends Component {
     /* Reset the AppContainer's state */
 
     console.log("Main Mounted ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    console.log(moment(1467627005907).fromNow());
+
   }
 
   componentWillUnmount() {
