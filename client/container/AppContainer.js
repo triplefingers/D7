@@ -227,7 +227,7 @@ class AppContainer extends Component {
   fetchRecommendation() {
     axios.get("/api/projects/recommended", {
       params: {
-        page : this.state.suggestionPage
+        page : this.state.suggestionPage+1
       }
     })
     .then((res) => {
@@ -250,7 +250,7 @@ class AppContainer extends Component {
   fetchRecentPosts() {
     axios.get("/api/posts/recent", {
       params: {
-        page : this.state.recentPage
+        page : this.state.recentPage+1
       }
     })
     .then((res) => {
@@ -274,7 +274,7 @@ class AppContainer extends Component {
   fetchPopularPosts() {
     axios.get("/api/posts/popular", {
       params: {
-        page : this.state.popularPage
+        page : this.state.popularPage+1
       }
     })
     .then((res) => {

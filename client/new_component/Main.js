@@ -80,14 +80,14 @@ class Main extends Component {
     const { recent, popular, recommended, recentPage, popularPage, suggestionPage, selectedMain } = this.props.data;
 
     if (selectedMain === "recent") {
-      _save({recentPage: recentPage+1});
       fetchRecentPosts();
+      _save({recentPage: recentPage+1});
     } else if (selectedMain === "popular") {
-      _save({popularPage: popularPage+1});
       fetchPopularPosts();
+      _save({popularPage: popularPage+1});
     } else if (selectedMain==="suggestion"){
-      _save({suggestionPage: suggestionPage+1});
       fetchRecommendation();
+      _save({suggestionPage: suggestionPage+1});
     }
 
   }
