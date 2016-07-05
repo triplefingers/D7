@@ -17,7 +17,7 @@ class SideBar extends Component {
   }
 
   toggleSidebar() {
-    $('#sidebar').css("left", "-100%");
+    $(".sidebar").css("left", "-100%");
   }
 
   handleClick(url, statename, fn) {
@@ -40,28 +40,13 @@ class SideBar extends Component {
 
   render() {
 
-    const sideBarStyle = {
-      left: "-100%",
-      top: "0px",
-      width: "70%",
-      height: "100%",
-      position: "fixed",
-      background: "skyblue",
-      transition: "all 0.5s",
-      zIndex: "10"
-      // ,left: "0%"
-    }
-
     /* ongoing = onGoing*/
     let onGoingProjects, userStats;
     const { user, onGoing } = this.props.data.data;
     const { goto, fetchWishList, fetchAllProjects, fetchUser } = this.props.data;
 
-
     /* Practice */
-    // SIDEBAR USERPIC
       if (user && onGoing) {
-
         const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + user.userPhoto + ".jpg";
         userStats = (
                 <ul>
@@ -76,46 +61,38 @@ class SideBar extends Component {
         });
 
         return (
-          <div style={sideBarStyle} id="sidebar">
-            <a id="close" className="pull-right" onClick={this.toggleSidebar}>X close</a>
-            <div className="profile-userpic">
+          <div className="sidebar">
+            <a className="close pull-right" onClick={this.toggleSidebar}>X close</a>
+            <div className="userphoto">
               <img src={imageSrc} className="img-responsive" alt="" />
             </div>
-            <div className="profile-usertitle">
-              <div className="profile-usertitle-name">
+            <div className="userinfo">
+              <div className="username">
                 {user.username}
               </div>
-              <div className="profile-usertitle-job">
+              <div className="userstats">
                 {userStats}
               </div>
             </div>
-            {/*<div className="profile-userbuttons">
-              <button type="button" className="btn btn-success btn-sm">Follow</button>
-              <button type="button" className="btn btn-danger btn-sm">Message</button>
-            </div>*/}
-            <div className="profile-usermenu">
+            <div className="menu">
               <ul className="nav">
                 <li>
                   <a onClick={this.handleClick.bind(this, "/history", "history", fetchAllProjects)}>
-                  <i className="glyphicon glyphicon-home"></i>
                   Ongoing Projects </a>
-                  <ul>
+                <ul className="ongoing">
                     {onGoingProjects}
                   </ul>
                 </li>
                 <li>
                   <a onClick={this.handleClick.bind(this, "/history", "history",fetchAllProjects)}>
-                  <i className="glyphicon glyphicon-user"></i>
                   Project History </a>
                 </li>
                 <li>
                   <a onClick={this.handleClick.bind(this, "/wishlist", "wishlist",fetchWishList)}>
-                  <i className="glyphicon glyphicon-ok"></i>
                   Wishlist </a>
                 </li>
                 <li>
                   <a onClick={this.handleClick.bind(this, "/settings")}>
-                  <i className="glyphicon glyphicon-flag"></i>
                   Settings </a>
                 </li>
 
@@ -126,7 +103,7 @@ class SideBar extends Component {
 
 
       } else {
-      return (<div style={sideBarStyle} id="sidebar"><button onClick={this.toggleSidebar}>X close</button>loading...</div>);
+      return (<div className="sidebar" id="sidebar"><button onClick={this.toggleSidebar}>X close</button>loading...</div>);
     }
 
   }

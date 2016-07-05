@@ -96,15 +96,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 2rem;
 }
 
-/* sidebar */
-.sidebar {
-  left: -100%;
-  width: 100%;
-  background: sky-blue;
-  transition: all 1s;
-  z-index: 10;
-}
-
 .card {
   position: relative;
   display: block;
@@ -125,18 +116,25 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* Sidebar */
-#sidebar {
+.sidebar {
+    left: -100%;
+    top: 0;
+    width: 70%;
+    height: 100%;
+    position: fixed;
+    background: #202020;
+    transition: all 0.5s;
+    z-index: 10;
     padding-top: 30px;
-    position: relative;
 }
 
-#sidebar #close {
+.sidebar .close {
     top: 0;
     right: 0;
     position: absolute;
 }
 
-.profile-userpic img {
+.sidebar .userphoto img {
   float: none;
   margin: 0 auto;
   width: 50%;
@@ -146,19 +144,19 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50% !important;
 }
 
-.profile-usertitle {
+.sidebar .userinfo {
   text-align: center;
   margin-top: 20px;
 }
 
-.profile-usertitle-name {
+.sidebar .userinfo .username {
   color: #5a7391;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 7px;
 }
 
-.profile-usertitle-job {
+.sidebar .userinfo .userstats {
   text-transform: uppercase;
   color: #5b9bd1;
   font-size: 12px;
@@ -166,67 +164,34 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 15px;
 }
 
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 15px;
-  margin-right: 5px;
-}
-
-.profile-userbuttons .btn:last-child {
-  margin-right: 0px;
-}
-
-.profile-usermenu {
+.sidebar .menu {
   margin-top: 30px;
+  text-align: center;
 }
 
-.profile-usermenu ul li {
+.sidebar .menu ul li {
   border-bottom: 1px solid #f0f4f7;
 }
 
-.profile-usermenu ul li:last-child {
+.sidebar .menu ul li:last-child {
   border-bottom: none;
 }
 
-.profile-usermenu ul li a {
-  color: #93a3b5;
-  font-size: 14px;
+.sidebar .menu ul li a {
+  color: #303A45;
+  font-size: 2rem;
   font-weight: 400;
 }
 
-.profile-usermenu ul li a i {
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.profile-usermenu ul li a:hover {
+.sidebar .menu ul li a:hover {
   background-color: #fafcfd;
   color: #5b9bd1;
 }
 
-.profile-usermenu ul li.active {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li.active a {
-  color: #5b9bd1;
-  background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
-  margin-left: -2px;
-}
-
-/* Profile Content */
-.profile-content {
-  padding: 20px;
-  background: #fff;
-  min-height: 460px;
+.sidebar .menu ul li .ongoing a {
+  color: #93a3b5;
+  font-size: 1.4rem;
+  font-weight: 400;
 }
 
 /*Hiding default input type=file button*/
