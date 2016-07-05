@@ -17,8 +17,10 @@ class UserProjectHeader extends Component {
   render() {
     console.log("USERPROEJCT HEADER", this.props.data);
 
-    const { projectId, projectTitle, projectDescription, wishCount, doneWish, startAt, endAt, userPhoto, username, status, others, onDay } = this.props.data;
-    const { amount, currency, paymentDue } = this.props.data.transaction;
+    const { projectId, projectTitle, projectDescription, wishCount, doneWish, startAt, userPhoto, username, status, others, onDay } = this.props.data;
+    let { endAt } = this.props.data;
+    const { amount, paymentDue } = this.props.data.transaction;
+    let { currency } = this.props.data.transaction;
 
     let projectStatus;
     let transaction;
@@ -38,25 +40,40 @@ class UserProjectHeader extends Component {
       } else {
         projectStatus = status.toUpperCase();
       }
-      transaction = (<div>{amount} {currency} on {paymentDue}</div>);
+      if (currency === "won") {
+        currency = "₩";
+      } else if (currency === "dollar") {
+        currency = "$";
+      }
+      transaction = (<div>{currency}{amount} on {paymentDue}</div>);
+    }
+
+    if (startAt.slice(0, 4) === endAt.slice(0, 4)) {
+      endAt = endAt.slice(5);
     }
 
     return (
       <div>
-        <div>
-          <h1>{projectTitle}</h1>
-          <p>{projectDescription}</p>
+        <div className="card projectCard">
+          <div className="card-block">
+            <h3 className="pull-right">
+              <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} count={false}/>
+              <a className="pull-right createProjectBtn glyphicon glyphicon-circle-arrow-right" onClick={this.handleProjectClick.bind(this)}/>
+              <span style={{padding: "0 0.5rem"}}></span>
+            </h3>
+            <h3 className="card-title">{projectTitle}</h3>
+            <p className="card-text">{projectDescription}</p>
+            <UserSet userPhoto={userPhoto} username={username} />
+
+          </div>
+          <div className="card-block">
+            <strong>{projectStatus}</strong>
+            <div>{startAt}~{endAt}</div>
+          </div>
         </div>
-        <UserSet userPhoto={userPhoto} username={username} />
-        <div>
-          <WishSet id={projectId} doneWish={doneWish} wishCount={wishCount} />
-          <button onClick={this.handleProjectClick.bind(this)}>-></button>
+        <div className="card card-block">
+          {transaction}
         </div>
-        <div>
-          {projectStatus}
-          <div>{startAt}~{endAt}</div>
-        </div>
-        {transaction}
       </div>
     );
   }

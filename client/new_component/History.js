@@ -10,6 +10,7 @@ class History extends Component {
   }
 
   componentWillMount(){
+    this.props.fetchAllProjects();
   }
 
   componentWillUnmount() {
@@ -29,7 +30,7 @@ class History extends Component {
       console.log('ONGOING', onGoing);
 
       onGoing = onGoing.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto} />
+          return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
         });
 
       waiting = waiting.map((project) => {
@@ -42,11 +43,18 @@ class History extends Component {
 
       return (
         <div>
-          <h1>Ongoing</h1>
+          <h2>Project History</h2>
+          <div className="card projectCard statusTitle">
+            <h3 className="noMargins">Ongoing</h3>
+          </div>
           {onGoing}
-          <h1>Waiting</h1>
+          <div className="card projectCard statusTitle">
+            <h3 className="noMargins">Waiting</h3>
+          </div>
           {waiting}
-          <h1>Complete</h1>
+          <div className="card projectCard statusTitle">
+            <h3 className="noMargins">Complete</h3>
+          </div>
           {complete}
         </div>
 

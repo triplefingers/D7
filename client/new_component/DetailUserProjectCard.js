@@ -16,7 +16,8 @@ class DetailUserProjectCard extends Component {
 
     if(this.props.data){
       console.log('THIS.PROPS.DATA in DetailUserProjectCard', this.props.data);
-      const { id, title, description, startAt, endAt, onDay, success } = this.props.data;
+      const { id, title, description, startAt, onDay, success } = this.props.data;
+      let { endAt } = this.props.data;
 
       let projectStatus;
       if(onDay===undefined){
@@ -27,26 +28,28 @@ class DetailUserProjectCard extends Component {
         }
       } else {
         if(onDay < 0){
-          projectStatus = `D${onDay}`;
+          projectStatus = `D ${onDay}`;
         } else {
           projectStatus = `on Day ${onDay}`;
         }
       }
 
+      if (startAt.slice(0, 4) === endAt.slice(0, 4)) {
+        endAt = endAt.slice(5);
+      }
+
       const cardStyle = {
         backgroundColor: "white",
         margin: "10px 0",
-      }
+      };
 
       return (
-        <div style={cardStyle} onClick={this.clickProjectCard.bind(this)}>
-          <div>
-            <h1>{title}</h1>
-            <p>{description}</p>
-          </div>
-          <div>
-            {projectStatus}
-            <div>{startAt}~{endAt}</div>
+        <div className="card" style={cardStyle} onClick={this.clickProjectCard.bind(this)}>
+          <div className="card-block">
+            <h3 className="card-title">{title}</h3>
+            <p className="card-text">{description}</p>
+            <strong>{projectStatus}</strong>
+            <div>{startAt} ~ {endAt}</div>
           </div>
         </div>
       );
