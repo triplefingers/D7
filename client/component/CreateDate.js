@@ -24,13 +24,8 @@ class CreateDate extends Component {
       // return false;
       return;
     }
-    // if (moment(date).isSame(previousDate)) {
-    //   console.info('onSelect: false', date);
-    //   return false;
-    // }
-    // else
+
     if (currentMonth.isSame(date, "month")) {
-      // console.info('onSelect: true', date.format());
       this._save({startAt: date.format().slice(0, 10)});
       return true;
     }
@@ -59,10 +54,34 @@ class CreateDate extends Component {
   };
 
   render() {
-    let title = this.props.data.title;
-    let desc = this.props.data.description;
-    let startDate = this.props.data.startAt;
-    let today = new Date().toJSON().slice(0,10);
+
+    if (!this.props.data.existingProjectChosen) {
+      var title = this.props.data.title;
+      var description = this.props.data.description;
+    } else {
+      const data = this.props.data.selectedProject;
+      var title = data.projectTitle;
+      var description = data.projectDescription;
+      var projectId = data.projectId;
+      console.log("제대로 들어왔니? ", data);
+    }
+
+    const today = new Date().toJSON().slice(0,10);
+
+    const startAt = this.props.data.startAt;
+    const text = this.props.data.text;
+
+    const newProject = {
+      title: title,
+      description: description,
+      startAt: today
+    };
+
+    if (window.publicIds) {
+      var publicIds = window.publicIds;
+    } else {
+      publicIds = [];
+    }
 
     return (
       <div>
@@ -74,9 +93,17 @@ class CreateDate extends Component {
         <div className="ActionBar">
           <button onClick={this.context.router.goBack}>Cancel</button>
           <button onClick={() => {
-            // have to edit userId
-            this.props.saveNewProject(1, title, desc, startDate);
-          }}>Save</button>
+            if (this.props.data.existingProjectChosen) {
+              // this.props.saveExistingProject(projectId, today);
+              this.props.goto("/payment");
+            } else if (!this.props.data.creatingProjectFirst) {
+              this.props.goto("/payment");
+              // this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject);
+            } else {
+              // this.props.saveNewProject(undefined, title, description, startAt);
+              this.props.goto("/payment");
+            }
+          }}>Next</button>
         </div>
       </div>
     );

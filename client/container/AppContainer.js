@@ -2,7 +2,7 @@ import React, {Component, cloneElement} from "react";
 import {Router, Route, Link, browserHistory, hashHistory, IndexRoute} from "react-router";
 import axios from "axios";
 import $ from "jquery";
-import Actions from "../action/actions.js";
+import Actions from "../action/Actions";
 
 class AppContainer extends Actions {
   constructor() {
