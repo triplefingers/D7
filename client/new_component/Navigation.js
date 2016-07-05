@@ -13,11 +13,11 @@ class Navigation extends Component {
   toggleSidebar() {
     $('#sidebar').css("left", "0%");
   }
-
-  clickHome() {
-    this.props.data._save({selectedMain: "recent"});
-    this.props.data.goto("/");
-  }
+  // 
+  // clickHome() {
+  //   this.props.data._save({selectedMain: "recent"});
+  //   this.props.data.goto("/");
+  // }
 
   render() {
 

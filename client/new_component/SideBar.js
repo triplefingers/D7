@@ -20,8 +20,11 @@ class SideBar extends Component {
     $('#sidebar').css("left", "-100%");
   }
 
-  handleClick(url, statename) {
+  handleClick(url, statename, fn) {
     this.props.data.reset([statename]);
+    if(fn){
+      fn();
+    }
     this.props.data.goto(url);
     this.toggleSidebar();
   }
@@ -50,52 +53,11 @@ class SideBar extends Component {
     /* ongoing = onGoing*/
     let onGoingProjects, userStats;
     const { user, onGoing } = this.props.data.data;
-    const { goto } = this.props.data;
+    const { goto, fetchWishList, fetchAllProjects } = this.props.data;
     console.log('THIS.PROPS.DATA', this.props.data);
     console.log('ONGOING', onGoing);
     console.log('USER', user);
 
-    // if (user && onGoing) {
-    //   userStats = (
-    //     <ul>
-    //       <li>Total: {user.userProjects.total}</li>
-    //       <li>Success: {user.userProjects.success}</li>
-    //       <li>Fail: {user.userProjects.fail}</li>
-    //     </ul>
-    //   );
-
-    //   onGoingProjects = onGoing.map((project) => {
-    //     return (<li key={project.id}><a onClick={this.handleClickOngoing.bind(this, project.id)}>{project.title} on day {project.onDay}</a></li>);
-    //   });
-
-      // const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + user.userPhoto + ".jpg";
-
-    //   return (
-    //     <div style={sideBarStyle} id="sidebar">
-    //       <button onClick={this.toggleSidebar}>X close</button>
-    //       <div>
-    //         <img src={imageSrc} width="100px" height="100px"/>
-    //         <h1>{user.username}</h1>
-    //         <ul>
-    //           {userStats}
-    //         </ul>
-    //       </div>
-    //       <div>
-    //         <div>
-    //           <h2 onClick={this.handleClick.bind(this, "/history")}>Ongoing Projects</h2>
-    //           <ul>
-    //             {onGoingProjects}
-    //           </ul>
-    //           <h2 onClick={this.handleClick.bind(this, "/history")}>Project History</h2>
-    //           <h2 onClick={this.handleClick.bind(this, "/wishlist")}>Wish List</h2>
-    //           <h2 onClick={this.handleClick.bind(this, "/settings")}>Settings</h2>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   );
-    // } else {
-    //   return (<div style={sideBarStyle} id="sidebar"><button onClick={this.toggleSidebar}>X close</button>loading...</div>);
-    // }
 
     /* Practice */
     // SIDEBAR USERPIC
@@ -135,7 +97,7 @@ class SideBar extends Component {
             <div className="profile-usermenu">
               <ul className="nav">
                 <li>
-                  <a onClick={this.handleClick.bind(this, "/history", "history")}>
+                  <a onClick={this.handleClick.bind(this, "/history", "history", fetchAllProjects)}>
                   <i className="glyphicon glyphicon-home"></i>
                   Ongoing Projects </a>
                   <ul>
@@ -143,12 +105,12 @@ class SideBar extends Component {
                   </ul>
                 </li>
                 <li>
-                  <a onClick={this.handleClick.bind(this, "/history", "history")}>
+                  <a onClick={this.handleClick.bind(this, "/history", "history",fetchAllProjects)}>
                   <i className="glyphicon glyphicon-user"></i>
                   Project History </a>
                 </li>
                 <li>
-                  <a onClick={this.handleClick.bind(this, "/wishlist", "wishlist")}>
+                  <a onClick={this.handleClick.bind(this, "/wishlist", "wishlist",fetchWishList)}>
                   <i className="glyphicon glyphicon-ok"></i>
                   Wishlist </a>
                 </li>

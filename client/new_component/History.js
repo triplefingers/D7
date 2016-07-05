@@ -10,7 +10,6 @@ class History extends Component {
   }
 
   componentWillMount(){
-    this.props.fetchAllProjects();
   }
 
   componentWillUnmount() {

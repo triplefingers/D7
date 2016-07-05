@@ -3,7 +3,7 @@ import collection from "../db/collections";
 
 const fetchWishProjects = (user, q, res) => {
   // const userId = user.id;
-  
+
   // below should be deleted
   let userId;
   if (user && user.id) {
@@ -18,7 +18,7 @@ const fetchWishProjects = (user, q, res) => {
   /* data container to send */
   let result;
 
-  model.Wish.where("id", userId).orderBy("-created_at").fetchAll({withRelated: [
+  model.Wish.where("userId", userId).orderBy("-created_at").fetchAll({withRelated: [
     "user",
     "project"
   ]})
