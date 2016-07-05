@@ -20,7 +20,8 @@ class SideBar extends Component {
     $('#sidebar').css("left", "-100%");
   }
 
-  handleClick(url) {
+  handleClick(url, statename) {
+    this.props.data.reset([statename]);
     this.props.data.goto(url);
     this.toggleSidebar();
   }
@@ -81,13 +82,13 @@ class SideBar extends Component {
           </div>
           <div>
             <div>
-              <h2 onClick={this.handleClick.bind(this, "/history")}>Ongoing Projects</h2>
+              <h2 onClick={this.handleClick.bind(this, "/history", "history")}>Ongoing Projects</h2>
               <ul>
                 {onGoingProjects}
               </ul>
-              <h2 onClick={this.handleClick.bind(this, "/history")}>Project History</h2>
-              <h2 onClick={this.handleClick.bind(this, "/wishlist")}>Wish List</h2>
-              <h2 onClick={this.handleClick.bind(this, "/settings")}>Settings</h2>
+              <h2 onClick={this.handleClick.bind(this, "/history", "history")}>Project History</h2>
+              <h2 onClick={this.handleClick.bind(this, "/wishlist", "wishlist")}>Wish List</h2>
+              <h2 onClick={this.handleClick.bind(this, "/settings", "settings")}>Settings</h2>
             </div>
           </div>
         </div>
