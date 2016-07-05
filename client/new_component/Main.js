@@ -22,6 +22,9 @@ class Main extends Component {
       creatingProjectLast: false,
       leaveHistoryInProgress: false,
       existingProjectChosen: false,
+      cardNumber: "",
+      birth: "",
+      expiry: ""
     });
   }
 
