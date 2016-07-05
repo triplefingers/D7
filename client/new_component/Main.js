@@ -24,7 +24,10 @@ class Main extends Component {
       existingProjectChosen: false,
       cardNumber: "",
       birth: "",
-      expiry: ""
+      expiry: "",
+      recentPage: 0,
+      popularPage: 0,
+      suggestionPage: 0
     });
   }
 
@@ -34,16 +37,13 @@ class Main extends Component {
     const { selectedMain } = this.props.data;
     /* Promise로 순서 적용 */
     if(!selectedMain){
-      _save({selectedMain: "recent", recentPage: 1});
       fetchRecentPosts();
+      _save({selectedMain: "recent"});
     } else if(selectedMain==="recent"){
-      _save({recentPage: 1});
       fetchRecentPosts();
     } else if(selectedMain==="popular"){
-      _save({popularPage: 1});
       fetchPopularPosts();
     } else {
-      _save({suggestionPage: 1});
       fetchRecommendation();
     }
 
@@ -80,14 +80,14 @@ class Main extends Component {
     const { recent, popular, recommended, recentPage, popularPage, suggestionPage, selectedMain } = this.props.data;
 
     if (selectedMain === "recent") {
-      fetchRecentPosts();
       _save({recentPage: recentPage+1});
+      fetchRecentPosts();
     } else if (selectedMain === "popular") {
-      fetchPopularPosts();
       _save({popularPage: popularPage+1});
+      fetchPopularPosts();
     } else if (selectedMain==="suggestion"){
-      fetchRecommendation();
       _save({suggestionPage: suggestionPage+1});
+      fetchRecommendation();
     }
 
   }

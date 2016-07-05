@@ -231,13 +231,15 @@ class AppContainer extends Component {
       }
     })
     .then((res) => {
-      if(this.state.popularPage===1){
+      if(this.state.suggestionPage===0){
         this.setState({
-          recommended: res.data
+          recommended: res.data,
+          suggestionPage: this.state.suggestionPage+1
         });
       } else {
         this.setState({
-          recommended: this.state.recommended.concat(res.data)
+          recommended: this.state.recommended.concat(res.data),
+          suggestionPage: this.state.suggestionPage+1
         });
       }
     })
@@ -255,13 +257,15 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // console.log("Recent Posts: ", res);
-      if(this.state.recentPage===1){
+      if(this.state.recentPage===0){
         this.setState({
-          recent: res.data
+          recent: res.data,
+          recentPage: this.state.recentPage+1
         });
       } else {
         this.setState({
-          recent: this.state.recent.concat(res.data)
+          recent: this.state.recent.concat(res.data),
+          recentPage: this.state.recentPage+1
         });
       }
     })
@@ -279,13 +283,15 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // console.log("Popular Posts: ", res);
-      if(this.state.popularPage===1){
+      if(this.state.popularPage===0){
         this.setState({
-          popular: res.data
+          popular: res.data,
+          popularPage: this.state.popularPage+1
         });
       } else {
         this.setState({
-          popular: this.state.popular.concat(res.data)
+          popular: this.state.popular.concat(res.data),
+          popularPage: this.state.popularPage+1
         });
       }
     })
