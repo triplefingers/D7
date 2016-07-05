@@ -12,9 +12,14 @@ body {
     background: gray;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 li {
     display: inline;
-    margin-right: 30%;
+    margin-right: 25%;
 }
 
 textarea {
