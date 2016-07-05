@@ -38,7 +38,7 @@ class Main extends Component {
     /* Promise로 순서 적용 */
     if(!selectedMain){
       fetchRecentPosts();
-      _save({selectedMain: "recent", recentPage: 1});
+      _save({selectedMain: "recent"});
     } else if(selectedMain==="recent"){
       fetchRecentPosts();
     } else if(selectedMain==="popular"){

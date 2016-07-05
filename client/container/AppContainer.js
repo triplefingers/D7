@@ -233,14 +233,15 @@ class AppContainer extends Component {
     .then((res) => {
       if(this.state.suggestionPage===0){
         this.setState({
-          recommended: res.data
+          recommended: res.data,
+          suggestionPage: this.state.suggestionPage+1
         });
       } else {
         this.setState({
-          recommended: this.state.recommended.concat(res.data)
+          recommended: this.state.recommended.concat(res.data),
+          suggestionPage: this.state.suggestionPage+1
         });
       }
-      this._save({suggestionPage: this.state.suggestionPage+1});
     })
     .catch((err) => {
       console.error("Error occured while fetching recommended projects", err);
@@ -258,14 +259,15 @@ class AppContainer extends Component {
       // console.log("Recent Posts: ", res);
       if(this.state.recentPage===0){
         this.setState({
-          recent: res.data
+          recent: res.data,
+          recentPage: this.state.recentPage+1
         });
       } else {
         this.setState({
-          recent: this.state.recent.concat(res.data)
+          recent: this.state.recent.concat(res.data),
+          recentPage: this.state.recentPage+1
         });
       }
-      this._save({recentPage: this.state.recentPage+1});
     })
     .catch((err) => {
       console.error("Error occurred while fetching recent posts: ", err);
@@ -283,14 +285,15 @@ class AppContainer extends Component {
       // console.log("Popular Posts: ", res);
       if(this.state.popularPage===0){
         this.setState({
-          popular: res.data
+          popular: res.data,
+          popularPage: this.state.popularPage+1
         });
       } else {
         this.setState({
-          popular: this.state.popular.concat(res.data)
+          popular: this.state.popular.concat(res.data),
+          popularPage: this.state.popularPage+1
         });
       }
-      this._save({popularPage: this.state.popularPage+1});
     })
     .catch((err) => {
       console.error("Error occurred while fetching popular posts: ", err);
