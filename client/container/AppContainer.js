@@ -231,7 +231,7 @@ class AppContainer extends Component {
       }
     })
     .then((res) => {
-      if(this.state.popularPage===1){
+      if(this.state.suggestionPage===0){
         this.setState({
           recommended: res.data
         });
@@ -240,6 +240,7 @@ class AppContainer extends Component {
           recommended: this.state.recommended.concat(res.data)
         });
       }
+      this._save({suggestionPage: this.state.suggestionPage+1});
     })
     .catch((err) => {
       console.error("Error occured while fetching recommended projects", err);
@@ -255,7 +256,7 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // console.log("Recent Posts: ", res);
-      if(this.state.recentPage===1){
+      if(this.state.recentPage===0){
         this.setState({
           recent: res.data
         });
@@ -264,6 +265,7 @@ class AppContainer extends Component {
           recent: this.state.recent.concat(res.data)
         });
       }
+      this._save({recentPage: this.state.recentPage+1});
     })
     .catch((err) => {
       console.error("Error occurred while fetching recent posts: ", err);
@@ -279,7 +281,7 @@ class AppContainer extends Component {
     })
     .then((res) => {
       // console.log("Popular Posts: ", res);
-      if(this.state.popularPage===1){
+      if(this.state.popularPage===0){
         this.setState({
           popular: res.data
         });
@@ -288,6 +290,7 @@ class AppContainer extends Component {
           popular: this.state.popular.concat(res.data)
         });
       }
+      this._save({popularPage: this.state.popularPage+1});
     })
     .catch((err) => {
       console.error("Error occurred while fetching popular posts: ", err);
