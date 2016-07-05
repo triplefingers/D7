@@ -17,8 +17,8 @@ class UserSet extends Component {
     const imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + userPhoto + ".jpg";
 
     return (
-      <div>
-        <img src={imageUrl} alt="user profile" width="20px" height="20px"/>
+      <div className="card-subtitle">
+        <img src={imageUrl} alt="user profile" width="14px" height="14px"/>
         <span>{username}</span>
       </div>
     );

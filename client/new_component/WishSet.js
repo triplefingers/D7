@@ -50,16 +50,16 @@ class WishSet extends Component {
     let wishButton;
     if(this.state.wished){
       wishButton = (
-        <button style={{zIndex: "10"}} onClick={this.toggleWish.bind(this, id)}>Wish clicked</button>
+        <button className="glyphicon glyphicon-star" onClick={this.toggleWish.bind(this, id)}></button>
       );
     } else {
       wishButton = (
-        <button style={{zIndex: "10"}} onClick={this.toggleWish.bind(this, id)}>Wish not clicked</button>
+        <button className="glyphicon glyphicon-star-empty" onClick={this.toggleWish.bind(this, id)}></button>
       );
     }
 
     return (
-      <div>
+      <div className="pull-left">
         {wishButton}
         <span>{this.state.wishCount}</span>
       </div>

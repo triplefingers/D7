@@ -19,54 +19,43 @@ class MainPostCard extends Component {
 
     const { id, doneLike, likeCount, createdAt, day, doneReport, projectTitle, projectDescription, publicIds, text, userPhoto, userProjectId, userId, username } = this.props.data;
 
-    const imageHeight = 200;
-    const imageWidth = 200;
+    const imageHeight = 420;
+    const imageWidth = 840;
     const imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_fill,h_" + imageHeight + ",w_" + imageWidth + "/v1466579054/";
 
     const images = publicIds.map((id) => {
         if (id.indexOf("http") === -1) {
           id = imageUrl + id;
         }
-        return <img key={id} src={id} style={{width: imageWidth + "px", height: imageHeight + "px"}}/>;
+        return <img key={id} src={id} style={{width: "100%", height: "auto"}}/>;
       });
 
-    const cardStyle = {
-      backgroundColor: "white",
-      margin: "10px 0",
-    };
+    // const cardStyle = {
+    //   backgroundColor: "white",
+    //   margin: "10px 0",
+    // };
 
     return (
-      <div style={cardStyle} onClick={this.clickUserProjectCard.bind(this)}>
-        {/* Card Header */}
-        <div>
-          {/* Header Left Part */}
-          <div>
+      <div className="card" onClick={this.clickUserProjectCard.bind(this)}>
+        <div className="card-block">
+          <div className="pull-left">
             <UserSet userPhoto={userPhoto} username={username} />
-            <div>{projectTitle}</div>
+            <span className="text-muted">{projectTitle}</span>
           </div>
-          {/* Header Right Part */}
-          <div>
-            <div>{day}</div>
+          <div className="pull-right">
+            <div>On Day {day}</div>
             <div>{moment(createdAt).fromNow()}</div>
           </div>
+          <div style={{clear: "both"}}></div>
         </div>
-        {/* Card Content */}
-        <div>
-          <div>
-          {images}
-          </div>
-          <div>
-            <p>
-              {text}
-            </p>
-          </div>
-        </div>
-        {/* Card Footer */}
-        <div>
-          {/* Footer Left Part */}
+        {images}
+        <div className="card-block">
+          <p className="card-text">
+            {text}
+          </p>
           <LikeSet id={id} doneLike={doneLike} likeCount={likeCount} />
-          {/* Footer Right Part */}
           <ReportSet id={id} goto={this.props.goto}/>
+          <div style={{clear: "both"}}></div>
         </div>
       </div>
     );

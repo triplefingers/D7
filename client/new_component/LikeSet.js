@@ -50,16 +50,18 @@ class LikeSet extends Component {
     let likeButton;
     if(this.state.liked){
       likeButton = (
-        <button style={{zIndex: "10"}} onClick={this.toggleLike.bind(this, id)}>Like clicked</button>
+        <button className="glyphicon glyphicon-heart
+" onClick={this.toggleLike.bind(this, id)}></button>
       );
     } else {
       likeButton = (
-        <button style={{zIndex: "10"}} onClick={this.toggleLike.bind(this, id)}>Like not clicked</button>
+        <button className="glyphicon glyphicon-heart-empty
+" onClick={this.toggleLike.bind(this, id)}></button>
       );
     }
 
     return (
-      <div>
+      <div className="pull-left">
         {likeButton}
         <span>{this.state.likeCount}</span>
       </div>
