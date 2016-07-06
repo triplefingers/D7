@@ -175,6 +175,12 @@
   height: 36px;
 }
 
+.RecordButtons .preview div {
+  float: left;
+  display: inline-block;
+  margin-left: 5px;
+}
+
 #AddPhotos {
   padding: 0;
   position: relative;
