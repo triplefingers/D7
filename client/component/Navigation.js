@@ -28,10 +28,9 @@ class Navigation extends Component {
     // }
 
     const navigationStyle = {
-      background: "#BF8C6F",
+      background: "#181818",
       textAlign: "center",
       fontSize: "20px",
-      color: "black"
     };
 
     const navCenter = {
