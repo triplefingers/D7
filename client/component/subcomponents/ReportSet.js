@@ -87,7 +87,7 @@ class ReportSet extends Component {
       } else if(step===2){
         step1= null;
         step2 = (
-          <div className="reportBox" onclick={() => e.stopPropagation()}>
+          <div className="reportBox" onClick={() => e.stopPropagation()}>
             <div className="reportButtonSet">
               <textarea onClick={(e)=> e.stopPropagation()} value={text} onChange={this.handleChange.bind(this, "text")} rows="2" placeholder="Why do you want to report this post?"/><br/>
               <div className="btn-group btn-group-justified text-center" role="group">
@@ -105,7 +105,7 @@ class ReportSet extends Component {
         step1=null;
         step2=null;
         step3= (
-          <div className="reportBox" onclick={() => e.stopPropagation()}>
+          <div className="reportBox" onClick={() => e.stopPropagation()}>
             <div className="reportButtonSet">
               <div className="btn-group btn-group-justified text-center" role="group">
                 <div className="btn-group" role="group">
