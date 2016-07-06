@@ -101,6 +101,12 @@
   right: 20px;
 }
 
+.SelectProject img {
+  position: relative;
+  left: 50%;
+  margin-left: -50px;
+}
+
 /* Leave History */
 .LeaveHistory h2 {
   text-align: center;
