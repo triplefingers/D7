@@ -119,7 +119,7 @@ class ReportSet extends Component {
 
       return (
         <div className="pull-right">
-          <button className="reportSet glyphicon glyphicon-option-horizontal" onClick={this.clickDotButton.bind(this)}></button>
+          <a className="reportSet glyphicon glyphicon-option-horizontal" onClick={this.clickDotButton.bind(this)}></a>
             {step1}
             {step2}
         </div>

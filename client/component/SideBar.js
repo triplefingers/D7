@@ -63,7 +63,7 @@ class SideBar extends Component {
 
         return (
           <div className="popupBackground sidebarBg" onClick={this.toggleSidebar}>
-            <a className="close pull-right" onClick={this.toggleSidebar}>X</a>
+            <a className="close pull-right glyphicon glyphicon-remove" onClick={this.toggleSidebar}></a>
             <div className="sidebar popup">
               <div className="userphoto">
                 <img src={imageSrc} className="img-responsive" alt="" />
