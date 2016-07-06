@@ -40,7 +40,7 @@ class DetailPostCard extends Component {
         <hr/>
         <div className="card-block">
           <LikeSet id={id} doneLike={doneLike} likeCount={likeCount}/>
-          <ReportSet id={id} goto={this.props.goto}/>
+          <ReportSet id={id} goto={this.props.goto} navAlert={this.props.navAlert}/>
           <div style={{clear: "both"}}></div>
         </div>
       </div>

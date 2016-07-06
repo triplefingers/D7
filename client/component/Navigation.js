@@ -43,17 +43,33 @@ class Navigation extends Component {
     };
 
 
-    return (
-      <div>
-        <nav style={navigationStyle} className="navbar-header">
-            <a className="navbar-btn pull-left glyphicon glyphicon-menu-hamburger" style={navLeft} onClick={() => this.toggleSidebar()} ></a>
-            <a className="navbar-btn pull-center" style={navCenter}
-              onClick={this.clickHome.bind(this)}>D7</a>
-            <New goto={this.props.data.goto} _save={this.props.data._save}/>
-        </nav>
-        <div style={{display:"none"}}>
+    let msg = null;
+    const navAlertMsg = this.props.data.data.navAlertMsg;
+    if (navAlertMsg === "save") {
+      msg = (
+        <div className="alert success">
           Save Complete!
         </div>
+      );
+    } else if (navAlertMsg === "report") {
+      msg = (
+        <div className="alert success">
+          Report Complete!
+        </div>
+      );
+    } else {
+      msg = null;
+    }
+
+    return (
+      <div id="navigation">
+        <nav style={navigationStyle} className="navbar-header">
+          <a className="navbar-btn pull-left glyphicon glyphicon-menu-hamburger" style={navLeft} onClick={() => this.toggleSidebar()} ></a>
+          <a className="navbar-btn pull-center" style={navCenter}
+            onClick={this.clickHome.bind(this)}>D7</a>
+          <New goto={this.props.data.goto} _save={this.props.data._save}/>
+        </nav>
+        {msg}
       </div>
     );
   }
