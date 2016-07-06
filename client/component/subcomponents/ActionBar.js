@@ -14,7 +14,7 @@ class ActionBar extends Component {
   render() {
 
     /* Validation Process */
-    let validationCallback = (item) => {
+    const validationCallback = (item) => {
       if (item && item.length > 0) {
         return true;
       } else if (item) {
@@ -54,7 +54,7 @@ class ActionBar extends Component {
     // If parent passes nextUrl props
     // onClick 할때 이동하는 url 을 props 로 받음
     // url이 넘어오지 않는다면 항상 SAVE -> / 로 이동
-    if (this.props.nextUrl) {
+    if (this.props.nextUrl && this.props.data) {
       console.log("First case");
       let validator = () => {
         if (this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
@@ -64,44 +64,38 @@ class ActionBar extends Component {
           alert("Check again : Pick a project before proceed");
         }
       };
-
-      rightButton = <button onClick={validator}>Next</button>
+      rightButton = <li className="next"><a onClick={validator}>Next</a></li>
     } else if ((this.props.data && (!this.props.data.leaveHistoryClicked)) ||
       ((this.props.callback) && this.props.callback.data.leaveHistoryInProgress)) {
       console.log("Second case");
       let validator = () => {
-        if (this.props.validateAll(validationCallback, this.props.data.selectedProject) && this.props.callback) {
+        if ((this.props.data && (this.props.validateAll(validationCallback, this.props.data.selectedProject))) && this.props.callback) {
           console.log("Project Selected");
           this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)
-        } else if (this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
+        } else if (!this.props.callback && this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
           this.props.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
+        } else if (this.props.callback.validateAll(validationCallback, this.props.callback.data.selectedProject)) {
+          this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
         } else {
           alert("Check again : Pick a project before proceed");
         }
       };
 
-      rightButton = <button onClick={validator}>Save</button>
+      rightButton = <li className="next"><a onClick={validator}>Save</a></li>
 
       if (this.props.callback) {
-        rightButton = <button onClick={validator}>Save</button>
+        rightButton = <li className="next"><a onClick={validator}>Save</a></li>
       }
     } else {
       console.log("Third case");
-      rightButton = <button onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</button>
+      rightButton = <li className="next"><a onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</a></li>
     }
 
-    // if (this.props.nextUrl || this.props.data.leaveHistoryClicked) {
-    //   console.log("ACTION BAR ----- nextUrl? ", this.props.nextUrl);
-    //   rightButton = <button onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</button>
-    // } else {
-    //   rightButton = <button onClick={() => this.props.saveDayDetail(null, userProjectId, onDay, text, publicIds)}>Save</button>
-    // }
-
     return (
-      <div>
-        <button onClick={() => this.props.goto("/")}>Back</button>
+      <ul className="pager">
+        <li className="previous"><a onClick={() => this.props.goto("/")}>Back</a></li>
         {rightButton}
-      </div>
+      </ul>
     );
   }
 }

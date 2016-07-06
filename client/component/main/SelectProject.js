@@ -14,14 +14,15 @@ class SelectProject extends Component {
   }
 
   render() {
-
     const onGoingProjects = this.props.data.onGoing;
     let projects, createNewProject;
 
     if (onGoingProjects) {
       projects = onGoingProjects.map((project) => {
         return (
-          <SelectBox _save={this.props._save} project={project} />
+          <div className="radio">
+            <SelectBox _save={this.props._save} project={project} />
+          </div>
           );
       })
     }
@@ -30,7 +31,8 @@ class SelectProject extends Component {
       createNewProject = (
         <div>
           <h2>Create New Project</h2>
-          <button onClick={() => {this.props.goto("/create"); this.props._save({creatingProjectLast: true});}}>+</button>
+          <img id="CreateNewProject" width="100" heigh="100" src="http://www.clker.com/cliparts/A/P/L/b/V/G/blue-plus-sign-md.png"
+               onClick={() => {this.props.goto("/create"); this.props._save({creatingProjectLast: true});}} />
         </div>
       );
     }
@@ -44,13 +46,13 @@ class SelectProject extends Component {
     }
 
     return (
-      <div>
-        <div>
-          <h2>Select Your Project</h2>
-          <form>
-            {projects}
-          </form>
-        </div>
+      <div className="SelectProject">
+        <h2>Select Your Project</h2>
+
+        <form className="form">
+          {projects}
+        </form>
+
         {createNewProject}
         <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data} nextUrl={nextUrl} validateAll={this.props.validateAll}/>
       </div>
