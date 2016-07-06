@@ -16,7 +16,7 @@ var paths = {
   }
 };
 gulp.task("babel", () => {
-  return gulp.src(paths.include.server)
+  gulp.src(paths.include.server)
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
@@ -25,7 +25,7 @@ gulp.task("babel", () => {
     .pipe(gulp.dest("build"));
 });
 gulp.task("webpack", () => {
-  return gulp.src("./client/index.js")
+  gulp.src("./client/index.js")
   .pipe(webpack(require("./webpack.config.js")))
   .pipe(gulp.dest("./client/"));
 });
@@ -43,9 +43,9 @@ gulp.task("eslint", () => {
   .pipe(eslint.failAfterError());
 });
 gulp.task('watch', () => {
-  gulp.watch(paths.server, ["babel"]);
-  gulp.watch(paths.client, ["webpack"]);
-  gulp.watch(paths.server, ["eslint"]);
+  gulp.watch(paths.include.server, ["babel"]);
+  gulp.watch(paths.include.client, ["webpack"]);
+  gulp.watch(paths.include.server, ["eslint"]);
 });
 gulp.task("start", () => {
   nodemon({
