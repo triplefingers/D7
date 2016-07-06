@@ -17,10 +17,10 @@ class ProjectHeader extends Component {
     const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + this.props.data.projectImage + ".jpg";
 
     return (
-      <div className="card projectCard">
+      <div className="card projectHeader">
         {/* Header */}
         <div>
-          <img src={imageSrc} width="400px" height="200px"/>
+          <img src={imageSrc} className="conImg"/>
         </div>
         {/* Content */}
         <div className="card-block">
