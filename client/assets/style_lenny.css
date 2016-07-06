@@ -10,6 +10,16 @@
   margin-left: -100px;
 }
 
+.CreateProject #AddPhotos {
+  position: relative;
+  left: 50%;
+  margin-left: -25px;
+}
+
+.CreateProject .upload_form {
+  display: none;
+}
+
 /* Create Date */
 .CreateDate h2, h4 {
   text-align: center;
