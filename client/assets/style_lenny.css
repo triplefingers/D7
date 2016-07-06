@@ -138,6 +138,17 @@
   margin-left: -2.5px;
 }
 
+.LeaveHistory .upload_form {
+  display: none;
+}
+
+.LeaveHistory #AddPhotos {
+  position: relative;
+  left: 50%;
+  margin-left: -25px;
+}
+
+
 /* Record Box */
 .RecordBox {
   background: #DEC1A2;

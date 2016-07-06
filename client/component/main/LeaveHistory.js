@@ -74,25 +74,9 @@ class LeaveHistory extends Component {
 
     let progress_bar_style = {
       background: "black",
-      height: "3px",
+      height: "2px",
       width: "0px"
     };
-
-    // return (
-    //   <div>
-    //     <h1>Leave History</h1>
-
-    //     {/* Camera Use*/}
-    //     <form className="upload_form"></form>
-    //     <div className="preview"></div>
-    //     <div className="progress_bar" style={progress_bar_style}></div>
-    //     <br /><br /><br /><br /><br /><br />
-    //     <textarea value = {this.props.data.text} onChange={this.props.handleChange.bind(null,"text")} rows="6"/>
-
-    //     {/* Pass next url as props */}
-    //     <ActionBar callback={this.props} nextUrl="/selectProject" />
-    //   </div>
-    // );
 
     return (
       <div className="container LeaveHistory">
@@ -100,8 +84,8 @@ class LeaveHistory extends Component {
         <label>Photo</label>
          <div className="preview">
             <img id="placeholder" height="300" width="300" src="http://ingridwu.dmmdmcfatter.com/wp-content/uploads/2015/01/placeholder.png" />
-         </div>
-         <br />
+         </div> <br />
+         <img id="AddPhotos" src="http://www.clker.com/cliparts/A/P/L/b/V/G/blue-plus-sign-md.png" width="50" height="50" />
          <form className="upload_form"></form>
          <div className="progress_bar" style={progress_bar_style}></div>
         <form role="form">
