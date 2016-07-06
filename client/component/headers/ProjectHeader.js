@@ -20,7 +20,7 @@ class ProjectHeader extends Component {
       <div className="card projectCard">
         {/* Header */}
         <div>
-          <img src={imageSrc} width="400px" height="200px"/>
+          <img className="conImg" src={imageSrc}/>
         </div>
         {/* Content */}
         <div className="card-block">
