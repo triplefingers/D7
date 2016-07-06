@@ -1,9 +1,9 @@
 import React, {Component} from "react";
+import New from "./subcomponents/New";
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
-
     this.state = {};
   }
 
@@ -41,9 +41,7 @@ class Navigation extends Component {
     const navLeft = {
       marginLeft: "5px"
     };
-    const navRight = {
-      marginRight: "5px"
-    };
+
 
     return (
       <div>
@@ -51,8 +49,7 @@ class Navigation extends Component {
             <a className="navbar-btn pull-left glyphicon glyphicon-menu-hamburger" style={navLeft} onClick={() => this.toggleSidebar()} ></a>
             <a className="navbar-btn pull-center" style={navCenter}
               onClick={this.clickHome.bind(this)}>D7</a>
-            <a className="navbar-btn pull-right glyphicon glyphicon-edit"
-              style={navRight} onClick={() => this.props.data.goto("/new")}></a>
+            <New goto={this.props.data.goto} _save={this.props.data._save}/>
         </nav>
         <div style={{display:"none"}}>
           Save Complete!

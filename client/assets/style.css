@@ -56,6 +56,24 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
 }
 
+.popupBackground {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 90;
+  position: fixed;
+  display: inline-block;
+  top: 0;
+  left: 0;
+}
+
+.popup {
+  display: block;
+  z-index: 100;
+  position: fixed;
+  bottom: 0;
+}
+
 /* history */
 .statusTitle {
   padding: 0.5rem 1.25rem;
