@@ -10,36 +10,38 @@ class CreateProject extends Component {
 
     $(document).ready(() => {
 
-          console.log("jQuery Mounted");
-          $.cloudinary.config({cloud_name: "daxutqqyt"});
+      console.log("jQuery Mounted");
+      $.cloudinary.config({cloud_name: "daxutqqyt"});
 
-          // Dynamically Attached
-          $(".upload_form").append($.cloudinary.unsigned_upload_tag("mmbawtto",
-            { cloud_name: "daxutqqyt" }));
+      // Dynamically Attached
+      $(".upload_form").append($.cloudinary.unsigned_upload_tag("mmbawtto",
+        { cloud_name: "daxutqqyt" }));
 
-          $(".cloudinary_fileupload").attr("accept", "image/*;capture=camera");
+      $(".cloudinary_fileupload").attr("accept", "image/*;capture=camera");
 
-          $(".cloudinary_fileupload").unsigned_cloudinary_upload("mmbawtto",
-            { cloud_name: "daxutqqyt", tags: "browser_uploads" })
+      $(".cloudinary_fileupload").unsigned_cloudinary_upload("mmbawtto",
+        { cloud_name: "daxutqqyt", tags: "browser_uploads" })
 
-          .bind("cloudinarydone", function(e, data) {
-            $(".preview").append($.cloudinary.image(data.result.public_id,
-                  { format: data.result.format, version: data.result.version,
-                    crop: "fill", width: 200, height: 200 }));
-            console.log("Pushing new public ID");
-            console.log("Uploaded image: ", data);
-            publicIds.push(data.result.public_id);
-            $(".progress_bar").css("width", 0 + "%");
-            $("#placeholder").css("display", "none");
-          })
+      .bind("cloudinarydone", function(e, data) {
+        const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + data.result.public_id + ".jpg";
 
-          .bind("cloudinaryprogress", function(e, data) {
-            $(".progress_bar").css("width",
-              Math.round((data.loaded * 100.0) / data.total) + "%");
-          });
-        });
+        publicIds = [data.result.public_id];
+        // publicIds.push(data.result.public_id);
+        $(".progress_bar").css("width", 0 + "%");
+        $("#placeholder").attr("src", imageSrc);
+      })
 
-        this.props._save({leaveHistoryInProgress: true})
+      .bind("cloudinaryprogress", function(e, data) {
+        $(".progress_bar").css("width",
+          Math.round((data.loaded * 100.0) / data.total) + "%");
+      });
+    });
+
+    this.props._save({leaveHistoryInProgress: true});
+
+    $("#AddPhotos").on("click", (e) => {
+      $(".cloudinary_fileupload").trigger("click");
+    });
   }
 
   render() {
