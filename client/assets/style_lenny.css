@@ -191,7 +191,7 @@
   margin: 0;
 }
 
-input[type="file"] {
+.RecordBox input[type="file"] {
   display: none;
 }
 
