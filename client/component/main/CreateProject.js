@@ -84,6 +84,7 @@ class CreateProject extends Component {
             <img id="placeholder" height="200" width="200" src="http://ingridwu.dmmdmcfatter.com/wp-content/uploads/2015/01/placeholder.png" />
          </div>
          <br />
+         <img id="AddPhotos" src="http://www.clker.com/cliparts/A/P/L/b/V/G/blue-plus-sign-md.png" width="50" height="50" />
          <form className="upload_form"></form>
          <div className="progress_bar" style={progress_bar_style}></div>
         <form role="form">

@@ -206,7 +206,7 @@
   margin-left: 5px;
 }
 
-#AddPhotos {
+.RecordBox #AddPhotos {
   padding: 0;
   position: relative;
   width: 50%;
@@ -214,7 +214,7 @@
   border-color: #A7A7A7;
 }
 
-#AddPhotos label {
+.RecordBox #AddPhotos label {
   margin: 0;
 }
 
