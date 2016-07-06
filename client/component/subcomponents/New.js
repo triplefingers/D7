@@ -48,10 +48,10 @@ class New extends Component {
           <a className="navbar-btn pull-right glyphicon glyphicon-edit"
             style={navRight}></a>
           <div className="popupBackground" onClick={this.clickCancel.bind(this)}>
-            <div className="popup btn-group text-center" role="group">
+            <div className="popup">
               <button className="btn btn-lg btn-primary btn-block" onClick={this.clickNewProject.bind(this)}>Create New Project</button>
               <button className="btn btn-lg btn-primary btn-block" onClick={this.clickLeaveHistory.bind(this)}>Leave History</button>
-              <button className="btn btn-lg  btn-block" onClick={this.clickCancel.bind(this)}>Cancel</button>
+              <button className="btn btn-lg btn-default btn-block" onClick={this.clickCancel.bind(this)}>Cancel</button>
             </div>
           </div>
         </div>
