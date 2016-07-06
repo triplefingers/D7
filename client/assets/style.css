@@ -22,6 +22,10 @@ body {
     height: inherit;
     background: gray;
     color: black;
+    font-family: "Merriweather", serif;
+    /*letter-spacing: 0.01rem;*/
+    /*font-size: 1.8rem;*/
+    line-height: 1.75em;
 }
 
 /* This prevents horizontal scrolling */
@@ -41,11 +45,12 @@ html {
 }*/
 
 textarea {
-    width: 100%;
+  width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
+  margin-top: 0;
+  font-family: "Open Sans", sans-serif;
 }
 
 .noMargins {
@@ -73,6 +78,54 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 100;
   position: fixed;
   bottom: 0;
+}
+
+.btn,
+.form-control {
+  border-radius: 0;
+}
+
+.btn-primary {
+  background-color: #D2AE2E;
+  border-color: #C6A42E;
+  font-size: 1.5rem;
+}
+
+.login {
+  background-color: #181818;
+  /*background-image: url("./img/login_bg.jpg");*/
+  color: white;
+  height: 100vh;
+}
+
+.login h1 {
+  margin-bottom: 10px;
+}
+
+#navigation,
+#navigation nav {
+  height: 4rem;
+}
+
+#navigation a {
+  color: white;
+}
+
+
+.inputGroup {
+  margin-bottom: 10px;
+}
+
+.gotoSignup {
+  width: 100%;
+  position: fixed;
+  bottom: 50px;
+  left: -15px;
+}
+
+.gotoSignup a, a:visited, a:focus, a:link, a:active, a:hover {
+  color: #BFBFBF;
+  text-decoration: underline;
 }
 
 /* navigatin bar */
@@ -143,10 +196,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .reportInputBox .reportButtonSet .reportLeftBtn {
   border-top-left-radius: 0;
+  border-bottom-left-radius: 6px;
 }
 
 .reportInputBox .reportButtonSet .reportRightBtn {
   border-top-right-radius: 0;
+  border-bottom-right-radius: 6px;
 }
 
 .reportBtn {
@@ -170,7 +225,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: .75rem;
   background-color: #fff;
   border: 1px solid #e5e5e5;
-  border-radius: .25rem;
+  /*border-radius: .25rem;*/
 }
 
 .projectHeader {
@@ -233,6 +288,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 10;
   padding-top: 30px;
+  color: white;
 }
 
 .sidebarBg {
@@ -263,17 +319,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar .userinfo .username {
-  color: #5a7391;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 7px;
 }
 
 .sidebar .userinfo .userstats {
+  color: #8A8A8A;
+  font-family: "Open Sans", sans-serif;
   text-transform: uppercase;
-  color: #5b9bd1;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 300;
   margin-bottom: 15px;
 }
 
@@ -283,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar .menu ul li {
-  border-bottom: 1px solid #f0f4f7;
+  border-bottom: 1px solid #545454;
 }
 
 .sidebar .menu ul li:last-child {
@@ -291,20 +347,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar .menu ul li a {
-  color: #303A45;
-  font-size: 2rem;
-  font-weight: 400;
+  line-height: 3rem;
+  vertical-align: middle;
+  color: #F1F1F1;
+  font-size: 1.6rem;
+  font-weight: 300;
 }
 
 .sidebar .menu ul li a:hover {
-  background-color: #fafcfd;
-  color: #5b9bd1;
+  /*background-color: #fafcfd;*/
 }
 
 .sidebar .menu ul li .ongoing a {
-  color: #93a3b5;
+  /*color: #93a3b5;*/
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
 }
 
 /*Hiding default input type=file button*/
