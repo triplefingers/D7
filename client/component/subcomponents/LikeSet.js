@@ -9,7 +9,6 @@ class LikeSet extends Component {
   }
 
   componentDidMount() {
-    console.log("likeSet monted ", this.props);
     const { doneLike, likeCount } = this.props;
     if(doneLike){
       this.setState({liked: true, likeCount: likeCount});

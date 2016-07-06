@@ -10,10 +10,6 @@ class ReportSet extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log("ReportSet mounted ", this.props);
-  }
-
   clickDotButton(e) {
     e.stopPropagation();
     this.setState({step: 1});
@@ -74,7 +70,7 @@ class ReportSet extends Component {
         step3 = null;
       } else if(step===1){
         step1 = (
-          <div className="reportBox" onclick={() => e.stopPropagation()}>
+          <div className="reportBox" onClick={() => e.stopPropagation()}>
             <div className="reportButtonSet">
               <div className="btn-group btn-group-justified text-center" role="group">
                 <div className="btn-group" role="group">

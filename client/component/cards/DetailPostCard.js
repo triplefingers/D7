@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import LikeSet from "./LikeSet";
-import ReportSet from "./ReportSet";
+import LikeSet from "../subcomponents/LikeSet";
+import ReportSet from "../subcomponents/ReportSet";
 import moment from "moment";
 
 class DetailPostCard extends Component {

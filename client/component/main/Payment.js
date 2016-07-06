@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ActionBar from "./ActionBar";
+import ActionBar from "../subcomponents/ActionBar";
 
 class Payment extends Component {
   constructor(props) {

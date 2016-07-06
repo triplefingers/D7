@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 
-import UserProjectHeader from "./UserProjectHeader";
-import DetailPostCard from "./DetailPostCard";
+import UserProjectHeader from "../headers/UserProjectHeader";
+import DetailPostCard from "../cards/DetailPostCard";
+import Loading from "../subcomponents/Loading";
 
 class UserProjectDetail extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class UserProjectDetail extends Component {
         </div>
       );
     } else {
-      return (<div>Loading</div>);
+      return <Loading />;
     }
   }
 }

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import DetailUserProjectCard from "./DetailUserProjectCard";
+import DetailUserProjectCard from "../cards/DetailUserProjectCard";
+import Loading from "../subcomponents/Loading";
 
 
 class History extends Component {
@@ -24,10 +25,6 @@ class History extends Component {
 
     if(history){
       let { onGoing, waiting, complete } = history;
-
-      console.log('COMPLETE', complete);
-      console.log('WAITING', waiting);
-      console.log('ONGOING', onGoing);
 
       onGoing = onGoing.map((project) => {
           return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
@@ -59,13 +56,9 @@ class History extends Component {
         </div>
 
       );
+    } else {
+      return <Loading />
     }
-
-    return (
-      <div>
-        loading...
-      </div>
-    );
   }
 }
 

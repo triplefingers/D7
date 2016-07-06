@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 
-import ProjectHeader from "./ProjectHeader";
-import MainPostCard from "./MainPostCard";
+import ProjectHeader from "../headers/ProjectHeader";
+import MainPostCard from "../cards/MainPostCard";
+import Loading from "../subcomponents/Loading";
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class ProjectDetail extends Component {
         </div>
       );
     } else {
-      return <div>Loading....</div>
+      return <Loading />;
     }
   }
 }

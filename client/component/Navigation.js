@@ -3,39 +3,63 @@ import React, {Component} from "react";
 class Navigation extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {};
   }
 
-  goto(url) {
-    url = url !== undefined ? String(url) : "/";
-    // this.props.history.push(url);
-    this.context.router.push(url);
-  };
-
   componentDidMount() {
-    console.log("Navigation mounted :)");
+  }
+
+  toggleSidebar() {
+    $('.sidebar').css("left", "0%");
+  }
+
+  clickHome() {
+    this.props.data._save({selectedMain: "recent"});
+    this.props.data.goto("/");
   }
 
   render() {
-    let leftButton = <button onClick={() => this.goto("/home")}>Home</button>;
-    let rightButtonCondition = this.props.rightButtonCondition || function() {return true;};
 
-    let rightButton = this.props.rightButtonName ? <button onClick={() => this.goto(this.props.rightButtonLink)}>{this.props.rightButtonName}</button> : undefined;
-    rightButton = rightButtonCondition() ? rightButton : undefined;
+    // const buttonStyle = {
+    //   display: "inline",
+    //   marginRight: "25%"
+    // }
 
-    let title = this.props.title ? <span>{this.props.title}</span> : undefined;
+    const navigationStyle = {
+      background: "#BF8C6F",
+      textAlign: "center",
+      fontSize: "20px",
+      color: "black"
+    };
+
+    const navCenter = {
+      display: "inline-block",
+      marginTop: "5px",
+      marginBottom: "0"
+    };
+    const navLeft = {
+      marginLeft: "5px"
+    };
+    const navRight = {
+      marginRight: "5px"
+    };
+
     return (
       <div>
-        {leftButton}
-        {title}
-        {rightButton}
-        <hr/>
+        <nav style={navigationStyle} className="navbar-header">
+            <a className="navbar-btn pull-left glyphicon glyphicon-menu-hamburger" style={navLeft} onClick={() => this.toggleSidebar()} ></a>
+            <a className="navbar-btn pull-center" style={navCenter}
+              onClick={this.clickHome.bind(this)}>D7</a>
+            <a className="navbar-btn pull-right glyphicon glyphicon-edit"
+              style={navRight} onClick={() => this.props.data.goto("/new")}></a>
+        </nav>
+        <div style={{display:"none"}}>
+          Save Complete!
+        </div>
       </div>
     );
   }
 }
-
-Navigation.contextTypes = {
-  router: () => React.PropTypes.func.isRequired
-};
 
 export default Navigation;
