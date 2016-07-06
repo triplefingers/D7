@@ -1,5 +1,4 @@
-import dummy from "../db/temp";
-
+/* data fetching */
 import fetchUser from "./fetchUser";
 import fetchAllProjects from "./fetchAllProjects";
 import fetchOngoingProjects from "./fetchOngoingProjects";
@@ -9,6 +8,8 @@ import fetchProjectDetail from "./fetchProjectDetail";
 import fetchUserProjectDetail from "./fetchUserProjectDetail";
 import fetchRecentPosts from "./fetchRecentPosts";
 import fetchPopularPosts from "./fetchPopularPosts";
+
+/* data create */
 import createNewProject from "./createNewProject";
 import createNewUserProject from "./createNewUserProject";
 import record from "./record";
@@ -19,10 +20,7 @@ import user from "./user";
 import payment from "./payment";
 import paymentCancel from "./paymentCancel";
 
-// var payment = (user, q, body, res) => {
-//
-// }
-
+/* handler */
 const handler = (apiMethod)=>{
   return (req, res, next) => {
     let url = req.path;
@@ -30,6 +28,7 @@ const handler = (apiMethod)=>{
     let body = req.body;
     let user = req.user;
 
+    /* check the req's method by extract the keys of Object 'data' */
     if (Object.keys(body).length===0){
       console.log("Request GET for ", url, query, "by", user);
       apiMethod(user, query, res);
@@ -39,38 +38,6 @@ const handler = (apiMethod)=>{
     }
   };
 };
-
-/* 임시 자료 */
-// var fetchOngoingProjects = (user, q, res) => {
-//   var data = {};
-//   data.count = {
-//     total: 9,
-//     success: 7,
-//     fail: 3
-//   }
-//   data.ongoing = dummy.all.ongoing;
-//   res.status(200).send(data);
-// };
-// var fetchAllProjects = (user, q, res) => {
-//   var data = dummy.all;
-//   res.status(200).send(data);
-// }
-// var fetchRecommendedProjects = (user, q, res) => {
-//   var data = {};
-//   data = dummy.recommended;
-//   res.status(200).send(data);
-// };
-// var fetchWishProjects = (user, q, res) => {
-//   var data = {};
-//   data = dummy.wish;
-//   res.status(200).send(data);
-// };
-// var fetchProjectDetail = (user, q, res) => {
-//   var data = {};
-//   data = dummy.project;
-//   res.status(200).send(data);
-// };
-
 
 export default {
   handler: handler,

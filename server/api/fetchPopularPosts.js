@@ -2,21 +2,25 @@ import model from "../db/models";
 import collection from "../db/collections";
 import Promise from "bluebird";
 
+/* Fetch all post in 'likeCount' desc order from 'post' table */
+/* Query: page */
+
 const fetchPopularPosts = (user, q, res)=>{
-  // const userId = user.id;
+  const userId = user.id;
   const { page } = q;
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
+  /* Start point */
   model.Post.forge().orderBy("-likeCount").fetchPage({
     pageSize: 20,
     page: page,
@@ -30,6 +34,8 @@ const fetchPopularPosts = (user, q, res)=>{
   })
   .then((posts)=>{
     posts = posts.toJSON();
+
+    /* Array of Promises to be 'Promise.all'ed */
     const postsPromiseArray = [];
 
     posts.forEach((post) => {
@@ -85,27 +91,25 @@ const fetchPopularPosts = (user, q, res)=>{
           post.projectDescription = userProject.project.description;
         })
         .then(() => {
-          console.log("-------in postsPromissarray promise.all--------", post);
           delete post.userProject;
           resolve();
         })
         .catch((err) => {
           console.error("Error: Failed to read userProject data in 'fetchPopularPosts.js': ", err);
           return err;
-        })
-      })
+        });
+      });
       postsPromiseArray.push(postPromise);
     });
 
     return Promise.all(postsPromiseArray)
     .then(() => {
-      console.log("-------posts are", posts);
       return posts;
-    })
+    });
   })
   .then((data) => res.status(200).send(data))
   .catch((err) =>{
-    console.error("-----Error: Failed to read projects in 'fetchPopularPosts.js': ", err);
+    console.error("Error: Failed to read projects in 'fetchPopularPosts.js': ", err);
     res.status(500).end();
   });
 

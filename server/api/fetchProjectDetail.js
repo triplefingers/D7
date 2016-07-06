@@ -1,24 +1,28 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-const fetchProjectDetail = (user, q, res)=>{
-  // const userId = user.id;
-  var { projectId } = q;
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+/* Fetch project details from 'project' table */
+/* Query: page */
 
-  /* data container to send */
+const fetchProjectDetail = (user, q, res)=>{
+  const userId = user.id;
+  var { projectId } = q;
+
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
+
+  /* Data container to be sent */
   const result = {};
 
-
+  /* Start point */
   model.Project.where("id", projectId).fetch({withRelated: [
     "user"
   ]})
@@ -41,6 +45,7 @@ const fetchProjectDetail = (user, q, res)=>{
     result.wishCount = project.wishCount;
   })
   .then(() => {
+    /* Fetch posts by projectId */
     /* posts + doneLike */
     return model.Post.where({projectId: projectId}).orderBy("-created_at").fetchAll({withRelated: [
       "user",
@@ -55,6 +60,8 @@ const fetchProjectDetail = (user, q, res)=>{
     if (!posts) {
       posts = [];
     }
+
+    /* Array of Promises to be 'Promise.all'ed */
     const postsPromiseArray = [];
 
     posts.forEach((post) => {
@@ -108,7 +115,6 @@ const fetchProjectDetail = (user, q, res)=>{
           post.projectDescription = userProject.project.description;
         })
         .then(() => {
-          console.log("-------in postsPromissarray promise.all--------", post);
           delete post.userProject;
           resolve();
         })

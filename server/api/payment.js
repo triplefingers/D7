@@ -3,44 +3,44 @@ import collection from "../db/collections";
 import axios from "axios";
 import apiKeys from "./import/apiKeys";
 
+/* Send payment request to Iamport and create new transaction in 'transaction' table */
+/* Post Data: postId */
+
 const payment = (user, q, body, res) => {
-  // const userId = user.id;
-  // const username = user.username
+  const userId = user.id;
+  const username = user.username;
+
   const { userProjectId, endAt } = body;
   let payment = body.payment;
+  /* If payment is not parsed, parse it below */
   if (typeof payment === "string") {
     payment = JSON.parse(payment);
   }
 
-  // below should be deleted
-  let userId;
-  let username;
-  if (user && user.id) {
-    userId = user.id;
-    username = user.username;
-  }
-  if (q && q.id) {
-    userId = q.id;
-    username = q.username;
-  } else {
-    userId = 1;
-    username = "Lenny";
-  }
+  // Test code below
+  // let userId;
+  // let username;
+  // if (user && user.id) {
+  //   userId = user.id;
+  //   username = user.username;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  //   username = q.username;
+  // } else {
+  //   userId = 1;
+  //   username = "Lenny";
+  // }
 
   let accessToken = "";
   const today = new Date();
   /* paymentDue is day after endAt date */
-  console.log("---endAt is : ", endAt);
   let paymentDue = new Date(endAt);
-  console.log("---paymentDue is : ", paymentDue);
   paymentDue.setDate(paymentDue.getDate() + 1);
-  // paymentDue.setHours(18);
-  console.log("---paymentDue is : ", paymentDue);
   /* convert paymentDue to 10 digit UNIX timestamp */
   paymentDue = paymentDue.valueOf().toString().slice(0, 10);
-  console.log("---paymentDue is : ", paymentDue);
 
-  /* check if all payment infos in the request */
+  /* Check if all payment infos in the request */
   const { cardNumber, expiry, birth, pwd2digit, amount, currency } = payment;
   if (!(cardNumber && expiry && birth && pwd2digit && amount && currency)) {
     console.error("Error: NOT enough payment infos are passed through request");
@@ -68,7 +68,7 @@ const payment = (user, q, body, res) => {
   .then((answer) => {
     const data = answer.data;
 
-    /* check if import response's code is 0 or not */
+    /* Check if import response's code is 0 or not */
     /* If 0, it is well responsed, if not, should check message */
     if (data.code === 0) {
       console.log("Success: received access_token: ", data);
@@ -84,7 +84,6 @@ const payment = (user, q, body, res) => {
       console.error("Failed to store access_token on the server");
       throw "Failed to store access_token on the server";
     }
-    console.log("paymentInfo is ", paymentReq);
     return axios.post("https://api.iamport.kr/subscribe/payments/schedule?_token=" + accessToken, paymentReq)
     .then((answer) => answer);
   })
@@ -95,7 +94,7 @@ const payment = (user, q, body, res) => {
 
       return new model.Transaction({userId: userId, userProjectId: userProjectId, customer_uid: data.response[0].customer_uid, merchant_uid: data.response[0].merchant_uid, paymentDue: new Date( data.response[0].schedule_at * 1000).toJSON().slice(0, 10), amount: data.response[0].amount, currency: currency}).save()
       .then(() => {
-        /* If res === null or res === undefined, just return data */
+        /* Return data, if res === null or res === undefined */
         if (!res) {
           console.log("Method use: Return createNewProject Result: ", data);
           return data;
@@ -112,7 +111,7 @@ const payment = (user, q, body, res) => {
   .catch((err) => {
     console.error("Error: Failed in transaction in 'payment.js': ", err);
 
-    /* If res === null or res === undefined, just return err */
+    /* Return err, if res === null or res === undefined */
     if (!res) {
       throw "Failed in transaction in 'payment.js': " + err;
     } else {

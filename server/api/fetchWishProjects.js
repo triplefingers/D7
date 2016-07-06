@@ -1,23 +1,27 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
-const fetchWishProjects = (user, q, res) => {
-  // const userId = user.id;
+/* Fetch wishes from 'wish' table */
+/* Query: none */
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+const fetchWishProjects = (user, q, res) => {
+  const userId = user.id;
+
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
   /* data container to send */
   let result;
 
+  /* Start point */
   model.Wish.where("userId", userId).orderBy("-created_at").fetchAll({withRelated: [
     "user",
     "project"

@@ -1,35 +1,38 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
+/* Fetch all projects from 'userProject' table */
+/* Query: none */
+
 const fetchOngoingProjects = (user, q, res) => {
-  // const userId = user.id;
+  const userId = user.id;
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
+  /* Start point */
   model.UserProject.where("userId", userId).orderBy("-created_at").fetchAll({withRelated: [
     "project",
     "posts"
   ]})
   .then((userProjects) => {
     userProjects = userProjects.toJSON();
-    console.log("-----------userProjects are", userProjects);
     const today = new Date();
 
     /* ongoing list */
     const result = [];
 
     userProjects.forEach((userProject) => {
-      // userProject = userProject.toJSON();
-      const data = {
+      /* tempData */
+      const tempData = {
         id: userProject.id,
         title: userProject.project.title,
         description: userProject.project.description,
@@ -39,16 +42,17 @@ const fetchOngoingProjects = (user, q, res) => {
 
       /* Check Project status : doneToday /and/ count as total, success, fail */
       const startAt = new Date(userProject.startAt);
+      /* Calculate diff, the difference between today and the start Date */
       const diff = Math.ceil((today.valueOf() - startAt.valueOf()) / (60 * 60 * 24 * 1000));
       if (!userProject.success && diff > 0 && diff <= 7) {
-        data.onDay = diff;
-        data.doneToday = false;
-        userProject.posts.forEach((item) => {
-          if (item.day === diff) {
-            data.doneToday = true;
+        tempData.onDay = diff;
+        tempData.doneToday = false;
+        userProject.posts.forEach((post) => {
+          if (post.day === diff) {
+            tempData.doneToday = true;
           }
         });
-        result.push(data);
+        result.push(tempData);
       }
     });
 

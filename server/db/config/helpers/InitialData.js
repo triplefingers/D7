@@ -1,3 +1,5 @@
+/* Dummy data */
+
 const ProjectData = [{
     userId: 1,
     title: "드로잉 1작품 그리기",

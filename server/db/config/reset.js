@@ -3,6 +3,8 @@
 import db from "./setConfig";
 
 const resetDB = ()=>{
+
+  /* If tables exist, drop all tables at first */
   db.knex.schema.dropTableIfExists("user")
   .dropTableIfExists("project")
   .dropTableIfExists("userProject")
@@ -12,6 +14,8 @@ const resetDB = ()=>{
   .dropTableIfExists("wish")
   .dropTableIfExists("transaction")
   .dropTableIfExists("report")
+  
+  /* After table drops, add new tables */
   .createTableIfNotExists("user", function(user) {
     user.increments("id").primary();
     user.string("email").unique().index();

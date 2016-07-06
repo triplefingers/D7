@@ -1,11 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-/* dummy data 가져오기 */
-import dummy from "./db/temp";
-
-
-/* api Handler Methods 가져오기 */
+/* Load api Handler Methods */
 import api from "./api";
 var { handler, fetchUser, fetchAllProjects, fetchOngoingProjects, fetchRecommendedProjects, fetchWishProjects, fetchProjectDetail, fetchRecentPosts, fetchPopularPosts, fetchUserProjectDetail, createNewProject, createNewUserProject, record, like, report, wish, user, payment, paymentCancel } = api;
 
@@ -29,7 +25,7 @@ import bcrypt from "bcryptjs";
 
 
 /* Passport Strategies */
-import localSetup from './helpers/passport_setup/local';
+import localSetup from "./helpers/passport_setup/local";
 
 
 /* Passport local setting */
@@ -57,27 +53,28 @@ router.get("/api/checklogin", checkLogin());
 
 
 /* Data save/fetch APIs */
-router.get("/api/user", /* needs isAuthenticated*/handler(fetchUser));
-router.get("/api/posts/popular", /* needs isAuthenticated*/handler(fetchPopularPosts));
-router.get("/api/posts/recent", /* needs isAuthenticated*/handler(fetchRecentPosts));
-router.get("/api/userproject", /* needs isAuthenticated*/handler(fetchUserProjectDetail));
-router.get("/api/projects/all", /* needs isAuthenticated*/handler(fetchAllProjects));
-router.get("/api/projects/ongoing", /* needs isAuthenticated*/handler(fetchOngoingProjects));
-router.get("/api/projects/recommended", /* needs isAuthenticated*/handler(fetchRecommendedProjects));
-router.get("/api/projects/wish", /* needs isAuthenticated*/handler(fetchWishProjects));
-router.get("/api/project", /* needs isAuthenticated*/handler(fetchProjectDetail));
+router.get("/api/user", isAuthenticated, handler(fetchUser));
+router.get("/api/posts/popular", isAuthenticated, handler(fetchPopularPosts));
+router.get("/api/posts/recent", isAuthenticated, handler(fetchRecentPosts));
+router.get("/api/userproject", isAuthenticated, handler(fetchUserProjectDetail));
+router.get("/api/projects/all", isAuthenticated, handler(fetchAllProjects));
+router.get("/api/projects/ongoing", isAuthenticated, handler(fetchOngoingProjects));
+router.get("/api/projects/recommended", isAuthenticated, handler(fetchRecommendedProjects));
+router.get("/api/projects/wish", isAuthenticated, handler(fetchWishProjects));
+router.get("/api/project", isAuthenticated, handler(fetchProjectDetail));
 
-router.post("/api/record", /* needs isAuthenticated*/handler(record));
-router.post("/api/newproject", /* needs isAuthenticated*/handler(createNewProject));
-router.post("/api/newuserproject", /* needs isAuthenticated*/handler(createNewUserProject));
-router.post("/api/like", /* needs isAuthenticated*/handler(like));
-router.post("/api/report", /* needs isAuthenticated*/handler(report));
-router.post("/api/wish", /* needs isAuthenticated*/handler(wish));
-router.post("/api/user", /* needs isAuthenticated*/handler(user));
+router.post("/api/record", isAuthenticated, handler(record));
+router.post("/api/newproject", isAuthenticated, handler(createNewProject));
+router.post("/api/newuserproject", isAuthenticated, handler(createNewUserProject));
+router.post("/api/like", isAuthenticated, handler(like));
+router.post("/api/report", isAuthenticated, handler(report));
+router.post("/api/wish", isAuthenticated, handler(wish));
+router.post("/api/user", isAuthenticated, handler(user));
 
-router.post("/api/payment", /* needs isAuthenticated*/handler(payment));
-router.post("/api/paymentcancel", /* needs isAuthenticated*/handler(paymentCancel));
+router.post("/api/payment", isAuthenticated, handler(payment));
+router.post("/api/paymentcancel", isAuthenticated, handler(paymentCancel));
 
+/* Rest */
 router.get("*", (req, res, next) => {
   res.redirect("/");
 });

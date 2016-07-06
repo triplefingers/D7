@@ -1,9 +1,23 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
+/* Update user detail in 'user' table */
+/* Post Data: userPhoto(publicId from Cloudinary), username, password, email */
 const user = (user, q, body, res) => {
-  // const userId = user.id;
+  const userId = user.id;
   const { userPhoto, username, password, email } = body;
+
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
+
   const editData = {
     photo: userPhoto,
     username: username,
@@ -11,17 +25,7 @@ const user = (user, q, body, res) => {
     email: email
   };
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
-
+  /* Delete keys with undefined value */
   for (let key in editData) {
     if (editData[key] === undefined) {
       delete editData[key];
@@ -33,6 +37,7 @@ const user = (user, q, body, res) => {
     if (user) {
       return user;
     } else {
+      /* Throw error if there is now user matching */
       throw "Invalid userId";
     }
   })
@@ -43,7 +48,6 @@ const user = (user, q, body, res) => {
         delete editData[key];
       }
     }
-    console.log("Edited data is ", editData);
     return new model.User({id: user.id}).save(editData);
   })
   .then((data) => {

@@ -8,7 +8,7 @@ const signup = () => {
       console.log(user);
       req.login(user, (err)=>{
         if(!err){
-          return res.status(200).json({ message: "You have been successfully signed in." });;
+          return res.status(200).json({ message: "You have been successfully signed in." });
         } else {
           return res.status(401).json({ message: "You have been successfully signed up but there is something wrong logging in. Please try login again." });
         }
@@ -17,7 +17,7 @@ const signup = () => {
     .catch((err) => {
       return res.status(401).json({ message: "This email is already registered. Please try another email." });
     });
-  }
+  };
 };
 
 export default signup;
