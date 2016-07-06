@@ -25,10 +25,17 @@ class ReportSet extends Component {
     this.setState({step: 0});
   }
 
-  clickDisable() {
+  clickDisable(e) {
     e.stopPropagation();
     e.preventDefault();
   };
+
+  validator() {
+   if (this.state.text.length === 0) {
+     return false;
+   }
+   return true;
+ };
 
   handleChange(what, event) {
     let data = {};
@@ -38,20 +45,23 @@ class ReportSet extends Component {
 
   saveReport(postId, description, url, e) {
     e.stopPropagation();
-    axios.get("/api/projects/report", {
-       postId: postId,
-       description: description
-    })
-    .then((res) => {
-      this.setState({step: 3});
-      setTimeout(() => {
-        this.setState({step: 0, text:""});
-        this.props.goto(url);
-      }, 2000);
-    })
-    .catch((err) => {
-      console.error("Error occurred while saving report: ", err);
-    });
+    if (this.validator() === true) {
+      axios.get("/api/projects/report", {
+         postId: postId,
+         description: description
+      })
+      .then((res) => {
+        this.setState({step: 0, text: ""});
+        this.props.navAlert("report");
+        setTimeout(() => {
+          this.props.navAlert(null);
+          this.props.goto(url);
+        }, 1000);
+      })
+      .catch((err) => {
+        console.error("Error occurred while saving report: ", err);
+      });
+    }
   }
 
   render() {
@@ -62,60 +72,49 @@ class ReportSet extends Component {
       const {step, text} = this.state;
       let step1;
       let step2;
-      let step3;
 
       if(step===0){
         step1 = null;
         step2 = null;
-        step3 = null;
       } else if(step===1){
         step1 = (
-          <div className="reportBox" onClick={() => e.stopPropagation()}>
+          <div className="reportBox" onClick={this.clickDisable.bind(this)}>
             <div className="reportButtonSet">
-              <div className="btn-group btn-group-justified text-center" role="group">
-                <div className="btn-group" role="group">
-                  <button className="btn btn-default" onClick={this.clickReport.bind(this)}>Report this post</button>
-                {/*</div>
-                <div className="btn-group" role="group">*/}
-                  <button className="btn btn-default" onClick={this.clickCancel.bind(this)}>Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          );
-        step2=null;
-      } else if(step===2){
-        step1= null;
-        step2 = (
-          <div className="reportBox" onclick={() => e.stopPropagation()}>
-            <div className="reportButtonSet">
-              <textarea onClick={(e)=> e.stopPropagation()} value={text} onChange={this.handleChange.bind(this, "text")} rows="2" placeholder="Why do you want to report this post?"/><br/>
-              <div className="btn-group btn-group-justified text-center" role="group">
-                <div className="btn-group" role="group">
-                  <button className="btn btn-default" onClick={this.saveReport.bind(this, id, text, "/")}>Report</button>
-                {/*</div>
-                <div className="btn-group" role="group">*/}
-                  <button className="btn btn-default" onClick={this.clickCancel.bind(this)}>Cancel</button>
-                </div>
-              </div>
+              <button className="reportBtn btn btn-lg btn-danger btn-block" onClick={this.clickReport.bind(this)}>Report this post</button>
+              <button className="reportBtn btn btn-lg btn-default btn-block" onClick={this.clickCancel.bind(this)}>Cancel</button>
             </div>
           </div>
         );
-      } else if (step===3) {
-        step1=null;
         step2=null;
-        step3= (
-          <div className="reportBox" onclick={() => e.stopPropagation()}>
-            <div className="reportButtonSet">
-              <div className="btn-group btn-group-justified text-center" role="group">
-                <div className="btn-group" role="group">
-                  <button className="btn btn-success" onClick={this.clickDisable.bind(this)}>Report Done!</button>
-                  <button className="btn btn-default" onClick={this.clickCancel.bind(this)}>Cancel</button>
+      } else if(step===2){
+        let reportBtn = (
+          <button className="reportBtn reportRightBtn btn btn-lg btn-danger" onClick={this.saveReport.bind(this, id, text, "/")}>Report</button>
+        );
+        if (!this.validator()) {
+          reportBtn = (
+            <button className="reportBtn reportRightBtn btn btn-lg btn-danger" onClick={this.saveReport.bind(this, id, text, "/")} disabled>Report</button>
+          );
+        }
+        step1= null;
+        step2 = (
+          <div className="reportBox" onClick={this.clickDisable.bind(this)}>
+
+            <div className={"reportInputBox"}>
+              <textarea id="reportTextInput" onClick={this.clickDisable.bind(this)} value={text} onChange={this.handleChange.bind(this, "text")} rows="2" placeholder="Why do you want to report this post?"/>
+              <div className="reportButtonSet">
+                <div className="btn-group btn-group-justified text-center" role="group">
+                  <div className="btn-group" role="group">
+                    <button className="reportBtn reportLeftBtn btn btn-lg btn-default" onClick={this.clickCancel.bind(this)}>Cancel</button>
+                  </div>
+                  <div className="btn-group" role="group">
+                    {reportBtn}
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
-        )
+        );
       }
 
       return (
@@ -123,7 +122,6 @@ class ReportSet extends Component {
           <button className="reportSet glyphicon glyphicon-option-horizontal" onClick={this.clickDotButton.bind(this)}></button>
             {step1}
             {step2}
-            {step3}
         </div>
       );
     } else {

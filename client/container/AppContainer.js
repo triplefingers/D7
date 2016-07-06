@@ -43,6 +43,9 @@ class AppContainer extends Actions {
     injection.checkIfLogined = this.checkIfLogined.bind(this);
     injection.calcWindowSize = this.calcWindowSize.bind(this);
 
+    /* For Navigation Bar */
+    injection.navAlert = this.navAlert.bind(this);
+
     /* For Record */
     injection.saveNewProject = this.saveNewProject.bind(this);
     injection.handleChange = this.handleChange.bind(this);

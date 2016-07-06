@@ -109,20 +109,20 @@ class Main extends Component {
       if (recent) {
         console.log("Recent ", recent);
         Contents = recent.map((post) => {
-          return <MainPostCard data={post} key={post.id} goto={goto} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport}/>
+          return <MainPostCard data={post} key={post.id} goto={goto} navAlert={this.props.navAlert} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport}/>
         });
       }
     } else if (selectedMain === "popular") {
       if (popular) {
         Contents = popular.map((post) => {
-          return <MainPostCard data={post} key={post.id} goto={goto} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport} />
+          return <MainPostCard data={post} key={post.id} goto={goto} navAlert={this.props.navAlert} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport} />
         });
       }
     } else if(selectedMain === "suggestion") {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
       if (recommended) {
         Contents = recommended.map((project) => {
-          return <MainProjectCard data={project} key={project.id} goto={goto} fetchProjectDetail={fetchProjectDetail} />
+          return <MainProjectCard data={project} key={project.id} goto={goto} navAlert={this.props.navAlert} fetchProjectDetail={fetchProjectDetail} />
         });
       }
       Record = null;

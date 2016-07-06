@@ -69,9 +69,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .popup {
   display: block;
+  width: 100%;
   z-index: 100;
   position: fixed;
   bottom: 0;
+}
+
+/* navigatin bar */
+.alert {
+  position: fixed;
+  top: 0;
+  z-index: 66;
+  text-align: center;
+  width: 100%;
+}
+
+.alert.success {
+  background-color: #42db73
 }
 
 /* history */
@@ -95,7 +109,48 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   bottom: 0;
   display: block;
+  width: 100%;
   z-index: 99;
+}
+
+.reportInputBox {
+  position: relative;
+  top: 35%;
+  left: 10%;
+  height: 30%;
+  width: 80%;
+}
+.reportInputBox textarea {
+  position: relative;
+  z-index: 99;
+  height: 75%;
+  border: 1px solid gray;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 1rem;
+}
+
+.reportInputBox textarea:focus {
+  outLine: none;
+  border-color: skyblue;
+  box-shadow: 0 0 10px #719ECE;
+}
+
+.reportInputBox .reportButtonSet {
+  position: absolute;
+  height: 25%;
+}
+
+.reportInputBox .reportButtonSet .reportLeftBtn {
+  border-top-left-radius: 0;
+}
+
+.reportInputBox .reportButtonSet .reportRightBtn {
+  border-top-right-radius: 0;
+}
+
+.reportBtn {
+  width: 100%;
 }
 
 /* cardFooter */
@@ -133,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* userSettings */
-.upload_form {
+.userPhotoUpload {
   display: none;
 }
 

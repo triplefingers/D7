@@ -81,7 +81,7 @@ class Settings extends Component {
             <div className="card-block">
               <img src={imageSrc} id="userPhoto" className="imageRadius" alt="profile_pic" />
               <div className="progress_bar" style={progress_bar_style}></div>
-              <form className="upload_form"></form>
+              <form className="userPhotoUpload upload_form"></form>
             </div>
             <div className="card-block">
               <h2>{userData.username}</h2>

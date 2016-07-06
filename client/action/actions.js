@@ -57,6 +57,12 @@ class Actions extends Component {
       return result;
     };
 
+    // For navigation
+    /* Navigation bar alert msg */
+    this.navAlert = function(msg) {
+      console.log("navAlert.... msg is ", msg);
+      this.setState({navAlertMsg: msg})
+    };
 
     // For Create
     this.goto = function(url) {
