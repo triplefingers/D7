@@ -17,6 +17,7 @@ class SideBar extends Component {
   }
 
   toggleSidebar() {
+    $(".sidebarBg").css("left", "-100%");
     $(".sidebar").css("left", "-100%");
   }
 
@@ -49,11 +50,11 @@ class SideBar extends Component {
       if (user && onGoing) {
         const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + user.userPhoto + ".jpg";
         userStats = (
-                <ul>
-                  <li>Total: {user.userProjects.total}</li>
-                  <li>Success: {user.userProjects.success}</li>
-                  <li>Fail: {user.userProjects.fail}</li>
-                </ul>
+          <ul>
+            <li>Total: {user.userProjects.total}</li>
+            <li>Success: {user.userProjects.success}</li>
+            <li>Fail: {user.userProjects.fail}</li>
+          </ul>
         );
 
         const onGoingProjects = onGoing.map((project) => {
@@ -61,44 +62,46 @@ class SideBar extends Component {
         });
 
         return (
-          <div className="sidebar">
-            <a className="close pull-right" onClick={this.toggleSidebar}>X close</a>
-            <div className="userphoto">
-              <img src={imageSrc} className="img-responsive" alt="" />
-            </div>
-            <div className="userinfo">
-              <div className="username">
-                {user.username}
+          <div className="popupBackground sidebarBg" onClick={this.toggleSidebar}>
+            <a className="close pull-right" onClick={this.toggleSidebar}>X</a>
+            <div className="sidebar popup">
+              <div className="userphoto">
+                <img src={imageSrc} className="img-responsive" alt="" />
               </div>
-              <div className="userstats">
-                {userStats}
+              <div className="userinfo">
+                <div className="username">
+                  {user.username}
+                </div>
+                <div className="userstats">
+                  {userStats}
+                </div>
               </div>
-            </div>
-            <div className="menu">
-              <ul className="nav">
-                <li>
-                  <a onClick={this.handleClick.bind(this, "/history", "history", fetchAllProjects)}>
-                  Ongoing Projects </a>
-                <ul className="ongoing">
-                    {onGoingProjects}
-                  </ul>
-                </li>
-                <li>
-                  <a onClick={this.handleClick.bind(this, "/history", "history",fetchAllProjects)}>
-                  Project History </a>
-                </li>
-                <li>
-                  <a onClick={this.handleClick.bind(this, "/wishlist", "wishlist",fetchWishList)}>
-                  Wishlist </a>
-                </li>
-                <li>
-                  <a onClick={this.handleClick.bind(this, "/settings")}>
-                  Settings </a>
-                </li>
-
-              </ul>
+              <div className="menu">
+                <ul className="nav">
+                  <li>
+                    <a onClick={this.handleClick.bind(this, "/history", "history", fetchAllProjects)}>
+                    Ongoing Projects </a>
+                  <ul className="ongoing">
+                      {onGoingProjects}
+                    </ul>
+                  </li>
+                  <li>
+                    <a onClick={this.handleClick.bind(this, "/history", "history",fetchAllProjects)}>
+                    Project History </a>
+                  </li>
+                  <li>
+                    <a onClick={this.handleClick.bind(this, "/wishlist", "wishlist",fetchWishList)}>
+                    Wishlist </a>
+                  </li>
+                  <li>
+                    <a onClick={this.handleClick.bind(this, "/settings")}>
+                    Settings </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+
         );
 
 

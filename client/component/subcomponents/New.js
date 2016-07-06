@@ -47,8 +47,13 @@ class New extends Component {
         <div>
           <a className="navbar-btn pull-right glyphicon glyphicon-edit"
             style={navRight}></a>
+<<<<<<< Updated upstream
           <div className="popupBackground">
             <div className="popup">
+=======
+          <div className="popupBackground" onClick={this.clickCancel.bind(this)}>
+            <div className="popup btn-group text-center" role="group">
+>>>>>>> Stashed changes
               <button className="btn btn-lg btn-primary btn-block" onClick={this.clickNewProject.bind(this)}>Create New Project</button>
               <button className="btn btn-lg btn-primary btn-block" onClick={this.clickLeaveHistory.bind(this)}>Leave History</button>
               <button className="btn btn-lg  btn-block" onClick={this.clickCancel.bind(this)}>Cancel</button>
