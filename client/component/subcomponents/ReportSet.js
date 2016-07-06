@@ -80,19 +80,19 @@ class ReportSet extends Component {
         step1 = (
           <div className="reportBox" onClick={this.clickDisable.bind(this)}>
             <div className="reportButtonSet">
-              <button className="reportBtn btn btn-default" onClick={this.clickReport.bind(this)}>Report this post</button>
-              <button className="reportBtn btn btn-default" onClick={this.clickCancel.bind(this)}>Cancel</button>
+              <button className="reportBtn btn btn-lg btn-danger btn-block" onClick={this.clickReport.bind(this)}>Report this post</button>
+              <button className="reportBtn btn btn-lg btn-default btn-block" onClick={this.clickCancel.bind(this)}>Cancel</button>
             </div>
           </div>
         );
         step2=null;
       } else if(step===2){
         let reportBtn = (
-          <button className="reportBtn reportRightBtn btn btn-default" onClick={this.saveReport.bind(this, id, text, "/")}>Report</button>
+          <button className="reportBtn reportRightBtn btn btn-lg btn-danger" onClick={this.saveReport.bind(this, id, text, "/")}>Report</button>
         );
         if (!this.validator()) {
           reportBtn = (
-            <button className="reportBtn reportRightBtn btn btn-default" onClick={this.saveReport.bind(this, id, text, "/")} disabled>Report</button>
+            <button className="reportBtn reportRightBtn btn btn-lg btn-danger" onClick={this.saveReport.bind(this, id, text, "/")} disabled>Report</button>
           );
         }
         step1= null;
@@ -104,7 +104,7 @@ class ReportSet extends Component {
               <div className="reportButtonSet">
                 <div className="btn-group btn-group-justified text-center" role="group">
                   <div className="btn-group" role="group">
-                    <button className="reportBtn reportLeftBtn btn btn-default" onClick={this.clickCancel.bind(this)}>Cancel</button>
+                    <button className="reportBtn reportLeftBtn btn btn-lg btn-default" onClick={this.clickCancel.bind(this)}>Cancel</button>
                   </div>
                   <div className="btn-group" role="group">
                     {reportBtn}
