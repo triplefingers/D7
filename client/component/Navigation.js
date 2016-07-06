@@ -11,6 +11,7 @@ class Navigation extends Component {
   }
 
   toggleSidebar() {
+    $('.sidebarBg').css("left", "0%");
     $('.sidebar').css("left", "0%");
   }
 

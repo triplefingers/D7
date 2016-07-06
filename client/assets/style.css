@@ -224,18 +224,22 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Sidebar */
 .sidebar {
-    left: -100%;
-    top: 0;
-    width: 70%;
-    height: 100%;
-    position: fixed;
-    background: #202020;
-    transition: all 0.5s;
-    z-index: 10;
-    padding-top: 30px;
+  left: -100%;
+  top: 0;
+  width: 70%;
+  height: 100%;
+  position: fixed;
+  background: #202020;
+  transition: all 0.5s;
+  z-index: 10;
+  padding-top: 30px;
 }
 
-.sidebar .close {
+.sidebarBg {
+  left: -100%;
+}
+
+.sidebarBg .close {
     top: 0;
     right: 0;
     position: absolute;
