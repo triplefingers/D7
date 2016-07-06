@@ -25,14 +25,8 @@ class CreateProject extends Component {
             { cloud_name: "daxutqqyt", tags: "browser_uploads" })
 
           .bind("cloudinarydone", function(e, data) {
-
             const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + data.result.public_id + ".jpg";
 
-            // $(".preview").append($.cloudinary.image(data.result.public_id,
-            //       { format: data.result.format, version: data.result.version,
-            //         crop: "fill", width: 200, height: 200 }));
-            // console.log("Pushing new public ID");
-            // console.log("Uploaded image: ", data);
             publicIds = [data.result.public_id];
             // publicIds.push(data.result.public_id);
             $(".progress_bar").css("width", 0 + "%");

@@ -79,6 +79,8 @@ class ActionBar extends Component {
             this.props.callback.navAlert(null);
           }, 2000);
         } else if (!this.props.callback && this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
+          this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)
+        } else if (!this.props.callback && this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
           this.props.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
           this.props.navAlert("save");
           setTimeout(() => {
@@ -93,6 +95,8 @@ class ActionBar extends Component {
             this.props.callback.navAlert(null);
           }, 2000);
 
+        } else if (this.props.callback.validateAll(validationCallback, this.props.callback.data.selectedProject)) {
+          this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
         } else {
           alert("Check again : Pick a project before proceed");
         }
