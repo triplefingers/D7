@@ -151,34 +151,35 @@
 
 /* Record Box */
 .RecordBox {
-  background: #DEC1A2;
+  /*background: #DEC1A2;*/
 }
-
+.RecordBox form {
+  height: 68px;
+}
 .RecordBox textarea {
   resize: none;
-  padding-bottom: 10px;
-  padding-left: 10px;
+  padding: 10px;
 }
 
-::-webkit-input-placeholder {
+.RecordBox::-webkit-input-placeholder {
   font-size: 20px;
   text-align: center;
   position: relative;
   padding-top: 10px;
 }
-:-moz-placeholder {
+.RecordBox:-moz-placeholder {
   font-size: 20px;
   text-align: center;
   position: relative;
   padding-top: 10px;
 }
-::-moz-placeholder {
+.RecordBox::-moz-placeholder {
   font-size: 20px;
   text-align: center;
   position: relative;
   padding-top: 10px;
 }
-:-ms-input-placeholder {
+.RecordBox:-ms-input-placeholder {
   font-size: 20px;
   text-align: center;
   position: relative;
@@ -192,8 +193,11 @@
 .RecordButtons #post {
   position: absolute;
   top: 0;
-  left: 110px;
+  right: 0;
+  width: 50%;
   height: 36px;
+  background-color: #BEBEBE;
+  border-color: #A7A7A7;
 }
 
 .RecordButtons .preview div {
@@ -205,7 +209,9 @@
 #AddPhotos {
   padding: 0;
   position: relative;
-  left: 5px;
+  width: 50%;
+  background-color: #BEBEBE;
+  border-color: #A7A7A7;
 }
 
 #AddPhotos label {

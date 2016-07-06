@@ -51,9 +51,9 @@ class SideBar extends Component {
         const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + user.userPhoto + ".jpg";
         userStats = (
           <ul>
-            <li>Total: {user.userProjects.total}</li>
-            <li>Success: {user.userProjects.success}</li>
-            <li>Fail: {user.userProjects.fail}</li>
+            <li>Total : {user.userProjects.total}</li>
+            <li>Success : {user.userProjects.success}</li>
+            <li>Fail : {user.userProjects.fail}</li>
           </ul>
         );
 
