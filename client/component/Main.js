@@ -27,7 +27,8 @@ class Main extends Component {
       expiry: "",
       recentPage: 0,
       popularPage: 0,
-      suggestionPage: 0
+      suggestionPage: 0,
+      text: ""
     });
   }
 

@@ -71,11 +71,28 @@ class ActionBar extends Component {
       let validator = () => {
         if ((this.props.data && (this.props.validateAll(validationCallback, this.props.data.selectedProject))) && this.props.callback) {
           console.log("Project Selected");
-          this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds)
+          this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
+
+          this.props.callback.navAlert("save");
+
+          setTimeout(() => {
+            this.props.callback.navAlert(null);
+          }, 2000);
         } else if (!this.props.callback && this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
           this.props.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
+          this.props.navAlert("save");
+          setTimeout(() => {
+            this.props.navAlert(null);
+          }, 2000);
+
         } else if (this.props.callback.validateAll(validationCallback, this.props.callback.data.selectedProject)) {
           this.props.callback.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
+          this.props.callback.navAlert("save");
+
+          setTimeout(() => {
+            this.props.callback.navAlert(null);
+          }, 2000);
+
         } else {
           alert("Check again : Pick a project before proceed");
         }

@@ -53,9 +53,9 @@ class ReportSet extends Component {
       .then((res) => {
         this.setState({step: 0, text: ""});
         this.props.navAlert("report");
+        this.props.goto(url);
         setTimeout(() => {
           this.props.navAlert(null);
-          this.props.goto(url);
         }, 1000);
       })
       .catch((err) => {
