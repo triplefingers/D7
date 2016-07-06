@@ -63,9 +63,11 @@ class ActionBar extends Component {
           setTimeout(() => {
             this.props.callback.navAlert(null);
           }, 2000);
+
         } else if (!this.props.callback && this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
           this.props.saveDayDetail(undefined, userProjectId, onDay, text, publicIds);
           this.props.navAlert("save");
+
           setTimeout(() => {
             this.props.navAlert(null);
           }, 2000);
@@ -79,6 +81,7 @@ class ActionBar extends Component {
           alert("Check again : Pick a project before proceed");
         }
       };
+
       rightButton = <li className="next"><a onClick={validator}>Save</a></li>
       if (this.props.callback) {
         rightButton = <li className="next"><a onClick={validator}>Save</a></li>
@@ -95,4 +98,7 @@ class ActionBar extends Component {
     );
   }
 }
+
+
 export default ActionBar;
+

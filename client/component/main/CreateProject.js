@@ -6,8 +6,6 @@ class CreateProject extends Component {
   }
 
   componentDidMount() {
-
-
     window.publicIds = [];
 
     $(document).ready(() => {
@@ -92,7 +90,7 @@ class CreateProject extends Component {
         <form role="form">
           <div className="form-group">
             <label for="title">Title</label>
-            <input type="text" className="form-control" id="title" value={this.props.data.title} onChange={this.props.handleChange.bind(null, "title")}/>
+            <input type="text" className="form-control" id="title" value={this.props.data.title} placeholder="title" onChange={this.props.handleChange.bind(null, "title")}/>
           </div>
           <div className="form-group">
             <label for="desc">Description</label>
