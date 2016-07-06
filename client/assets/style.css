@@ -52,6 +52,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+.imageRadius {
+  border-radius: 50%;
+}
+
 /* history */
 .statusTitle {
   padding: 0.5rem 1.25rem;
@@ -114,6 +118,40 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1.25rem;
 }
 
+/* userSettings */
+.upload_form {
+  display: none;
+}
+
+.transactionTable {
+  width: 100%;
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+.transactionTable thead {
+  background-color: gainsboro
+}
+
+.transactionTable tr {
+  line-height: 3rem;
+}
+
+.transactionTable td {
+  padding-left: 0.5rem;
+}
+
+.transactionTable thDate{
+  width: 22%;
+}
+
+.transactionTable thAmount, thStatus {
+  width: 20%;
+}
+
+.transactionTable tbody tr {
+  border-bottom: 1px solid gainsboro;
+}
 
 /* Sidebar */
 .sidebar {

@@ -16,12 +16,9 @@ class UserSet extends Component {
     const { userPhoto, username } = this.props;
     const imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200,h_200/v1467554303/" + userPhoto + ".jpg";
 
-    const imageStyle = {
-      borderRadius: "50%"
-    }
     return (
       <div className="card-subtitle">
-        <img src={imageUrl} style={imageStyle} alt="user profile" width="20px" height="20px"/>
+        <img src={imageUrl} className="imageRadius" alt="user profile" width="20px" height="20px"/>
         <span>{" "}</span>
         <strong>{username}</strong>
       </div>
