@@ -78,24 +78,34 @@ h1, h2, h3, h4, h5, h6 {
 
 /* wishSet */
 .wishSet {
-  font-size: 2rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  vertical-align: middle;
 }
 
 /* likeSet*/
 .likeSet {
-  font-size: 2rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  vertical-align: middle;
 }
 
 /* reportSet */
 .reportSet {
-  font-size: 2rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  vertical-align: middle;
 }
 
 /* createProjectBtn */
 .createProjectBtn {
-  font-size: 2rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  vertical-align: middle;
 }
 
+
+/* Card */
 .card {
   position: relative;
   display: block;
@@ -105,20 +115,20 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: .25rem;
 }
 
-.projectCard {
-  background-color: #d8d8d8;
-  border: 1px solid #bfbfbf;
-}
-
 .card-block {
   padding: 1.25rem;
 }
 
+
+/* header */
+.projectHeader {
+  background-color: #d8d8d8;
+  border: 1px solid #bfbfbf;
+}
 .conImg {
   width: 100%;
   height: auto;
 }
-
 
 
 /* Sidebar */

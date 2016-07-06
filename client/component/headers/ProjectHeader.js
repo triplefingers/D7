@@ -5,8 +5,7 @@ import UserSet from "../subcomponents/UserSet";
 class ProjectHeader extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -17,7 +16,7 @@ class ProjectHeader extends Component {
     const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_200/v1467554303/" + this.props.data.projectImage + ".jpg";
 
     return (
-      <div className="card projectCard">
+      <div className="card projectHeader">
         {/* Header */}
         <div>
           <img className="conImg" src={imageSrc}/>
