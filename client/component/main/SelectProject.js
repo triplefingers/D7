@@ -24,7 +24,7 @@ class SelectProject extends Component {
             <SelectBox _save={this.props._save} project={project} />
           </div>
           );
-      })
+      });
     }
 
     if (!this.props.data.leaveHistoryClicked) {
@@ -40,9 +40,9 @@ class SelectProject extends Component {
     let nextUrl = undefined;
 
     if (this.props.data.creatingProjectFirst) {
-      nextUrl = "/write"
+      nextUrl = "/write";
     } else if (this.props.data.leaveHistoryClicked) {
-      nextUrl = "/write"
+      nextUrl = "/write";
     }
 
     return (
@@ -54,7 +54,7 @@ class SelectProject extends Component {
         </form>
 
         {createNewProject}
-        <ActionBar saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data} nextUrl={nextUrl} validateAll={this.props.validateAll}/>
+        <ActionBar navAlert={this.props.navAlert} saveDayDetail={this.props.saveDayDetail} goto={this.props.goto} project={this.props.data.selectedProject} data={this.props.data} nextUrl={nextUrl} validateAll={this.props.validateAll}/>
       </div>
 
     );
