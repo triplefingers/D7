@@ -16,20 +16,6 @@ class Main extends Component {
   }
 
   componentWillMount(){
-    this.props._save({
-      leaveHistoryClicked: false,
-      creatingProjectFirst: false,
-      creatingProjectLast: false,
-      leaveHistoryInProgress: false,
-      existingProjectChosen: false,
-      cardNumber: "",
-      birth: "",
-      expiry: "",
-      recentPage: 0,
-      popularPage: 0,
-      suggestionPage: 0,
-      text: ""
-    });
   }
 
   componentDidMount() {
@@ -49,6 +35,22 @@ class Main extends Component {
       fetchRecommendation();
     }
 
+    this.props._save({
+      leaveHistoryClicked: false,
+      creatingProjectFirst: false,
+      creatingProjectLast: false,
+      leaveHistoryInProgress: false,
+      existingProjectChosen: false,
+      cardNumber: "",
+      birth: "",
+      expiry: "",
+      recentPage: 0,
+      popularPage: 0,
+      suggestionPage: 0,
+      text: ""
+    });
+
+    this.props.fetchOngoingProjects();
   }
 
   componentWillUnmount() {
