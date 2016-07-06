@@ -15,7 +15,9 @@ class SelectBox extends Component {
     let selectedProject;
 
     if (this.props.project) {
-      selectedProject: this.props.project;
+      selectedProject = {
+        selectedProject: this.props.project
+      }
     }
     const disable = this.props.project.doneToday;
 
