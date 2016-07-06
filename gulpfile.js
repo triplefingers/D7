@@ -43,9 +43,9 @@ gulp.task("eslint", () => {
   .pipe(eslint.failAfterError());
 });
 gulp.task('watch', () => {
-  gulp.watch(paths.include.server, ["babel"]);
-  gulp.watch(paths.include.client, ["webpack"]);
-  gulp.watch(paths.include.server, ["eslint"]);
+  gulp.watch(paths.include.server.concat(paths.exclude.server), ["babel"]);
+  gulp.watch(paths.include.client.concat(paths.exclude.client), ["webpack"]);
+  gulp.watch(paths.include.server.concat(paths.exclude.server), ["eslint"]);
 });
 gulp.task("start", () => {
   nodemon({
