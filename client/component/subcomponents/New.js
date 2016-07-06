@@ -44,8 +44,8 @@ class New extends Component {
       );
     } else {
       return (
-        <div>
-          <a className="navbar-btn pull-right glyphicon glyphicon-edit"
+        <div className="pull-right">
+          <a className="navbar-btn glyphicon glyphicon-edit"
             style={navRight}></a>
           <div className="popupBackground" onClick={this.clickCancel.bind(this)}>
             <div className="popup">

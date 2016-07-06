@@ -78,7 +78,7 @@ class ReportSet extends Component {
         step2 = null;
       } else if(step===1){
         step1 = (
-          <div className="reportBox" onClick={this.clickDisable.bind(this)}>
+          <div className="reportBox" onClick={this.clickCancel.bind(this)}>
             <div className="reportButtonSet">
               <button className="reportBtn btn btn-lg btn-danger btn-block" onClick={this.clickReport.bind(this)}>Report this post</button>
               <button className="reportBtn btn btn-lg btn-default btn-block" onClick={this.clickCancel.bind(this)}>Cancel</button>
@@ -119,7 +119,7 @@ class ReportSet extends Component {
 
       return (
         <div className="pull-right">
-          <button className="reportSet glyphicon glyphicon-option-horizontal" onClick={this.clickDotButton.bind(this)}></button>
+          <a className="reportSet glyphicon glyphicon-option-horizontal" onClick={this.clickDotButton.bind(this)}></a>
             {step1}
             {step2}
         </div>
