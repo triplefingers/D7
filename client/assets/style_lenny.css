@@ -1,0 +1,211 @@
+.CreateProject h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.CreateProject img {
+  position: relative;
+  left: 50%;
+  margin-left: -100px;
+}
+
+/* Create Date */
+.CreateDate h2, h4 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.CreateDate h4 {
+  margin-bottom: 30px;
+}
+
+.CreateDate .pager {
+  position: fixed;
+  bottom: 30px;
+}
+
+.CreateDate .pager .previous {
+  position: fixed;
+  left: 20px;
+}
+
+.CreateDate .pager .next {
+  position: fixed;
+  right: 20px;
+}
+
+.CreateDate .Calendar {
+  width: 95%;
+}
+
+.CreateDate .Week {
+  height: 50px;
+}
+
+/* Payment */
+.Payment h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.Payment .pager {
+  position: fixed;
+  bottom: 30px;
+}
+
+.Payment .pager .previous {
+  position: fixed;
+  left: 20px;
+}
+
+.Payment .pager .next {
+  position: fixed;
+  right: 20px;
+}
+
+/* Select Project */
+.SelectProject h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.SelectProject span {
+  font-size: 30px;
+  margin-left: 50px;
+  display: block;
+  margin-top: -7px;
+}
+
+.SelectProject input {
+  height:15px;
+  width:15px;
+  margin-left: 20px !important;
+}
+
+.SelectProject .pager {
+  position: fixed;
+  bottom: 30px;
+}
+
+.SelectProject .pager .previous {
+  position: fixed;
+  left: 20px;
+}
+
+.SelectProject .pager .next {
+  position: fixed;
+  right: 20px;
+}
+
+/* Leave History */
+.LeaveHistory h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.LeaveHistory img {
+  position: relative;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.LeaveHistory .preview button {
+  display: block;
+  width: 5px;
+  position: relative;
+  left: 50%;
+  margin-left: -2.5px;
+}
+
+/* Record Box */
+.RecordBox {
+  background: #DEC1A2;
+}
+
+.RecordBox textarea {
+  resize: none;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+::-webkit-input-placeholder {
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+}
+:-moz-placeholder {
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+}
+::-moz-placeholder {
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+}
+:-ms-input-placeholder {
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+}
+
+.RecordButtons {
+  position: relative;
+}
+
+.RecordButtons #post {
+  position: absolute;
+  top: 0;
+  left: 110px;
+  height: 36px;
+}
+
+#AddPhotos {
+  padding: 0;
+  position: relative;
+  left: 5px;
+}
+
+#AddPhotos label {
+  margin: 0;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.cloudinary_fileupload::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.cloudinary_fileupload::before {
+  content: 'Add photos';
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
