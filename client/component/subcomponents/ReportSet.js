@@ -54,9 +54,9 @@ class ReportSet extends Component {
         this.setState({step: 0, text: ""});
         this.props.navAlert("report");
         this.props.goto(url);
-        setTimeout(() => {
-          this.props.navAlert(null);
-        }, 1000);
+        // setTimeout(() => {
+        //   this.props.navAlert(null);
+        // }, 1000);
       })
       .catch((err) => {
         console.error("Error occurred while saving report: ", err);

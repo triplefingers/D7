@@ -48,7 +48,7 @@ const payment = (user, q, body, res) => {
   }
   const paymentReq = {
     params: {},
-    customer_uid: userId + "--" + username, // distinctive customer uid. If customer_uid is same as before, iamport automatically process with previous card infos even if now we have sent no card infos
+    customer_uid: userId + "---" + username, // distinctive customer uid. If customer_uid is same as before, iamport automatically process with previous card infos even if now we have sent no card infos
     checking_amount: 0, // if you want check the credit card is valid, can validate with checking_amount more then;
     card_number: cardNumber, // stirng, "xxxx-xxxx-xxxx-xxxx"
     expiry: expiry, // string, "yyyy-mm"
@@ -84,6 +84,7 @@ const payment = (user, q, body, res) => {
       console.error("Failed to store access_token on the server");
       throw "Failed to store access_token on the server";
     }
+    console.log("PaymentReqData is ", paymentReq);
     return axios.post("https://api.iamport.kr/subscribe/payments/schedule?_token=" + accessToken, paymentReq)
     .then((answer) => answer);
   })

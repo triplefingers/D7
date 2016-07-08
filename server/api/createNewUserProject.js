@@ -65,7 +65,7 @@ const createNewUserProject = (user, q, body, res) => {
     };
 
     /* Send payment Request through 'payment.js' */
-    return paymentRequest(null, null, postData, null)
+    return paymentRequest(user, null, postData, null)
     .then((answer) => {
       data.donePayment = true;
       return data;
