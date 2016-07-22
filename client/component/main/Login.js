@@ -6,6 +6,9 @@ class Login extends Component {
     super(props);
     this.state = {
       isSignup: false,
+      email: "",
+      password: "",
+      username:""
     };
   };
 
@@ -47,7 +50,6 @@ class Login extends Component {
       });
     });
   };
-
 
   handleChange(what, event) {
     let data = {};

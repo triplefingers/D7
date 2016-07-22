@@ -45,8 +45,8 @@ class Navigation extends Component {
 
     let msg = null;
     const navAlertMsg = this.props.data.data.navAlertMsg;
-    console.log("------navAlertMsg is ",this.props);
-    console.log("------navAlertMsg is ",navAlertMsg);
+    // console.log("------navAlertMsg is ",this.props);
+    // console.log("------navAlertMsg is ",navAlertMsg);
 
     if (navAlertMsg === "save") {
       msg = (
