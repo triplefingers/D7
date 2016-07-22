@@ -5,3 +5,4 @@ client/bundle.js
 npm-debug.log
 *.log
 *.jshintrc
+.DS_Store
