@@ -22,6 +22,30 @@ class Actions extends Component {
       });
     };
 
+    this.logout = function(){
+      axios.get("/api/logout")
+      .then((res) => {
+        console.log(res.message);
+        this.reset();
+      }).then(() => {
+        this._save({
+          selectedMain: "recent",
+          text: "",
+          description: "",
+          title: "",
+          startAt: "",
+          cardNumber: "",
+          expiry: "",
+          birth: "",
+          pwd2digit: "",
+          amount: "",
+          currency: "won",
+          loggedIn: false
+        });
+        this.goto("/login");
+      });
+    };
+
     this.reset = function(keys) {
       if(!keys){
         const prevState = this.state;
