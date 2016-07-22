@@ -35,7 +35,7 @@ class Actions extends Component {
         for(let i=0; i<keys.length; i++) {
           nextState[keys[i]] = undefined;
         }
-      this.setState(nextState);
+        this.setState(nextState);
       }
     };
 
@@ -61,7 +61,7 @@ class Actions extends Component {
     /* Navigation bar alert msg */
     this.navAlert = function(msg) {
       console.log("navAlert.... msg is ", msg);
-      this.setState({navAlertMsg: msg})
+      this.setState({navAlertMsg: msg});
     };
 
     // For Create
@@ -91,7 +91,7 @@ class Actions extends Component {
     };
 
     this.saveNewProject = function(userId, title, desc, startDate, payment, image) {
-      axios.post("/api/newproject", {
+      return axios.post("/api/newproject", {
         userId : userId,
         title: title,
         description: desc,
@@ -136,7 +136,7 @@ class Actions extends Component {
 
     /*newProject : object (title, description, startAt - 10자리 string)*/
     this.saveDayDetail = function(userId, id, onDay, text, publicIds, newProject, payment) {
-      axios.post("/api/record", {
+      return axios.post("/api/record", {
         userId : userId,
         id: id,
         onDay: onDay,
@@ -155,7 +155,7 @@ class Actions extends Component {
     };
 
     this.saveExistingProject = function(projectId, startAt, payment) {
-      axios.post("/api/newuserproject", {
+      return axios.post("/api/newuserproject", {
         projectId: projectId,
         startAt: startAt,
         payment: JSON.stringify(payment)
@@ -176,7 +176,7 @@ class Actions extends Component {
         this.setState({
           history: res.data
         });
-        console.log('HISTORY', this.state.history);
+        console.log("HISTORY", this.state.history);
       })
       .catch((err) => {
         console.error("Error occured while fetching all projects: ", err);

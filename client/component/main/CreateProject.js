@@ -65,9 +65,9 @@ class CreateProject extends Component {
     let nextButton;
 
     if (this.props.data.creatingProjectLast) {
-      nextButton = <li className="next"><a onClick={validator} >Next</a></li>
+      nextButton = <li className="next"><a onClick={validator} >Next</a></li>;
     } else {
-      nextButton = <li className="next"><a onClick={validator}>Next</a></li>
+      nextButton = <li className="next"><a onClick={validator}>Next</a></li>;
     }
 
     let progress_bar_style = {

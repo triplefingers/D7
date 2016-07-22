@@ -6,7 +6,7 @@ import Tabbar from "./subcomponents/Tabbar";
 import RecordBox from "./subcomponents/RecordBox";
 import MainPostCard from "./cards/MainPostCard";
 import MainProjectCard from "./cards/MainProjectCard";
-import moment from "moment"
+import moment from "moment";
 
 class Main extends Component {
   constructor(props) {
@@ -104,7 +104,7 @@ class Main extends Component {
       <div className="btn-group" role="group">
         <button className="btn btn-default" onClick={this.clickMore.bind(this)}>Load more...</button>
       </div>
-    </div>
+    </div>;
 
     if (!selectedMain){
       return(<div>Loading...</div>);
@@ -112,20 +112,26 @@ class Main extends Component {
       if (recent) {
         console.log("Recent ", recent);
         Contents = recent.map((post) => {
-          return <MainPostCard data={post} key={post.id} goto={goto} navAlert={this.props.navAlert} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport}/>
+          return (
+            <MainPostCard data={post} key={post.id} goto={goto} navAlert={this.props.navAlert} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport}/>
+          );
         });
       }
     } else if (selectedMain === "popular") {
       if (popular) {
         Contents = popular.map((post) => {
-          return <MainPostCard data={post} key={post.id} goto={goto} navAlert={this.props.navAlert} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport} />
+          return (
+            <MainPostCard data={post} key={post.id} goto={goto} navAlert={this.props.navAlert} fetchUserProjectDetail={fetchUserProjectDetail} saveReport={saveReport} />
+          );
         });
       }
-    } else if(selectedMain === "suggestion") {
+    } else if (selectedMain === "suggestion") {
       /* Fetched data about RecommendedProjects are stored in AppContainer */
       if (recommended) {
         Contents = recommended.map((project) => {
-          return <MainProjectCard data={project} key={project.id} goto={goto} navAlert={this.props.navAlert} fetchProjectDetail={fetchProjectDetail} />
+          return (
+            <MainProjectCard data={project} key={project.id} goto={goto} navAlert={this.props.navAlert} fetchProjectDetail={fetchProjectDetail} />
+          );
         });
       }
       Record = null;

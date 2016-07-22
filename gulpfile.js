@@ -25,7 +25,7 @@ gulp.task("babel", () => {
     .pipe(gulp.dest("build"));
 });
 gulp.task("webpack", () => {
-  gulp.src("./client/index.js")
+  return gulp.src("./client/index.js")
   .pipe(webpack(require("./webpack.config.js")))
   .pipe(gulp.dest("./client/"));
 });

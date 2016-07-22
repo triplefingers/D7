@@ -2,23 +2,25 @@ import model from "../db/models";
 import collection from "../db/collections";
 import Promise from "bluebird";
 
+/* Fetch all post in 'created_at' desc order from 'post' table */
+/* Query: page */
+
 const fetchRecentPosts = (user, q, res)=>{
-  // const userId = user.id;
+  const userId = user.id;
   const { page } = q;
-  console.log('PAGE', page);
-  
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
+  /* Start point */
   model.Post.forge().orderBy("-created_at").fetchPage({
     pageSize: 20,
     page: page,
@@ -32,7 +34,8 @@ const fetchRecentPosts = (user, q, res)=>{
   })
   .then((posts)=>{
     posts = posts.toJSON();
-    console.log("posts in recent tab is ", posts);
+
+    /* Array of Promises to be 'Promise.all'ed */
     const postsPromiseArray = [];
 
     posts.forEach((post) => {
@@ -80,7 +83,7 @@ const fetchRecentPosts = (user, q, res)=>{
         delete post.created_at;
         delete post.updated_at;
 
-        /* project title, description*/
+        /* project title, description */
         model.UserProject.where("id", post.userProjectId).fetch({withRelated: ["project"]})
         .then((userProject) => {
           userProject = userProject.toJSON();
@@ -88,7 +91,6 @@ const fetchRecentPosts = (user, q, res)=>{
           post.projectDescription = userProject.project.description;
         })
         .then(() => {
-          console.log("-------in postsPromissarray promise.all--------", post);
           delete post.userProject;
           resolve();
         })
@@ -102,13 +104,12 @@ const fetchRecentPosts = (user, q, res)=>{
 
     return Promise.all(postsPromiseArray)
     .then(() => {
-      console.log("-------posts are", posts);
       return posts;
     });
   })
   .then((data) => res.status(200).send(data))
   .catch((err) =>{
-    console.error("-----Error: Failed to read projects in 'fetchRecentPosts.js': ", err);
+    console.error("Error: Failed to read projects in 'fetchRecentPosts.js': ", err);
     res.status(500).end();
   });
 

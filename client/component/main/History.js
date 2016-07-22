@@ -27,16 +27,22 @@ class History extends Component {
       let { onGoing, waiting, complete } = history;
 
       onGoing = onGoing.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
-        });
+        return (
+          <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
+        );
+      });
 
       waiting = waiting.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
-        });
+        return (
+          <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
+        );
+      });
 
       complete = complete.map((project) => {
-          return <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
-        });
+        return (
+          <DetailUserProjectCard key={project.id} data={project} fetchUserProjectDetail={fetchUserProjectDetail} goto={goto}/>
+        );
+      });
 
       return (
         <div>
@@ -57,7 +63,7 @@ class History extends Component {
 
       );
     } else {
-      return <Loading />
+      return <Loading />;
     }
   }
 }

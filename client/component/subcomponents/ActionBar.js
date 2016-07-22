@@ -46,12 +46,12 @@ class ActionBar extends Component {
       let validator = () => {
         if (this.props.validateAll(validationCallback, this.props.data.selectedProject)) {
           console.log("Project Selected");
-          this.props.goto(this.props.nextUrl)
+          this.props.goto(this.props.nextUrl);
         } else {
           alert("Check again : Pick a project before proceed");
         }
       };
-      rightButton = <li className="next"><a onClick={validator}>Next</a></li>
+      rightButton = <li className="next"><a onClick={validator}>Next</a></li>;
     } else if ((this.props.data && (!this.props.data.leaveHistoryClicked)) ||
       ((this.props.callback) && this.props.callback.data.leaveHistoryInProgress)) {
       console.log("Second case");
@@ -82,13 +82,13 @@ class ActionBar extends Component {
         }
       };
 
-      rightButton = <li className="next"><a onClick={validator}>Save</a></li>
+      rightButton = <li className="next"><a onClick={validator}>Save</a></li>;
       if (this.props.callback) {
-        rightButton = <li className="next"><a onClick={validator}>Save</a></li>
+        rightButton = <li className="next"><a onClick={validator}>Save</a></li>;
       }
     } else {
       console.log("Third case");
-      rightButton = <li className="next"><a onClick={()=>{this.props.goto(this.props.nextUrl)}}>Next</a></li>
+      rightButton = <li className="next"><a onClick={()=>{this.props.goto(this.props.nextUrl);}}>Next</a></li>;
     }
     return (
       <ul className="pager">
@@ -101,4 +101,3 @@ class ActionBar extends Component {
 
 
 export default ActionBar;
-

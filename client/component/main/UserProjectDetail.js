@@ -24,7 +24,9 @@ class UserProjectDetail extends Component {
     let Contents;
     if(userproject){
       Contents = userproject.posts.map((post) => {
-          return <DetailPostCard data={post} key={post.id} navAlert={this.props.navAlert}/>
+        return (
+          <DetailPostCard data={post} key={post.id} navAlert={this.props.navAlert}/>
+        );
       });
       return (
         <div>

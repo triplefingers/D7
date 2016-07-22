@@ -3,25 +3,29 @@ import collection from "../db/collections";
 import axios from "axios";
 import apiKeys from "./import/apiKeys";
 
-const payment = (user, q, body, res) => {
-  // const userId = user.id;
-  // const username = user.username
-  const { customer_uid, merchant_uid } = body;
+/* Send payment cancel request to Iamport and update transaction in 'transactin' table */
+/* Post Data: customer_uid, merchant_uid */
 
-  // below should be deleted
-  let userId;
-  let username;
-  if (user && user.id) {
-    userId = user.id;
-    username = user.username;
-  }
-  if (q && q.id) {
-    userId = q.id;
-    username = q.username;
-  } else {
-    userId = 1;
-    username = "Lenny";
-  }
+const paymentCancel = (user, q, body, res) => {
+  const userId = user.id;
+  const username = user.username;
+
+  // Test code below
+  // let userId;
+  // let username;
+  // if (user && user.id) {
+  //   userId = user.id;
+  //   username = user.username;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  //   username = q.username;
+  // } else {
+  //   userId = 1;
+  //   username = "Lenny";
+  // }
+
+  const { customer_uid, merchant_uid } = body;
 
   let accessToken = "";
 
@@ -31,7 +35,6 @@ const payment = (user, q, body, res) => {
     merchant_uid: [merchant_uid]
   };
 
-  console.log("payment cancel in progress");
   return axios.post("https://api.iamport.kr/users/getToken", apiKeys)
   .then((answer) => {
     const data = answer.data;
@@ -60,7 +63,7 @@ const payment = (user, q, body, res) => {
     const data = answer.data;
     if (data.code === 0) {
       console.log("Success: unscheduled transaction: ", data);
-      /* If res === null or res === undefined, just return data */
+      /* Return data, if res === null or res === undefined */
       if (!res) {
         console.log("Method use: Return record Result: ", data);
         return data;
@@ -75,7 +78,7 @@ const payment = (user, q, body, res) => {
   .catch((err) => {
     console.error("Error: Failed in canceling transaction in 'paymentCancel.js': ", err);
 
-    /* If res === null or res === undefined, just return err */
+    /* Return err, if res === null or res === undefined */
     if (!res) {
       throw "Failed in canceling transaction in 'paymentCancel.js': " + err;
     } else {
@@ -85,4 +88,4 @@ const payment = (user, q, body, res) => {
   });
 };
 
-export default payment;
+export default paymentCancel;

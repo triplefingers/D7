@@ -2,32 +2,37 @@ import model from "../db/models";
 import collection from "../db/collections";
 import db from "../db/config/setConfig";
 
+/* Create new like in 'like' table */
+/* Post Data: postId */
+
 const like = (user, q, body, res) => {
-  // const userId = user.id;
+  const userId = user.id;
   const postId = body.postId;
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
   /* likeCount */
   let likeCount = 0;
 
+  /* Start Point */
   model.Post.where("id", postId).fetch()
   .then((post) => {
     if (post) {
       post = post.toJSON();
       likeCount = post.likeCount;
-      console.log("----------likeCount is ", likeCount);
+
       return model.Like.where({userId: userId, postId: postId}).fetch();
     } else {
+      /* throw error if postId is invalid */
       throw "Invalid postId";
     }
   })

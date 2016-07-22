@@ -1,40 +1,44 @@
 import model from "../db/models";
 import collection from "../db/collections";
-import paymentReq from "./payment";
+import paymentRequest from "./payment";
+
+/* Create new project in 'project' and 'userProject' tables */
+/* Post Data: title, description, startAt, image, payment */
 
 const createNewProject = (user, q, body, res) => {
-  // const userId = user.id;
+  const userId = user.id;
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
-  /* if the payment is failed, should del project and userProject */
+  /* If the payment is failed, delete project and userProject */
   /* by using ids below */
   let projectId, userProjectId;
 
   const { title, description, startAt, image, payment } = body;
   const today = new Date();
   const startAtInObj = new Date(startAt);
-  console.log("body is, ", body, typeof(body), Object.keys(body));
-  console.log("before slice, ", today, startAtInObj, startAt);
 
+  /* endAt = startAt + 6 days */
   let endAt = new Date(startAt);
   endAt.setDate(startAtInObj.getDate() + 6);
   endAt = endAt.toJSON().slice(0, 10);
 
+  /* If startAt is today, assign 1 to 'onDay'. Otherwise, null */
   let onDay = null;
   if (today.toJSON().slice(0, 10) === startAtInObj.toJSON().slice(0, 10)) {
     onDay = 1;
   }
 
+  /* Start Point */
   return model.Project.forge().set({
     userId: userId,
     title: title,
@@ -43,14 +47,13 @@ const createNewProject = (user, q, body, res) => {
   }).save()
   .then((project) => {
     projectId = project.id;
+
     return model.UserProject.forge().set({
       userId: userId,
       projectId: projectId,
       startAt: startAt,
       endAt: endAt
     }).save();
-
-    // .catch((err) => console.error("-----Error: Failed to store in 'userProject' table: ", err));
   })
   .then((userProject) => {
     userProject = userProject.toJSON();
@@ -63,38 +66,41 @@ const createNewProject = (user, q, body, res) => {
       endAt: userProject.endAt,
       donePayment: false
     };
-
     return data;
   })
   .then((data) => {
-    const body = {
+    const postData = {
       userProjectId: data.id,
       endAt: data.endAt,
       payment: payment
     };
-    if (typeof body.payment === "string") {
-      body.payment = JSON.parse(body.payment);
+
+    /* If postData.payment is not parsed, it will be parsed below */
+    if (typeof postData.payment === "string") {
+      postData.payment = JSON.parse(postData.payment);
     }
-    console.log("----before paymentReq, body is ",  body);
-    return paymentReq(null, null, body, null)
+
+    /* Send payment Request through 'payment.js' */
+    return paymentRequest(user, null, postData, null)
     .then((answer) => {
       data.donePayment = true;
       return data;
     });
   })
   .then((data) => {
-    /* If res === null or res === undefined, just return data */
+    /* Return data, if res === null or res === undefined */
     if (!res) {
-      console.log("Method use: Return createNewProject Result: ", data);
+      console.log("Methodical use: Return createNewProject Result: ", data);
       return data;
     } else {
       res.status(200).send(data);
     }
   })
   .catch((err) => {
-    console.error("-----Error: Failed to store in 'project' or 'userProject' table: ", err);
+    /* If the process fails, including payment process, rollback */
+    console.error("Error: Failed to store in 'project' or 'userProject' table: ", err);
 
-    /* delete project, userproject */
+    /* Delete project, userproject */
     new model.Project({id: projectId}).destroy()
     .then(() => {
       console.log("deteted false project info");
@@ -104,7 +110,8 @@ const createNewProject = (user, q, body, res) => {
     .catch((err) => {
       console.error("Error: Failed to revert project and userproject");
     });
-    /* If res === null or res === undefined, just return err */
+
+    /* Return err, if res === null or res === undefined */
     if (!res) {
       return err;
     } else {

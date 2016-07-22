@@ -23,7 +23,7 @@ class WishSet extends Component {
       axios.post("/api/wish", {
         projectId: projectId
       }).then((res) => {
-        console.log('RES', res);
+        console.log("RES", res);
         this.setState({
           wished: false,
           wishCount: res.data.wishCount
@@ -33,7 +33,7 @@ class WishSet extends Component {
       axios.post("/api/wish", {
         projectId: projectId
       }).then((res) => {
-        console.log('RES', res);
+        console.log("RES", res);
         this.setState({
           wished: true,
           wishCount: res.data.wishCount

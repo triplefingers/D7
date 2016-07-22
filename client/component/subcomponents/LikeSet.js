@@ -23,7 +23,7 @@ class LikeSet extends Component {
       axios.post("/api/like", {
         postId: postId
       }).then((res) => {
-        console.log('RES', res);
+        console.log("RES", res);
         this.setState({
           liked: false,
           likeCount: res.data.likeCount
@@ -33,7 +33,7 @@ class LikeSet extends Component {
       axios.post("/api/like", {
         postId: postId
       }).then((res) => {
-        console.log('RES', res);
+        console.log("RES", res);
         this.setState({
           liked: true,
           likeCount: res.data.likeCount

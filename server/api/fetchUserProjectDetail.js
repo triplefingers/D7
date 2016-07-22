@@ -1,23 +1,28 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
+/* Fetch userProject details from 'userProject' table */
+/* Query: userProjectId */
+
 const fetchUserProjectDetail = (user, q, res)=>{
-  // const userId = user.id;
+  const userId = user.id;
   var { userProjectId } = q;
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
   /* data container to send */
   const result = {};
 
+  /* Start point */
   model.UserProject.where("id", userProjectId).fetch({withRelated: [
     "user",
     "project",
@@ -26,7 +31,6 @@ const fetchUserProjectDetail = (user, q, res)=>{
   ]})
   .then((userProject) => {
     userProject = userProject.toJSON();
-    console.log("----here in userproject ", userProject);
 
     /* userProject id */
     result.userProjectId = userProject.id;
@@ -104,6 +108,8 @@ const fetchUserProjectDetail = (user, q, res)=>{
     if (!posts) {
       posts = [];
     }
+
+    /* Array of Promises to be 'Promise.all'ed */
     const postsPromiseArray = [];
 
     posts.forEach((post) => {
@@ -157,7 +163,6 @@ const fetchUserProjectDetail = (user, q, res)=>{
           post.projectDescription = userProject.project.description;
         })
         .then(() => {
-          console.log("-------in postsPromissarray promise.all--------", post);
           delete post.userProject;
           resolve();
         })

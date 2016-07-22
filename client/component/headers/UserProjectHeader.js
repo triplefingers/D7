@@ -9,9 +9,9 @@ class UserProjectHeader extends Component {
   }
 
   handleProjectClick(){
-      this.props.fetchProjectDetail(this.props.data.projectId);
-      this.props.goto("/project");
-    }
+    this.props.fetchProjectDetail(this.props.data.projectId);
+    this.props.goto("/project");
+  }
 
 
   render() {
@@ -36,7 +36,7 @@ class UserProjectHeader extends Component {
       if(status === "ongoing"){
         projectStatus = <div>On day {onDay}</div>;
       } else if (status === "waiting") {
-        projectStatus = <div>D{onDay}</div>
+        projectStatus = <div>D{onDay}</div>;
       } else {
         projectStatus = status.toUpperCase();
       }

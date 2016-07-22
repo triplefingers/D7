@@ -3,24 +3,23 @@ import collection from "../db/collections";
 import db from "../db/config/setConfig";
 
 const wish = (user, q, body, res) => {
-  // const userId = user.id;
-  let userProjectId = body.userProjectId;
-  let projectId = body.projectId;
+  const userId = user.id;
+  let { userProjectId, projectId } = body;
+
   /* wishCount */
   let wishCount = 0;
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
-  console.log("----------body in wish api ", userProjectId, projectId);
   let wishData;
   if (userProjectId !== undefined) {
     wishData = () => {

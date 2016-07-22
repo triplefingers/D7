@@ -2,26 +2,27 @@ import model from "../db/models";
 import collection from "../db/collections";
 import Promise from "bluebird";
 
+/* Fetch user details in from 'user' table */
+/* Query: none */
+
 const fetchUser = (user, q, res) => {
-  // const userId = user.id;
+  const userId = user.id;
 
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
-
-
+  /* Start point */
   model.User.where({id: userId}).fetch({withRelated: ["userProjects", "transactions"]})
   .then((user) => {
     user = user.toJSON();
-    console.log("Now fetching... userProfile is", user);
 
     /* userProject counts */
     const projectCountData = {
@@ -31,6 +32,7 @@ const fetchUser = (user, q, res) => {
       waiting: 0,
       total: 0
     };
+
     const today = new Date(new Date().toJSON().slice(0, 10));
     user.userProjects.forEach((project) => {
       projectCountData.total++;
@@ -61,6 +63,7 @@ const fetchUser = (user, q, res) => {
 
     /* Transaction data */
     const transactionData = [];
+    /* Array of Promises to be 'Promise.all'ed */
     const transactionPromiseArray = [];
 
     // user.transaction = transactionData;
@@ -70,10 +73,11 @@ const fetchUser = (user, q, res) => {
       return bSec - aSec;
     });
 
-
     user.transactions.forEach((trans) => {
+      /* Each transaction datum is storedin transData and pushed to 'transactionData' */
       const transData = {};
       const dueDate = new Date(trans.paymentDue);
+      /* diff is the difference between today and the payment due date */
       const diff = dueDate.valueOf() - today.valueOf();
       if (diff < 0) {
         const transPromise = new Promise((resolve, reject) => {
@@ -84,11 +88,12 @@ const fetchUser = (user, q, res) => {
           transData.projectTitle = undefined;
           transData.id = trans.id;
           console.log("transdata is ", transData);
+          
           /* project title */
+          /* Fetch userProject details from 'userProject' table */
           model.UserProject.where("id", trans.userProjectId).fetch({withRelated: ["project"]})
           .then((userProject) => {
             userProject = userProject.toJSON();
-            console.log("----------now fetching", userProject);
             transData.projectTitle = userProject.project.title;
             if (userProject.success) {
               transData.status = "refunded";
@@ -114,7 +119,7 @@ const fetchUser = (user, q, res) => {
   .then((data) => res.status(200).send(data))
   .catch((err) => {
     console.error("Error: Failed to read user profile in 'fetchUser.js': ",err);
-  })
+  });
 };
 
 export default fetchUser;

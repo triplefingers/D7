@@ -26,6 +26,8 @@ body {
     /*letter-spacing: 0.01rem;*/
     /*font-size: 1.8rem;*/
     line-height: 1.75em;
+    letter-spacing: -0.1rem;
+    word-spacing: 0.1rem;
 }
 
 /* This prevents horizontal scrolling */
@@ -138,7 +140,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .alert.success {
-  background-color: #42db73
+  background-color: #42db73;
+}
+
+.alert.fail {
+  background-color: crimson;
 }
 
 /* history */
@@ -363,6 +369,10 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.4rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
+}
+
+.sidebar .menu ul li .ongoing li {
+  border-bottom: none;
 }
 
 /*Hiding default input type=file button*/

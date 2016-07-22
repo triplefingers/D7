@@ -31,11 +31,11 @@ class ReportSet extends Component {
   };
 
   validator() {
-   if (this.state.text.length === 0) {
-     return false;
-   }
-   return true;
- };
+    if (this.state.text.length === 0) {
+      return false;
+    }
+    return true;
+  };
 
   handleChange(what, event) {
     let data = {};
@@ -47,16 +47,16 @@ class ReportSet extends Component {
     e.stopPropagation();
     if (this.validator() === true) {
       axios.get("/api/projects/report", {
-         postId: postId,
-         description: description
+        postId: postId,
+        description: description
       })
       .then((res) => {
         this.setState({step: 0, text: ""});
         this.props.navAlert("report");
         this.props.goto(url);
-        setTimeout(() => {
-          this.props.navAlert(null);
-        }, 1000);
+        // setTimeout(() => {
+        //   this.props.navAlert(null);
+        // }, 1000);
       })
       .catch((err) => {
         console.error("Error occurred while saving report: ", err);
@@ -125,7 +125,7 @@ class ReportSet extends Component {
         </div>
       );
     } else {
-      return <div>loading...</div>
+      return <div>loading...</div>;
     }
   }
 }

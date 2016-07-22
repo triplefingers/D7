@@ -11,8 +11,8 @@ class Navigation extends Component {
   }
 
   toggleSidebar() {
-    $('.sidebarBg').css("left", "0%");
-    $('.sidebar').css("left", "0%");
+    $(".sidebarBg").css("left", "0%");
+    $(".sidebar").css("left", "0%");
   }
 
   clickHome() {
@@ -45,6 +45,9 @@ class Navigation extends Component {
 
     let msg = null;
     const navAlertMsg = this.props.data.data.navAlertMsg;
+    console.log("------navAlertMsg is ",this.props);
+    console.log("------navAlertMsg is ",navAlertMsg);
+
     if (navAlertMsg === "save") {
       msg = (
         <div className="alert success">
@@ -52,12 +55,19 @@ class Navigation extends Component {
         </div>
       );
     } else if (navAlertMsg === "report") {
+      console.log("----success");
       msg = (
         <div className="alert success">
           Report Complete!
         </div>
       );
-    } else {
+    } else if (navAlertMsg === "error") {
+      msg = (
+        <div className="alert fail">
+          Error!
+        </div>
+      );
+    }{
       msg = null;
     }
 
@@ -69,6 +79,7 @@ class Navigation extends Component {
             onClick={this.clickHome.bind(this)}>D7</a>
           <New goto={this.props.data.goto} _save={this.props.data._save}/>
         </nav>
+        <span>lllll</span>
         {msg}
       </div>
     );

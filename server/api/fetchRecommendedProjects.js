@@ -1,21 +1,25 @@
 import model from "../db/models";
 import collection from "../db/collections";
 
+/* Fetch all projects details in 'wishCount' desc order from 'project' table */
+/* Query: page */
+
 const fetchRecommendedProjects = (user, q, res) => {
-  // const userId = user.id;
+  const userId = user.id;
   const { page } = q;
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
+  /* Start point */
   model.Project.forge().orderBy("-wishCount").fetchPage({
     pageSize: 20,
     page: page,
@@ -26,7 +30,6 @@ const fetchRecommendedProjects = (user, q, res) => {
   })
   .then((projects)=>{
     projects = projects.toJSON();
-    console.log("Now fetching.... projects are", projects);
 
     projects.forEach((project) => {
       /* username, userPhoto */
@@ -43,10 +46,10 @@ const fetchRecommendedProjects = (user, q, res) => {
       });
       delete project.wishes;
     });
+
     return projects;
   })
   .then((data) => {
-    console.log("----------------res is ", res);
     res.status(200).send(data);
   })
   .catch((err) => {

@@ -1,45 +1,45 @@
 import model from "../db/models";
 import collection from "../db/collections";
-import paymentReq from "./payment";
+import paymentRequest from "./payment";
+
+/* Create new project in 'userProject' tables */
+/* Post Data: projectId, startAt, payment */
 
 const createNewUserProject = (user, q, body, res) => {
-  console.log("------variable iin createNewProject is ", user, q, body, " typeof body is ", typeof(body), res);
+  const userId = user.id;
 
-  // const userId = user.id;
+  // Test code below
+  // let userId;
+  // if (user && user.id) {
+  //   userId = user.id;
+  // }
+  // if (q && q.id) {
+  //   userId = q.id;
+  // } else {
+  //   userId = 1;
+  // }
 
-  // below should be deleted
-  let userId;
-  if (user && user.id) {
-    userId = user.id;
-  }
-  if (q && q.id) {
-    userId = q.id;
-  } else {
-    userId = 1;
-  }
+  /* If the payment is failed, delete userProject */
+  /* by using ids below */
+  let userProjectId;
 
   const { projectId, startAt, payment } = body;
 
-  /* if the payment is failed, should del and userProject */
-  /* by using id below */
-  let userProjectId;
-
-
-  // console.log("------------projecgid and startat: ", projectId, " ", startAt, " ", typeof(startAt));
   const today = new Date();
   const startAtInObj = new Date(startAt);
-  // console.log("body is, ", body, typeof(body), Object.keys(body));
-  // console.log("before slice, ", today, startAtInObj, startAt);
 
+  /* endAt = startAt + 6 days */
   let endAt = new Date(startAt);
   endAt.setDate(startAtInObj.getDate() + 6);
   endAt = endAt.toJSON().slice(0, 10);
 
+  /* If startAt is today, assign 1 to 'onDay'. Otherwise, null */
   let onDay = null;
   if (today.toJSON().slice(0, 10) === startAtInObj.toJSON().slice(0, 10)) {
     onDay = 1;
   }
 
+  /* Start Point */
   return model.UserProject.forge().set({
     userId: userId,
     projectId: projectId,
@@ -48,6 +48,7 @@ const createNewUserProject = (user, q, body, res) => {
   }).save()
   .then((userProject) => {
     userProjectId = userProject.id;
+
     const data = {
       id: userProject.id,
       onDay: onDay,
@@ -57,31 +58,33 @@ const createNewUserProject = (user, q, body, res) => {
     return data;
   })
   .then((data) => {
-    const body = {
+    const postData = {
       userProjectId: data.id,
       endAt: data.endAt,
       payment: payment
     };
-    console.log("----before paymentReq, body is ",  body);
-    return paymentReq(null, null, body, null)
+
+    /* Send payment Request through 'payment.js' */
+    return paymentRequest(user, null, postData, null)
     .then((answer) => {
       data.donePayment = true;
       return data;
     });
   })
   .then((data) => {
-    /* If res === null or res === undefined, just return data */
+    /* Return data, if res === null or res === undefined */
     if (!res) {
-      console.log("Method use: Return createNewUserProject Result: ", data);
+      console.log("Methodical use: Return createNewUserProject Result: ", data);
       return data;
     } else {
       res.status(200).send(data);
     }
   })
   .catch((err) => {
-    console.error("-----Error: Failed to store in 'project' or 'userProject' table: ", err);
+    /* If the process fails, including payment process, rollback */
+    console.error("Error: Failed to store in 'project' or 'userProject' table: ", err);
 
-    /* delete project, userproject */
+    /* Delete project, userproject */
     new model.UserProject({id: userProjectId}).destroy()
     .then(() => {
       console.log("deleted false userproject info");
@@ -89,7 +92,8 @@ const createNewUserProject = (user, q, body, res) => {
     .catch((err) => {
       console.error("Error: Failed to revert project and userproject");
     });
-    /* If res === null or res === undefined, just return data */
+
+    /* Return err, if res === null or res === undefined */
     if (!res) {
       return data;
     } else {

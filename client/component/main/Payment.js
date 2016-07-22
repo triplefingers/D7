@@ -56,30 +56,61 @@ class Payment extends Component {
         console.log("Payment information complete");
         if (this.props.data.creatingProjectFirst) {
           console.log("First Case");
-          this.props.saveNewProject(undefined, title, description, startAt, payment, window.publicIds.pop());
+          this.props.saveNewProject(undefined, title, description, startAt, payment, window.publicIds.pop())
+          .then(() => {
+            this.props.navAlert("save");
+            setTimeout(() => {
+              this.props.navAlert(null);
+            }, 2000);
+          })
+          .catch(() => {
+            this.props.navAlert("error");
+            setTimeout(() => {
+              this.props.navAlert(null);
+            }, 2000);
+          });
+
         } else if (this.props.data.creatingProjectLast) {
           console.log("Second Case");
           Object.assign(newProject, {image: window.publicIds.pop(), payment: payment});
           console.log(text, publicIds, newProject, payment);
-          this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject, payment);
+          this.props.saveDayDetail(1, undefined, 1, text, publicIds, newProject, payment)
+          .then(() => {
+            this.props.navAlert("save");
+            setTimeout(() => {
+              this.props.navAlert(null);
+            }, 2000);
+          })
+          .catch(() => {
+            this.props.navAlert("error");
+            setTimeout(() => {
+              this.props.navAlert(null);
+            }, 2000);
+          });
+
         } else if (this.props.data.existingProjectChosen) {
           if (this.props.data.selectedProject) {
-            const selectedProject =this.props.data.selectedProject;
+            const selectedProject = this.props.data.selectedProject;
             var projectId = selectedProject.projectId;
           }
           console.log("Third case");
           this.props.saveExistingProject(projectId, startAt, payment)
+          .then(() => {
+            this.props.navAlert("save");
+            setTimeout(() => {
+              this.props.navAlert(null);
+            }, 2000);
+          })
+          .catch(() => {
+            this.props.navAlert("error");
+            setTimeout(() => {
+              this.props.navAlert(null);
+            }, 2000);
+          });
         }
       } else {
         alert("Check Again: There is invalid inputs");
       }
-
-      this.props.navAlert("save");
-
-      setTimeout(() => {
-        this.props.navAlert(null);
-      }, 2000);
-
     };
 
     /* Define action bar */
