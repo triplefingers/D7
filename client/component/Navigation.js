@@ -79,7 +79,6 @@ class Navigation extends Component {
             onClick={this.clickHome.bind(this)}>D7</a>
           <New goto={this.props.data.goto} _save={this.props.data._save}/>
         </nav>
-        <span>lllll</span>
         {msg}
       </div>
     );
