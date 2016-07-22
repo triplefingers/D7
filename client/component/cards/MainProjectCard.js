@@ -22,7 +22,7 @@ class MainProjectCard extends Component {
     //   margin: "10px 0",
     // }
 
-    const project = this.props.data
+    const project = this.props.data;
     const imageSrc = "http://res.cloudinary.com/daxutqqyt/image/upload/c_scale,w_840,h_420/v1467554303/" + project.image + ".jpg";
 
     return (

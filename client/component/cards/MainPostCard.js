@@ -24,11 +24,11 @@ class MainPostCard extends Component {
     const imageUrl = "http://res.cloudinary.com/daxutqqyt/image/upload/c_fill,h_" + imageHeight + ",w_" + imageWidth + "/v1466579054/";
 
     const images = publicIds.map((id) => {
-        if (id.indexOf("http") === -1) {
-          id = imageUrl + id;
-        }
-        return <img key={id} src={id} style={{width: "100%", height: "auto"}}/>;
-      });
+      if (id.indexOf("http") === -1) {
+        id = imageUrl + id;
+      }
+      return <img key={id} src={id} style={{width: "100%", height: "auto"}}/>;
+    });
 
     // const cardStyle = {
     //   backgroundColor: "white",

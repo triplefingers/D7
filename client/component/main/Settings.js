@@ -72,7 +72,7 @@ class Settings extends Component {
         background: "skyblue",
         height: "5px",
         width: "0px"
-      }
+      };
 
       return (
         <div className="text-center">
@@ -108,7 +108,7 @@ class Settings extends Component {
         </div>
       );
     } else {
-      return <Loading />
+      return <Loading />;
     }
   }
 };

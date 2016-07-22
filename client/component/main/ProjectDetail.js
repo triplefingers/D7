@@ -22,7 +22,9 @@ class ProjectDetail extends Component {
       let Contents;
       console.log(project);
       Contents = project.posts.map((post)=>{
-        return <MainPostCard data={post} key={post.id} navAlert={this.props.navAlert}/>
+        return (
+          <MainPostCard data={post} key={post.id} navAlert={this.props.navAlert}/>
+        );
       });
       return (
         <div>

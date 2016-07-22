@@ -35,7 +35,7 @@ class Actions extends Component {
         for(let i=0; i<keys.length; i++) {
           nextState[keys[i]] = undefined;
         }
-      this.setState(nextState);
+        this.setState(nextState);
       }
     };
 
@@ -176,7 +176,7 @@ class Actions extends Component {
         this.setState({
           history: res.data
         });
-        console.log('HISTORY', this.state.history);
+        console.log("HISTORY", this.state.history);
       })
       .catch((err) => {
         console.error("Error occured while fetching all projects: ", err);
