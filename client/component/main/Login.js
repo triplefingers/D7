@@ -37,6 +37,7 @@ class Login extends Component {
     }).then((res) => {
       console.log("Signup & login success: ", res);
       this.props.goto("/");
+      this.props._save({loggedIn: true});
     }).catch((err)=>{
       console.error("Error: Signup failed: ", err);
       this.setState({
