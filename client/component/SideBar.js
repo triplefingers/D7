@@ -80,6 +80,9 @@ class SideBar extends Component {
             <div className="menu">
               <ul className="nav">
                 <li>
+                  <a onClick={this.handleClick.bind(this, "/")}>Home</a>
+                </li>
+                <li>
                   <a onClick={this.handleClick.bind(this, "/history", "history", fetchAllProjects)}>
                   Ongoing Projects </a>
                 <ul className="ongoing">

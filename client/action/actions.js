@@ -11,9 +11,13 @@ class Actions extends Component {
     this.checkIfLogined = function() {
       axios.get("/api/checklogin")
       .then((res) => {
-        console.log("already logined");
-        this.goto("/");
-        this._save({loggedIn: true});
+        if(res.data.loggedIn){
+          console.log("logged in");
+          this.goto("/");
+          this._save({loggedIn: true});
+        } else {
+          this.goto("/login");
+        }
       })
       .catch((err) => {
         console.log("error in checkIfLogined: ", err);

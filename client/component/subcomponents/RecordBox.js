@@ -83,8 +83,6 @@ class RecordBox extends Component {
             <label htmlFor="cloudinary_fileupload" className="cloudinary_fileupload"></label>
             <input id="cloudinary_fileupload" type="file" name="file" className="cloudinary_fileupload btn btn-danger" />
           </button>
-
-
           <button id="post" type="button" className="btn btn-primary" onClick={() => goto("/select")}>Post</button>
           <div style={{clear: "both"}}></div>
           <div className="preview">
@@ -92,7 +90,6 @@ class RecordBox extends Component {
           </div>
           <div style={{clear: "both"}}></div>
           <div className="progress_bar" style={progress_bar_style}></div>
-
         </div>
       </div>
     );

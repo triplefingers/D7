@@ -23,8 +23,8 @@ class AppContainer extends Actions {
     };
   };
 
-  // Check if session exists
   componentWillMount() {
+    /* Check if session exists */
     this.checkIfLogined();
   }
 
