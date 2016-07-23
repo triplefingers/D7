@@ -11,13 +11,41 @@ class Actions extends Component {
     this.checkIfLogined = function() {
       axios.get("/api/checklogin")
       .then((res) => {
-        console.log("already logined");
-        this.goto("/");
-        this._save({loggedIn: true});
+        if(res.data.loggedIn){
+          console.log("logged in");
+          this.goto("/");
+          this._save({loggedIn: true});
+        } else {
+          this.goto("/login");
+        }
       })
       .catch((err) => {
         console.log("error in checkIfLogined: ", err);
         // this.goto(err.data.path);
+        this.goto("/login");
+      });
+    };
+
+    this.logout = function(){
+      axios.get("/api/logout")
+      .then((res) => {
+        console.log(res.message);
+        this.reset();
+      }).then(() => {
+        this._save({
+          selectedMain: "recent",
+          text: "",
+          description: "",
+          title: "",
+          startAt: "",
+          cardNumber: "",
+          expiry: "",
+          birth: "",
+          pwd2digit: "",
+          amount: "",
+          currency: "won",
+          loggedIn: false
+        });
         this.goto("/login");
       });
     };

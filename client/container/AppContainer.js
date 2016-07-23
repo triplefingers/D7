@@ -23,8 +23,8 @@ class AppContainer extends Actions {
     };
   };
 
-  // Check if session exists
   componentWillMount() {
+    /* Check if session exists */
     this.checkIfLogined();
   }
 
@@ -42,6 +42,9 @@ class AppContainer extends Actions {
     injection.reset = this.reset.bind(this);
     injection.checkIfLogined = this.checkIfLogined.bind(this);
     injection.calcWindowSize = this.calcWindowSize.bind(this);
+
+    /* For Auth */
+    injection.logout = this.logout.bind(this);
 
     /* For Navigation Bar */
     injection.navAlert = this.navAlert.bind(this);

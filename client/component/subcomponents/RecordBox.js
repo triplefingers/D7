@@ -73,18 +73,16 @@ class RecordBox extends Component {
     return (
       <div className="RecordBox">
         <form role="form">
-          <div class="form-group">
+          <div className="form-group">
             <textarea value={data.text} onChange={handleChange.bind(null, "text")} rows="2" placeholder="What did you do today?"/><br/>
           </div>
         </form>
         <div className="RecordButtons">
           {/*<form className="upload_form"></form>*/}
           <button id="AddPhotos" type="button" className="btn btn-default">
-            <label for="cloudinary_fileupload" className="cloudinary_fileupload"></label>
+            <label htmlFor="cloudinary_fileupload" className="cloudinary_fileupload"></label>
             <input id="cloudinary_fileupload" type="file" name="file" className="cloudinary_fileupload btn btn-danger" />
           </button>
-
-
           <button id="post" type="button" className="btn btn-primary" onClick={() => goto("/select")}>Post</button>
           <div style={{clear: "both"}}></div>
           <div className="preview">
@@ -92,7 +90,6 @@ class RecordBox extends Component {
           </div>
           <div style={{clear: "both"}}></div>
           <div className="progress_bar" style={progress_bar_style}></div>
-
         </div>
       </div>
     );

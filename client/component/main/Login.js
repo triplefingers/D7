@@ -6,6 +6,9 @@ class Login extends Component {
     super(props);
     this.state = {
       isSignup: false,
+      email: "",
+      password: "",
+      username:""
     };
   };
 
@@ -37,6 +40,7 @@ class Login extends Component {
     }).then((res) => {
       console.log("Signup & login success: ", res);
       this.props.goto("/");
+      this.props._save({loggedIn: true});
     }).catch((err)=>{
       console.error("Error: Signup failed: ", err);
       this.setState({
@@ -46,7 +50,6 @@ class Login extends Component {
       });
     });
   };
-
 
   handleChange(what, event) {
     let data = {};

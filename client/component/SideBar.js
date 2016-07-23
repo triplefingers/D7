@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from "axios";
 
 class SideBar extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class SideBar extends Component {
     /* ongoing = onGoing*/
     let onGoingProjects, userStats;
     const { user, onGoing } = this.props.data.data;
-    const { goto, fetchWishList, fetchAllProjects, fetchUser } = this.props.data;
+    const { goto, fetchWishList, fetchAllProjects, fetchUser, logout } = this.props.data;
 
     /* Practice */
     if (user && onGoing) {
@@ -79,6 +80,9 @@ class SideBar extends Component {
             <div className="menu">
               <ul className="nav">
                 <li>
+                  <a onClick={this.handleClick.bind(this, "/")}>Home</a>
+                </li>
+                <li>
                   <a onClick={this.handleClick.bind(this, "/history", "history", fetchAllProjects)}>
                   Ongoing Projects </a>
                 <ul className="ongoing">
@@ -96,6 +100,10 @@ class SideBar extends Component {
                 <li>
                   <a onClick={this.handleClick.bind(this, "/settings")}>
                   Settings </a>
+                </li>
+                <li>
+                  <a onClick={logout}>
+                  Logout </a>
                 </li>
               </ul>
             </div>
