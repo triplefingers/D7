@@ -4,6 +4,8 @@
 # D7
 Do something every single day
 
+A weekly task management service to encourages you by charging money if you are unsuccessful.
+
 # Preparation
 All you have to do is npm install
 - > npm install
